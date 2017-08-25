@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
 
     
     func loginButtonPressed(sender:UIButton) {
-        Fetcher().facebookApi { (done) in
+        FacebookAPI().loginUser { (done) in
             if done {
                 self.delegate?.didLogin()
             }

@@ -15,7 +15,7 @@ public typealias JSONDictionary = [String:Any]
 
 // New Layer of network using SRP 
 
-/// Defines the dta we expect as response
+/// Defines the data we expect as response
 /// - JSON: its a json 
 /// - Data: its plain raw data
 public enum DataType {
@@ -23,7 +23,13 @@ public enum DataType {
     case data
 }
 
+
 /// Define our http method to use when performing a request 
+/// - post: POST HTTP method
+/// - get:  GET HTTP  method
+/// - put:  PUT HTTP  method
+/// - delete: DELETE HTTP method
+/// - patch: PATCH HTTP method
 
 public enum HTTPMethod:String {
     case post   = "POST"
@@ -35,8 +41,8 @@ public enum HTTPMethod:String {
 }
 
 /// Defines our parameters when sending a request
-/// - body : params sent using body
-/// - url : params send as urlencoded
+/// - body :  params sent using body
+/// - url  :  params send as urlencoded
 public enum RequestParams {
     case body(_ :JSONDictionary?)
     case url(_ :JSONDictionary?)
@@ -67,6 +73,13 @@ public protocol RequestRepresentable {
 }
 
 
+
+
+/// Define our response from performing a request
+/// - json: json dictionaries
+/// - data:  raw data
+/// - error:  error
+
 public enum Response {
     case json(_ :JSONDictionary)
     case data(_ :Data)
@@ -74,7 +87,7 @@ public enum Response {
     
     init(_ response:(r:HTTPURLResponse?, data:Data?, error:Error?), for request:RequestRepresentable) {
         
-        
+        // Draglabs custom reponse message
         if response.r?.statusCode == 400  {
             let jsonRes = try! JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions())
             self = .json(jsonRes as! JSONDictionary)
@@ -122,7 +135,10 @@ public struct Enviroment {
     /// Define the base url of our enviroment
     public var host :String
     
-    /// Define the headers to send along with the request
+    /// Defines the headers to send with the request
+    /// along with any other headers from the url request
+    /// useful if we want to add a custome header for each enviroment
+
     public var headers:[String:Any]? = nil
     
     /// Define our cache policy, default is: reloadIgnoringLocalCacheData
@@ -319,7 +335,8 @@ public enum JamRequest:RequestRepresentable {
     
     case collaborator(uniqueId:String, jamId:String)
     
-    /// The kind of data we expect as response 
+    /// The kind of data we expect as response,
+    /// .JSON by default
     public var dataType: DataType {
         switch self {
         default:
@@ -380,24 +397,25 @@ public enum JamRequest:RequestRepresentable {
     
 }
 
-class JamTaskOperation: OperationRepresentable {
+class JamOperation: OperationRepresentable {
     
     func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ jam:Jam)->()) {
-        
+        dispatcher.execute(request: request) { (result) in
+            
+        }
     }
     
     var request: RequestRepresentable {
         return JamRequest
     }
+    
 }
 
 
-final class Fetcher {
-    
+final class FacebookAPI {
     let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
     
-    
-    func facebookApi(done:@escaping (_ done:Bool)->()) {
+    func loginUser(done:@escaping (_ done:Bool)->()) {
         LoginManager().logIn([.publicProfile], viewController: nil) { (fbAPiResult) in
             switch fbAPiResult {
             case .success(_,  _, let token):
@@ -405,7 +423,7 @@ final class Fetcher {
                 let userTask = UserRegistrationOperation(facebookId: token.userId!, accessToken: token.authenticationToken)
                 
                 userTask.execute(in: self.networkDispatcher, result: { (user) in
-                    print(user ?? "not user")
+                    
                 })
                 
                 
@@ -415,46 +433,7 @@ final class Fetcher {
         }
     }
     
-    
 
-    let locationManager = LocationMgr()
-  private   func registerUser(params:[String],completion:@escaping (_ userId:String)->()) {
-    
-    
-       let url = URL(string: Enpoint.auth.string)!
-    
-        let bodyParams:[String:Any] = ["facebook_id":params[0], "access_token":params[1]]
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    
-        let body = try! JSONSerialization.data(withJSONObject: bodyParams, options: [])
-    
-        request.httpBody = body
-    
-        URLSession.shared.dataTask(with: request) { (responseData, urlResponse, error) in
-            
-            guard let data = responseData else { return }
-            
-            do  {
-              let json  = try JSONSerialization.jsonObject(with: data, options: [])
-                guard let dic = json as? JSONDictionary else {return }
-                guard let user = dic["user"] else{return}
-                if let id = user as? [String:String] {
-                    
-                    completion(id["id"]!)
-                }
-                
-                
-            }
-            catch let err  {
-                // hadle error
-                print(err)
-            }
-            
-            
-        }.resume()
-    }
     
 }
 
