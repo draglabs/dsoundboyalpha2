@@ -375,9 +375,8 @@ public enum JamRequest:RequestRepresentable {
             return "jam/upload"
         case .collaborator:
             return "jam/collaborators"
-    
+        }
     }
-    
     
 }
 
@@ -386,44 +385,11 @@ class JamTaskOperation: OperationRepresentable {
     func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ jam:Jam)->()) {
         
     }
+    
     var request: RequestRepresentable {
         return JamRequest
     }
 }
-
-
-enum Enpoint:String {
-    case auth       = "https://api.draglabs.com/v1.01/user/auth"
-    case startJam   = "https://api.draglabs.com/v1.01/jam/start"
-    case exitJam    = "https://api.draglabs.com/v1.01/jam/exit"
-    case joinJam    = "https://api.draglabs.com/v1.01/jam/join"
-    case soloUpload = "https://api.draglabs.com/v1.01/soloupload/id/"
-    case jamUpload  = "https://api.draglabs.com/v1.01/jam/upload/"
-}
-
-
-extension Enpoint {
-    
-    var string:String {
-        switch self {
-        case .auth:
-            return String(self.rawValue)
-       case .startJam:
-            return String(self.rawValue)
-        case .exitJam:
-            return String(self.rawValue)
-        case .joinJam:
-            return String(self.rawValue)
-        case .soloUpload:
-            return String(self.rawValue)
-        case .jamUpload:
-            return String(self.rawValue)
-        }
-    }
-}
-
-
-
 
 
 final class Fetcher {
@@ -487,46 +453,8 @@ final class Fetcher {
             }
             
             
-            
         }.resume()
     }
-
-    
-    private func startAJam(params:RequestParams, completion:@escaping(_ jamID:String?,_ error:Error?)->()) {
-        
-//        let url = URL(string:Enpoint.startJam.string)!
-//        guard let id = UserDefaults.standard.object(forKey: "user_id") as? String else  {return }
-//        var bodyParam = params
-//        bodyParam["user_id"] = id
-//        locationManager.requestLocation()
-//        guard let location = locationManager.lastLocation else {return}
-//        
-//        
-//        
-//        
-//        
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        let body = try! JSONSerialization.data(withJSONObject: bodyParam, options: [])
-//        request.httpBody = body
-//        
-//        
-//        
-//        URLSession.shared.dataTask(with: request) { (data, urlResponse, error) in
-//            
-//        }.resume()
-        
-        
-    }
-    
-    private func endJam(userId:String, completion:@escaping(_ done:Bool)->()) {
-      
-        
-    }
-    
- 
-    
     
 }
 
