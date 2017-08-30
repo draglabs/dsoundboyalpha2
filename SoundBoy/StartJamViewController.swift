@@ -86,15 +86,25 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
     view.addSubview(doneButton)
     view.addSubview(locationNameTextfield)
     view.addSubview(jamNameTextfield)
-    
+    setupUI()
     uiContraints()
+    
     }
     
   
  func setupUI() {
     cancelButton.setTitleColor(UIColor.white, for: .normal)
-    doneButton.setTitleColor(UIColor.white, for: .normal)
+    cancelButton.titleLabel!.font = UIFont(name: "Avenir-Book", size: 17)
     
+    doneButton.setTitleColor(UIColor.white, for: .normal)
+    doneButton.titleLabel!.font = UIFont(name: "Avenir-Book", size: 17)
+    doneButton.layer.cornerRadius = 22
+    doneButton.backgroundColor = UIColor(colorLiteralRed: 168/255, green: 36/255, blue: 36/266, alpha: 1.0)
+    jamNameTextfield.backgroundColor = UIColor.white
+    jamNameTextfield.layer.cornerRadius = 4
+    
+    locationNameTextfield.backgroundColor = UIColor.white
+    locationNameTextfield.layer.cornerRadius = 4
  }
     
  func uiContraints() {
@@ -104,7 +114,23 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
     cancelButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
     cancelButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
     
-    //
+    //jam name constraints 
+    jamNameTextfield.topAnchor.constraint(equalTo: view.topAnchor, constant: 115).isActive = true
+    jamNameTextfield.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:12).isActive = true
+    jamNameTextfield.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:-12).isActive = true
+    jamNameTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    
+    // jam location constraints 
+    locationNameTextfield.topAnchor.constraint(equalTo: jamNameTextfield.bottomAnchor,constant:15).isActive = true
+    locationNameTextfield.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12).isActive = true
+    locationNameTextfield.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12).isActive = true
+    locationNameTextfield.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    
+    //done button contraints 
+    doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+    doneButton.topAnchor.constraint(equalTo: locationNameTextfield.bottomAnchor, constant: 25).isActive = true
+    doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+    doneButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
   }
     
   func submitJam() {

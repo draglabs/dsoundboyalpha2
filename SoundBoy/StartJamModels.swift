@@ -23,8 +23,8 @@ enum StartJam
     }
     struct ViewModel {
         let jamName = "Enter jam name"
-        let locationName = "Enter jam Location, i.e my house"
-        let close = "Close"
+        let locationName = "Enter jam Location (i.e my house)"
+        let close = "Cancel"
         let done = "DONE"
     }
   }
