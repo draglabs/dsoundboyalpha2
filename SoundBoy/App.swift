@@ -28,8 +28,6 @@ class App: NSObject {
             Customizer.nav(nav: navController)
         }
         
-    
-        setupDelegates()
     }
 
     
@@ -38,25 +36,23 @@ class App: NSObject {
         return true
     }
     
-    func setupDelegates() {
-        oboadingVC.delegate = self
-    }
+   
 }
 
 
 
 //MARK: MainViewContoller Delegate Conformance
-extension App:MainControllerDelegate {}
+
 
 //MARK: OnboardingViewController Delegate Conformace
-extension App:OnboardingVCDelegate {
-    func didLogin() {
-        DispatchQueue.main.async {
-          self.navController.setViewControllers([self.mainVC], animated: true)
-        }
-        
-    }
-}
+//extension App:OnboardingVCDelegate {
+//    func didLogin() {
+//        DispatchQueue.main.async {
+//          self.navController.setViewControllers([self.mainVC], animated: true)
+//        }
+//        
+//    }
+//}
 
 
 

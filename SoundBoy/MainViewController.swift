@@ -1,144 +1,126 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  SoundBoy
 //
-//  Created by Marlon Monroy on 6/26/17.
-//  Copyright © 2017 DragLabs. All rights reserved.
+//  Created by Marlon Monroy on 8/29/17.
+//  Copyright (c) 2017 DragLabs. All rights reserved.
 //
+
 
 import UIKit
 
-
-protocol MainControllerDelegate {
-    
+protocol MainDisplayLogic: class
+{
+  func displaySomething(viewModel: Main.Jam.ViewModel)
 }
 
-
-class MainViewController: UIViewController {
-    let playPauseView = PlayPauseView()
-    let bottomView = BottomView()
-    let activityView = Activity()
+class MainViewController: UIViewController, MainDisplayLogic
+{
+  var interactor: MainBusinessLogic?
+  var router: (NSObjectProtocol & MainRoutingLogic & MainDataPassing)?
+  var isPlaying = false
     
-    let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
-    let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
+  let playPauseView = PlayPauseView()
+  let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
+  let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
     
-    let settingButton = UIButton(type: UIButtonType.system)
-    let filesButton = UIButton(type: UIButtonType.system)
-    var isPlaying = false
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
+  // MARK: Object lifecycle
+  
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+  {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    setup()
+  }
+  
+  required init?(coder aDecoder: NSCoder)
+  {
+    super.init(coder: aDecoder)
+    setup()
+  }
+  
+  // MARK: Setup
+  
+  private func setup()
+  {
+    let viewController = self
+    let interactor = MainInteractor()
+    let presenter = MainPresenter()
+    let router = MainRouter()
+    viewController.interactor = interactor
+    viewController.router = router
+    interactor.presenter = presenter
+    presenter.viewController = viewController
+    router.viewController = viewController
+    router.dataStore = interactor
+  }
+  
+  
+  // MARK: View lifecycle
+  
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+    setupUI()
+  }
+  
+  // MARK: Do something
+  
+  func setupUI() {
+     playPauseView.translatesAutoresizingMaskIntoConstraints = false
+     backLayer.frame = view.frame
+     view.addSubview(backLayer)
+     backgroundView.frame = view.frame
+     view.addSubview(backgroundView)
+     view.addSubview(playPauseView)
+     playPauseView.didPressedPlayButton = didPressedPlayButton
+     uiContraints()
     }
-
+  
+    
+  func uiContraints() {
+     // play pause view  constraints
+     playPauseView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+     playPauseView.topAnchor.constraint(equalTo: view.topAnchor,constant:64).isActive = true
+     playPauseView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+     NSLayoutConstraint.init(item: playPauseView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1/1.7, constant: 0).isActive = true
+    }
+    
+  func doSomething() {
+    let request = Main.Jam.Request()
+    interactor?.startJam(request: request)
+  }
+  
+  func displaySomething(viewModel: Main.Jam.ViewModel)
+  {
+    //nameTextField.text = viewModel.name
+  }
+    
+  
 }
 
-extension MainViewController {
-    
-    func setupUI() {
-        backLayer.frame = view.frame
-        view.addSubview(backLayer)
-        backgroundView.frame = view.frame
-        view.addSubview(backgroundView)
-        
-        bottomView.translatesAutoresizingMaskIntoConstraints = false
-        playPauseView.translatesAutoresizingMaskIntoConstraints = false
-        settingButton.translatesAutoresizingMaskIntoConstraints = false
-        filesButton.translatesAutoresizingMaskIntoConstraints = false
-        activityView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(playPauseView)
-        view.addSubview(filesButton)
-        view.addSubview(settingButton)
-        view.addSubview(activityView)
-        
-        childViews()
-        setupConstraints()
-        view.layoutIfNeeded()
-        
-    }
-    
-    func childViews() {
-        let titleText = UILabel()
-        titleText.text = "dSoundBoy"
-        titleText.textColor  = UIColor.white
-        titleText.font = UIFont(name: "Avenir-Heavy", size: 27)
-        titleText.textAlignment = .center
-        titleText.frame  = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 64)
-        view.addSubview(titleText)
-        
-        settingButton.setImage(#imageLiteral(resourceName: "settings_icon"), for: .normal)
-        settingButton.tintColor = UIColor.white
-        
-        filesButton.setImage(#imageLiteral(resourceName: "files_icon"), for: .normal)
-        filesButton.tintColor = UIColor.white
-       
-        view.addSubview(bottomView)
-        playPauseView.didPressedPlayButton = didPressedPlayButton
-        
-    }
-    
-    func setupConstraints() {
-        
-        // setting button constraints
-        settingButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:20).isActive = true
-        settingButton.topAnchor.constraint(equalTo: view.topAnchor, constant:20).isActive = true
-        settingButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        settingButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        // files button constraints
-        filesButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:-20).isActive = true
-        filesButton.topAnchor.constraint(equalTo: view.topAnchor, constant:20).isActive = true
-        filesButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        filesButton.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        // play pause view  constraints
-        playPauseView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        playPauseView.topAnchor.constraint(equalTo: view.topAnchor,constant:64).isActive = true
-        playPauseView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        NSLayoutConstraint.init(item: playPauseView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1/1.7, constant: 0).isActive = true
-        
-        
-        // bottomView Constraints
-        bottomView.topAnchor.constraint(equalTo: playPauseView.bottomAnchor).isActive = true
-        bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        bottomView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        
-        
-        // activityview constraints 
-        activityView.topAnchor.constraint(equalTo: bottomView.bottomAnchor).isActive = true
-        activityView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        activityView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor).isActive = true
-        activityView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
-    
-}
 
 extension MainViewController {
     
     // callbacks from playpause view
-    // delegate if you will
-    
+  
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     func  didPressedPlayButton(playPauseView:PlayPauseView, button:UIButton) {
         
-            if !isPlaying {
+        if !isPlaying {
             Recorder.shared.startRecording()
             isPlaying = true
             playPauseView.updatePlayButton(isPlaying: isPlaying)
-           
+            
         }else {
-          
-           Recorder.shared.stopRecording()
+            
+            Recorder.shared.stopRecording()
             isPlaying = false
-             playPauseView.updatePlayButton(isPlaying: isPlaying)
+            playPauseView.updatePlayButton(isPlaying: isPlaying)
             
         }
-    
+        
     }
     
 }
-
-
-
-

@@ -40,6 +40,13 @@ public enum HTTPMethod:String {
   
 }
 
+public enum NetworkError :Error {
+    case badInput
+    case noData
+    case unableToParse
+    
+}
+
 /// Defines our parameters when sending a request
 /// - body :  params sent using body
 /// - url  :  params send as urlencoded
@@ -157,14 +164,6 @@ public protocol DispatcherRepresentable {
     init(enviroment:Enviroment)
     
     func execute(request:RequestRepresentable,result:@escaping(_:Response)->())
-}
-
-
-public enum NetworkError :Error {
-    case badInput
-    case noData
-    case unableToParse
-    
 }
 
 
@@ -287,8 +286,8 @@ public protocol OperationRepresentable {
 
  class UserRegistrationOperation: OperationRepresentable {
     
-    var facebookId :String
-    var accessToken:String
+    let facebookId :String
+    let accessToken:String
     
     func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ user:User?) -> ()) {
        
@@ -392,21 +391,35 @@ public enum JamRequest:RequestRepresentable {
             return "jam/upload"
         case .collaborator:
             return "jam/collaborators"
+        case .join:
+            return "jam/join"
         }
     }
     
 }
 
-class JamOperation: OperationRepresentable {
+class StartJamOperation: OperationRepresentable {
+    
+    let jam:Jam
     
     func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ jam:Jam)->()) {
-        dispatcher.execute(request: request) { (result) in
-            
+        dispatcher.execute(request: request) { (response) in
+            switch response {
+            case .json(let json):
+                let jam = Jam(json)
+                result(jam!)
+            default:
+                break
+            }
         }
     }
     
     var request: RequestRepresentable {
-        return JamRequest
+        return JamRequest.start(uniqueId: jam.uniqueId, jamLocation: jam.jamLocation, jamName: jam.jamName, jamLat: jam.jamLat, jamLong: jam.jamLong)
+    }
+    
+    init(jam:Jam) {
+        self.jam = jam
     }
     
 }
@@ -423,7 +436,12 @@ final class FacebookAPI {
                 let userTask = UserRegistrationOperation(facebookId: token.userId!, accessToken: token.authenticationToken)
                 
                 userTask.execute(in: self.networkDispatcher, result: { (user) in
-                    
+                    if let usr = user {
+                        print(usr)
+                        DispatchQueue.main.async {
+                            done(true)
+                        }
+                    }
                 })
                 
                 

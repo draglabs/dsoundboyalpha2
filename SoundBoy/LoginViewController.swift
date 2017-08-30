@@ -1,54 +1,99 @@
 //
-//  OnboardingViewController.swift
+//  LoginViewController.swift
 //  SoundBoy
 //
-//  Created by Marlon Monroy on 7/11/17.
-//  Copyright © 2017 DragLabs. All rights reserved.
+//  Created by Marlon Monroy on 8/29/17.
+//  Copyright (c) 2017 DragLabs. All rights reserved.
 //
+
 
 import UIKit
 
-
-protocol OnboardingVCDelegate {
-    func didLogin()
+protocol LoginDisplayLogic: class
+{
+  func displaySomething(viewModel: Login.WelcomeText.ViewModel)
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginDisplayLogic
+{
+  var interactor: LoginBusinessLogic?
+  var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)?
+  let backgrundImageView = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
+  let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
+  let loginButton = UIButton(type: UIButtonType.system)
+  let slogan = UILabel()
     
-    var delegate:OnboardingVCDelegate?
-    let backgrundImageView = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
-    let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
-    let loginButton = UIButton(type: UIButtonType.system)
-    let slogan = UILabel()
-    
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup()
-        // Do any additional setup after loading the view.
-    }
+  // MARK: Object lifecycle
+  
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+  {
+    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    setup()
+  }
+  
+  required init?(coder aDecoder: NSCoder)
+  {
+    super.init(coder: aDecoder)
+    setup()
+  }
+  
+  // MARK: Setup
+  
+  private func setup()
+  {
+    let viewController = self
+    let interactor = LoginInteractor()
+    let presenter = LoginPresenter()
+    let router = LoginRouter()
+    viewController.interactor = interactor
+    viewController.router = router
+    interactor.presenter = presenter
+    presenter.viewController = viewController
+    router.viewController = viewController
+    router.dataStore = interactor
+  }
+  
 
+  override func viewDidLoad()
+  {
+    super.viewDidLoad()
+    setupUI()
+    requestWelcomeText()
+    
+  }
+  
+
+  
+  func requestWelcomeText()
+  {
+    let request = Login.WelcomeText.Request()
+    interactor?.doSomething(request: request)
+  }
+  
+  func displaySomething(viewModel: Login.WelcomeText.ViewModel)
+  {
+    slogan.text = viewModel.welcomeText
+  }
     
     func loginButtonPressed(sender:UIButton) {
         FacebookAPI().loginUser { (done) in
             if done {
-                self.delegate?.didLogin()
+               self.router?.routeToMainController(source: self)
             }
         }
     }
     
     
-   func setup() {
-    
+    func setupUI() {
+        
         backgrundImageView.frame = view.bounds
         view.addSubview(backgrundImageView)
-    
+        
         backgroundView.frame = view.bounds
-
+        
         view.addSubview(backgroundView)
-    
-        slogan.text = "Thank you for using dSoundBoy \n please sign up using"
+        
+        
         slogan.numberOfLines = 0
         slogan.textAlignment = .center
         slogan.font = UIFont(name: "Avenir-Book", size: 30)
@@ -56,9 +101,9 @@ class LoginViewController: UIViewController {
         view.addSubview(slogan)
         loginSetup()
     }
-
- 
-   
+    
+    
+    
     
     func loginSetup() {
         loginButton.setTitle("Facebook", for: .normal)
@@ -89,4 +134,5 @@ class LoginViewController: UIViewController {
         slogan.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
     }
+    
 }
