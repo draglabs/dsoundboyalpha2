@@ -12,10 +12,10 @@ import UIKit
 protocol LoginDisplayLogic: class
 {
   func displaySomething(viewModel: Login.WelcomeText.ViewModel)
+  func displayMainScreen(viewModel:Login.Register.ViewModel)
 }
 
-class LoginViewController: UIViewController, LoginDisplayLogic
-{
+class LoginViewController: UIViewController, LoginDisplayLogic {
   var interactor: LoginBusinessLogic?
   var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)?
   let backgrundImageView = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
@@ -25,22 +25,19 @@ class LoginViewController: UIViewController, LoginDisplayLogic
     
   // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
   }
   
   // MARK: Setup
   
-  private func setup()
-  {
+  private func setup() {
     let viewController = self
     let interactor = LoginInteractor()
     let presenter = LoginPresenter()
@@ -54,35 +51,36 @@ class LoginViewController: UIViewController, LoginDisplayLogic
   }
   
 
-  override func viewDidLoad()
-  {
+  override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
     requestWelcomeText()
     
   }
   
-
-  
-  func requestWelcomeText()
-  {
+  func requestWelcomeText() {
     let request = Login.WelcomeText.Request()
     interactor?.doSomething(request: request)
+    
   }
-  
+    
   func displaySomething(viewModel: Login.WelcomeText.ViewModel)
   {
     slogan.text = viewModel.welcomeText
   }
     
-    func loginButtonPressed(sender:UIButton) {
-        FacebookAPI().loginUser { (done) in
-            if done {
-               self.router?.routeToMainController(source: self)
-            }
+  func displayMainScreen(viewModel: Login.Register.ViewModel) {
+    if viewModel.registered {
+        router?.routeToMainController(source: self)
         }
     }
     
+  func loginButtonPressed(sender:UIButton) {
+        
+    let request = Login.Register.Request()
+    interactor?.RegisterUser(request: request)
+        
+ }
     
     func setupUI() {
         
@@ -103,8 +101,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic
     }
     
     
-    
-    
+
     func loginSetup() {
         loginButton.setTitle("Facebook", for: .normal)
         loginButton.translatesAutoresizingMaskIntoConstraints = false

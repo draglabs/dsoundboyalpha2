@@ -9,7 +9,6 @@
 import Foundation
 import FacebookLogin
 
-
 /// Defines a JSON like dic
 public typealias JSONDictionary = [String:Any]
 
@@ -23,13 +22,13 @@ public enum DataType {
     case data
 }
 
-
 /// Define our http method to use when performing a request 
 /// - post: POST HTTP method
 /// - get:  GET HTTP  method
 /// - put:  PUT HTTP  method
 /// - delete: DELETE HTTP method
 /// - patch: PATCH HTTP method
+
 
 public enum HTTPMethod:String {
     case post   = "POST"
@@ -78,9 +77,6 @@ public protocol RequestRepresentable {
     var dataType   : DataType      { get }
     
 }
-
-
-
 
 /// Define our response from performing a request
 /// - json: json dictionaries

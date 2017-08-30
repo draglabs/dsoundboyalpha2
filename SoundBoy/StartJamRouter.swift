@@ -12,6 +12,7 @@ import UIKit
 @objc protocol StartJamRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
+    func dismiss()
 }
 
 protocol StartJamDataPassing
@@ -23,7 +24,12 @@ class StartJamRouter: NSObject, StartJamRoutingLogic, StartJamDataPassing
 {
   weak var viewController: StartJamViewController?
   var dataStore: StartJamDataStore?
-  
+    
+    func dismiss() {
+        viewController?.dismiss(animated: true, completion: {
+            
+        })
+    }
   // MARK: Routing
   
   //func routeToSomewhere(segue: UIStoryboardSegue?)

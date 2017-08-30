@@ -30,13 +30,13 @@ class StartJamInteractor: StartJamBusinessLogic, StartJamDataStore
   func doSomething(request: StartJam.Submit.Request)
   {
     worker = StartJamWorker()
-    let jam = request.jam!
+    //let jam = request.jam!
     
-    worker?.startJamRequest(jam:jam, completion: { jam in
+    //worker?.startJamRequest(jam:jam, completion: { jam in
         
-    })
+   // })
     
     let response = StartJam.Submit.Response()
-    presenter?.presentSomething(response: response)
+    presenter?.presentTexfields(response: response)
   }
 }

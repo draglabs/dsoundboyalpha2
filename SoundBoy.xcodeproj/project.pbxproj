@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* WebService.swift */; };
 		A1017CC21F1951A400AA1B31 /* SoundBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */; };
-		A14F9F2B1F09CD70009D8D6E /* SettingOverLay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2A1F09CD70009D8D6E /* SettingOverLay.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
 		A14F9F311F09EA91009D8D6E /* AnimatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F301F09EA91009D8D6E /* AnimatableView.swift */; };
 		A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F381F0B50A7009D8D6E /* baseOperation.swift */; };
 		A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */; };
 		A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */; };
-		A153F8171F082BBD00223379 /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8061F082BBD00223379 /* BottomView.swift */; };
+		A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8061F082BBD00223379 /* JoinStartJamView.swift */; };
 		A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8081F082BBD00223379 /* CoreDataStore.swift */; };
 		A153F81C1F082BBD00223379 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80C1F082BBD00223379 /* MainView.swift */; };
 		A153F81E1F082BBD00223379 /* PlayPause.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80E1F082BBD00223379 /* PlayPause.swift */; };
@@ -25,7 +24,6 @@
 		A155FD221F3E411500B4165F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD211F3E411500B4165F /* App.swift */; };
 		A155FD241F3E510A00B4165F /* Customizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD231F3E510A00B4165F /* Customizer.swift */; };
 		A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4EBA1F42551200AF1D18 /* LocationManager.swift */; };
-		A17D4EBD1F428A0500AF1D18 /* JamStartFormfieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4EBC1F428A0500AF1D18 /* JamStartFormfieldsView.swift */; };
 		A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */; };
 		A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A331F02102500B979D6 /* Assets.xcassets */; };
 		A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */; };
@@ -48,11 +46,9 @@
 		A1B66A9F1F556341001F3B00 /* StartJamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66A991F556341001F3B00 /* StartJamViewController.swift */; };
 		A1B66AA01F556341001F3B00 /* StartJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66A9A1F556341001F3B00 /* StartJamWorker.swift */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
-		A1FC8BAD1F0ED5EC00DB2EC0 /* PinGenViewSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAC1F0ED5EC00DB2EC0 /* PinGenViewSliderView.swift */; };
 		A1FC8BAF1F105F6200DB2EC0 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAE1F105F6200DB2EC0 /* FilesViewController.swift */; };
 		A1FC8BB21F105F9000DB2EC0 /* FIleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BB11F105F9000DB2EC0 /* FIleViewModel.swift */; };
 		A1FC8BB61F10740C00DB2EC0 /* FilesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BB51F10740C00DB2EC0 /* FilesTableView.swift */; };
-		A1FC8BB81F15558900DB2EC0 /* PinGenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BB71F15558900DB2EC0 /* PinGenViewModel.swift */; };
 		A1FC8BBC1F1595DA00DB2EC0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BBB1F1595DA00DB2EC0 /* User.swift */; };
 		A1FC8BBE1F15961E00DB2EC0 /* Jam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BBD1F15961E00DB2EC0 /* Jam.swift */; };
 		A75854A97046E8E90B20BB79 /* Pods_SoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */; };
@@ -75,13 +71,12 @@
 		A1017CBF1F1951A400AA1B31 /* SoundBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundBoyTests.swift; sourceTree = "<group>"; };
 		A1017CC31F1951A400AA1B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A14F9F2A1F09CD70009D8D6E /* SettingOverLay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingOverLay.swift; sourceTree = "<group>"; };
 		A14F9F2D1F09D892009D8D6E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A14F9F301F09EA91009D8D6E /* AnimatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableView.swift; sourceTree = "<group>"; };
 		A14F9F381F0B50A7009D8D6E /* baseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseOperation.swift; sourceTree = "<group>"; };
 		A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUploaderOperation.swift; sourceTree = "<group>"; };
 		A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
-		A153F8061F082BBD00223379 /* BottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		A153F8061F082BBD00223379 /* JoinStartJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStartJamView.swift; sourceTree = "<group>"; };
 		A153F8081F082BBD00223379 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		A153F80C1F082BBD00223379 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A153F80E1F082BBD00223379 /* PlayPause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPause.swift; sourceTree = "<group>"; };
@@ -91,7 +86,6 @@
 		A155FD211F3E411500B4165F /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A155FD231F3E510A00B4165F /* Customizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customizer.swift; sourceTree = "<group>"; };
 		A17D4EBA1F42551200AF1D18 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		A17D4EBC1F428A0500AF1D18 /* JamStartFormfieldsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamStartFormfieldsView.swift; sourceTree = "<group>"; };
 		A1AE8A291F02102500B979D6 /* dSoundBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dSoundBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1AE8A331F02102500B979D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -116,11 +110,9 @@
 		A1B66A991F556341001F3B00 /* StartJamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJamViewController.swift; sourceTree = "<group>"; };
 		A1B66A9A1F556341001F3B00 /* StartJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJamWorker.swift; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
-		A1FC8BAC1F0ED5EC00DB2EC0 /* PinGenViewSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinGenViewSliderView.swift; sourceTree = "<group>"; };
 		A1FC8BAE1F105F6200DB2EC0 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A1FC8BB11F105F9000DB2EC0 /* FIleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIleViewModel.swift; sourceTree = "<group>"; };
 		A1FC8BB51F10740C00DB2EC0 /* FilesTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableView.swift; sourceTree = "<group>"; };
-		A1FC8BB71F15558900DB2EC0 /* PinGenViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinGenViewModel.swift; sourceTree = "<group>"; };
 		A1FC8BBB1F1595DA00DB2EC0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A1FC8BBD1F15961E00DB2EC0 /* Jam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jam.swift; sourceTree = "<group>"; };
 		C069FEA3A8D01821895BF5C5 /* Pods-SoundBoy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,11 +188,7 @@
 			children = (
 				A153F8151F082BBD00223379 /* Activity.swift */,
 				A153F80E1F082BBD00223379 /* PlayPause.swift */,
-				A153F8061F082BBD00223379 /* BottomView.swift */,
-				A14F9F2A1F09CD70009D8D6E /* SettingOverLay.swift */,
-				A1FC8BAC1F0ED5EC00DB2EC0 /* PinGenViewSliderView.swift */,
-				A1FC8BB71F15558900DB2EC0 /* PinGenViewModel.swift */,
-				A17D4EBC1F428A0500AF1D18 /* JamStartFormfieldsView.swift */,
+				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -555,21 +543,18 @@
 				A1B66AA01F556341001F3B00 /* StartJamWorker.swift in Sources */,
 				A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */,
 				A153F81E1F082BBD00223379 /* PlayPause.swift in Sources */,
-				A1FC8BB81F15558900DB2EC0 /* PinGenViewModel.swift in Sources */,
 				A1B66A851F5559CA001F3B00 /* LoginRouter.swift in Sources */,
 				A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */,
 				A1B66A821F5559CA001F3B00 /* LoginInteractor.swift in Sources */,
 				A153F81F1F082BBD00223379 /* Recorder.swift in Sources */,
-				A1FC8BAD1F0ED5EC00DB2EC0 /* PinGenViewSliderView.swift in Sources */,
 				A153F8211F082BBD00223379 /* Timer.swift in Sources */,
-				A14F9F2B1F09CD70009D8D6E /* SettingOverLay.swift in Sources */,
 				A1B66A9F1F556341001F3B00 /* StartJamViewController.swift in Sources */,
 				A153F8241F082BBD00223379 /* Activity.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
 				A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */,
-				A153F8171F082BBD00223379 /* BottomView.swift in Sources */,
+				A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */,
 				A1B66A9D1F556341001F3B00 /* StartJamPresenter.swift in Sources */,
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
 				A1FC8BAF1F105F6200DB2EC0 /* FilesViewController.swift in Sources */,
@@ -580,7 +565,6 @@
 				A1B66A901F555E64001F3B00 /* MainPresenter.swift in Sources */,
 				A1B66A9B1F556341001F3B00 /* StartJamInteractor.swift in Sources */,
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
-				A17D4EBD1F428A0500AF1D18 /* JamStartFormfieldsView.swift in Sources */,
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
 				A153F81C1F082BBD00223379 /* MainView.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */,

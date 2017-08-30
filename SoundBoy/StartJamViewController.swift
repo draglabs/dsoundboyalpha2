@@ -18,7 +18,15 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
 {
   var interactor: StartJamBusinessLogic?
   var router: (NSObjectProtocol & StartJamRoutingLogic & StartJamDataPassing)?
-
+    
+  let cancelButton = UIButton(type: .system)
+  let doneButton = UIButton(type: .system)
+  let locationNameTextfield = UITextField()
+  let jamNameTextfield = UITextField()
+   
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
   // MARK: Object lifecycle
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
@@ -50,37 +58,71 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
   }
   
   // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
-    }
-  }
-  
+
   // MARK: View lifecycle
   
   override func viewDidLoad()
   {
     super.viewDidLoad()
+    setupCommonsUI()
     submitJam()
   }
   
-  // MARK: Do something
+ override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    }
+    
+ func setupCommonsUI() {
+    view.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.7)
+    cancelButton.translatesAutoresizingMaskIntoConstraints = false
+    doneButton.translatesAutoresizingMaskIntoConstraints = false
+    locationNameTextfield.translatesAutoresizingMaskIntoConstraints = false
+    jamNameTextfield.translatesAutoresizingMaskIntoConstraints = false
+    cancelButton.addTarget(self, action: #selector(cancelButtonPressed(sender:)), for: .touchUpInside)
+    doneButton.addTarget(self, action: #selector(doneButtonPressed(sender:)), for: .touchUpInside)
+    
+    view.addSubview(cancelButton)
+    view.addSubview(doneButton)
+    view.addSubview(locationNameTextfield)
+    view.addSubview(jamNameTextfield)
+    
+    uiContraints()
+    }
+    
   
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func submitJam()
-  {
+ func setupUI() {
+    cancelButton.setTitleColor(UIColor.white, for: .normal)
+    doneButton.setTitleColor(UIColor.white, for: .normal)
+    
+ }
+    
+ func uiContraints() {
+    // cancel button constraints
+    cancelButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    cancelButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    cancelButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+    
+    //
+  }
+    
+  func submitJam() {
     let request = StartJam.Submit.Request()
     interactor?.doSomething(request: request)
   }
   
-  func displaySomething(viewModel: StartJam.Submit.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
+  func displaySomething(viewModel: StartJam.Submit.ViewModel) {
+   locationNameTextfield.text = viewModel.locationName
+   jamNameTextfield.text = viewModel.jamName
+   cancelButton.setTitle(viewModel.close, for: .normal)
+   doneButton.setTitle(viewModel.done, for: .normal)
   }
+    
+    func cancelButtonPressed(sender:UIButton) {
+        self.router?.dismiss()
+    }
+    func doneButtonPressed(sender:UIButton) {
+        router?.dismiss()
+    }
 }

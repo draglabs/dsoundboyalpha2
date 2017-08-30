@@ -12,6 +12,7 @@ import UIKit
 protocol LoginPresentationLogic
 {
   func presentSomething(response: Login.WelcomeText.Response)
+  func presentRegisteredUser(response:Login.Register.Response)
 }
 
 class LoginPresenter: LoginPresentationLogic
@@ -20,9 +21,13 @@ class LoginPresenter: LoginPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Login.WelcomeText.Response)
-  {
+  func presentSomething(response: Login.WelcomeText.Response) {
     let viewModel = Login.WelcomeText.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
+  }
+
+  func presentRegisteredUser(response: Login.Register.Response) {
+    let viewModel = Login.Register.ViewModel(registered: response.registered)
+    viewController?.displayMainScreen(viewModel: viewModel)
   }
 }

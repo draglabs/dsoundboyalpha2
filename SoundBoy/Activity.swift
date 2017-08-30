@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Activity: UIView {
+class TextfieldContainerView: UIView {
    
     private let titleLabel   = UILabel()
     private let messageLabel = UILabel()

@@ -8,17 +8,18 @@
 
 import UIKit
 
-protocol BottomViewDelegate {
-    func didPressedJoin(bottomView:BottomView,join:UIButton)
-    func didPressedJam(bottomView:BottomView,jam:UIButton)
+protocol JoinStartJamViewDelegate {
+    func didPressedJoin(bottomView:JoinStartJamView,join:UIButton)
+    func didPressedJam(bottomView:JoinStartJamView,jam:UIButton)
 }
 
-class BottomView: UIView {
-    var delegate:BottomViewDelegate?
+class JoinStartJamView: UIView {
+    var delegate:JoinStartJamViewDelegate?
     let joinButton = UIButton()
     let jamButton = UIButton()
-    let pinSliderView = PinGenViewSliderView()
-    let location = LocationMgr()
+    var didPressedJoin:((_ bottomView:JoinStartJamView,_ join:UIButton)->())?
+    var didPressedJam:((_ bottomView:JoinStartJamView,_ jam:UIButton)->())?
+    
     let colorForMidOrange = UIColor(colorLiteralRed: 242/255, green: 241/255, blue: 241/255, alpha: 1)
     fileprivate let borderColor = UIColor(colorLiteralRed: 193/255, green: 18/255, blue: 37/255, alpha: 1).cgColor
     fileprivate let buttonColor = UIColor(colorLiteralRed: 160/255, green: 16/255, blue: 33/255, alpha: 1)
@@ -96,15 +97,17 @@ class BottomView: UIView {
 
 
 //MARK:button actions
-extension BottomView {
-    func joinButtonPressed(sender:UIButton) {
-        
-    }
+extension JoinStartJamView {
     
     func jamButtonPressed(sender:UIButton) {
-        // animate and present view
-        // sliderView viewModel should generate pin
-        location.requestLocation()
-        
+        didPressedJam?(self,sender)
+        print("jam pressed")
+        delegate?.didPressedJam(bottomView: self, jam: sender)
     }
+    func joinButtonPressed(sender:UIButton) {
+        didPressedJoin?(self, sender)
+        delegate?.didPressedJoin(bottomView: self, join: sender)
+    }
+    
+    
 }

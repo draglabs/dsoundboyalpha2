@@ -7,7 +7,7 @@
 //
 
 
-import UIKit
+import Foundation
 
 class StartJamWorker {
     let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))

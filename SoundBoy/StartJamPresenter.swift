@@ -11,7 +11,7 @@ import UIKit
 
 protocol StartJamPresentationLogic
 {
-  func presentSomething(response: StartJam.Submit.Response)
+  func presentTexfields(response: StartJam.Submit.Response)
 }
 
 class StartJamPresenter: StartJamPresentationLogic
@@ -20,8 +20,7 @@ class StartJamPresenter: StartJamPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: StartJam.Submit.Response)
-  {
+  func presentTexfields(response: StartJam.Submit.Response) {
     let viewModel = StartJam.Submit.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }

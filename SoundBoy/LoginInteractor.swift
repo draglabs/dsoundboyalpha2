@@ -11,6 +11,7 @@ import UIKit
 protocol LoginBusinessLogic
 {
   func doSomething(request: Login.WelcomeText.Request)
+  func RegisterUser(request: Login.Register.Request)
 }
 
 protocol LoginDataStore
@@ -34,4 +35,13 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore
     let response = Login.WelcomeText.Response()
     presenter?.presentSomething(response: response)
   }
+    
+  func RegisterUser(request: Login.Register.Request) {
+     FacebookAPI().loginUser { (done) in
+      if done {
+        let response = Login.Register.Response(registered: done)
+        self.presenter?.presentRegisteredUser(response: response)
+         }
+       }
+    }
 }

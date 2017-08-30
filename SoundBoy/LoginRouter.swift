@@ -12,6 +12,7 @@ import UIKit
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
     func routeToMainController(source:LoginViewController)
+    
 }
 
 protocol LoginDataPassing
@@ -31,6 +32,7 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing
         source.navigationController?.setViewControllers([mainController], animated: true)
     }
     
+   
     
   
   //func routeToSomewhere(segue: UIStoryboardSegue?)

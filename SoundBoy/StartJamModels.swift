@@ -15,16 +15,17 @@ enum StartJam
   
   enum Submit
   {
-    struct Request
-    {
+    struct Request {
         var jam:Jam?
     }
-    struct Response
-    {
-        
+    struct Response {
+        var jam:Jam?
     }
-    struct ViewModel
-    {
+    struct ViewModel {
+        let jamName = "Enter jam name"
+        let locationName = "Enter jam Location, i.e my house"
+        let close = "Close"
+        let done = "DONE"
     }
   }
 }
