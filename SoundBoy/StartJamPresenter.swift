@@ -18,7 +18,7 @@ class StartJamPresenter: StartJamPresentationLogic
 {
   weak var viewController: StartJamDisplayLogic?
   
-  // MARK: Do something
+  // MARK: Presinting logic
   
   func presentTexfields(response: StartJam.Submit.Response) {
     let viewModel = StartJam.Submit.ViewModel()

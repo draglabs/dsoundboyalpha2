@@ -10,7 +10,6 @@
 		A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* WebService.swift */; };
 		A1017CC21F1951A400AA1B31 /* SoundBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
-		A14F9F311F09EA91009D8D6E /* AnimatableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F301F09EA91009D8D6E /* AnimatableView.swift */; };
 		A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F381F0B50A7009D8D6E /* baseOperation.swift */; };
 		A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */; };
 		A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */; };
@@ -78,7 +77,6 @@
 		A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundBoyTests.swift; sourceTree = "<group>"; };
 		A1017CC31F1951A400AA1B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A14F9F2D1F09D892009D8D6E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		A14F9F301F09EA91009D8D6E /* AnimatableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatableView.swift; sourceTree = "<group>"; };
 		A14F9F381F0B50A7009D8D6E /* baseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseOperation.swift; sourceTree = "<group>"; };
 		A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUploaderOperation.swift; sourceTree = "<group>"; };
 		A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
@@ -224,14 +222,6 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
-		A14F9F2F1F09EA72009D8D6E /* POP */ = {
-			isa = PBXGroup;
-			children = (
-				A14F9F301F09EA91009D8D6E /* AnimatableView.swift */,
-			);
-			name = POP;
-			sourceTree = "<group>";
-		};
 		A14F9F321F0B5023009D8D6E /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,7 +321,6 @@
 				A14F9F361F0B507D009D8D6E /* Services */,
 				A14F9F341F0B5059009D8D6E /* Scenes */,
 				A14F9F331F0B5041009D8D6E /* Models */,
-				A14F9F2F1F09EA72009D8D6E /* POP */,
 				A14F9F2C1F09D877009D8D6E /* Helpers */,
 				A14F9F291F09CD3F009D8D6E /* Recorder */,
 				A14F9F281F09CCCB009D8D6E /* Views */,
@@ -589,7 +578,6 @@
 				A1FC8BAF1F105F6200DB2EC0 /* FilesViewController.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
-				A14F9F311F09EA91009D8D6E /* AnimatableView.swift in Sources */,
 				A1B66AA81F57470A001F3B00 /* JoinJamInteractor.swift in Sources */,
 				A1FC8BBE1F15961E00DB2EC0 /* Jam.swift in Sources */,
 				A1B66A901F555E64001F3B00 /* MainPresenter.swift in Sources */,
