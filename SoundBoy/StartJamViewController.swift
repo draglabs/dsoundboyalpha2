@@ -9,13 +9,11 @@
 
 import UIKit
 
-protocol StartJamDisplayLogic: class
-{
+protocol StartJamDisplayLogic: class {
   func displaySomething(viewModel: StartJam.Submit.ViewModel)
 }
 
-class StartJamViewController: UIViewController, StartJamDisplayLogic
-{
+class StartJamViewController: UIViewController, StartJamDisplayLogic {
   var interactor: StartJamBusinessLogic?
   var router: (NSObjectProtocol & StartJamRoutingLogic & StartJamDataPassing)?
     
@@ -29,22 +27,19 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
     }
   // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     setup()
   }
   
   // MARK: Setup
   
-  private func setup()
-  {
+  private func setup() {
     let viewController = self
     let interactor = StartJamInteractor()
     let presenter = StartJamPresenter()
@@ -75,10 +70,15 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
     
  func setupCommonsUI() {
     view.backgroundColor = UIColor(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.7)
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTouch(sender:))))
+        
     cancelButton.translatesAutoresizingMaskIntoConstraints = false
     doneButton.translatesAutoresizingMaskIntoConstraints = false
     locationNameTextfield.translatesAutoresizingMaskIntoConstraints = false
     jamNameTextfield.translatesAutoresizingMaskIntoConstraints = false
+    locationNameTextfield.delegate = self
+    jamNameTextfield.delegate = self
+    
     cancelButton.addTarget(self, action: #selector(cancelButtonPressed(sender:)), for: .touchUpInside)
     doneButton.addTarget(self, action: #selector(doneButtonPressed(sender:)), for: .touchUpInside)
     
@@ -89,9 +89,9 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
     setupUI()
     uiContraints()
     
+    
     }
     
-  
  func setupUI() {
     cancelButton.setTitleColor(UIColor.white, for: .normal)
     cancelButton.titleLabel!.font = UIFont(name: "Avenir-Book", size: 17)
@@ -100,17 +100,20 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
     doneButton.titleLabel!.font = UIFont(name: "Avenir-Book", size: 17)
     doneButton.layer.cornerRadius = 22
     doneButton.backgroundColor = UIColor(colorLiteralRed: 168/255, green: 36/255, blue: 36/266, alpha: 1.0)
+    
     jamNameTextfield.backgroundColor = UIColor.white
     jamNameTextfield.layer.cornerRadius = 4
+    jamNameTextfield.textAlignment = .center
     
     locationNameTextfield.backgroundColor = UIColor.white
     locationNameTextfield.layer.cornerRadius = 4
+    locationNameTextfield.textAlignment = .center
  }
     
  func uiContraints() {
     // cancel button constraints
-    cancelButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-    cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    cancelButton.topAnchor.constraint(equalTo: view.topAnchor,constant:10).isActive = true
+    cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:-10).isActive = true
     cancelButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
     cancelButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
     
@@ -135,7 +138,7 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
     
   func submitJam() {
     let request = StartJam.Submit.Request()
-    interactor?.doSomething(request: request)
+    interactor?.textfields(request: request)
   }
   
   func displaySomething(viewModel: StartJam.Submit.ViewModel) {
@@ -143,12 +146,37 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic
    jamNameTextfield.text = viewModel.jamName
    cancelButton.setTitle(viewModel.close, for: .normal)
    doneButton.setTitle(viewModel.done, for: .normal)
+    
   }
     
     func cancelButtonPressed(sender:UIButton) {
-        self.router?.dismiss()
+        self.router?.routeToMain()
     }
     func doneButtonPressed(sender:UIButton) {
-        router?.dismiss()
+        router?.routeToMain()
+    }
+}
+
+
+
+extension StartJamViewController:UITextFieldDelegate {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func handleTouch(sender:UIGestureRecognizer) {
+        self.jamNameTextfield.resignFirstResponder()
+        self.locationNameTextfield.resignFirstResponder()
     }
 }

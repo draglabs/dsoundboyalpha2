@@ -12,7 +12,7 @@ import UIKit
 @objc protocol StartJamRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
-    func dismiss()
+    func routeToMain()
 }
 
 protocol StartJamDataPassing
@@ -25,39 +25,24 @@ class StartJamRouter: NSObject, StartJamRoutingLogic, StartJamDataPassing
   weak var viewController: StartJamViewController?
   var dataStore: StartJamDataStore?
     
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: {
-            
-        })
-    }
   // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+    
+ func routeToMain() {
+  let nav = viewController!.presentingViewController as! UINavigationController
+  let main = nav.viewControllers.first as! MainViewController
+    
+ 
+//  var mainDS = main.router!.dataStore!
+//  passDataToMain(source: dataStore!, destination: &mainDS)
+   navigateToMain(source: viewController!, destination: main)
+    }
 
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: StartJamViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
+ func navigateToMain(source:StartJamViewController, destination:MainViewController){
+    source.dismiss(animated: true, completion: {})
+    }
   
   // MARK: Passing data
-  
-  //func passDataToSomewhere(source: StartJamDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
+  func passDataToMain(source: StartJamDataStore, destination: inout MainDataStore) {
+     destination.success = source.success
+   }
 }

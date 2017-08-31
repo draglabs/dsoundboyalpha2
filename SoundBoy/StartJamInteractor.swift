@@ -9,34 +9,38 @@
 
 import UIKit
 
-protocol StartJamBusinessLogic
-{
-  func doSomething(request: StartJam.Submit.Request)
+protocol StartJamBusinessLogic {
+  func textfields(request: StartJam.Submit.Request)
+  func startJam(request:StartJam.Submit.Request)
+  func successStart(request:StartJam)
 }
 
-protocol StartJamDataStore
-{
-  //var name: String { get set }
+protocol StartJamDataStore {
+ var success: Bool { get set }
 }
 
-class StartJamInteractor: StartJamBusinessLogic, StartJamDataStore
-{
+class StartJamInteractor: StartJamBusinessLogic, StartJamDataStore {
   var presenter: StartJamPresentationLogic?
   var worker: StartJamWorker?
-  //var name: String = ""
+  var success: Bool = false
   
-  // MARK: Do something
+  // MARK: Logic
   
-  func doSomething(request: StartJam.Submit.Request)
-  {
-    worker = StartJamWorker()
-    //let jam = request.jam!
-    
-    //worker?.startJamRequest(jam:jam, completion: { jam in
-        
-   // })
-    
+  func textfields(request: StartJam.Submit.Request) {
     let response = StartJam.Submit.Response()
     presenter?.presentTexfields(response: response)
   }
+    
+    func startJam(request: StartJam.Submit.Request) {
+        worker = StartJamWorker()
+        if let jam = request.jam {
+            worker?.startJamRequest(jam:jam, completion: { jam in
+                
+            })
+        }
+    }
+    
+    func successStart(request: StartJam) {
+        
+    }
 }

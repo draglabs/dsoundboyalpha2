@@ -17,15 +17,15 @@ protocol MainBusinessLogic
 
 protocol MainDataStore
 {
-  //var name: String { get set }
+  var success: Bool { get set }
 }
 
 class MainInteractor: MainBusinessLogic, MainDataStore
 {
   var presenter: MainPresentationLogic?
   var worker: MainWorker?
-  //var name: String = ""
   
+  var success: Bool = false
   // MARK: Do something
   
   func startJam(request: Main.Jam.Request)

@@ -45,6 +45,12 @@
 		A1B66A9E1F556341001F3B00 /* StartJamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66A981F556341001F3B00 /* StartJamRouter.swift */; };
 		A1B66A9F1F556341001F3B00 /* StartJamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66A991F556341001F3B00 /* StartJamViewController.swift */; };
 		A1B66AA01F556341001F3B00 /* StartJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66A9A1F556341001F3B00 /* StartJamWorker.swift */; };
+		A1B66AA81F57470A001F3B00 /* JoinJamInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA21F57470A001F3B00 /* JoinJamInteractor.swift */; };
+		A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA31F57470A001F3B00 /* JoinJamModels.swift */; };
+		A1B66AAA1F57470A001F3B00 /* JoinJamPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA41F57470A001F3B00 /* JoinJamPresenter.swift */; };
+		A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA51F57470A001F3B00 /* JoinJamRouter.swift */; };
+		A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA61F57470A001F3B00 /* JoinJamViewController.swift */; };
+		A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
 		A1FC8BAF1F105F6200DB2EC0 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAE1F105F6200DB2EC0 /* FilesViewController.swift */; };
 		A1FC8BB21F105F9000DB2EC0 /* FIleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BB11F105F9000DB2EC0 /* FIleViewModel.swift */; };
@@ -109,6 +115,12 @@
 		A1B66A981F556341001F3B00 /* StartJamRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJamRouter.swift; sourceTree = "<group>"; };
 		A1B66A991F556341001F3B00 /* StartJamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJamViewController.swift; sourceTree = "<group>"; };
 		A1B66A9A1F556341001F3B00 /* StartJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJamWorker.swift; sourceTree = "<group>"; };
+		A1B66AA21F57470A001F3B00 /* JoinJamInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamInteractor.swift; sourceTree = "<group>"; };
+		A1B66AA31F57470A001F3B00 /* JoinJamModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamModels.swift; sourceTree = "<group>"; };
+		A1B66AA41F57470A001F3B00 /* JoinJamPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamPresenter.swift; sourceTree = "<group>"; };
+		A1B66AA51F57470A001F3B00 /* JoinJamRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamRouter.swift; sourceTree = "<group>"; };
+		A1B66AA61F57470A001F3B00 /* JoinJamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamViewController.swift; sourceTree = "<group>"; };
+		A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamWorker.swift; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A1FC8BAE1F105F6200DB2EC0 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
 		A1FC8BB11F105F9000DB2EC0 /* FIleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIleViewModel.swift; sourceTree = "<group>"; };
@@ -244,6 +256,7 @@
 		A14F9F341F0B5059009D8D6E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A1B66AA11F5746E3001F3B00 /* JoinJam */,
 				A1B66A941F556320001F3B00 /* StartJam */,
 				A1017CA71F15F11F00AA1B31 /* Login */,
 				A1FC8BB01F105F7000DB2EC0 /* Main */,
@@ -337,6 +350,19 @@
 				A1B66A9A1F556341001F3B00 /* StartJamWorker.swift */,
 			);
 			name = StartJam;
+			sourceTree = "<group>";
+		};
+		A1B66AA11F5746E3001F3B00 /* JoinJam */ = {
+			isa = PBXGroup;
+			children = (
+				A1B66AA21F57470A001F3B00 /* JoinJamInteractor.swift */,
+				A1B66AA31F57470A001F3B00 /* JoinJamModels.swift */,
+				A1B66AA41F57470A001F3B00 /* JoinJamPresenter.swift */,
+				A1B66AA51F57470A001F3B00 /* JoinJamRouter.swift */,
+				A1B66AA61F57470A001F3B00 /* JoinJamViewController.swift */,
+				A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */,
+			);
+			name = JoinJam;
 			sourceTree = "<group>";
 		};
 		A1FC8BB01F105F7000DB2EC0 /* Main */ = {
@@ -536,6 +562,7 @@
 			files = (
 				A1B66A841F5559CA001F3B00 /* LoginPresenter.swift in Sources */,
 				A1B66A9C1F556341001F3B00 /* StartJamModels.swift in Sources */,
+				A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */,
 				A1FC8BBC1F1595DA00DB2EC0 /* User.swift in Sources */,
 				A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */,
 				A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */,
@@ -552,8 +579,10 @@
 				A153F8241F082BBD00223379 /* Activity.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */,
+				A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
 				A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */,
+				A1B66AAA1F57470A001F3B00 /* JoinJamPresenter.swift in Sources */,
 				A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */,
 				A1B66A9D1F556341001F3B00 /* StartJamPresenter.swift in Sources */,
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
@@ -561,6 +590,7 @@
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
 				A14F9F311F09EA91009D8D6E /* AnimatableView.swift in Sources */,
+				A1B66AA81F57470A001F3B00 /* JoinJamInteractor.swift in Sources */,
 				A1FC8BBE1F15961E00DB2EC0 /* Jam.swift in Sources */,
 				A1B66A901F555E64001F3B00 /* MainPresenter.swift in Sources */,
 				A1B66A9B1F556341001F3B00 /* StartJamInteractor.swift in Sources */,
@@ -568,7 +598,9 @@
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
 				A153F81C1F082BBD00223379 /* MainView.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */,
+				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,
+				A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */,
 				A1B66A861F5559CA001F3B00 /* LoginViewController.swift in Sources */,
 				A1FC8BB61F10740C00DB2EC0 /* FilesTableView.swift in Sources */,
 				A1B66A9E1F556341001F3B00 /* StartJamRouter.swift in Sources */,

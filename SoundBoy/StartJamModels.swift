@@ -9,12 +9,10 @@
 
 import UIKit
 
-enum StartJam
-{
+enum StartJam  {
   // MARK: Use cases
   
-  enum Submit
-  {
+  enum Submit {
     struct Request {
         var jam:Jam?
     }
@@ -24,8 +22,18 @@ enum StartJam
     struct ViewModel {
         let jamName = "Enter jam name"
         let locationName = "Enter jam Location (i.e my house)"
-        let close = "Cancel"
+        let close = "Close"
         let done = "DONE"
     }
   }
+enum Success {
+    struct Request {
+        let success:Bool
+    }
+    struct Response {
+        let success:Bool
+    }
+    struct ViewModel {}
+  }
+    
 }
