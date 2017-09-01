@@ -12,26 +12,38 @@ import CoreData
 
 enum EntitiesModel:String {
     case  user = "User"
-    case  track = "Track"
-    var string:String {
+    case  jam = "Jam"
+    var toString:String {
         switch self {
         case .user:
             return String(self.rawValue)
-        default:
+        case .jam:
             return String(self.rawValue)
         }
+        
     }
 }
 
 final class CoreDataStore:NSObject {
   
         
-        static let shared = CoreDataStore()
+    let entity:EntitiesModel
+    
+     init(entity:EntitiesModel) {
+        switch entity {
+        case .jam:
+            self.entity = .jam
+        case .user:
+            self.entity = .user
+        }
+    }
+    
+    
         var errorHandler: (Error) -> Void = {_ in }
         
         //#1
         lazy var persistentContainer: NSPersistentContainer = {
-            let container = NSPersistentContainer(name: "SoundBoy")
+            let container = NSPersistentContainer(name: "CoreData")
             container.loadPersistentStores(completionHandler: { [weak self](storeDescription, error) in
                 if let error = error {
                     // MARK:TODO better error handling
@@ -64,5 +76,17 @@ final class CoreDataStore:NSObject {
         func performBackgroundTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
             self.persistentContainer.performBackgroundTask(block)
         }
+    
+    func save() {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch  {
+                let nserror = error as NSError
+                fatalError("cant save contet \(nserror.userInfo)")
+            }
+        }
+    }
     
 }

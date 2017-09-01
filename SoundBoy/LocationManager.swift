@@ -20,8 +20,7 @@ import CoreLocation
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
         print("should start updating")
-       
-        print(CLLocationManager.authorizationStatus().rawValue)
+        
     }
   
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

@@ -12,20 +12,33 @@ import UIKit
 enum StartJam  {
   // MARK: Use cases
   
+    enum Textfields {
+        struct Request {}
+        struct Response {}
+        
+        struct ViewModel {
+            let jamName = "Enter jam name"
+            let locationName = "Enter jam Location (i.e my house)"
+            let close = "Close"
+            let done = "DONE"
+        }
+    }
+    
+    
+    
   enum Submit {
     struct Request {
-        var jam:Jam?
+        var name:String
+        var location:String
     }
     struct Response {
-        var jam:Jam?
+        var jam:Jam
     }
-    struct ViewModel {
-        let jamName = "Enter jam name"
-        let locationName = "Enter jam Location (i.e my house)"
-        let close = "Close"
-        let done = "DONE"
-    }
+    struct ViewModel {}
   }
+    
+    
+    
 enum Success {
     struct Request {
         let success:Bool

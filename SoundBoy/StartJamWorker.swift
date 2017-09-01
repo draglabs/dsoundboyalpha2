@@ -12,10 +12,11 @@ import Foundation
 class StartJamWorker {
     let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
     
-    func startJamRequest(jam:Jam,completion:@escaping(_ result:String)->()) {
-        let task = StartJamOperation(jam: jam)
-        task.execute(in: networkDispatcher) { (jam) in
-            
-        }
+    func startJamRequest(name:String,location:String,completion:@escaping(_ result:String)->()) {
+        
+//        let task = Star
+//        task.execute(in: networkDispatcher) { (jam) in
+//            
+//        }
   }
 }

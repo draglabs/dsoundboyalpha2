@@ -10,7 +10,8 @@
 import UIKit
 
 protocol StartJamDisplayLogic: class {
-  func displaySomething(viewModel: StartJam.Submit.ViewModel)
+  func displayTextfields(viewModel: StartJam.Textfields.ViewModel)
+  func displaySucces(viewModel:StartJam.Success.ViewModel)
 }
 
 class StartJamViewController: UIViewController, StartJamDisplayLogic {
@@ -52,15 +53,13 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic {
     router.dataStore = interactor
   }
   
-  // MARK: Routing
-
   // MARK: View lifecycle
   
   override func viewDidLoad()
   {
     super.viewDidLoad()
     setupCommonsUI()
-    submitJam()
+    texfields()
   }
   
  override func viewDidAppear(_ animated: Bool) {
@@ -136,27 +135,32 @@ class StartJamViewController: UIViewController, StartJamDisplayLogic {
     doneButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
   }
     
-  func submitJam() {
-    let request = StartJam.Submit.Request()
+  func texfields() {
+    let request = StartJam.Textfields.Request()
     interactor?.textfields(request: request)
   }
   
-  func displaySomething(viewModel: StartJam.Submit.ViewModel) {
+  func displayTextfields(viewModel: StartJam.Textfields.ViewModel) {
    locationNameTextfield.text = viewModel.locationName
    jamNameTextfield.text = viewModel.jamName
    cancelButton.setTitle(viewModel.close, for: .normal)
    doneButton.setTitle(viewModel.done, for: .normal)
-    
   }
+ func displaySucces(viewModel: StartJam.Success.ViewModel) {
     
-    func cancelButtonPressed(sender:UIButton) {
+    }
+    
+ func cancelButtonPressed(sender:UIButton) {
         self.router?.routeToMain()
     }
-    func doneButtonPressed(sender:UIButton) {
-        router?.routeToMain()
+ func doneButtonPressed(sender:UIButton) {
+    
+        let name = jamNameTextfield.text!
+        let location = locationNameTextfield.text!
+        let request = StartJam.Submit.Request(name: name, location: location)
+        interactor?.submitJam(request: request)
     }
 }
-
 
 
 extension StartJamViewController:UITextFieldDelegate {

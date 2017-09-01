@@ -10,9 +10,9 @@
 import UIKit
 
 protocol StartJamBusinessLogic {
-  func textfields(request: StartJam.Submit.Request)
-  func startJam(request:StartJam.Submit.Request)
-  func successStart(request:StartJam)
+  func textfields(request: StartJam.Textfields.Request)
+  func submitJam(request:StartJam.Submit.Request)
+  func successStart(request:StartJam.Success.Request)
 }
 
 protocol StartJamDataStore {
@@ -26,21 +26,28 @@ class StartJamInteractor: StartJamBusinessLogic, StartJamDataStore {
   
   // MARK: Logic
   
-  func textfields(request: StartJam.Submit.Request) {
-    let response = StartJam.Submit.Response()
+  func textfields(request: StartJam.Textfields.Request) {
+    let response = StartJam.Textfields.Response()
     presenter?.presentTexfields(response: response)
   }
     
-    func startJam(request: StartJam.Submit.Request) {
+    func submitJam(request: StartJam.Submit.Request) {
         worker = StartJamWorker()
-        if let jam = request.jam {
-            worker?.startJamRequest(jam:jam, completion: { jam in
-                
-            })
-        }
+        worker?.startJamRequest(name: request.name, location: request.location, completion: { (id) in
+            
+        })
+//        if let jam = request.jam {
+//            print(jam)
+//            worker?.startJamRequest(jam:jam, completion: { id in
+//                self.presenter?.presentJam(response: StartJam.Submit.Response(jam: jam))
+//            })
+//        }
     }
     
-    func successStart(request: StartJam) {
+ func successStart(request: StartJam.Success.Request) {
+    let success = request.success
+    let response = StartJam.Success.Response(success: success)
+    presenter?.presentSuccess(response: response)
         
     }
 }
