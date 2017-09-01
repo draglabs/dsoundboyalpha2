@@ -54,7 +54,7 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     private func prepareURLRequest(reques:RequestRepresentable) ->URLRequest {
         
         
-        return URLRequest()
+        return URLRequest(url: URL(string:"")!)
     }
     
     
@@ -65,13 +65,15 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     
     
    private func prepareBody(url:URL) ->Data {
+    
         
+        return Data()
     }
     
     private func prepareDefaultParams() {
     
     }
-    
+
 }
 
 extension JamUpLoadDispatcher:URLSessionDataDelegate {

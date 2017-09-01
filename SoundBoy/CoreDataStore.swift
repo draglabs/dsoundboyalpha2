@@ -38,8 +38,7 @@ final class CoreDataStore:NSObject {
         }
     }
     
-    
-        var errorHandler: (Error) -> Void = {_ in }
+    var errorHandler: (Error) -> Void = {_ in }
         
         //#1
         lazy var persistentContainer: NSPersistentContainer = {

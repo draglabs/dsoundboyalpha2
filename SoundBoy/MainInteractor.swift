@@ -15,8 +15,7 @@ protocol MainBusinessLogic
     
 }
 
-protocol MainDataStore
-{
+protocol MainDataStore {
   var success: Bool { get set }
 }
 
@@ -28,8 +27,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore
   var success: Bool = false
   // MARK: Do something
   
-  func startJam(request: Main.Jam.Request)
-  {
+  func startJam(request: Main.Jam.Request) {
     worker = MainWorker()
     worker?.doSomeWork()
     

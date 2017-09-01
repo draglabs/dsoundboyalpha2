@@ -14,25 +14,41 @@ import CoreLocation
     
     var lastLocation:CLLocation?
     var manager = CLLocationManager()
-    
     func requestLocation() {
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        print("should start updating")
         
     }
   
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations.last ?? "")
+        
         if locations.last != nil {
             lastLocation = locations.last!
             manager.stopUpdatingLocation()
         }
     }
     
+
+    func getAddress(completion:@escaping(_ address:Dictionary<String,String>)->()) {
+        if let location = lastLocation {
+        let coder = CLGeocoder()
+        coder.reverseGeocodeLocation(location) { (placeMarks, error) in
+            guard let places = placeMarks else{return}
+            guard  let place = places.first else{return}
+            
+            
+            let street = place.thoroughfare
+            let city = place.locality
+            let state = place.administrativeArea
+            let zipCode = place.postalCode
+            completion(["street":street!, "city":city!,"state":state!,"zipcode":zipCode!])
+            }
+        }
+    }
 }

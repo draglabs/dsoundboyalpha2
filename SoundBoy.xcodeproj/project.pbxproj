@@ -15,7 +15,6 @@
 		A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */; };
 		A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8061F082BBD00223379 /* JoinStartJamView.swift */; };
 		A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8081F082BBD00223379 /* CoreDataStore.swift */; };
-		A153F81C1F082BBD00223379 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80C1F082BBD00223379 /* MainView.swift */; };
 		A153F81E1F082BBD00223379 /* PlayPause.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80E1F082BBD00223379 /* PlayPause.swift */; };
 		A153F81F1F082BBD00223379 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80F1F082BBD00223379 /* Recorder.swift */; };
 		A153F8211F082BBD00223379 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8121F082BBD00223379 /* Timer.swift */; };
@@ -84,7 +83,6 @@
 		A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
 		A153F8061F082BBD00223379 /* JoinStartJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStartJamView.swift; sourceTree = "<group>"; };
 		A153F8081F082BBD00223379 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
-		A153F80C1F082BBD00223379 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A153F80E1F082BBD00223379 /* PlayPause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPause.swift; sourceTree = "<group>"; };
 		A153F80F1F082BBD00223379 /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
 		A153F8121F082BBD00223379 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
@@ -240,6 +238,7 @@
 		A14F9F331F0B5041009D8D6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */,
 				A153F8081F082BBD00223379 /* CoreDataStore.swift */,
 			);
 			name = Models;
@@ -280,7 +279,6 @@
 		A14F9F3C1F0B634A009D8D6E /* Operation Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */,
 			);
 			name = "Operation Resources";
 			sourceTree = "<group>";
@@ -387,7 +385,6 @@
 		A1FC8BB01F105F7000DB2EC0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				A153F80C1F082BBD00223379 /* MainView.swift */,
 				A1B66A881F555E64001F3B00 /* MainInteractor.swift */,
 				A1B66A891F555E64001F3B00 /* MainModels.swift */,
 				A1B66A8A1F555E64001F3B00 /* MainPresenter.swift */,
@@ -616,7 +613,6 @@
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
 				A17C689B1F59A89800E09CB1 /* JamUploadServices.swift in Sources */,
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
-				A153F81C1F082BBD00223379 /* MainView.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */,
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,

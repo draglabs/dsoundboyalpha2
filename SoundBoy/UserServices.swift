@@ -4,7 +4,7 @@
 //
 //  Created by Marlon Monroy on 8/31/17.
 //  Copyright © 2017 DragLabs. All rights reserved.
-//
+
 
 import Foundation
 import CoreData
@@ -19,7 +19,7 @@ public enum UserRequest: RequestRepresentable {
             return "user/auth"
         }
     }
-    
+
     public var method: HTTPMethod {
         switch self {
         case .register(_:_):
@@ -32,16 +32,14 @@ public enum UserRequest: RequestRepresentable {
         case .register(let facebookId, let accessToken):
             return .body(["facebook_id":facebookId,"access_token":accessToken])
         }
-        
+
     }
     
     public var headers: [String : Any]? {
         switch self {
         case .register(_: _):
-            
             return["application/json":"Content-Type"]
         }
-        
     }
     
     public var dataType: DataType {
@@ -67,6 +65,7 @@ class UserStore: StoreRepresentable {
         let context = coreDataStore.viewContext
         let user = User(context: context)
         user.uniqueID = json["id"] as? String
+        response(true)
         coreDataStore.save()
         
     }
@@ -112,14 +111,12 @@ class UserRegistrationOperation: OperationRepresentable {
     init(facebookId:String,accessToken:String) {
         self.facebookId = facebookId
         self.accessToken = accessToken
-        
     }
     
     var request: RequestRepresentable {
         return UserRequest.register(facebookId: facebookId, accessToken: accessToken)
     }
-    
-    
+
 }
 
 

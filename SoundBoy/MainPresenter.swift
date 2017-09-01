@@ -20,8 +20,7 @@ class MainPresenter: MainPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Main.Jam.Response)
-  {
+  func presentSomething(response: Main.Jam.Response) {
     let viewModel = Main.Jam.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }

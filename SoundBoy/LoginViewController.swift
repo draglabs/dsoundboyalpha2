@@ -73,6 +73,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     if viewModel.registered {
         router?.routeToMainController(source: self)
         }
+    
     }
     
   func loginButtonPressed(sender:UIButton) {
@@ -91,7 +92,6 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         
         view.addSubview(backgroundView)
         
-        
         slogan.numberOfLines = 0
         slogan.textAlignment = .center
         slogan.font = UIFont(name: "Avenir-Book", size: 30)
@@ -99,7 +99,6 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         view.addSubview(slogan)
         loginSetup()
     }
-    
     
 
     func loginSetup() {

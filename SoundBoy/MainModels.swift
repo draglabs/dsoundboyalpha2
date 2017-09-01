@@ -15,16 +15,8 @@ enum Main
   
   enum Jam
   {
-    struct Request
-    {
-        
-    }
-    struct Response
-    {
-        
-    }
-    struct ViewModel
-    {
-    }
+    struct Request{}
+    struct Response{}
+    struct ViewModel{}
   }
 }
