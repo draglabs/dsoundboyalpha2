@@ -141,8 +141,9 @@ public enum Response {
 public protocol OperationRepresentable {
     
     associatedtype ResultType
+    
     var request :RequestRepresentable { get }
-    var store :StoreRepresentable{get}
+   // var store: Store {get } // 
     func execute(in dispatcher:DispatcherRepresentable, result:@escaping(_ result:ResultType)->())
 }
 
@@ -158,12 +159,25 @@ public protocol DispatcherRepresentable {
 
 
 
-/* =====================StoreRepresentable====================*/
-public protocol   StoreRepresentable {
-    func fromJSON(json:JSONDictionary, response:@escaping(_ result:Bool)->())
-    func fromData(data:Data, response:@escaping(_ result:Bool)->())
-}
+/* =====================Store====================*/
+//public protocol StoreRepresentable{
+//    associatedtype A
+//    func fromJSON(json:JSONDictionary, response:@escaping(_ result:Bool)->())
+//    func fromData(data:Data, response:@escaping(_ result:Bool)->())
+//    func fetch(callback:@escaping(_ result:A?,_ error:Error?)->())
+//}
 
+public class Store {
+   
+    func fromJSON(json:JSONDictionary, response:@escaping(_ result:Bool)->()) {
+        fatalError("Must override")
+    }
+    func fromData(data:Data, response:@escaping(_ result:Bool)->()) {
+        fatalError("Must override")
+    }
+    
+    
+}
 
 
 /* =====================NetworkDispatcher====================*/

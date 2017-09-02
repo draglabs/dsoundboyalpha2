@@ -103,14 +103,11 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate {
 }
 
 
-
-
 class JamUploadOperation: OperationRepresentable {
     let uniqueID:String
     let jamID:String
     var responseError:((_ code:Int?, _ error:Error?)->())?
-    var store: StoreRepresentable {
-        
+    var store: JamStore {
         return JamStore()
     }
     
@@ -137,6 +134,8 @@ class JamUploadOperation: OperationRepresentable {
     init(uniqueID:String, jamID:String) {
         self.uniqueID = uniqueID
         self.jamID = jamID
+        
     }
+    
     
 }

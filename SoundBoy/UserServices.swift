@@ -10,6 +10,8 @@ import Foundation
 import CoreData
 import FacebookLogin
 
+
+
 public enum UserRequest: RequestRepresentable {
     
     case register(facebookId:String, accessToken:String)
@@ -51,51 +53,58 @@ public enum UserRequest: RequestRepresentable {
     
 }
 
-class UserStore: StoreRepresentable {
-    private let coreDataStore = CoreDataStore(entity: .user)
+
+class UserStore: Store {
+    let coreDataStore = CoreDataStore(entity: .user)
     var userFetchResult:((_ user:User?,_ error:Error?)->())?
     
     
-    func fromData(data: Data, response: @escaping(_ uploaded:Bool)->()) {
+    override func fromData(data: Data, response: @escaping(_ uploaded:Bool)->()) {
         //MARK:TODO finish implementation
     }
     
-    func fromJSON(json: JSONDictionary, response: @escaping(_ uploaded:Bool)->()) {
+    override func fromJSON(json: JSONDictionary, response: @escaping(_ uploaded:Bool)->()) {
         
         let context = coreDataStore.viewContext
         let user = User(context: context)
         user.userId = json["id"] as? String
         response(true)
         coreDataStore.save(completion: response)
+        
     }
     
-    func fetchUser(callback:@escaping(_ user:User?,_ error:Error?)->()?) {
-     let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+     func fetch(callback: @escaping (_ result:User?, _ error:Error?) -> ()) {
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
         coreDataStore.viewContext.perform {
-            
             do {
                 let userResult =  try fetchRequest.execute()
                 if  let user = userResult.first {
-                    callback(user,nil)
+                    callback(user, nil)
                     self.userFetchResult?(user,nil)
                 }
             }catch {
+                callback(nil,error)
                 self.userFetchResult?(nil,error)
             }
-           
+            
         }
         
     }
+    
+   
 }
+
+
 class UserRegistrationOperation: OperationRepresentable {
     let facebookId :String
     let accessToken:String
     
     var responseError:((_ code:Int?, _ error:Error?)->())?
     
-    var store: StoreRepresentable {
+    var store:UserStore {
         return UserStore()
     }
+    
     func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Bool) -> ()) {
         
         dispatcher.execute(request: request) { (response) in
