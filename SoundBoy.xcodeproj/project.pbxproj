@@ -53,11 +53,9 @@
 		A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AAE1F57C9FA001F3B00 /* CoreData.xcdatamodeld */; };
 		A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserServices.swift */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
-		A1FC8BAF1F105F6200DB2EC0 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAE1F105F6200DB2EC0 /* FilesViewController.swift */; };
-		A1FC8BB21F105F9000DB2EC0 /* FIleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BB11F105F9000DB2EC0 /* FIleViewModel.swift */; };
-		A1FC8BB61F10740C00DB2EC0 /* FilesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BB51F10740C00DB2EC0 /* FilesTableView.swift */; };
 		A1FFEF981F59270A00F7784C /* JamStartServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* JamStartServices.swift */; };
 		A75854A97046E8E90B20BB79 /* Pods_SoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */; };
+		E3774D3D254BC248330F968A /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dSoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.release.xcconfig"; sourceTree = "<group>"; };
 		A1017CB91F17FCFF00AA1B31 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
@@ -123,11 +122,10 @@
 		A1B66AAF1F57C9FA001F3B00 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A1B66AB91F57FB3A001F3B00 /* UserServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
-		A1FC8BAE1F105F6200DB2EC0 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
-		A1FC8BB11F105F9000DB2EC0 /* FIleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIleViewModel.swift; sourceTree = "<group>"; };
-		A1FC8BB51F10740C00DB2EC0 /* FilesTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesTableView.swift; sourceTree = "<group>"; };
 		A1FFEF971F59270A00F7784C /* JamStartServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamStartServices.swift; sourceTree = "<group>"; };
+		A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.release.xcconfig"; sourceTree = "<group>"; };
 		C069FEA3A8D01821895BF5C5 /* Pods-SoundBoy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.debug.xcconfig"; sourceTree = "<group>"; };
+		F480E3F31B21DD8468E22F3E /* Pods-dSoundBoy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75854A97046E8E90B20BB79 /* Pods_SoundBoy.framework in Frameworks */,
+				E3774D3D254BC248330F968A /* Pods_dSoundBoy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */,
+				62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,6 +162,8 @@
 			children = (
 				C069FEA3A8D01821895BF5C5 /* Pods-SoundBoy.debug.xcconfig */,
 				86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */,
+				F480E3F31B21DD8468E22F3E /* Pods-dSoundBoy.debug.xcconfig */,
+				A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -251,7 +253,7 @@
 				A1B66A941F556320001F3B00 /* StartJam */,
 				A1017CA71F15F11F00AA1B31 /* Login */,
 				A1FC8BB01F105F7000DB2EC0 /* Main */,
-				A1FC8BB31F105FB100DB2EC0 /* AudioFiles */,
+				A1FC8BB31F105FB100DB2EC0 /* Files */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -395,22 +397,11 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
-		A1FC8BB31F105FB100DB2EC0 /* AudioFiles */ = {
+		A1FC8BB31F105FB100DB2EC0 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				A1FC8BB41F1073F400DB2EC0 /* FIleVCTableView */,
-				A1FC8BB11F105F9000DB2EC0 /* FIleViewModel.swift */,
-				A1FC8BAE1F105F6200DB2EC0 /* FilesViewController.swift */,
 			);
-			name = AudioFiles;
-			sourceTree = "<group>";
-		};
-		A1FC8BB41F1073F400DB2EC0 /* FIleVCTableView */ = {
-			isa = PBXGroup;
-			children = (
-				A1FC8BB51F10740C00DB2EC0 /* FilesTableView.swift */,
-			);
-			name = FIleVCTableView;
+			name = Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,7 +519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		53711701A256511CA4A56535 /* [CP] Check Pods Manifest.lock */ = {
@@ -558,7 +549,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -604,7 +595,6 @@
 				A1B66A9D1F556341001F3B00 /* StartJamPresenter.swift in Sources */,
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
 				A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */,
-				A1FC8BAF1F105F6200DB2EC0 /* FilesViewController.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
 				A1B66AA81F57470A001F3B00 /* JoinJamInteractor.swift in Sources */,
@@ -618,9 +608,7 @@
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,
 				A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */,
 				A1B66A861F5559CA001F3B00 /* LoginViewController.swift in Sources */,
-				A1FC8BB61F10740C00DB2EC0 /* FilesTableView.swift in Sources */,
 				A1B66A9E1F556341001F3B00 /* StartJamRouter.swift in Sources */,
-				A1FC8BB21F105F9000DB2EC0 /* FIleViewModel.swift in Sources */,
 				A1B66A8E1F555E64001F3B00 /* MainInteractor.swift in Sources */,
 				A1B66A911F555E64001F3B00 /* MainRouter.swift in Sources */,
 			);
@@ -771,7 +759,7 @@
 		};
 		A1AE8A3C1F02102500B979D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C069FEA3A8D01821895BF5C5 /* Pods-SoundBoy.debug.xcconfig */;
+			baseConfigurationReference = F480E3F31B21DD8468E22F3E /* Pods-dSoundBoy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -787,7 +775,7 @@
 		};
 		A1AE8A3D1F02102500B979D6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */;
+			baseConfigurationReference = A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

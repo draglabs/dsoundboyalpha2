@@ -77,6 +77,7 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
 }
 
 extension JamUpLoadDispatcher:URLSessionDataDelegate {
+    
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
         print("uploading percentage : \(progress)")

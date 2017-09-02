@@ -36,8 +36,8 @@ public enum JamRequest:RequestRepresentable {
     /// These are the params we need to send along with the call
     public var parameters: RequestParams {
         switch self {
-        case .start(let uniqueId, let jamLocation, let jamName, let jamLat, let jamLong):
-            return .body(["unique_id":uniqueId,"jam_location":jamLocation,"jam_name":jamName,"jam_lat":jamLat,"jam_long":jamLong])
+        case .start(let userID, let jamLocation, let jamName, let jamLat, let jamLong):
+            return .body(["user_id":userID,"jam_location":jamLocation,"jam_name":jamName,"jam_lat":jamLat,"jam_long":jamLong])
             
         case .join(let uniqueId, let pin):
             return .body(["unique_id":uniqueId, "pin":pin])

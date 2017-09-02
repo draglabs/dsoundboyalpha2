@@ -76,14 +76,17 @@ final class CoreDataStore:NSObject {
             self.persistentContainer.performBackgroundTask(block)
         }
     
-    func save() {
+    func save(completion:@escaping(_ saved:Bool)->()) {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
                 try context.save()
+                completion(true)
             } catch  {
-                let nserror = error as NSError
-                fatalError("cant save contet \(nserror.userInfo)")
+                completion(false)
+//                let nserror = error as NSError
+//                fatalError("cant save contet \(nserror.userInfo)")
+                
             }
         }
     }

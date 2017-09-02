@@ -64,23 +64,25 @@ class UserStore: StoreRepresentable {
         
         let context = coreDataStore.viewContext
         let user = User(context: context)
-        user.uniqueID = json["id"] as? String
+        user.userId = json["id"] as? String
         response(true)
-        coreDataStore.save()
-        
+        coreDataStore.save(completion: response)
     }
     
     func fetchUser(callback:@escaping(_ user:User?,_ error:Error?)->()?) {
      let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
         coreDataStore.viewContext.perform {
-            let userResult =  try? fetchRequest.execute()
-            if  let user = userResult?.first {
-                callback(user,nil)
-                self.userFetchResult?(user,nil)
-                
-            }else {
-                //MARK:TODO finish error handling
+            
+            do {
+                let userResult =  try fetchRequest.execute()
+                if  let user = userResult.first {
+                    callback(user,nil)
+                    self.userFetchResult?(user,nil)
+                }
+            }catch {
+                self.userFetchResult?(nil,error)
             }
+           
         }
         
     }
@@ -88,7 +90,9 @@ class UserStore: StoreRepresentable {
 class UserRegistrationOperation: OperationRepresentable {
     let facebookId :String
     let accessToken:String
+    
     var responseError:((_ code:Int?, _ error:Error?)->())?
+    
     var store: StoreRepresentable {
         return UserStore()
     }
