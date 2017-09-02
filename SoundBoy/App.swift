@@ -7,6 +7,34 @@
 //
 
 import UIKit
+import CoreData
+
+private class AppFetcher: FetcherRepresentable {
+    
+     var coreDataStore: CoreDataStore {
+        return CoreDataStore(entity: .user)
+    }
+    
+    func fetch(callback: @escaping (_ result:User?, _ error:Error?) -> ()) {
+        
+        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
+        coreDataStore.viewContext.perform {
+            do {
+                let r =  try fetchRequest.execute()
+                print(r.count)
+                if  let t = r.first {
+                    callback(t, nil)
+                    // self.userFetchResult?(user,nil)
+                }
+            }catch {
+                callback(nil,error)
+                
+            }
+            
+        }
+        
+    }
+}
 
 class App: NSObject {
     
@@ -15,26 +43,26 @@ class App: NSObject {
    let oboadingVC = LoginViewController()
    var navController = UINavigationController()
     
+   fileprivate let fetcher = AppFetcher()
+    
      init(window:UIWindow) {
         
         super.init()
         window.rootViewController = navController
         
-        if isAuth() {
-            navController.setViewControllers([mainVC], animated: true)
-            Customizer.nav(nav: navController)
-        }else {
-            navController.setViewControllers([oboadingVC], animated: true)
-            Customizer.nav(nav: navController)
+        fetcher.fetch {[unowned self] (user, error) in
+            if user != nil {
+                self.navController.setViewControllers([self.mainVC], animated: true)
+                //Customizer.nav(nav: self.navController)
+            }else {
+                self.navController.setViewControllers([self.oboadingVC], animated: true)
+                Customizer.nav(nav: self.navController)
+            }
         }
+        
         
     }
 
-    
-    func isAuth() -> Bool {
-        guard let _ = UserDefaults.standard.object(forKey: "user_id") as? String else{return false }
-        return true
-    }
     
    
 }

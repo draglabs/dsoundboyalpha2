@@ -10,7 +10,7 @@ import UIKit
 
 protocol LoginBusinessLogic
 {
-  func doSomething(request: Login.WelcomeText.Request)
+  func welcomeText(request: Login.WelcomeText.Request)
   func RegisterUser(request: Login.Register.Request)
 }
 
@@ -26,13 +26,13 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
   
   // MARK: Do something
   
-  func doSomething(request: Login.WelcomeText.Request)
+  func welcomeText(request: Login.WelcomeText.Request)
   {
     worker = LoginWorker()
     worker?.doSomeWork()
     
     let response = Login.WelcomeText.Response()
-    presenter?.presentSomething(response: response)
+    presenter?.presentText(response: response)
   }
     
   func RegisterUser(request: Login.Register.Request) {

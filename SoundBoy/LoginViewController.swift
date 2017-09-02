@@ -60,7 +60,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
   
   func requestWelcomeText() {
     let request = Login.WelcomeText.Request()
-    interactor?.doSomething(request: request)
+    interactor?.welcomeText(request: request)
     
   }
     

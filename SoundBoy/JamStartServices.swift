@@ -83,20 +83,17 @@ public enum JamRequest:RequestRepresentable {
     
 }
 
-class  JamStore: Store {
+class  JamStore: StoreRepresentable {
     let coreDataStore = CoreDataStore(entity: .user)
     var userFetchResult:((_ user:User?,_ error:Error?)->())?
     
-    override func fromData(data: Data, response: @escaping (Bool) -> ()) {
+    func fromData(data: Data, response: @escaping (Bool) -> ()) {
         
     }
-    override func fromJSON(json: JSONDictionary, response: @escaping (Bool) -> ()) {
+    func fromJSON(json: JSONDictionary, response: @escaping (Bool) -> ()) {
         
     }
     
-    func fetch(callback: @escaping (Jam?, Error?) -> ()) {
-        
-    }
     
     
 }
@@ -105,7 +102,7 @@ class StartJamOperation: OperationRepresentable {
     let jam:Jam
     var responseError:((_ code:Int?, _ error:Error?)->())?
     
-    var store: Store {
+    var store: StoreRepresentable {
         return JamStore()
     }
     init(jam:Jam) {

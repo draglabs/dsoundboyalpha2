@@ -24,7 +24,7 @@ enum EntitiesModel:String {
     }
 }
 
-final class CoreDataStore:NSObject {
+public class CoreDataStore:NSObject {
   
         
     let entity:EntitiesModel
@@ -82,6 +82,7 @@ final class CoreDataStore:NSObject {
             do {
                 try context.save()
                 completion(true)
+                print("save")
             } catch  {
                 completion(false)
 //                let nserror = error as NSError

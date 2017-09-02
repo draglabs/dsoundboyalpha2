@@ -107,7 +107,7 @@ class JamUploadOperation: OperationRepresentable {
     let uniqueID:String
     let jamID:String
     var responseError:((_ code:Int?, _ error:Error?)->())?
-    var store: JamStore {
+    var store: StoreRepresentable {
         return JamStore()
     }
     
@@ -121,6 +121,7 @@ class JamUploadOperation: OperationRepresentable {
                 self.store.fromJSON(json: json, response: result)
             case .error(let statuscode, let error):
                 self.responseError?(statuscode,error)
+                result(false)
             }
         }
     }

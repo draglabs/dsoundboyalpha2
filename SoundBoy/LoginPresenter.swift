@@ -11,7 +11,7 @@ import UIKit
 
 protocol LoginPresentationLogic
 {
-  func presentSomething(response: Login.WelcomeText.Response)
+  func presentText(response: Login.WelcomeText.Response)
   func presentRegisteredUser(response:Login.Register.Response)
 }
 
@@ -21,7 +21,7 @@ class LoginPresenter: LoginPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Login.WelcomeText.Response) {
+  func presentText(response: Login.WelcomeText.Response) {
     let viewModel = Login.WelcomeText.ViewModel()
     viewController?.displaySomething(viewModel: viewModel)
   }

@@ -54,42 +54,24 @@ public enum UserRequest: RequestRepresentable {
 }
 
 
-class UserStore: Store {
+class UserStore: StoreRepresentable {
     let coreDataStore = CoreDataStore(entity: .user)
     var userFetchResult:((_ user:User?,_ error:Error?)->())?
     
     
-    override func fromData(data: Data, response: @escaping(_ uploaded:Bool)->()) {
+     func fromData(data: Data, response: @escaping(_ uploaded:Bool)->()) {
         //MARK:TODO finish implementation
     }
     
-    override func fromJSON(json: JSONDictionary, response: @escaping(_ uploaded:Bool)->()) {
+     func fromJSON(json: JSONDictionary, response: @escaping(_ uploaded:Bool)->()) {
         
         let context = coreDataStore.viewContext
         let user = User(context: context)
         user.userId = json["id"] as? String
-        response(true)
         coreDataStore.save(completion: response)
         
     }
     
-     func fetch(callback: @escaping (_ result:User?, _ error:Error?) -> ()) {
-        let fetchRequest:NSFetchRequest<User> = User.fetchRequest()
-        coreDataStore.viewContext.perform {
-            do {
-                let userResult =  try fetchRequest.execute()
-                if  let user = userResult.first {
-                    callback(user, nil)
-                    self.userFetchResult?(user,nil)
-                }
-            }catch {
-                callback(nil,error)
-                self.userFetchResult?(nil,error)
-            }
-            
-        }
-        
-    }
     
    
 }
@@ -101,7 +83,7 @@ class UserRegistrationOperation: OperationRepresentable {
     
     var responseError:((_ code:Int?, _ error:Error?)->())?
     
-    var store:UserStore {
+    var store:StoreRepresentable {
         return UserStore()
     }
     

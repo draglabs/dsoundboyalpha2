@@ -22,6 +22,7 @@
 		A155FD221F3E411500B4165F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD211F3E411500B4165F /* App.swift */; };
 		A155FD241F3E510A00B4165F /* Customizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD231F3E510A00B4165F /* Customizer.swift */; };
 		A17C689B1F59A89800E09CB1 /* JamUploadServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689A1F59A89800E09CB1 /* JamUploadServices.swift */; };
+		A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689C1F5A931C00E09CB1 /* DataServices.swift */; };
 		A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4EBA1F42551200AF1D18 /* LocationManager.swift */; };
 		A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */; };
 		A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A331F02102500B979D6 /* Assets.xcassets */; };
@@ -89,6 +90,7 @@
 		A155FD211F3E411500B4165F /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A155FD231F3E510A00B4165F /* Customizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customizer.swift; sourceTree = "<group>"; };
 		A17C689A1F59A89800E09CB1 /* JamUploadServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamUploadServices.swift; sourceTree = "<group>"; };
+		A17C689C1F5A931C00E09CB1 /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		A17D4EBA1F42551200AF1D18 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		A1AE8A291F02102500B979D6 /* dSoundBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dSoundBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -241,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */,
-				A153F8081F082BBD00223379 /* CoreDataStore.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -299,6 +300,8 @@
 			children = (
 				A17D4EBA1F42551200AF1D18 /* LocationManager.swift */,
 				A1017CB91F17FCFF00AA1B31 /* WebService.swift */,
+				A17C689C1F5A931C00E09CB1 /* DataServices.swift */,
+				A153F8081F082BBD00223379 /* CoreDataStore.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				A153F81F1F082BBD00223379 /* Recorder.swift in Sources */,
 				A153F8211F082BBD00223379 /* Timer.swift in Sources */,
 				A1B66A9F1F556341001F3B00 /* StartJamViewController.swift in Sources */,
+				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A153F8241F082BBD00223379 /* Activity.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */,
