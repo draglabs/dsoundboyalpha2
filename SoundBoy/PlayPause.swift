@@ -21,7 +21,7 @@ class PlayPauseView: UIView {
 
     let gradientBackLayer = UIView()
     let midleLayerView = UIView()
-    let pausePlayButton = UIButton()
+    let pausePlayButton = UIButton(type: .system)
     let timeCounter = TimeCounter(direction: .up)
     let recordingTimeLabel = UILabel()
     var timeLabel = UILabel()
@@ -58,7 +58,8 @@ class PlayPauseView: UIView {
     }
 
     func setupPausePlay() {
-        //pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+        pausePlayButton.tintColor = UIColor.white
         pausePlayButton.translatesAutoresizingMaskIntoConstraints = false
         pausePlayButton.backgroundColor = buttonBackgroundColor
         pausePlayButton.layer.borderWidth = 12
@@ -110,9 +111,7 @@ class PlayPauseView: UIView {
     convenience init() {
         self.init(frame: .zero)
         setup()
-        
-        
-       
+      
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -121,11 +120,11 @@ class PlayPauseView: UIView {
     
     func updatePlayButton(isPlaying:Bool) {
         if isPlaying {
-               // pausePlayButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+                pausePlayButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
             
                 
             }else {
-              //  pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+               pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             timeCounter.stopTimeCounter()
         }
     }

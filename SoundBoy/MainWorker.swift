@@ -8,9 +8,10 @@
 
 import UIKit
 
-class MainWorker
-{
-  func doSomeWork()
-  {
+class MainWorker {
+  let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
+  var name = ""
+  func startJamRequest(name:String,location:String,completion:@escaping(_ result:String)->()) {
+    
   }
 }

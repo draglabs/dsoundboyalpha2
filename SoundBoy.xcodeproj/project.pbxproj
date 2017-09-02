@@ -203,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				A153F8151F082BBD00223379 /* Activity.swift */,
-				A153F80E1F082BBD00223379 /* PlayPause.swift */,
 				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
 			);
 			name = Views;
@@ -323,6 +322,14 @@
 			name = User;
 			sourceTree = "<group>";
 		};
+		A17C689E1F5B60CC00E09CB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A153F80E1F082BBD00223379 /* PlayPause.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		A1AE8A201F02102500B979D6 = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +397,7 @@
 		A1FC8BB01F105F7000DB2EC0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				A17C689E1F5B60CC00E09CB1 /* View */,
 				A1B66A881F555E64001F3B00 /* MainInteractor.swift */,
 				A1B66A891F555E64001F3B00 /* MainModels.swift */,
 				A1B66A8A1F555E64001F3B00 /* MainPresenter.swift */,

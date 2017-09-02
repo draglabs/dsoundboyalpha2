@@ -9,7 +9,8 @@ import UIKit
 
 protocol MainDisplayLogic: class
 {
-  func displaySomething(viewModel: Main.Jam.ViewModel)
+  func displaySettings(viewModel: Main.Jam.ViewModel)
+  func displayFiles(viewModel:Main.Jam.ViewModel)
 }
 
 class MainViewController: UIViewController, MainDisplayLogic
@@ -107,9 +108,11 @@ class MainViewController: UIViewController, MainDisplayLogic
     interactor?.startJam(request: request)
   }
   
-  func displaySomething(viewModel: Main.Jam.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
+  func displaySettings(viewModel: Main.Jam.ViewModel){
+  
+  }
+  func displayFiles(viewModel: Main.Jam.ViewModel) {
+    
   }
     
   

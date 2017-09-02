@@ -9,18 +9,17 @@
 
 import UIKit
 
-protocol MainBusinessLogic
-{
+protocol MainBusinessLogic {
   func startJam(request: Main.Jam.Request)
-    
+  func settings(request:Main.Jam.Request)
+  func files( request:Main.Jam.Request)
 }
 
 protocol MainDataStore {
   var success: Bool { get set }
 }
 
-class MainInteractor: MainBusinessLogic, MainDataStore
-{
+class MainInteractor: MainBusinessLogic, MainDataStore {
   var presenter: MainPresentationLogic?
   var worker: MainWorker?
   
@@ -28,10 +27,14 @@ class MainInteractor: MainBusinessLogic, MainDataStore
   // MARK: Do something
   
   func startJam(request: Main.Jam.Request) {
-    worker = MainWorker()
-    worker?.doSomeWork()
-    
-    let response = Main.Jam.Response()
-    presenter?.presentSomething(response: response)
+    let worker = MainWorker()
+    // worker.startJamRequest(name: request.name, location: request.location, completion: <#T##(String) -> ()#>)
+  }
+  
+ func settings(request: Main.Jam.Request) {
+     
+  }
+ func files(request: Main.Jam.Request) {
+        
   }
 }

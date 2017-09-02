@@ -9,9 +9,10 @@
 
 import UIKit
 
-protocol MainPresentationLogic
-{
-  func presentSomething(response: Main.Jam.Response)
+protocol MainPresentationLogic {
+  
+  func presentFiles(response:Main.Jam.Response)
+  func presentSettings(response:Main.Jam.Response)
 }
 
 class MainPresenter: MainPresentationLogic
@@ -20,8 +21,11 @@ class MainPresenter: MainPresentationLogic
   
   // MARK: Do something
   
-  func presentSomething(response: Main.Jam.Response) {
-    let viewModel = Main.Jam.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  func presentFiles(response: Main.Jam.Response) {
+        
   }
+  func presentSettings(response: Main.Jam.Response) {
+    
+  }
+  
 }
