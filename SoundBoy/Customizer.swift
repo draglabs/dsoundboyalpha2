@@ -10,7 +10,11 @@ import UIKit
 
 final class Customizer: NSObject {
     static func nav(nav: UINavigationController) {
-        nav.navigationBar.isHidden = true
+        nav.navigationBar.isTranslucent = false
+        nav.navigationBar.barTintColor = UIColor(colorLiteralRed: 168/255, green: 36/255, blue: 36/255, alpha: 1.0)
+        nav.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        nav.navigationBar.shadowImage = UIImage()
+       nav.navigationBar.tintColor = .white
     }
     
 }

@@ -23,7 +23,7 @@ class MainViewController: UIViewController, MainDisplayLogic
     
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
-    
+  
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -71,7 +71,9 @@ class MainViewController: UIViewController, MainDisplayLogic
   
   func setupUI() {
     setNeedsStatusBarAppearanceUpdate()
-    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "files_icon"), style: .plain, target: self, action: #selector(doSomething))
+     navigationItem.leftBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "settings_icon"), style: .plain, target: self, action: #selector(doSomething))
+
      playPauseView.translatesAutoresizingMaskIntoConstraints = false
      startJoinJamView.translatesAutoresizingMaskIntoConstraints = false
      backLayer.frame = view.frame

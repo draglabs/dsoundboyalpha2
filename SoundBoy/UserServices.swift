@@ -67,7 +67,15 @@ class UserStore: StoreRepresentable {
         
         let context = coreDataStore.viewContext
         let user = User(context: context)
-        user.userId = json["id"] as? String
+        print(json)
+        guard let userJson = json["user"] as? JSONDictionary,
+        let id  = userJson["id"] as? String,
+        let name = userJson["first_name"] as? String,
+        let lastName = userJson["last_name"] as? String
+        else {return}
+        user.userId = id
+        user.firstName = name
+        user.lastName = lastName
         coreDataStore.save(completion: response)
         
     }

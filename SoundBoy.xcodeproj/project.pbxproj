@@ -298,10 +298,10 @@
 		A17C68971F59289200E09CB1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A17D4EBA1F42551200AF1D18 /* LocationManager.swift */,
 				A1017CB91F17FCFF00AA1B31 /* WebService.swift */,
 				A17C689C1F5A931C00E09CB1 /* DataServices.swift */,
 				A153F8081F082BBD00223379 /* CoreDataStore.swift */,
+				A17D4EBA1F42551200AF1D18 /* LocationManager.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";

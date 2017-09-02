@@ -21,10 +21,11 @@ private class AppFetcher: FetcherRepresentable {
         coreDataStore.viewContext.perform {
             do {
                 let r =  try fetchRequest.execute()
-                print(r.count)
+                print("number of current users ",r.count)
                 if  let t = r.first {
                     callback(t, nil)
-                    // self.userFetchResult?(user,nil)
+                }else {
+                    callback(nil, nil)
                 }
             }catch {
                 callback(nil,error)
@@ -43,17 +44,18 @@ class App: NSObject {
    let oboadingVC = LoginViewController()
    var navController = UINavigationController()
     
-   fileprivate let fetcher = AppFetcher()
+   fileprivate let userFetcher = AppFetcher()
     
      init(window:UIWindow) {
         
         super.init()
         window.rootViewController = navController
         
-        fetcher.fetch {[unowned self] (user, error) in
+        userFetcher.fetch {[unowned self] (user, error) in
             if user != nil {
+                  Customizer.nav(nav: self.navController)
                 self.navController.setViewControllers([self.mainVC], animated: true)
-                //Customizer.nav(nav: self.navController)
+               
             }else {
                 self.navController.setViewControllers([self.oboadingVC], animated: true)
                 Customizer.nav(nav: self.navController)
