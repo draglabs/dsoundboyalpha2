@@ -21,7 +21,7 @@ class MainViewController: UIViewController, MainDisplayLogic
     
   let playPauseView = PlayPauseView()
   let startJoinJamView = JoinStartJamView()
-    
+  let pulsor = Pulsator()
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
   
@@ -59,6 +59,8 @@ class MainViewController: UIViewController, MainDisplayLogic
     presenter.viewController = viewController
     router.viewController = viewController
     router.dataStore = interactor
+    
+    
   }
   
   // MARK: View lifecycle
@@ -86,6 +88,13 @@ class MainViewController: UIViewController, MainDisplayLogic
      playPauseView.didPressedPlayButton = didPressedPlayButton
      startJoinJamView.didPressedJam = jamPressed
      uiContraints()
+    
+    let vs = UIView()
+    vs.frame = CGRect(x: view.bounds.width / 2, y: 120, width: 300, height: 300)
+    pulsor.backgroundColor = UIColor.white.cgColor
+    // view.insertSubview(vs, aboveSubview: playPauseView)
+    playPauseView.insertSubview(vs, belowSubview: playPauseView.pausePlayButton)
+    vs.layer.addSublayer(pulsor)
     }
   
     
@@ -104,7 +113,7 @@ class MainViewController: UIViewController, MainDisplayLogic
     }
     
   func doSomething() {
-    let request = Main.Jam.Request()
+    let request = Main.Jam.Request(name: "", location: "")
     interactor?.startJam(request: request)
   }
   
@@ -124,12 +133,13 @@ extension MainViewController {
     func  didPressedPlayButton(playPauseView:PlayPauseView, button:UIButton) {
         
         if !isPlaying {
+            pulsor.start()
             Recorder.shared.startRecording()
             isPlaying = true
             playPauseView.updatePlayButton(isPlaying: isPlaying)
             
         }else {
-            
+            pulsor.stop()
             Recorder.shared.stopRecording()
             isPlaying = false
             playPauseView.updatePlayButton(isPlaying: isPlaying)

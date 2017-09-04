@@ -15,7 +15,10 @@ enum Main
   
   enum Jam
   {
-    struct Request{}
+    struct Request{
+      var name:String
+      var location:String
+    }
     struct Response{}
     struct ViewModel{}
   }

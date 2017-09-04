@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* WebService.swift */; };
-		A1017CC21F1951A400AA1B31 /* SoundBoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */; };
+		A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
 		A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F381F0B50A7009D8D6E /* baseOperation.swift */; };
 		A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */; };
@@ -53,30 +53,19 @@
 		A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */; };
 		A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AAE1F57C9FA001F3B00 /* CoreData.xcdatamodeld */; };
 		A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserServices.swift */; };
+		A1F203001F5CEC820023484D /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
 		A1FFEF981F59270A00F7784C /* JamStartServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* JamStartServices.swift */; };
-		A75854A97046E8E90B20BB79 /* Pods_SoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */; };
-		E3774D3D254BC248330F968A /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A1017CC41F1951A400AA1B31 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A1AE8A211F02102500B979D6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1AE8A281F02102500B979D6;
-			remoteInfo = SoundBoy;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dSoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.release.xcconfig"; sourceTree = "<group>"; };
 		A1017CB91F17FCFF00AA1B31 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
-		A1017CBF1F1951A400AA1B31 /* SoundBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SoundBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundBoyTests.swift; sourceTree = "<group>"; };
 		A1017CC31F1951A400AA1B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulsator.swift; sourceTree = "<group>"; };
 		A14F9F2D1F09D892009D8D6E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A14F9F381F0B50A7009D8D6E /* baseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseOperation.swift; sourceTree = "<group>"; };
 		A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUploaderOperation.swift; sourceTree = "<group>"; };
@@ -131,19 +120,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A1017CBC1F1951A400AA1B31 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A1AE8A261F02102500B979D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A75854A97046E8E90B20BB79 /* Pods_SoundBoy.framework in Frameworks */,
-				E3774D3D254BC248330F968A /* Pods_dSoundBoy.framework in Frameworks */,
+				A1F203001F5CEC820023484D /* Pods_dSoundBoy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +167,7 @@
 		A1017CB41F16CA8200AA1B31 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -346,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				A1AE8A291F02102500B979D6 /* dSoundBoy.app */,
-				A1017CBF1F1951A400AA1B31 /* SoundBoyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -418,24 +399,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1017CBE1F1951A400AA1B31 /* SoundBoyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A1017CC81F1951A400AA1B31 /* Build configuration list for PBXNativeTarget "SoundBoyTests" */;
-			buildPhases = (
-				A1017CBB1F1951A400AA1B31 /* Sources */,
-				A1017CBC1F1951A400AA1B31 /* Frameworks */,
-				A1017CBD1F1951A400AA1B31 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A1017CC51F1951A400AA1B31 /* PBXTargetDependency */,
-			);
-			name = SoundBoyTests;
-			productName = SoundBoyTests;
-			productReference = A1017CBF1F1951A400AA1B31 /* SoundBoyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		A1AE8A281F02102500B979D6 /* dSoundBoy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1AE8A3B1F02102500B979D6 /* Build configuration list for PBXNativeTarget "dSoundBoy" */;
@@ -466,12 +429,6 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = DragLabs;
 				TargetAttributes = {
-					A1017CBE1F1951A400AA1B31 = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = V9QHFMVFWZ;
-						ProvisioningStyle = Automatic;
-						TestTargetID = A1AE8A281F02102500B979D6;
-					};
 					A1AE8A281F02102500B979D6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = V9QHFMVFWZ;
@@ -493,19 +450,11 @@
 			projectRoot = "";
 			targets = (
 				A1AE8A281F02102500B979D6 /* dSoundBoy */,
-				A1017CBE1F1951A400AA1B31 /* SoundBoyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A1017CBD1F1951A400AA1B31 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A1AE8A271F02102500B979D6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,14 +515,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A1017CBB1F1951A400AA1B31 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A1017CC21F1951A400AA1B31 /* SoundBoyTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A1AE8A251F02102500B979D6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -581,6 +522,7 @@
 				A1B66A841F5559CA001F3B00 /* LoginPresenter.swift in Sources */,
 				A1B66A9C1F556341001F3B00 /* StartJamModels.swift in Sources */,
 				A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */,
+				A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */,
 				A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */,
 				A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */,
 				A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */,
@@ -628,14 +570,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		A1017CC51F1951A400AA1B31 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1AE8A281F02102500B979D6 /* dSoundBoy */;
-			targetProxy = A1017CC41F1951A400AA1B31 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -648,34 +582,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A1017CC61F1951A400AA1B31 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = V9QHFMVFWZ;
-				INFOPLIST_FILE = SoundBoyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.draglabs.SoundBoyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoundBoy.app/SoundBoy";
-			};
-			name = Debug;
-		};
-		A1017CC71F1951A400AA1B31 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = V9QHFMVFWZ;
-				INFOPLIST_FILE = SoundBoyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.draglabs.SoundBoyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoundBoy.app/SoundBoy";
-			};
-			name = Release;
-		};
 		A1AE8A391F02102500B979D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -804,15 +710,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1017CC81F1951A400AA1B31 /* Build configuration list for PBXNativeTarget "SoundBoyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A1017CC61F1951A400AA1B31 /* Debug */,
-				A1017CC71F1951A400AA1B31 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		A1AE8A241F02102500B979D6 /* Build configuration list for PBXProject "SoundBoy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

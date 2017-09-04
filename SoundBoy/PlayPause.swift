@@ -24,8 +24,11 @@ class PlayPauseView: UIView {
     let pausePlayButton = UIButton(type: .system)
     let timeCounter = TimeCounter(direction: .up)
     let recordingTimeLabel = UILabel()
+  
+  
     var timeLabel = UILabel()
     var  didPressedPlayButton:((_ playPauseView:PlayPauseView, _ button:UIButton) ->())?
+  
     let colorForOrangeBackground = UIColor(colorLiteralRed: 160/255, green: 16/255, blue: 33/255, alpha: 0.68)
     let colorForMidOrange = UIColor(colorLiteralRed: 87/255, green: 2/255, blue: 2/255, alpha: 1)
     let buttonBackgroundColor = UIColor(colorLiteralRed: 168/255, green: 36/255, blue: 36/255, alpha: 1)
@@ -34,8 +37,9 @@ class PlayPauseView: UIView {
     
     func setup() {
     
-    
+      
         addSubview(gradientBackLayer)
+      
         gradientBackLayer.frame = CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.width - 20)
        
         gradientBackLayer.backgroundColor = colorForOrangeBackground
@@ -45,16 +49,15 @@ class PlayPauseView: UIView {
       
         midleLayerView.backgroundColor = colorForMidOrange
         midleLayerView.layer.cornerRadius = midleLayerView.bounds.height / 2
-
-        
+      
+      
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         midleLayerView.addSubview(timeLabel)
         
         gradientBackLayer.addSubview(midleLayerView)
-          setupPausePlay()
+      
+        setupPausePlay()
         setupLabels()
-       
-       
     }
 
     func setupPausePlay() {
@@ -64,6 +67,7 @@ class PlayPauseView: UIView {
         pausePlayButton.backgroundColor = buttonBackgroundColor
         pausePlayButton.layer.borderWidth = 12
         pausePlayButton.layer.borderColor = UIColor(colorLiteralRed: 109/255, green: 0/255, blue: 0/255, alpha: 1).cgColor
+      
         pausePlayButton.layer.cornerRadius = 50
         midleLayerView.addSubview(pausePlayButton)
         
@@ -91,8 +95,7 @@ class PlayPauseView: UIView {
         timeLabel.topAnchor.constraint(equalTo: pausePlayButton.bottomAnchor).isActive = true
         timeLabel.leadingAnchor.constraint(equalTo: midleLayerView.leadingAnchor).isActive = true
         timeLabel.trailingAnchor.constraint(equalTo: midleLayerView.trailingAnchor).isActive = true
-        
-    
+      
     }
     
     func pausePlayButtonPressed(sender:UIButton) {
@@ -121,9 +124,9 @@ class PlayPauseView: UIView {
     func updatePlayButton(isPlaying:Bool) {
         if isPlaying {
                 pausePlayButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
-            
-                
+          
             }else {
+          
                pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             timeCounter.stopTimeCounter()
         }

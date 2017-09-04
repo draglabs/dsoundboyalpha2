@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 private class AppFetcher: FetcherRepresentable {
     
      var coreDataStore: CoreDataStore {
@@ -38,8 +39,7 @@ private class AppFetcher: FetcherRepresentable {
 }
 
 class App: NSObject {
-    
-    
+  
    let mainVC = MainViewController()
    let oboadingVC = LoginViewController()
    var navController = UINavigationController()
@@ -53,36 +53,22 @@ class App: NSObject {
         
         userFetcher.fetch {[unowned self] (user, error) in
             if user != nil {
-                  Customizer.nav(nav: self.navController)
+                  Customizer.main(nav: self.navController)
                 self.navController.setViewControllers([self.mainVC], animated: true)
                
             }else {
                 self.navController.setViewControllers([self.oboadingVC], animated: true)
-                Customizer.nav(nav: self.navController)
+              Customizer.login(nav: self.navController)
             }
         }
-        
-        
+      
     }
-
-    
-   
 }
 
 
 
-//MARK: MainViewContoller Delegate Conformance
 
 
-//MARK: OnboardingViewController Delegate Conformace
-//extension App:OnboardingVCDelegate {
-//    func didLogin() {
-//        DispatchQueue.main.async {
-//          self.navController.setViewControllers([self.mainVC], animated: true)
-//        }
-//        
-//    }
-//}
 
 
 

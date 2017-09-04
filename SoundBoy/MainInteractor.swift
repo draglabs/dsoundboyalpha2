@@ -27,8 +27,10 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   // MARK: Do something
   
   func startJam(request: Main.Jam.Request) {
-    let worker = MainWorker()
-    // worker.startJamRequest(name: request.name, location: request.location, completion: <#T##(String) -> ()#>)
+     worker = MainWorker()
+     worker?.startJamRequest(name: request.name, location: request.location) { (s) in
+      
+    }
   }
   
  func settings(request: Main.Jam.Request) {

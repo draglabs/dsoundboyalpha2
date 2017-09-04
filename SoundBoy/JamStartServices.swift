@@ -5,13 +5,13 @@
 //  Created by Marlon Monroy on 8/31/17.
 //  Copyright © 2017 DragLabs. All rights reserved.
 //
-
 import Foundation
-
+import CoreData
 public enum JamRequest:RequestRepresentable {
     
-    case start(uniqueId:String, jamLocation:String,jamName:String,jamLat:String,jamLong:String)
-    
+  //case start(userId:String, jamLocation:String,jamName:String,jamLat:String,jamLong:String)
+  case start(jamName:String,jamLocation:String)
+  
     case join(uniqueId:String,pin:String)
     
     case upload(uniqueId:String,jamId:String)
@@ -19,7 +19,7 @@ public enum JamRequest:RequestRepresentable {
     case exit (uniqueId:String, jamId:String)
     
     case collaborator(uniqueId:String, jamId:String)
-    
+  
     public var dataType: DataType {
         switch self {
         case .start:
@@ -27,7 +27,6 @@ public enum JamRequest:RequestRepresentable {
         default:
             return .JSON
         }
-        
     }
     
     /// these are optional list of headers we can send alogn with the call
@@ -36,35 +35,31 @@ public enum JamRequest:RequestRepresentable {
     /// These are the params we need to send along with the call
     public var parameters: RequestParams {
         switch self {
-        case .start(let userID, let jamLocation, let jamName, let jamLat, let jamLong):
-            return .body(["user_id":userID,"jam_location":jamLocation,"jam_name":jamName,"jam_lat":jamLat,"jam_long":jamLong])
+        case .start(let jamLocation, let jamName):
+            return .body(["jam_location":jamLocation,"jam_name":jamName])
             
         case .join(let uniqueId, let pin):
-            return .body(["unique_id":uniqueId, "pin":pin])
+            return .body(["user_id":uniqueId, "pin":pin])
             
         case .exit(let uniqueId, let jamId):
             
-            return .body(["unique_id":uniqueId, "jam_id":jamId])
+            return .body(["user_id":uniqueId, "jam_id":jamId])
         case .collaborator( let uniqueId, let jamId):
             
-            return .body(["unique_id":uniqueId, "jam_id":jamId])
+            return .body(["user_id":uniqueId, "jam_id":jamId])
         case .upload(let uniqueId, let jamId):
             
-            return .url(["unique_id":uniqueId, "jam_id":jamId])
+            return .url(["user_id":uniqueId, "jam_id":jamId])
         }
-        
-        
+      
     }
-    
-    /// This define the HTTP method we should use to perform the call
-    /// we hace defined ir inside an String based enum called `HTTPMethod`
+  
     public  var method: HTTPMethod {
         switch self {
         default:
-            return .post
-        }
+          return .post
+      }
     }
-    
     /// relative to the path of the enpodint we want to call, (i.e`/user/authorize/`)
     public var path: String {
         switch self {
@@ -80,7 +75,6 @@ public enum JamRequest:RequestRepresentable {
             return "jam/join"
         }
     }
-    
 }
 
 class  JamStore: StoreRepresentable {
@@ -93,24 +87,53 @@ class  JamStore: StoreRepresentable {
     func fromJSON(json: JSONDictionary, response: @escaping (Bool) -> ()) {
         
     }
-    
-    
-    
+  
 }
+
+class UserFether: FetcherRepresentable {
+  
+  var coreDataStore: CoreDataStore {
+    return CoreDataStore(entity: .jam)
+  }
+  
+  func fetch(callback: @escaping (_ result:User?, _ error:Error?) -> ()) {
+    let context = coreDataStore.viewContext
+    let jamRequest:NSFetchRequest<User> = User.fetchRequest()
+    context.perform {
+      do {
+        let result = try jamRequest.execute()
+        if result.count > 0 {
+          let user = result.first!
+          callback(user, nil)
+        }else {
+          callback(nil,nil)
+        }
+      }catch {
+        callback(nil,error)
+      }
+    }
+  }
+}
+
 class StartJamOperation: OperationRepresentable {
+  
+  let name:String
+  let location:String
+  let userFether = UserFether()
+
+  var responseError:((_ code:Int?, _ error:Error?)->())?
     
-    let jam:Jam
-    var responseError:((_ code:Int?, _ error:Error?)->())?
-    
-    var store: StoreRepresentable {
-        return JamStore()
+  var store: StoreRepresentable {
+    return JamStore()
     }
-    init(jam:Jam) {
-        
-        self.jam = jam
+  
+  init(name:String, location:String) {
+    
+    self.name = name
+    self.location = location
+    
     }
-    
-    
+  
     func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ started:Bool)->()) {
         dispatcher.execute(request: request) { (response) in
             switch response {
@@ -123,11 +146,10 @@ class StartJamOperation: OperationRepresentable {
             }
         }
     }
-    
+
     var request: RequestRepresentable {
         
-        return JamRequest.start(uniqueId: "", jamLocation: jam.location!, jamName: jam.name!, jamLat: jam.latitude!, jamLong: jam.longitude!)
+        return JamRequest.start(jamName: name, jamLocation: location)
     }
-    
-    
+  
 }
