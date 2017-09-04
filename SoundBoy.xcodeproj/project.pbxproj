@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44F840661F5D97D0004A7A76 /* FilesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840601F5D97D0004A7A76 /* FilesInteractor.swift */; };
+		44F840671F5D97D0004A7A76 /* FilesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840611F5D97D0004A7A76 /* FilesModels.swift */; };
+		44F840681F5D97D0004A7A76 /* FilesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840621F5D97D0004A7A76 /* FilesPresenter.swift */; };
+		44F840691F5D97D0004A7A76 /* FilesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840631F5D97D0004A7A76 /* FilesRouter.swift */; };
+		44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840641F5D97D0004A7A76 /* FilesViewController.swift */; };
+		44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840651F5D97D0004A7A76 /* FilesWorker.swift */; };
 		A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* WebService.swift */; };
 		A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
@@ -58,6 +64,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44F840601F5D97D0004A7A76 /* FilesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesInteractor.swift; sourceTree = "<group>"; };
+		44F840611F5D97D0004A7A76 /* FilesModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesModels.swift; sourceTree = "<group>"; };
+		44F840621F5D97D0004A7A76 /* FilesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesPresenter.swift; sourceTree = "<group>"; };
+		44F840631F5D97D0004A7A76 /* FilesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesRouter.swift; sourceTree = "<group>"; };
+		44F840641F5D97D0004A7A76 /* FilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesViewController.swift; sourceTree = "<group>"; };
+		44F840651F5D97D0004A7A76 /* FilesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesWorker.swift; sourceTree = "<group>"; };
 		62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dSoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -381,6 +393,12 @@
 		A1FC8BB31F105FB100DB2EC0 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				44F840601F5D97D0004A7A76 /* FilesInteractor.swift */,
+				44F840611F5D97D0004A7A76 /* FilesModels.swift */,
+				44F840621F5D97D0004A7A76 /* FilesPresenter.swift */,
+				44F840631F5D97D0004A7A76 /* FilesRouter.swift */,
+				44F840641F5D97D0004A7A76 /* FilesViewController.swift */,
+				44F840651F5D97D0004A7A76 /* FilesWorker.swift */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -508,9 +526,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44F840691F5D97D0004A7A76 /* FilesRouter.swift in Sources */,
 				A1B66A841F5559CA001F3B00 /* LoginPresenter.swift in Sources */,
 				A1B66A9C1F556341001F3B00 /* StartJamModels.swift in Sources */,
 				A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */,
+				44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */,
+				44F840671F5D97D0004A7A76 /* FilesModels.swift in Sources */,
 				A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */,
 				A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */,
 				A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */,
@@ -524,6 +545,7 @@
 				A153F81F1F082BBD00223379 /* Recorder.swift in Sources */,
 				A153F8211F082BBD00223379 /* Timer.swift in Sources */,
 				A1B66A9F1F556341001F3B00 /* StartJamViewController.swift in Sources */,
+				44F840661F5D97D0004A7A76 /* FilesInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */,
@@ -536,6 +558,7 @@
 				A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */,
 				A1B66A9D1F556341001F3B00 /* StartJamPresenter.swift in Sources */,
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
+				44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */,
 				A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
@@ -550,6 +573,7 @@
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,
 				A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */,
 				A1B66A861F5559CA001F3B00 /* LoginViewController.swift in Sources */,
+				44F840681F5D97D0004A7A76 /* FilesPresenter.swift in Sources */,
 				A1B66A9E1F556341001F3B00 /* StartJamRouter.swift in Sources */,
 				A1B66A8E1F555E64001F3B00 /* MainInteractor.swift in Sources */,
 				A1B66A911F555E64001F3B00 /* MainRouter.swift in Sources */,
