@@ -1,5 +1,5 @@
 //
-//  BottomView.swift
+//  JoinStartView.swift
 //  SoundBoy
 //
 //  Created by Marlon Monroy on 6/30/17.
@@ -15,8 +15,8 @@ protocol JoinStartJamViewDelegate {
 
 class JoinStartJamView: UIView {
     var delegate:JoinStartJamViewDelegate?
-    let joinButton = UIButton()
-    let jamButton = UIButton()
+    let joinButton = UIButton(type: .system)
+    let jamButton = UIButton(type: .system)
     var didPressedJoin:((_ bottomView:JoinStartJamView,_ join:UIButton)->())?
     var didPressedJam:((_ bottomView:JoinStartJamView,_ jam:UIButton)->())?
     
@@ -27,8 +27,7 @@ class JoinStartJamView: UIView {
     func setup() {
         setupButtons()
     }
-    
-    
+  
     convenience init() {
         self.init(frame: .zero)
         setup()
@@ -54,11 +53,12 @@ class JoinStartJamView: UIView {
         jamButton.layer.borderColor  = UIColor.white.cgColor
         jamButton.layer.borderWidth = 1
         jamButton.backgroundColor = buttonColor
+        jamButton.tintColor = UIColor.white
     
         joinButton.layer.borderColor = UIColor.white.cgColor
         joinButton.layer.borderWidth = 1
         joinButton.backgroundColor = buttonColor
-    
+        joinButton.tintColor = UIColor.white
     
         // radius on buttons 
         layoutIfNeeded()
@@ -91,8 +91,7 @@ class JoinStartJamView: UIView {
         joinButton.addTarget(self, action: #selector(joinButtonPressed(sender:)), for: .touchUpInside)
         jamButton.addTarget(self, action: #selector(jamButtonPressed(sender:)), for: .touchUpInside)
     }
-    
-    
+  
 }
 
 

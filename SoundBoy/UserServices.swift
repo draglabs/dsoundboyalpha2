@@ -80,8 +80,32 @@ class UserStore: StoreRepresentable {
         
     }
     
-    
    
+}
+
+class UserFether: FetcherRepresentable {
+  
+  var coreDataStore: CoreDataStore {
+    return CoreDataStore(entity: .jam)
+  }
+  
+  func fetch(callback: @escaping (_ result:User?, _ error:Error?) -> ()) {
+    let context = coreDataStore.viewContext
+    let jamRequest:NSFetchRequest<User> = User.fetchRequest()
+    context.perform {
+      do {
+        let result = try jamRequest.execute()
+        if result.count > 0 {
+          let user = result.first!
+          callback(user, nil)
+        }else {
+          callback(nil,nil)
+        }
+      }catch {
+        callback(nil,error)
+      }
+    }
+  }
 }
 
 

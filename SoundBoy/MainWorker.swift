@@ -6,15 +6,23 @@
 //  Copyright (c) 2017 DragLabs. All rights reserved.
 //
 
-import UIKit
+import CoreData
+
+
+
 
 class MainWorker {
   let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
+  let fetcher = UserFether()
   var name = ""
-  func startJamRequest(name:String,location:String,completion:@escaping(_ result:String)->()) {
-    let task = StartJamOperation(name: name, location: location)
-    task.execute(in: networkDispatcher) { (done) in
+  func startJamRequest(completion:@escaping(_ result:String)->()) {
+    
+    fetcher.fetch { (user, error) in
       
     }
+//    let task = StartJamOperation(name: name, location: location)
+//    task.execute(in: networkDispatcher) { (done) in
+//      
+//    }
   }
 }

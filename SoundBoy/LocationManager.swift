@@ -12,9 +12,11 @@ import CoreLocation
  class LocationMgr: NSObject,CLLocationManagerDelegate {
     
     
-    var lastLocation:CLLocation?
-    var manager = CLLocationManager()
-    func requestLocation() {
+  var lastLocation:CLLocation?
+  var didGetLocation:((_ location:CLLocation, _ address:Dictionary<String,String>)->())?
+  var manager = CLLocationManager()
+  
+  func requestLocation() {
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
@@ -31,11 +33,15 @@ import CoreLocation
         if locations.last != nil {
             lastLocation = locations.last!
             manager.stopUpdatingLocation()
+            getAddress()
         }
     }
+  
+  /// Make sure you set `didGetLocation?()` 
+  /// so that youll get the results back
+  
+    func getAddress() {
     
-
-    func getAddress(completion:@escaping(_ address:Dictionary<String,String>)->()) {
         if let location = lastLocation {
         let coder = CLGeocoder()
         coder.reverseGeocodeLocation(location) { (placeMarks, error) in
@@ -47,7 +53,7 @@ import CoreLocation
             let city = place.locality
             let state = place.administrativeArea
             let zipCode = place.postalCode
-            completion(["street":street!, "city":city!,"state":state!,"zipcode":zipCode!])
+            self.didGetLocation?(location,["street":street!, "city":city!,"state":state!,"zipcode":zipCode!])
             }
         }
     }

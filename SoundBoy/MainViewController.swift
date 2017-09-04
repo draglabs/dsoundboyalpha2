@@ -11,6 +11,7 @@ protocol MainDisplayLogic: class
 {
   func displaySettings(viewModel: Main.Jam.ViewModel)
   func displayFiles(viewModel:Main.Jam.ViewModel)
+  func displayPin(viewModel:Main.Jam.ViewModel)
 }
 
 class MainViewController: UIViewController, MainDisplayLogic
@@ -111,11 +112,6 @@ class MainViewController: UIViewController, MainDisplayLogic
     startJoinJamView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     startJoinJamView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
-    
-  func doSomething() {
-    let request = Main.Jam.Request(name: "", location: "")
-    interactor?.startJam(request: request)
-  }
   
   func displaySettings(viewModel: Main.Jam.ViewModel){
   
@@ -123,7 +119,9 @@ class MainViewController: UIViewController, MainDisplayLogic
   func displayFiles(viewModel: Main.Jam.ViewModel) {
     
   }
+  func displayPin(viewModel:Main.Jam.ViewModel) {
     
+  }
   
 }
 extension MainViewController {
@@ -149,7 +147,10 @@ extension MainViewController {
     
     func jamPressed(view:JoinStartJamView, button:UIButton) {
         print("called")
-        router?.presentStartJam()
+        playPauseView.start()
+      //router?.presentStartJam()
+      let request = Main.Jam.Request()
+      interactor?.startJam(request: request)
     }
     
 }

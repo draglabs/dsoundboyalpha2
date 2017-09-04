@@ -82,8 +82,7 @@ class PlayPauseView: UIView {
       timeLabel.textAlignment = .center
       timeLabel.textColor = UIColor.white
     }
-    
-    
+  
     func setupConstraints() {
         
      // gradientBackLayer
@@ -99,7 +98,7 @@ class PlayPauseView: UIView {
     }
     
     func pausePlayButtonPressed(sender:UIButton) {
-        timeCounter.counting = { count in
+        timeCounter.counting = {[unowned self] count in
             self.timeLabel.text = count
         }
         timeCounter.startTimeCounter()
@@ -127,11 +126,23 @@ class PlayPauseView: UIView {
           
             }else {
           
-               pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+            pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
             timeCounter.stopTimeCounter()
         }
     }
+  
+  func start() {
+    timeCounter.counting = {[unowned self] count in
+      self.timeLabel.text = count
+    }
+    timeCounter.startTimeCounter()
+    delegate?.didPressedPlayButton(playPauseView: self, button: pausePlayButton)
+    didPressedPlayButton?(self, pausePlayButton)
+  }
+  
+  func stop() {
     
+  }
 }
 
 extension PlayPauseView {

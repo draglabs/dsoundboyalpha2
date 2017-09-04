@@ -16,10 +16,13 @@ enum Main
   enum Jam
   {
     struct Request{
-      var name:String
-      var location:String
+//      var userId:String
+//      var name:String
+//      var location:String
     }
     struct Response{}
-    struct ViewModel{}
+    struct ViewModel{
+      let pin:String
+    }
   }
 }

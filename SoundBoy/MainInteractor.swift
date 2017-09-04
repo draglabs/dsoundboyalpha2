@@ -28,11 +28,13 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   
   func startJam(request: Main.Jam.Request) {
      worker = MainWorker()
-     worker?.startJamRequest(name: request.name, location: request.location) { (s) in
+    
+     worker?.startJamRequest() { (s) in
       
     }
   }
   
+ 
  func settings(request: Main.Jam.Request) {
      
   }
