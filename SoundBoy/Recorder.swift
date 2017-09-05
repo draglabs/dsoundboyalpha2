@@ -16,7 +16,8 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     var audioRecorder:AVAudioRecorder!
     var isRecording = false
     var willStartRecording:(()->())?
-    var didFinishRecording:(()->())?
+    var willFinishRecording:(()->())?
+    var didFinishRecording:((_ url:URL)->())?
     var audioFilename:URL!
     var trackName = "track"
     private var docs:URL {
@@ -78,7 +79,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
     func stopRecording() {
         isRecording = false
-        didFinishRecording?()
+        willFinishRecording?()
         audioRecorder.stop()
         audioRecorder = nil
     }
@@ -86,7 +87,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
    private func finishRecording(success:Bool) {
         isRecording = false
-        didFinishRecording?()
+        willFinishRecording?()
         audioRecorder.stop()
         audioRecorder = nil
         if !success {
@@ -111,7 +112,7 @@ extension Recorder {
     
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("did finish recording",recorder.url)
-        
+        didFinishRecording?(recorder.url)
         print(recorder.currentTime)
     }
 

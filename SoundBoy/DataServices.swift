@@ -6,7 +6,6 @@
 //  Copyright © 2017 DragLabs. All rights reserved.
 //
 
-import Foundation
 import CoreData
 /* =====================StoreRepresentable====================*/
 public protocol StoreRepresentable {

@@ -6,9 +6,7 @@
 //  Copyright (c) 2017 DragLabs. All rights reserved.
 //
 
-import CoreData
-
-
+import Foundation
 
 
 class MainWorker {
@@ -35,6 +33,7 @@ class MainWorker {
   locationMgr.didGetLocation = { location, address in
     
       let task = StartJamOperation(userId: id, name:"\(name)-\(String(describing: address["street"]!))", location: "\(String(describing: address["city"]!))", coordinates: location.coordinate)
+    
       task.execute(in: self.networkDispatcher, result: { (done) in
         completion(done)
       })
@@ -42,8 +41,5 @@ class MainWorker {
     locationMgr.requestLocation()
   }
   
-  
-  func addressResponse() {
-    
-  }
+
 }

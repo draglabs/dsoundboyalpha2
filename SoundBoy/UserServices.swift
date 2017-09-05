@@ -7,10 +7,6 @@
 
 
 import Foundation
-import CoreData
-import FacebookLogin
-
-
 
 public enum UserRequest: RequestRepresentable {
     
@@ -53,62 +49,6 @@ public enum UserRequest: RequestRepresentable {
     
 }
 
-
-class UserStore: StoreRepresentable {
-    let coreDataStore = CoreDataStore(entity: .user)
-    var userFetchResult:((_ user:User?,_ error:Error?)->())?
-    
-    
-     func fromData(data: Data, response: @escaping(_ uploaded:Bool)->()) {
-        //MARK:TODO finish implementation
-    }
-    
-     func fromJSON(json: JSONDictionary, response: @escaping(_ uploaded:Bool)->()) {
-        
-        let context = coreDataStore.viewContext
-        let user = User(context: context)
-        print(json)
-        guard let userJson = json["user"] as? JSONDictionary,
-        let id  = userJson["id"] as? String,
-        let name = userJson["first_name"] as? String,
-        let lastName = userJson["last_name"] as? String
-        else {return}
-        user.userId = id
-        user.firstName = name
-        user.lastName = lastName
-        coreDataStore.save(completion: response)
-        
-    }
-    
-   
-}
-
-class UserFether: FetcherRepresentable {
-  
-  var coreDataStore: CoreDataStore {
-    return CoreDataStore(entity: .jam)
-  }
-  
-  func fetch(callback: @escaping (_ result:User?, _ error:Error?) -> ()) {
-    let context = coreDataStore.viewContext
-    let jamRequest:NSFetchRequest<User> = User.fetchRequest()
-    context.perform {
-      do {
-        let result = try jamRequest.execute()
-        if result.count > 0 {
-          let user = result.first!
-          callback(user, nil)
-        }else {
-          callback(nil,nil)
-        }
-      }catch {
-        callback(nil,error)
-      }
-    }
-  }
-}
-
-
 class UserRegistrationOperation: OperationRepresentable {
     let facebookId :String
     let accessToken:String
@@ -146,28 +86,3 @@ class UserRegistrationOperation: OperationRepresentable {
 
 }
 
-
-// FACEBOOK API
-final class FacebookAPI {
-    let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
-    
-    func loginUser(result:@escaping (_ registered:Bool)->()) {
-        LoginManager().logIn([.publicProfile], viewController: nil) { (fbAPiResult) in
-            switch fbAPiResult {
-            case .success(_,  _, let token):
-                
-                let userRegistration = UserRegistrationOperation(facebookId: token.userId!, accessToken: token.authenticationToken)
-                
-                userRegistration.execute(in: self.networkDispatcher, result: { (registered) in
-                    DispatchQueue.main.async {
-                        result(registered)
-                    }
-                })
-                
-            default:
-                break
-            }
-        }
-    }
-    
-}

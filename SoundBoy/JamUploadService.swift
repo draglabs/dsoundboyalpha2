@@ -76,6 +76,43 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
 
 }
 
+
+enum JamUploadRequest:RequestRepresentable {
+  
+  case soloUpload(userId:String)
+  case upload(userId:String, jamId:String)
+  var path: String {
+    switch self {
+    case .soloUpload(let userId):
+      return "jam/upload/userid/\(userId)"
+      
+    case .upload(let userId, let jamId):
+      return "jam/upload/userid/\(userId)/\(jamId)"
+    }
+  }
+  
+  var method: HTTPMethod { return .post }
+  
+  /// These are the params we need to send along with the call
+  var parameters : RequestParams {
+    switch self {
+    case .soloUpload(let userId):
+      return .body(["user_id":userId])
+    case .upload(let userId, let jamId):
+      return .body(["user_id":userId,"jamid":jamId])
+    }
+  
+  }
+  
+  
+  /// these are optional list of headers we can send alogn with the call
+  var headers    : [String:Any]? { return nil }
+  
+  /// The kind of data we expect as response
+  var dataType   : DataType      { return .JSON }
+}
+
+
 extension JamUpLoadDispatcher:URLSessionDataDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
@@ -106,6 +143,7 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate {
 class JamUploadOperation: OperationRepresentable {
     let uniqueID:String
     let jamID:String
+  let isSolo:Bool
     var responseError:((_ code:Int?, _ error:Error?)->())?
     var store: StoreRepresentable {
         return JamStore()
@@ -128,13 +166,17 @@ class JamUploadOperation: OperationRepresentable {
     
     
     var request: RequestRepresentable {
-        return JamRequest.upload(uniqueId: uniqueID, jamId: jamID)
+      if isSolo {
+         return JamUploadRequest.soloUpload(userId: uniqueID)
+      }
+      return JamUploadRequest.upload(userId: uniqueID, jamId: jamID)
     }
     
     
-    init(uniqueID:String, jamID:String) {
+  init(uniqueID:String, jamID:String, isSolo:Bool) {
         self.uniqueID = uniqueID
         self.jamID = jamID
+        self.isSolo = isSolo
         
     }
     
