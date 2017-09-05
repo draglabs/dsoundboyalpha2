@@ -6,4 +6,16 @@
 //  Copyright © 2017 DragLabs. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+protocol FilesPresentationLogic {
+//    add some functions
+}
+
+
+class FilesPresenter {
+    
+    weak var viewController: MainDisplayLogic?
+    
+//    implement functions from the Presentation Protocol
+}

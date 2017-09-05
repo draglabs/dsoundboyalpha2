@@ -6,4 +6,12 @@
 //  Copyright © 2017 DragLabs. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class FilesWorker
+{
+    func doSomeWork()
+    {
+        //Taken from the LoginWorker scene to build barebones
+    }
+}
