@@ -30,13 +30,16 @@ import CoreLocation
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if locations.last != nil {
+        if locations.last != nil && lastLocation == nil {
+          manager.stopUpdatingLocation()
             lastLocation = locations.last!
-            manager.stopUpdatingLocation()
             getAddress()
         }
     }
   
+  func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
+   
+  }
   /// Make sure you set `didGetLocation?()` 
   /// so that youll get the results back
   
@@ -48,7 +51,7 @@ import CoreLocation
             guard let places = placeMarks else{return}
             guard  let place = places.first else{return}
             
-            
+  
             let street = place.thoroughfare
             let city = place.locality
             let state = place.administrativeArea

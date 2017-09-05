@@ -1,9 +1,7 @@
-//
+
 //  Pulsator.swift
 //  Pulsator
 //
-
-
 
 
 import UIKit

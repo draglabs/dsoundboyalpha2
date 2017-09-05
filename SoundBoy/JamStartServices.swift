@@ -7,10 +7,10 @@
 //
 import Foundation
 import CoreData
+import CoreLocation
 public enum JamRequest:RequestRepresentable {
     
-  //case start(userId:String, jamLocation:String,jamName:String,jamLat:String,jamLong:String)
-  case start(jamName:String,jamLocation:String)
+  case start(userId:String, jamLocation:String,jamName:String, jamCoordinates:CLLocationCoordinate2D)
   
     case join(uniqueId:String,pin:String)
     
@@ -30,13 +30,16 @@ public enum JamRequest:RequestRepresentable {
     }
     
     /// these are optional list of headers we can send alogn with the call
-    public var headers: [String : Any]? { return nil }
+    public var headers: [String : Any]? {
+      
+       return["application/json":"Content-Type"]
+  }
     
     /// These are the params we need to send along with the call
     public var parameters: RequestParams {
         switch self {
-        case .start(let jamLocation, let jamName):
-            return .body(["jam_location":jamLocation,"jam_name":jamName])
+        case .start(let userId,let jamLocation, let jamName, let jamCoordinates):
+            return .body(["user_id":userId,"jam_location":jamLocation,"jam_name":jamName, "jam_lat":"\(jamCoordinates.latitude)", "jam_long":"\(jamCoordinates.longitude)"])
             
         case .join(let uniqueId, let pin):
             return .body(["user_id":uniqueId, "pin":pin])
@@ -82,16 +85,27 @@ class  JamStore: StoreRepresentable {
     var userFetchResult:((_ user:User?,_ error:Error?)->())?
     
     func fromData(data: Data, response: @escaping (Bool) -> ()) {
-        
+      //MARK:TODO Finish implementaion
     }
     func fromJSON(json: JSONDictionary, response: @escaping (Bool) -> ()) {
-        
+      guard let jam = json["jam"] as? JSONDictionary else {return}
+      guard let id = jam["id"] as? String, let pin = jam["pin"] as? String,
+      let startTime = jam["startTime"] as? String, let endTime = jam["endTime"] as? String
+        else {return}
+      let jamToSave = Jam()
+      jamToSave.id = id
+      jamToSave.pin = pin
+      jamToSave.startTime = startTime
+      jamToSave.endTime = endTime
+      
+      coreDataStore.save(completion: response)
     }
   
 }
 
 class StartJamOperation: OperationRepresentable {
-  
+  let userId:String
+  let jamCoordinates:CLLocationCoordinate2D
   let name:String
   let location:String
   let userFether = UserFether()
@@ -102,15 +116,17 @@ class StartJamOperation: OperationRepresentable {
     return JamStore()
     }
   
-  init(name:String, location:String) {
-    
+  init(userId:String,name:String, location:String,coordinates:CLLocationCoordinate2D) {
+    self.userId = userId
     self.name = name
     self.location = location
+    self.jamCoordinates = coordinates
     
     }
   
     func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ started:Bool)->()) {
         dispatcher.execute(request: request) { (response) in
+          
             switch response {
             case .json(let json):
                 self.store.fromJSON(json: json, response: result)
@@ -124,7 +140,7 @@ class StartJamOperation: OperationRepresentable {
 
     var request: RequestRepresentable {
         
-        return JamRequest.start(jamName: name, jamLocation: location)
+        return JamRequest.start(userId: userId, jamLocation: location, jamName: name, jamCoordinates: jamCoordinates)
     }
   
 }

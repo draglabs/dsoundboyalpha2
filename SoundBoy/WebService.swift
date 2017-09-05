@@ -108,7 +108,7 @@ public enum Response {
     init(_ response:(r:HTTPURLResponse?, data:Data?, error:Error?), for request:RequestRepresentable) {
         
         // Draglabs custom reponse message
-        if response.r?.statusCode == 400  {
+        if response.r?.statusCode == 400 || response.r?.statusCode == 409  {
             let jsonRes = try! JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions())
             self = .json(jsonRes as! JSONDictionary)
             return
@@ -191,24 +191,29 @@ public class NetworkDispatcher:DispatcherRepresentable {
     
     private func prepareURLRequest(for request:RequestRepresentable)  -> URLRequest {
         let fullURL = "\(enviroment.host)/\(request.path)"
-        
+        print("current full ulr", fullURL)
         var urlRequest = URLRequest(url: URL(string: fullURL)!)
        
         
         switch request.parameters {
             
         case .body(let param):
-            
+            print(param!)
             if let bodyParams = param {
                 let body = try! JSONSerialization.data(withJSONObject: bodyParams, options: [])
                 urlRequest.httpBody = body
-                } else {}
+                } else {
+              fatalError("cant send params")
+          }
             
-        case .url(let params):
-            var url = urlRequest.url!.baseURL!.absoluteString
-            params?.forEach{url.append("/\($0)/\($1)")}
-            urlRequest.url = URL(string: url)
-            break
+        default:
+          break
+          
+//          .url(let params):
+//            var url = urlRequest.url!.baseURL!.absoluteString
+//            params?.forEach{url.append("/\($0)/\($1)")}
+//            urlRequest.url = URL(string: url)
+//            break
         }
       
         enviroment.headers?.forEach({ (value, field) in
