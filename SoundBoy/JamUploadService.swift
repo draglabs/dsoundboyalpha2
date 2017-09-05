@@ -58,21 +58,18 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     }
     
     
-    private func generateBoundaryString() -> String {
-        
+  var boundaryString: String {
         return "Boundary-\(NSUUID().uuidString)"
     }
     
     
    private func prepareBody(url:URL) ->Data {
+    var bodyData = Data()
     
         
         return Data()
     }
-    
-    private func prepareDefaultParams() {
-    
-    }
+  
 
 }
 
@@ -104,9 +101,12 @@ enum JamUploadRequest:RequestRepresentable {
   
   }
   
-  
   /// these are optional list of headers we can send alogn with the call
-  var headers    : [String:Any]? { return nil }
+  var headers    : [String:Any]? {
+  
+  let value = "multipart/form-data; boundary=\(NSUUID().uuidString)"
+    return [value:"Content-Type"]
+  }
   
   /// The kind of data we expect as response
   var dataType   : DataType      { return .JSON }
@@ -121,11 +121,15 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate {
         delegate?.currentProgress(progress: progress)
         
     }
+  
+  
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         let urlResponse = response as! HTTPURLResponse
         let status = urlResponse.statusCode
         delegate?.response(statusCode: status)
     }
+  
+  
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
             delegate?.didFail(error: error)
