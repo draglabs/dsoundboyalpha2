@@ -21,6 +21,7 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     let enviroment:Enviroment
     
     var fileURL:URL?
+    var bodyData = Data()
     var delegate:JamUpLoadNotifier?
     var results:((_ response:Response)->())?
     var session:URLSession {
@@ -48,12 +49,13 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     }
     
     func executeUpload(request:RequestRepresentable) {
-        session.dataTask(with: prepareURLRequest(reques: request))
+        session.dataTask(with: prepareURLRequest(request: request))
     }
     
-    private func prepareURLRequest(reques:RequestRepresentable) ->URLRequest {
-        
-        
+    private func prepareURLRequest(request:RequestRepresentable) ->URLRequest {
+      
+         prepareBody(request: request)
+      
         return URLRequest(url: URL(string:"")!)
     }
     
@@ -61,15 +63,45 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
   var boundaryString: String {
         return "Boundary-\(NSUUID().uuidString)"
     }
-    
-    
-   private func prepareBody(url:URL) ->Data {
-    var bodyData = Data()
-    
-        
-        return Data()
-    }
   
+  
+  private func prepareBody(request:RequestRepresentable) {
+    
+    switch request.parameters {
+    case .body(let json):
+      json?.forEach({ (key, value) in
+        defaultParams(key: key, value: value as! String)
+      })
+    default:
+      break
+    }
+    
+  }
+  
+  private func defaultParams(key:String,value:String) {
+    
+    bodyData.append("--\(boundaryString)\r\n")
+    let dispostionKey = "Content-Disposition: form-data; name=\(key)\"\r\n\r\n"
+    let dispostionValue = "\(value)\r\n"
+    bodyData.append(dispostionKey)
+    bodyData.append(dispostionValue)
+    audiofilesParams()
+  }
+    
+  private func audiofilesParams() {
+    let file = try! Data(contentsOf: fileURL!)
+    bodyData.append("--\(boundaryString)\r\n")
+    let key = "audio"
+    let filename = "audioFile"
+    let mimetype = "audio/.caf"
+    
+    bodyData.append("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(filename)\"\r\n")
+    bodyData.append("Content-Type: \(mimetype)\r\n\r\n")
+    bodyData.append(file)
+    bodyData.append("\r\n")
+    bodyData.append("--\(boundaryString)--\r\n")
+    
+  }
 
 }
 
@@ -77,13 +109,13 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
 enum JamUploadRequest:RequestRepresentable {
   
   case soloUpload(userId:String)
-  case upload(userId:String, jamId:String)
+  case upload(userId:String, jamId:String, start:String, endTime:String)
   var path: String {
     switch self {
     case .soloUpload(let userId):
       return "jam/upload/userid/\(userId)"
       
-    case .upload(let userId, let jamId):
+    case .upload(let userId, let jamId, _ , _ ):
       return "jam/upload/userid/\(userId)/\(jamId)"
     }
   }
@@ -95,8 +127,8 @@ enum JamUploadRequest:RequestRepresentable {
     switch self {
     case .soloUpload(let userId):
       return .body(["user_id":userId])
-    case .upload(let userId, let jamId):
-      return .body(["user_id":userId,"jamid":jamId])
+    case .upload(let userId, let jamId, let start, let end):
+      return .body(["user_id":userId,"jamid":jamId,"startTime":start,"endTime":end])
     }
   
   }
@@ -145,8 +177,8 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate {
 
 
 class JamUploadOperation: OperationRepresentable {
-    let uniqueID:String
-    let jamID:String
+  let jam:Jam
+  let userId:String
   let isSolo:Bool
     var responseError:((_ code:Int?, _ error:Error?)->())?
     var store: StoreRepresentable {
@@ -171,15 +203,15 @@ class JamUploadOperation: OperationRepresentable {
     
     var request: RequestRepresentable {
       if isSolo {
-         return JamUploadRequest.soloUpload(userId: uniqueID)
+         return JamUploadRequest.soloUpload(userId: userId)
       }
-      return JamUploadRequest.upload(userId: uniqueID, jamId: jamID)
+      return JamUploadRequest.upload(userId: userId, jamId: jam.id!, start: jam.startTime!, endTime: jam.endTime!)
     }
     
     
-  init(uniqueID:String, jamID:String, isSolo:Bool) {
-        self.uniqueID = uniqueID
-        self.jamID = jamID
+  init(userId:String, jam:Jam, isSolo:Bool) {
+        self.userId = userId
+        self.jam = jam
         self.isSolo = isSolo
         
     }
