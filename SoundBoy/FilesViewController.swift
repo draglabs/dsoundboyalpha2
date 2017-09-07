@@ -13,12 +13,11 @@ protocol FilesDisplayLogic {
 }
 
 
-class FilesViewController: UITableViewController, UITableViewDelegate, UITableViewDataSource, FilesDisplayLogic {
+class FilesViewController: UITableViewController, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
-    var router: (NSObjectProtocol & FIlesRoutingLogic & FilesDataPassing)?
+    var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
 
     //Need to load the list of files from the user. When they are pressed, I need a new view with navigation that takes them to the play screen.
-    let table: UITableView = self
       // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -40,12 +39,10 @@ class FilesViewController: UITableViewController, UITableViewDelegate, UITableVi
         let router = FilesRouter()
         viewController.interactor = interactor
         viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
+        interactor.presenter = presenter as? FilesPresentationLogic
+        presenter.viewController = viewController as? MainDisplayLogic
         router.viewController = viewController
-        router.dataStore = interactor
-        table.dataSource = self
-        table.dataSource = self
+        router.dataStore = interactor 
     }
     
     override func viewDidLoad() {

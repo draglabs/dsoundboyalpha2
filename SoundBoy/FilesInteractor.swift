@@ -18,7 +18,7 @@ protocol FilesDataStore {
     
 }
 
-class FilesInteractor: FilesBuisnessLogic, FilesDataStorage {
+class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
     
     var presenter: FilesPresentationLogic?
     var worker: FilesWorker?
