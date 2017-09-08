@@ -100,7 +100,7 @@ extension JoinStartJamView {
     
     func jamButtonPressed(sender:UIButton) {
         didPressedJam?(self,sender)
-        print("jam pressed")
+
         delegate?.didPressedJam(bottomView: self, jam: sender)
     }
   

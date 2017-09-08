@@ -12,6 +12,7 @@ import UIKit
 @objc protocol JoinJamRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
+  func dismiss()
 }
 
 protocol JoinJamDataPassing
@@ -26,6 +27,10 @@ class JoinJamRouter: NSObject, JoinJamRoutingLogic, JoinJamDataPassing
   
   // MARK: Routing
   
+  
+  func dismiss() {
+    viewController?.dismiss(animated: true, completion: nil)
+  }
   //func routeToSomewhere(segue: UIStoryboardSegue?)
   //{
   //  if let segue = segue {

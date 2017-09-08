@@ -13,9 +13,9 @@ protocol FilesPresentationLogic {
 }
 
 
-class FilesPresenter {
+class FilesPresenter:FilesPresentationLogic {
     
-    weak var viewController: MainDisplayLogic?
+    weak var viewController: FilesDisplayLogic?
     
 //    implement functions from the Presentation Protocol
 }

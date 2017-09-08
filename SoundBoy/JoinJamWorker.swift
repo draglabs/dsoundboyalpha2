@@ -10,6 +10,8 @@
 import UIKit
 
 class JoinJamWorker {
+  
     func joinJam(jam:Jam, completion:@escaping()->()) {
+    
   }
 }

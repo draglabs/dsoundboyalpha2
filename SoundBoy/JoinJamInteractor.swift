@@ -10,7 +10,8 @@
 import UIKit
 
 protocol JoinJamBusinessLogic {
-  func join(request: JoinJam.Something.Request)
+  func join(request: JoinJam.Commons.Request)
+  func commons(request:JoinJam.Commons.Request)
 }
 
 protocol JoinJamDataStore {
@@ -24,14 +25,18 @@ class JoinJamInteractor: JoinJamBusinessLogic, JoinJamDataStore {
 
   // MARK: Do something
   
-  func join(request: JoinJam.Something.Request) {
+  func join(request: JoinJam.Commons.Request) {
     worker = JoinJamWorker()
     //worker?.joinJam(jam: <#T##Jam#>, completion: <#T##() -> ()#>)
     
-    let response = JoinJam.Something.Response()
-    presenter?.presentSomething(response: response)
+    let response = JoinJam.Commons.Response()
+    presenter?.presentCommons(response: response)
   }
   
+  func commons(request: JoinJam.Commons.Request) {
+    let response  = JoinJam.Commons.Response()
+    presenter?.presentCommons(response: response)
+  }
  
  
 }

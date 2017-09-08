@@ -9,24 +9,28 @@
 import Foundation
 
 
-class MainWorker {
+class MainWorker:JamUpLoadNotifier {
+  let production = Enviroment("production", host: "http://api.draglabs.com/v1.01")
+  
   let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
-  let fetcher = UserFether()
+  let userFetcher = UserFether()
+  let jamFetcher = JamFetcher()
   let locationMgr = LocationMgr()
   
   
   
   func startJamRequest(completion:@escaping(_ result:Bool)->()) {
    
-    fetcher.fetch {[unowned self] (user, error) in
+    userFetcher.fetch {[unowned self] (user, error) in
       if user != nil {
-       self.prepareRequest(user: user!,completion: completion)
+       self.prepareStartJamRequest(user: user!,completion: completion)
         
       }
     }
 
   }
- private func prepareRequest(user:User,completion:@escaping(_ result:Bool)->()) {
+  
+ private func prepareStartJamRequest(user:User,completion:@escaping(_ result:Bool)->()) {
     let id = user.userId!
     let name = user.firstName!
   
@@ -41,5 +45,49 @@ class MainWorker {
     locationMgr.requestLocation()
   }
   
+  
 
+  func uploadJam(url:URL) {
+    
+    userFetcher.fetch { (user, error) in
+      if user != nil {
+        self.prepareUser(user: user!,url: url)
+        }
+     }
+    
+  }
+  
+  func prepareUser(user:User, url:URL) {
+    let userId = user.userId!
+    
+    jamFetcher.fetch { (jam, error) in
+      if jam != nil {
+        self.prepareJam(jam: jam!, userId: userId, url:url)
+      }
+    }
+    
+ }
+  
+  func prepareJam(jam:Jam,userId:String, url:URL) {
+      let uploadDispatcher = JamUpLoadDispatcher(enviroment:production, fileURL: url, delegate: self)
+      let task = JamUploadOperation(userId: userId, jam: jam, isSolo: false)
+      task.executeUpload(in: uploadDispatcher)
+  }
+    
+}
+
+
+extension MainWorker {
+  func currentProgress(progress:Float) {
+    
+  }
+  func didSucceed() {
+    
+  }
+  func response(statusCode:Int) {
+    
+  }
+  func didFail(error:Error?) {
+    
+  }
 }
