@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FilesDisplayLogic {
+protocol FilesDisplayLogic:class {
     //To be completed
 }
 

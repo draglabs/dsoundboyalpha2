@@ -7,15 +7,13 @@
 
 import UIKit
 
-protocol MainDisplayLogic: class
-{
+protocol MainDisplayLogic: class {
   func displaySettings(viewModel: Main.Jam.ViewModel)
   func displayFiles(viewModel:Main.Jam.ViewModel)
   func displayPin(viewModel:Main.Jam.ViewModel)
 }
 
-class MainViewController: UIViewController, MainDisplayLogic
-{
+class MainViewController: UIViewController, MainDisplayLogic {
   var interactor: MainBusinessLogic?
   var router: (NSObjectProtocol & MainRoutingLogic & MainDataPassing)?
   var isPlaying = false
@@ -74,9 +72,8 @@ class MainViewController: UIViewController, MainDisplayLogic
   // MARK: Do something
   
   func setupUI() {
-    setNeedsStatusBarAppearanceUpdate()
-    // navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "files_icon"), style: .plain, target: self, action: #selector(doSomething))
-    // navigationItem.leftBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "settings_icon"), style: .plain, target: self, action: #selector(doSomething))
+     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "files_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
+     navigationItem.leftBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "settings_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
 
      playPauseView.translatesAutoresizingMaskIntoConstraints = false
      startJoinJamView.translatesAutoresizingMaskIntoConstraints = false
@@ -88,12 +85,12 @@ class MainViewController: UIViewController, MainDisplayLogic
      view.addSubview(startJoinJamView)
      playPauseView.didPressedPlayButton = didPressedPlayButton
      startJoinJamView.didPressedJam = jamPressed
+    startJoinJamView.didPressedJoin = didPreseJoin
      uiContraints()
     
     let vs = UIView()
     vs.frame = CGRect(x: view.bounds.width / 2, y: 120, width: 300, height: 300)
     pulsor.backgroundColor = UIColor.white.cgColor
-    // view.insertSubview(vs, aboveSubview: playPauseView)
     playPauseView.insertSubview(vs, belowSubview: playPauseView.pausePlayButton)
     vs.layer.addSublayer(pulsor)
     }
@@ -123,6 +120,9 @@ class MainViewController: UIViewController, MainDisplayLogic
     
   }
   
+  func navButtonPressed(sender:UIBarButtonItem) {
+    
+  }
 }
 extension MainViewController {
     
@@ -138,6 +138,10 @@ extension MainViewController {
             
         }else {
             pulsor.stop()
+          Recorder.shared.didFinishRecording = { url in
+            let uploadRequest = Main.JamUpload.Request(fileURL: url)
+            self.interactor?.uploadJam(request: uploadRequest)
+          }
             Recorder.shared.stopRecording()
             isPlaying = false
             playPauseView.updatePlayButton(isPlaying: isPlaying)
@@ -146,11 +150,13 @@ extension MainViewController {
     }
     
     func jamPressed(view:JoinStartJamView, button:UIButton) {
-        print("called")
+        
         playPauseView.start()
-      //router?.presentStartJam()
       let request = Main.Jam.Request()
       interactor?.startJam(request: request)
     }
-    
+  
+  func didPreseJoin(bottomView:JoinStartJamView,sender:UIButton) {
+      router?.presentJoinJam()
+  }
 }

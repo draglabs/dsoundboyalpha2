@@ -6,21 +6,20 @@
 //  Copyright (c) 2017 DragLabs. All rights reserved.
 //
 
-
 import UIKit
 
 protocol JoinJamPresentationLogic {
-  func presentSomething(response: JoinJam.Something.Response)
+  func presentCommons(response: JoinJam.Commons.Response)
 }
 
 class JoinJamPresenter: JoinJamPresentationLogic {
   weak var viewController: JoinJamDisplayLogic?
   
-  // MARK: Do something
+  // MARK: Commons
   
-  func presentSomething(response: JoinJam.Something.Response) {
-    let viewModel = JoinJam.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+  func presentCommons(response: JoinJam.Commons.Response) {
+    let viewModel = JoinJam.Commons.ViewModel()
+    viewController?.displayCommons(viewModel: viewModel)
   }
     
 }

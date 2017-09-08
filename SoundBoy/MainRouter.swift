@@ -12,7 +12,7 @@ import UIKit
 @objc protocol MainRoutingLogic
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
-    func presentStartJam()
+    func presentJoinJam()
 }
 
 protocol MainDataPassing
@@ -27,8 +27,8 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
   
   // MARK: Routing
   
-    func presentStartJam() {
-        let startjamVC = StartJamViewController()
+    func presentJoinJam() {
+        let startjamVC = JoinJamViewController()
         startjamVC.modalPresentationStyle = .overCurrentContext
         
         viewController?.present(startjamVC, animated: true, completion: {

@@ -13,6 +13,7 @@ protocol MainBusinessLogic {
   func startJam(request: Main.Jam.Request)
   func settings(request:Main.Jam.Request)
   func files( request:Main.Jam.Request)
+  func uploadJam(request:Main.JamUpload.Request)
 }
 
 protocol MainDataStore {
@@ -34,7 +35,11 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     }
   }
   
- 
+  func uploadJam(request: Main.JamUpload.Request) {
+     worker = MainWorker()
+    worker?.uploadJam(url: request.fileURL)
+    
+  }
  func settings(request: Main.Jam.Request) {
      
   }

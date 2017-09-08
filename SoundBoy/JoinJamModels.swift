@@ -13,7 +13,7 @@ enum JoinJam
 {
   // MARK: Use cases
   
-  enum Something
+  enum Commons
   {
     struct Request
     {
@@ -23,6 +23,10 @@ enum JoinJam
     }
     struct ViewModel
     {
+      let joinTxt = "JOIN"
+      let pinTxt = "enter pin"
+      let labelTxt = "Please enter Jam pin"
+      
     }
   }
 }

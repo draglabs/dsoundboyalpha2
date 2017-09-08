@@ -7,7 +7,7 @@
 //
 
 
-import UIKit
+import Foundation
 
 enum Main
 {
@@ -15,14 +15,18 @@ enum Main
   
   enum Jam
   {
-    struct Request{
-//      var userId:String
-//      var name:String
-//      var location:String
-    }
+    struct Request{}
     struct Response{}
     struct ViewModel{
       let pin:String
     }
+  }
+  
+  enum JamUpload {
+    struct Request {
+      let fileURL:URL
+    }
+    struct Response {}
+    struct ViewModel {}
   }
 }
