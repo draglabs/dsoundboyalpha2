@@ -60,6 +60,8 @@
 		A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */; };
 		A1F2030D1F61C7A20023484D /* JoinJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030C1F61C7A20023484D /* JoinJam.swift */; };
 		A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseServices.swift */; };
+		A1F203111F62341F0023484D /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* PinView.swift */; };
+		A1F203131F637E280023484D /* 0deea31.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1F203121F637E280023484D /* 0deea31.jpg */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
 		A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* StartJam.swift */; };
 /* End PBXBuildFile section */
@@ -124,6 +126,8 @@
 		A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataSave.swift; sourceTree = "<group>"; };
 		A1F2030C1F61C7A20023484D /* JoinJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJam.swift; sourceTree = "<group>"; };
 		A1F2030E1F61C8710023484D /* JamBaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseServices.swift; sourceTree = "<group>"; };
+		A1F203101F62341F0023484D /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		A1F203121F637E280023484D /* 0deea31.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0deea31.jpg; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A1FFEF971F59270A00F7784C /* StartJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJam.swift; sourceTree = "<group>"; };
 		A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 			children = (
 				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
 				A153F80E1F082BBD00223379 /* PlayPause.swift */,
+				A1F203101F62341F0023484D /* PinView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 		A1AE8A2B1F02102500B979D6 /* SoundBoy */ = {
 			isa = PBXGroup;
 			children = (
+				A1F203121F637E280023484D /* 0deea31.jpg */,
 				A155FD201F3E40FE00B4165F /* App */,
 				A1017CB41F16CA8200AA1B31 /* Utils */,
 				A14F9F371F0B5088009D8D6E /* OperationsQueue */,
@@ -470,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */,
+				A1F203131F637E280023484D /* 0deea31.jpg in Resources */,
 				A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,6 +561,7 @@
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */,
+				A1F203111F62341F0023484D /* PinView.swift in Sources */,
 				A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
 				A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */,

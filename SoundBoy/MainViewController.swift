@@ -23,7 +23,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
   let pulsor = Pulsator()
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
-  
+  let pinView = PinView()
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -59,7 +59,6 @@ class MainViewController: UIViewController, MainDisplayLogic {
     router.viewController = viewController
     router.dataStore = interactor
     
-    
   }
   
   // MARK: View lifecycle
@@ -93,6 +92,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
     pulsor.backgroundColor = UIColor.white.cgColor
     playPauseView.insertSubview(vs, belowSubview: playPauseView.pausePlayButton)
     vs.layer.addSublayer(pulsor)
+    
     }
   
     
@@ -121,7 +121,11 @@ class MainViewController: UIViewController, MainDisplayLogic {
   }
   
   func navButtonPressed(sender:UIBarButtonItem) {
-    
+    if sender == navigationItem.rightBarButtonItem {
+      print("files pressed")
+    }else {
+      print("setting pressed")
+    }
   }
 }
 extension MainViewController {
