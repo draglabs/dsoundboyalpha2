@@ -13,7 +13,7 @@ protocol FilesDisplayLogic:class {
 }
 
 
-class FilesViewController: UITableViewController, FilesDisplayLogic {
+class FilesViewController: UIViewController, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
 
@@ -25,7 +25,7 @@ class FilesViewController: UITableViewController, FilesDisplayLogic {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()

@@ -8,9 +8,8 @@
 import UIKit
 
 protocol MainDisplayLogic: class {
-  func displaySettings(viewModel: Main.Jam.ViewModel)
-  func displayFiles(viewModel:Main.Jam.ViewModel)
   func displayPin(viewModel:Main.Jam.ViewModel)
+  func displayProgress(progress:Float)
 }
 
 class MainViewController: UIViewController, MainDisplayLogic {
@@ -110,21 +109,18 @@ class MainViewController: UIViewController, MainDisplayLogic {
     startJoinJamView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
   
-  func displaySettings(viewModel: Main.Jam.ViewModel){
-  
-  }
-  func displayFiles(viewModel: Main.Jam.ViewModel) {
-    
-  }
+
   func displayPin(viewModel:Main.Jam.ViewModel) {
     
   }
-  
+  func displayProgress(progress: Float) {
+    
+  }
   func navButtonPressed(sender:UIBarButtonItem) {
     if sender == navigationItem.rightBarButtonItem {
-      print("files pressed")
+      router?.pushFiles()
     }else {
-      print("setting pressed")
+      router?.pushSettings()
     }
   }
 }

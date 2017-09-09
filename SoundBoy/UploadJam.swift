@@ -168,7 +168,6 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
-        print("uploading percentage : \(progress)")
         delegate?.currentProgress(progress: progress)
         
     }
@@ -177,8 +176,6 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         let urlResponse = response as! HTTPURLResponse
         let status = urlResponse.statusCode
-        print(urlResponse)
-      
         delegate?.response(statusCode: status)
     }
   
