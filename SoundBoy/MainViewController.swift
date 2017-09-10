@@ -29,23 +29,18 @@ class MainViewController: UIViewController, MainDisplayLogic {
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
-  // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder){
     super.init(coder: aDecoder)
     setup()
   }
   
-  // MARK: Setup
-  
+
   private func setup() {
     let viewController = self
     let interactor = MainInteractor()
@@ -60,19 +55,22 @@ class MainViewController: UIViewController, MainDisplayLogic {
     
   }
   
-  // MARK: View lifecycle
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
   
-  // MARK: Do something
+  func nav() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "files_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "settings_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
+    navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back")
+    self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back")
+    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+  }
   
   func setupUI() {
-     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "files_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
-     navigationItem.leftBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "settings_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
-
+    view.backgroundColor = UIColor.white
+    nav()
      playPauseView.translatesAutoresizingMaskIntoConstraints = false
      startJoinJamView.translatesAutoresizingMaskIntoConstraints = false
      backLayer.frame = view.frame
@@ -107,15 +105,20 @@ class MainViewController: UIViewController, MainDisplayLogic {
     startJoinJamView.topAnchor.constraint(equalTo: playPauseView.bottomAnchor).isActive = true
     startJoinJamView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     startJoinJamView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    
     }
   
 
   func displayPin(viewModel:Main.Jam.ViewModel) {
-    
+    pinView.parentView = view
+    pinView.animateShow()
   }
+  
+  
   func displayProgress(progress: Float) {
     
   }
+  
   func navButtonPressed(sender:UIBarButtonItem) {
     if sender == navigationItem.rightBarButtonItem {
       router?.pushFiles()

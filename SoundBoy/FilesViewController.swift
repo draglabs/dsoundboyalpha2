@@ -16,7 +16,7 @@ protocol FilesDisplayLogic:class {
 class FilesViewController: UIViewController, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
-
+    
     //Need to load the list of files from the user. When they are pressed, I need a new view with navigation that takes them to the play screen.
   //let table: UITableView = self
       // MARK: Object lifecycle
@@ -51,6 +51,7 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+      setupUI()
         //get cells organized
     }
     
@@ -62,7 +63,9 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
     
     func setupUI()
     {
-        //Setup UI
+       view.backgroundColor = UIColor.white
+      // navigationController?.navigationBar.backItem?.leftBarButtonItem?.setBackgroundImage(#imageLiteral(resourceName: "back"), for: .normal, barMetrics: .default)
+      
         tableConstraints()
     }
     

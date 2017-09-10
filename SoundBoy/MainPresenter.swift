@@ -16,8 +16,7 @@ protocol MainPresentationLogic {
   func presentProgress(progress:Float)
 }
 
-class MainPresenter: MainPresentationLogic
-{
+class MainPresenter: MainPresentationLogic {
   weak var viewController: MainDisplayLogic?
   
   

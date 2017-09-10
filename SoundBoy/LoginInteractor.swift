@@ -8,14 +8,12 @@
 
 import UIKit
 
-protocol LoginBusinessLogic
-{
+protocol LoginBusinessLogic {
   func welcomeText(request: Login.WelcomeText.Request)
   func RegisterUser(request: Login.Register.Request)
 }
 
-protocol LoginDataStore
-{
+protocol LoginDataStore {
   //var name: String { get set }
 }
 
@@ -26,8 +24,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
   
   // MARK: Do something
   
-  func welcomeText(request: Login.WelcomeText.Request)
-  {
+  func welcomeText(request: Login.WelcomeText.Request) {
     worker = LoginWorker()
     worker?.doSomeWork()
     

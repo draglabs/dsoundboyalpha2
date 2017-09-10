@@ -13,8 +13,7 @@ enum Main
 {
   // MARK: Use cases
   
-  enum Jam
-  {
+  enum Jam {
     struct Request{}
     struct Response{}
     struct ViewModel{
@@ -29,4 +28,6 @@ enum Main
     struct Response {}
     struct ViewModel {}
   }
+  
+  
 }

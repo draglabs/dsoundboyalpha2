@@ -40,9 +40,12 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     
   }
  func settings(request: Main.Jam.Request) {
+  
      
   }
+  
  func files(request: Main.Jam.Request) {
+  
         
   }
 }
@@ -52,8 +55,9 @@ extension MainInteractor:JamUpLoadNotifier {
     print("current upload", progress)
     presenter?.presentProgress(progress: progress)
   }
+  
   func didSucceed() {
-    
+    print("requesst succeeded")
   }
   func response(statusCode:Int) {
     print("status code from upload", statusCode)
