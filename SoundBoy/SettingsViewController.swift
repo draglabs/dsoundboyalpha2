@@ -63,8 +63,14 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     uiSetup()
   }
   func uiSetup() {
+    title = "SETTINGS"
     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "forward"), style: .plain, target: self, action: #selector(navbarNuttonPressed(sender:)))
-      view.backgroundColor = UIColor.white
+    
+    view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
+    imageView.frame = view.frame
+    view.addSubview(imageView)
+    
   }
   func navbarNuttonPressed(sender:UIBarButtonItem) {
     router?.popBack()

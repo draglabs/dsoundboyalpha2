@@ -63,8 +63,10 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
     
     func setupUI()
     {
-       view.backgroundColor = UIColor.white
-      // navigationController?.navigationBar.backItem?.leftBarButtonItem?.setBackgroundImage(#imageLiteral(resourceName: "back"), for: .normal, barMetrics: .default)
+      view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
+      let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
+      imageView.frame = view.frame
+      view.addSubview(imageView)
       
         tableConstraints()
     }

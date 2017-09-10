@@ -23,12 +23,6 @@ class MainViewController: UIViewController, MainDisplayLogic {
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
   let pinView = PinView()
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
