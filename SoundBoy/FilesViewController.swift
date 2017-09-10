@@ -65,6 +65,9 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
     {
       view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
       let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
+      title = "FILES"
+      let titleDict: [String : Any] = [NSFontAttributeName:UIFont(name:"Avenir-Book", size:16)!,NSForegroundColorAttributeName: UIColor.white]
+      navigationController?.navigationBar.titleTextAttributes = titleDict
       imageView.frame = view.frame
       view.addSubview(imageView)
       

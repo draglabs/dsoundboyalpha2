@@ -43,7 +43,6 @@ class dSoundNav: UINavigationController {
         popToRoot(animated: true)
       }
       
-      
     }else if topViewController != controller {
       UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent, .transitionCrossDissolve], animations: {
         UIView.setAnimationsEnabled(false)

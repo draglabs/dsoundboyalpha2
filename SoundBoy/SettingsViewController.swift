@@ -65,17 +65,28 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
   func uiSetup() {
     title = "SETTINGS"
     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "forward"), style: .plain, target: self, action: #selector(navbarNuttonPressed(sender:)))
+    let titleDict: [String : Any] = [NSFontAttributeName:UIFont(name:"Avenir-Book", size:14)!,NSForegroundColorAttributeName: UIColor.white]
+    navigationController?.navigationBar.titleTextAttributes = titleDict
     
     view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
     let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
     imageView.frame = view.frame
     view.addSubview(imageView)
-    
+    logOutUI()
+  }
+  
+  func logOutUI() {
+    let button = UIButton(type: .system)
+    button.frame = CGRect(x: 0, y: view.bounds.height / 2 + 150, width: view.bounds.width, height: 44)
+    button.backgroundColor = UIColor(colorLiteralRed: 168/255, green: 36/255, blue: 36/255, alpha: 1)
+    button.setTitle("LOGOUT", for: .normal)
+    button.tintColor = UIColor.white
+    view.addSubview(button)
   }
   func navbarNuttonPressed(sender:UIBarButtonItem) {
     router?.popBack()
   }
-  //@IBOutlet weak var nameTextField: UITextField!
+ 
   func doSomething() {
     
     let request = Settings.Something.Request()
