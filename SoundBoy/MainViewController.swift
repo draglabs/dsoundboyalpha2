@@ -24,6 +24,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
   let pinView = PinView()
   
+  
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
@@ -64,7 +65,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
   
   func setupUI() {
     view.backgroundColor = UIColor.white
-    nav()
+     nav()
      playPauseView.translatesAutoresizingMaskIntoConstraints = false
      startJoinJamView.translatesAutoresizingMaskIntoConstraints = false
      backLayer.frame = view.frame
@@ -75,7 +76,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
      view.addSubview(startJoinJamView)
      playPauseView.didPressedPlayButton = didPressedPlayButton
      startJoinJamView.didPressedJam = jamPressed
-    startJoinJamView.didPressedJoin = didPreseJoin
+     startJoinJamView.didPressedJoin = didPreseJoin
      uiContraints()
     
     let vs = UIView()
@@ -121,6 +122,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
     }
   }
 }
+
 extension MainViewController {
     
     // callbacks from views

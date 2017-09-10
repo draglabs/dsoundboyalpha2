@@ -183,8 +183,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "13"
             endingLineNumber = "13"
-            landmarkName = "SettingsWorker"
-            landmarkType = "3">
+            landmarkName = "doSomeWork()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

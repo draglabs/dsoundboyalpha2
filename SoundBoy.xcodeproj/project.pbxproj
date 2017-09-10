@@ -36,6 +36,7 @@
 		A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AA1F64A0A600204C73 /* SettingsRouter.swift */; };
 		A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */; };
 		A1A163B21F64A0A600204C73 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */; };
+		A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */; };
 		A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */; };
 		A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A331F02102500B979D6 /* Assets.xcassets */; };
 		A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */; };
@@ -108,6 +109,7 @@
 		A1A163AA1F64A0A600204C73 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
+		A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableCell.swift; sourceTree = "<group>"; };
 		A1AE8A291F02102500B979D6 /* dSoundBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dSoundBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1AE8A331F02102500B979D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 		A1A163A61F64A08F00204C73 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				A1A163B31F64D88200204C73 /* view */,
 				A1A163A71F64A0A600204C73 /* SettingsInteractor.swift */,
 				A1A163A81F64A0A600204C73 /* SettingsModels.swift */,
 				A1A163A91F64A0A600204C73 /* SettingsPresenter.swift */,
@@ -353,6 +356,14 @@
 				A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		A1A163B31F64D88200204C73 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		A1AE8A201F02102500B979D6 = {
@@ -620,6 +631,7 @@
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */,
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,
+				A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */,
 				A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */,
 				A1B66A861F5559CA001F3B00 /* LoginViewController.swift in Sources */,
 				44F840681F5D97D0004A7A76 /* FilesPresenter.swift in Sources */,
