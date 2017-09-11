@@ -30,7 +30,7 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         setup()
     }
-    
+  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -54,6 +54,7 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+      setupUI()
         //get cells organized
     }
     

@@ -8,9 +8,8 @@
 import UIKit
 
 protocol MainDisplayLogic: class {
-  func displaySettings(viewModel: Main.Jam.ViewModel)
-  func displayFiles(viewModel:Main.Jam.ViewModel)
   func displayPin(viewModel:Main.Jam.ViewModel)
+  func displayProgress(progress:Float)
 }
 
 class MainViewController: UIViewController, MainDisplayLogic {
@@ -23,30 +22,20 @@ class MainViewController: UIViewController, MainDisplayLogic {
   let pulsor = Pulsator()
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
+  let pinView = PinView()
   
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
-  // MARK: Object lifecycle
   
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
+  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder){
     super.init(coder: aDecoder)
     setup()
   }
   
-  // MARK: Setup
-  
+
   private func setup() {
     let viewController = self
     let interactor = MainInteractor()
@@ -59,22 +48,24 @@ class MainViewController: UIViewController, MainDisplayLogic {
     router.viewController = viewController
     router.dataStore = interactor
     
-    
   }
-  
-  // MARK: View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
   
-  // MARK: Do something
+  func nav() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "files_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
+    navigationItem.leftBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "settings_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
+    navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back")
+    self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back")
+    self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+  }
   
   func setupUI() {
-     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "files_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
-     navigationItem.leftBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "settings_icon"), style: .plain, target: self, action: #selector(navButtonPressed(sender:)))
-
+    view.backgroundColor = UIColor.white
+     nav()
      playPauseView.translatesAutoresizingMaskIntoConstraints = false
      startJoinJamView.translatesAutoresizingMaskIntoConstraints = false
      backLayer.frame = view.frame
@@ -85,7 +76,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
      view.addSubview(startJoinJamView)
      playPauseView.didPressedPlayButton = didPressedPlayButton
      startJoinJamView.didPressedJam = jamPressed
-    startJoinJamView.didPressedJoin = didPreseJoin
+     startJoinJamView.didPressedJoin = didPreseJoin
      uiContraints()
     
     let vs = UIView()
@@ -93,6 +84,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
     pulsor.backgroundColor = UIColor.white.cgColor
     playPauseView.insertSubview(vs, belowSubview: playPauseView.pausePlayButton)
     vs.layer.addSublayer(pulsor)
+    
     }
   
     
@@ -108,22 +100,29 @@ class MainViewController: UIViewController, MainDisplayLogic {
     startJoinJamView.topAnchor.constraint(equalTo: playPauseView.bottomAnchor).isActive = true
     startJoinJamView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     startJoinJamView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    
     }
   
-  func displaySettings(viewModel: Main.Jam.ViewModel){
-  
-  }
-  func displayFiles(viewModel: Main.Jam.ViewModel) {
-    
-  }
+
   func displayPin(viewModel:Main.Jam.ViewModel) {
+    pinView.parentView = view
+    pinView.animateShow()
+  }
+  
+  
+  func displayProgress(progress: Float) {
     
   }
   
   func navButtonPressed(sender:UIBarButtonItem) {
-    
+    if sender == navigationItem.rightBarButtonItem {
+      router?.pushFiles()
+    }else {
+      router?.pushSettings()
+    }
   }
 }
+
 extension MainViewController {
     
     // callbacks from views

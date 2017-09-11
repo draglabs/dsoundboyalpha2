@@ -13,6 +13,8 @@ import UIKit
 {
   //func routeToSomewhere(segue: UIStoryboardSegue?)
     func presentJoinJam()
+    func pushFiles()
+    func pushSettings()
 }
 
 protocol MainDataPassing
@@ -28,13 +30,24 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
   // MARK: Routing
   
     func presentJoinJam() {
-        let startjamVC = JoinJamViewController()
-        startjamVC.modalPresentationStyle = .overCurrentContext
+        let joinjamVC = JoinJamViewController()
+        joinjamVC.modalPresentationStyle = .overCurrentContext
         
-        viewController?.present(startjamVC, animated: true, completion: {
+        viewController?.present(joinjamVC, animated: true, completion: {
             //some completion here
         })
     }
+  
+  func pushFiles() {
+    let filesVC = FilesViewController()
+    viewController?.navigationController?.pushViewController(filesVC, animated: true)
+  }
+  func pushSettings() {
+    let nav = viewController?.navigationController as! dSoundNav
+    let settings = SettingsViewController()
+    nav.reversePush(controller: settings, animated: true)
+    
+  }
  
   // MARK: Navigation
   

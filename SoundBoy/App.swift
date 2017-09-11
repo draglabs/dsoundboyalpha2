@@ -42,7 +42,7 @@ class App: NSObject {
   
    let mainVC = MainViewController()
    let oboadingVC = LoginViewController()
-   var navController = UINavigationController()
+   var navController = dSoundNav()
     
    fileprivate let userFetcher = AppFetcher()
     

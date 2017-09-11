@@ -9,14 +9,14 @@
 import Foundation
 
 
-class MainWorker:JamUpLoadNotifier {
+class MainWorker {
   let production = Enviroment("production", host: "http://api.draglabs.com/v1.01")
   
   let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
   let userFetcher = UserFether()
   let jamFetcher = JamFetcher()
   let locationMgr = LocationMgr()
-  
+  var uploadDelegate:JamUpLoadNotifier?
   
   
   func startJamRequest(completion:@escaping(_ result:Bool)->()) {
@@ -47,7 +47,8 @@ class MainWorker:JamUpLoadNotifier {
   
   
 
-  func uploadJam(url:URL) {
+  func uploadJam(url:URL, delegate:JamUpLoadNotifier) {
+    self.uploadDelegate = delegate
     
     userFetcher.fetch { (user, error) in
       if user != nil {
@@ -69,25 +70,10 @@ class MainWorker:JamUpLoadNotifier {
  }
   
   func prepareJam(jam:Jam,userId:String, url:URL) {
-      let uploadDispatcher = JamUpLoadDispatcher(enviroment:production, fileURL: url, delegate: self)
+      let uploadDispatcher = JamUpLoadDispatcher(enviroment:production, fileURL: url, delegate: uploadDelegate!)
       let task = JamUploadOperation(userId: userId, jam: jam, isSolo: false)
       task.executeUpload(in: uploadDispatcher)
   }
     
 }
 
-
-extension MainWorker {
-  func currentProgress(progress:Float) {
-    
-  }
-  func didSucceed() {
-    
-  }
-  func response(statusCode:Int) {
-    
-  }
-  func didFail(error:Error?) {
-    
-  }
-}

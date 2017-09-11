@@ -7,8 +7,8 @@
 //
 
 import Foundation
-
-
+import UIKit
+import MobileCoreServices
 protocol JamUpLoadNotifier {
     func currentProgress(progress:Float)
     func didSucceed()
@@ -48,23 +48,22 @@ enum JamUploadRequest:RequestRepresentable {
   
   var headers: [String:Any]? {
     
-    let value = "multipart/form-data; boundary=—-\(boundaryString)"
-    return [value:"Content-Type"]
+    return ["multipart/form-data; boundary=\(boundaryString)":"Content-Type"]
   }
   
   
   var boundaryString: String {
     
-    return String(format: "draglabs.boundary.%08x%08x", arc4random(), arc4random())
+    return "Boundary-\(NSUUID().uuidString)"
   }
-  
-  
+
 }
 
 class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     let enviroment:Enviroment
     
     var fileURL:URL?
+    let boundary = "Boundary-\(NSUUID().uuidString)"
     var bodyData = Data()
     var delegate:JamUpLoadNotifier?
     var results:((_ response:Response)->())?
@@ -94,90 +93,81 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     }
     
     func executeUpload(request:RequestRepresentable) {
-      // session.dataTask(with:prepareURLRequest(request: request)).resume()
+       session.dataTask(with:prepareURLRequest(request: request)).resume()
      
-        session.dataTask(with: prepareURLRequest(request: request)) { (data, respose, err) in
-          if let data = data {
-             let js  = try! JSONSerialization.jsonObject(with: data, options: [])
-            print(js)
-          }
-         
-          
-      }.resume()
-      
     }
     
     private func prepareURLRequest(request:RequestRepresentable) ->URLRequest {
-      let url = "\(enviroment.host)/\(request.path)"
-      var urlRequest = URLRequest(url: URL(string:url)!)
-      
-      request.headers?.forEach({ (value, field) in
-        urlRequest.addValue(value, forHTTPHeaderField: field as! String)
-      })
-    
-      prepareBody(request: request)
-      urlRequest.httpBody = bodyData
+      var urlRequest = URLRequest(url: URL(string: "\(enviroment.host)/\(request.path)")!)
       urlRequest.httpMethod = request.method.rawValue
-      
+      urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+      urlRequest.httpBody = prepareBody(request: request)
       
         return urlRequest
     }
   
 
-    
-  var boundaryString: String {
-    
-      return String(format: "draglabs.boundary.%08x%08x", arc4random(), arc4random())
-    }
   
-  
-  private func prepareBody(request:RequestRepresentable) {
+  private func prepareBody(request:RequestRepresentable) ->Data {
+    var body = Data()
     
     switch request.parameters {
-    case .body(let params):
-        audiofilesParams(params: params!)
+    case .body(let json):
+      body.append(buildBodyParams(params: json!))
      
     default:
       break
     }
   
+      let fileKey = "audioFile"
+      let filename = "track.caf"
+      let data = try! Data(contentsOf: fileURL!)
+      let mimetype = mimeType(for: fileURL!.path)
+      print(fileURL!.path)
+      body.append("--\(boundary)\r\n")
+      body.append("Content-Disposition: form-data; name=\"\(fileKey)\"; filename=\"\(filename)\"\r\n")
+      body.append("Content-Type: \(mimetype)\r\n\r\n")
+      body.append(data)
+      body.append("\r\n")
     
+    body.append("--\(boundary)--\r\n")
+    
+    return body
   }
   
 
-  private func audiofilesParams(params:JSONDictionary) {
-        let key      = "audioFile"
-        let filename = "track.caf"
-        let mimetype = "audio/x-caf"
-        let data =  try! Data(contentsOf: fileURL!)
+  func buildBodyParams(params:JSONDictionary) ->Data {
+    var body = Data()
     
-    for (key, val) in params {
-      let value = val as! String
+      for (key, value) in params {
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
+        body.append("\(value)\r\n")
+    }
+    return body
+  }
+  
+  
+  func mimeType(for path: String) -> String {
+    let url = NSURL(fileURLWithPath: path)
+    let pathExtension = url.pathExtension
     
-      bodyData.append("--\(boundaryString)\r\n")
-      bodyData.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n")
-      bodyData.append("\(value)\r\n")
-      
+    if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
+      if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
+        print(mimetype)
+        return mimetype as String
+      }
     }
     
-    bodyData.append("--\(boundaryString)\r\n")
-    bodyData.append("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(filename)\"\r\n")
-    bodyData.append("Content-Type: \(mimetype)\r\n\r\n")
-    bodyData.append(data)
-    bodyData.append("\r\n")
-    bodyData.append("--\(boundaryString)--\r\n")
-   
-    
+    return "application/octet-stream";
   }
-
 }
-
 
 extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         let progress = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
-        print("uploading percentage : \(progress)")
         delegate?.currentProgress(progress: progress)
         
     }
@@ -186,8 +176,6 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         let urlResponse = response as! HTTPURLResponse
         let status = urlResponse.statusCode
-        print(urlResponse)
-      
         delegate?.response(statusCode: status)
     }
   
@@ -232,6 +220,7 @@ class JamUploadOperation: OperationRepresentable {
             }
         }
     }
+  
   
   func executeUpload(in dispatcher:JamUpLoadDispatcher) {
     dispatcher.executeUpload(request: request)

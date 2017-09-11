@@ -29,7 +29,6 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   
   func startJam(request: Main.Jam.Request) {
      worker = MainWorker()
-    
      worker?.startJamRequest() { (s) in
       
     }
@@ -37,13 +36,33 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   
   func uploadJam(request: Main.JamUpload.Request) {
      worker = MainWorker()
-    worker?.uploadJam(url: request.fileURL)
+    worker?.uploadJam(url: request.fileURL, delegate: self)
     
   }
  func settings(request: Main.Jam.Request) {
+  
      
   }
+  
  func files(request: Main.Jam.Request) {
+  
         
+  }
+}
+
+extension MainInteractor:JamUpLoadNotifier {
+  func currentProgress(progress:Float) {
+    print("current upload", progress)
+    presenter?.presentProgress(progress: progress)
+  }
+  
+  func didSucceed() {
+    print("requesst succeeded")
+  }
+  func response(statusCode:Int) {
+    print("status code from upload", statusCode)
+  }
+  func didFail(error:Error?) {
+    
   }
 }

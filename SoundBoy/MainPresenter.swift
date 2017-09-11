@@ -13,13 +13,11 @@ protocol MainPresentationLogic {
   
   func presentFiles(response:Main.Jam.Response)
   func presentSettings(response:Main.Jam.Response)
+  func presentProgress(progress:Float)
 }
 
-class MainPresenter: MainPresentationLogic
-{
+class MainPresenter: MainPresentationLogic {
   weak var viewController: MainDisplayLogic?
-  
-  // MARK: Do something
   
   func presentFiles(response: Main.Jam.Response) {
         
@@ -27,5 +25,7 @@ class MainPresenter: MainPresentationLogic
   func presentSettings(response: Main.Jam.Response) {
     
   }
-  
+  func presentProgress(progress: Float) {
+    
+  }
 }

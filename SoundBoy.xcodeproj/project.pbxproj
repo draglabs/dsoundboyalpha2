@@ -29,6 +29,14 @@
 		A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689A1F59A89800E09CB1 /* UploadJam.swift */; };
 		A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689C1F5A931C00E09CB1 /* DataServices.swift */; };
 		A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4EBA1F42551200AF1D18 /* LocationManager.swift */; };
+		A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163A41F647AD300204C73 /* DSoundNav.swift */; };
+		A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163A71F64A0A600204C73 /* SettingsInteractor.swift */; };
+		A1A163AE1F64A0A600204C73 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163A81F64A0A600204C73 /* SettingsModels.swift */; };
+		A1A163AF1F64A0A600204C73 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163A91F64A0A600204C73 /* SettingsPresenter.swift */; };
+		A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AA1F64A0A600204C73 /* SettingsRouter.swift */; };
+		A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */; };
+		A1A163B21F64A0A600204C73 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */; };
+		A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */; };
 		A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */; };
 		A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A331F02102500B979D6 /* Assets.xcassets */; };
 		A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */; };
@@ -60,6 +68,8 @@
 		A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */; };
 		A1F2030D1F61C7A20023484D /* JoinJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030C1F61C7A20023484D /* JoinJam.swift */; };
 		A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseServices.swift */; };
+		A1F203111F62341F0023484D /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* PinView.swift */; };
+		A1F203131F637E280023484D /* 0deea31.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1F203121F637E280023484D /* 0deea31.jpg */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
 		A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* StartJam.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +102,14 @@
 		A17C689A1F59A89800E09CB1 /* UploadJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadJam.swift; sourceTree = "<group>"; };
 		A17C689C1F5A931C00E09CB1 /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		A17D4EBA1F42551200AF1D18 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A1A163A41F647AD300204C73 /* DSoundNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSoundNav.swift; sourceTree = "<group>"; };
+		A1A163A71F64A0A600204C73 /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		A1A163A81F64A0A600204C73 /* SettingsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
+		A1A163A91F64A0A600204C73 /* SettingsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		A1A163AA1F64A0A600204C73 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
+		A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableCell.swift; sourceTree = "<group>"; };
 		A1AE8A291F02102500B979D6 /* dSoundBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dSoundBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1AE8A331F02102500B979D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -124,6 +142,8 @@
 		A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataSave.swift; sourceTree = "<group>"; };
 		A1F2030C1F61C7A20023484D /* JoinJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJam.swift; sourceTree = "<group>"; };
 		A1F2030E1F61C8710023484D /* JamBaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseServices.swift; sourceTree = "<group>"; };
+		A1F203101F62341F0023484D /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		A1F203121F637E280023484D /* 0deea31.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0deea31.jpg; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A1FFEF971F59270A00F7784C /* StartJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJam.swift; sourceTree = "<group>"; };
 		A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,12 +196,13 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		A1017CB41F16CA8200AA1B31 /* Utils */ = {
+		A1017CB41F16CA8200AA1B31 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */,
+				A1A163A41F647AD300204C73 /* DSoundNav.swift */,
 			);
-			name = Utils;
+			name = Custom;
 			sourceTree = "<group>";
 		};
 		A1017CC01F1951A400AA1B31 /* SoundBoyTests */ = {
@@ -234,6 +255,7 @@
 		A14F9F341F0B5059009D8D6E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A1A163A61F64A08F00204C73 /* Settings */,
 				A1B66AA11F5746E3001F3B00 /* JoinJam */,
 				A1017CA71F15F11F00AA1B31 /* Login */,
 				A1FC8BB01F105F7000DB2EC0 /* Main */,
@@ -317,8 +339,31 @@
 			children = (
 				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
 				A153F80E1F082BBD00223379 /* PlayPause.swift */,
+				A1F203101F62341F0023484D /* PinView.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		A1A163A61F64A08F00204C73 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A1A163B31F64D88200204C73 /* view */,
+				A1A163A71F64A0A600204C73 /* SettingsInteractor.swift */,
+				A1A163A81F64A0A600204C73 /* SettingsModels.swift */,
+				A1A163A91F64A0A600204C73 /* SettingsPresenter.swift */,
+				A1A163AA1F64A0A600204C73 /* SettingsRouter.swift */,
+				A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */,
+				A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		A1A163B31F64D88200204C73 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		A1AE8A201F02102500B979D6 = {
@@ -344,8 +389,9 @@
 		A1AE8A2B1F02102500B979D6 /* SoundBoy */ = {
 			isa = PBXGroup;
 			children = (
+				A1F203121F637E280023484D /* 0deea31.jpg */,
 				A155FD201F3E40FE00B4165F /* App */,
-				A1017CB41F16CA8200AA1B31 /* Utils */,
+				A1017CB41F16CA8200AA1B31 /* Custom */,
 				A14F9F371F0B5088009D8D6E /* OperationsQueue */,
 				A14F9F361F0B507D009D8D6E /* Services */,
 				A14F9F341F0B5059009D8D6E /* Scenes */,
@@ -470,6 +516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */,
+				A1F203131F637E280023484D /* 0deea31.jpg in Resources */,
 				A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,10 +584,13 @@
 				44F840671F5D97D0004A7A76 /* FilesModels.swift in Sources */,
 				A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */,
 				A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */,
+				A1A163AF1F64A0A600204C73 /* SettingsPresenter.swift in Sources */,
 				A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */,
 				A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */,
 				A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */,
+				A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */,
 				A153F81E1F082BBD00223379 /* PlayPause.swift in Sources */,
+				A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */,
 				A1B66A851F5559CA001F3B00 /* LoginRouter.swift in Sources */,
 				A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */,
 				A1F2030D1F61C7A20023484D /* JoinJam.swift in Sources */,
@@ -548,12 +598,14 @@
 				A1B66A821F5559CA001F3B00 /* LoginInteractor.swift in Sources */,
 				A1F203071F5E39490023484D /* JamCoreDataSave.swift in Sources */,
 				A153F81F1F082BBD00223379 /* Recorder.swift in Sources */,
+				A1A163B21F64A0A600204C73 /* SettingsWorker.swift in Sources */,
 				A153F8211F082BBD00223379 /* Timer.swift in Sources */,
 				A1F203091F5E39B10023484D /* UserCoreDataFetch.swift in Sources */,
 				44F840661F5D97D0004A7A76 /* FilesInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */,
+				A1F203111F62341F0023484D /* PinView.swift in Sources */,
 				A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
 				A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */,
@@ -563,8 +615,10 @@
 				A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */,
 				A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */,
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
+				A1A163AE1F64A0A600204C73 /* SettingsModels.swift in Sources */,
 				44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */,
 				A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */,
+				A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
@@ -575,7 +629,9 @@
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */,
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
+				A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */,
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,
+				A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */,
 				A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */,
 				A1B66A861F5559CA001F3B00 /* LoginViewController.swift in Sources */,
 				44F840681F5D97D0004A7A76 /* FilesPresenter.swift in Sources */,
