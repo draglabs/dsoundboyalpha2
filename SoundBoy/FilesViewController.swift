@@ -12,11 +12,17 @@ protocol FilesDisplayLogic:class {
     //To be completed
 }
 
+var songs: [(songName: String, id: Int)] = []
 
-class FilesViewController: UITableViewController, FilesDisplayLogic {
+
+class FilesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
 
+    let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
+    let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
+    
+    let table = UITableView()
     //Need to load the list of files from the user. When they are pressed, I need a new view with navigation that takes them to the play screen.
       // MARK: Object lifecycle
     
@@ -39,8 +45,8 @@ class FilesViewController: UITableViewController, FilesDisplayLogic {
         let router = FilesRouter()
         viewController.interactor = interactor
         viewController.router = router
-        interactor.presenter = presenter as? FilesPresentationLogic
-        presenter.viewController = viewController as? MainDisplayLogic
+        interactor.presenter = presenter 
+        presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor 
     }
@@ -59,8 +65,16 @@ class FilesViewController: UITableViewController, FilesDisplayLogic {
     
     func setupUI()
     {
-        //Setup UI
+        view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTouch(sender:))))
+        let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
+        imageView.frame = view.frame
+        view.addSubview(imageView)
         tableConstraints()
+        backLayer.frame = view.frame
+        view.addSubview(backLayer)
+        backgroundView.frame = view.frame
+        view.addSubview(backgroundView)
     }
     
     func tableConstraints()
@@ -68,4 +82,32 @@ class FilesViewController: UITableViewController, FilesDisplayLogic {
         //Add contraints
     }
     
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return the number of rows = to the number of files
+        return songs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        let (songName, _) = songs[indexPath.row]
+        cell.textLabel?.text = songName
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+
+    func handleTouch(sender:UITapGestureRecognizer) {
+       
+    }
+    
 }
+
+
