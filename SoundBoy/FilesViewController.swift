@@ -22,7 +22,7 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
     let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
     let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
     
-    let table = UITableView()
+    var table = UITableView()
     //Need to load the list of files from the user. When they are pressed, I need a new view with navigation that takes them to the play screen.
       // MARK: Object lifecycle
     
@@ -54,7 +54,7 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-      setupUI()
+        setupUI()
         //get cells organized
     }
     
@@ -67,19 +67,42 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
     func setupUI()
     {
         view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTouch(sender:))))
         let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
+        title = "FILES"
+        let titleDict: [String : Any] = [NSFontAttributeName:UIFont(name:"Avenir-Book", size:16)!,NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = titleDict
         imageView.frame = view.frame
         view.addSubview(imageView)
-        tableConstraints()
         backLayer.frame = view.frame
         view.addSubview(backLayer)
         backgroundView.frame = view.frame
         view.addSubview(backgroundView)
+        table = UITableView(frame: view.frame, style: .plain)
+        
+        table.rowHeight = 200
+        table.delegate = self
+        table.dataSource = self
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.addSubview(self.table)
+        tableConstraints()
+
+        
+//        table.frame = view.frame
+        
+        
+        
     }
     
     func tableConstraints()
     {
+        table.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:10).isActive = true
+        table.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:-10).isActive = true
+//        table.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+//        table.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        table.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
+        
+        table.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        
         //Add contraints
     }
     
