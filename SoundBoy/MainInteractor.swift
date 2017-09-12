@@ -29,8 +29,8 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   
   func startJam(request: Main.Jam.Request) {
      worker = MainWorker()
-     worker?.startJamRequest() { (s) in
-      
+     worker?.startJamRequest() { (done) in
+      print(done)
     }
   }
   

@@ -18,6 +18,7 @@ enum Main
     struct Response{}
     struct ViewModel{
       let pin:String
+      let didStart:Bool
     }
   }
   

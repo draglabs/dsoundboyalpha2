@@ -11,10 +11,14 @@ import Foundation
 public enum UserRequest: RequestRepresentable {
     
     case register(facebookId:String, accessToken:String)
+    case activity(userId:String)
+  
     public var path: String {
         switch self {
         case .register(_:_):
             return "user/auth"
+        case .activity(_):
+          return "user/activity"
         }
     }
 
@@ -22,6 +26,8 @@ public enum UserRequest: RequestRepresentable {
         switch self {
         case .register(_:_):
             return .post
+        case .activity(_):
+          return .get
         }
     }
     
@@ -29,6 +35,8 @@ public enum UserRequest: RequestRepresentable {
         switch self {
         case .register(let facebookId, let accessToken):
             return .body(["facebook_id":facebookId,"access_token":accessToken])
+        case .activity(let userId):
+          return .url(["user_id":userId])
         }
 
     }
@@ -37,12 +45,15 @@ public enum UserRequest: RequestRepresentable {
         switch self {
         case .register(_: _):
             return["application/json":"Content-Type"]
+        case .activity(let userId):
+          return [userId:"user_id"]
         }
+      
     }
     
     public var dataType: DataType {
         switch self {
-        case .register(_, _: _):
+        default:
             return .JSON
         }
     }

@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
- class LocationMgr: NSObject,CLLocationManagerDelegate {
+ class LocationWorker: NSObject,CLLocationManagerDelegate {
     
     
   var lastLocation:CLLocation?

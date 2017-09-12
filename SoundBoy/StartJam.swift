@@ -42,6 +42,7 @@ class StartJamOperation: OperationRepresentable {
         }
     }
 
+  
     var request: RequestRepresentable {
         
         return JamRequest.start(userId: userId, jamLocation: location, jamName: name, jamCoordinates: jamCoordinates)

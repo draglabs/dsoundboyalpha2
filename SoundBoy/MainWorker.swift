@@ -15,7 +15,7 @@ class MainWorker {
   let networkDispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
   let userFetcher = UserFether()
   let jamFetcher = JamFetcher()
-  let locationMgr = LocationMgr()
+  let locationMgr = LocationWorker()
   var uploadDelegate:JamUpLoadNotifier?
   
   
@@ -71,7 +71,7 @@ class MainWorker {
   
   func prepareJam(jam:Jam,userId:String, url:URL) {
       let uploadDispatcher = JamUpLoadDispatcher(enviroment:production, fileURL: url, delegate: uploadDelegate!)
-      let task = JamUploadOperation(userId: userId, jam: jam, isSolo: false)
+      let task = JamUpload(userId: userId, jam: jam, isSolo: false)
       task.executeUpload(in: uploadDispatcher)
   }
     

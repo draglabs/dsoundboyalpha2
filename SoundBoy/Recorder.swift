@@ -14,12 +14,17 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
     var recordingSession:AVAudioSession!
     var audioRecorder:AVAudioRecorder!
-    var isRecording = false
+  
     var willStartRecording:(()->())?
     var willFinishRecording:(()->())?
     var didFinishRecording:((_ url:URL)->())?
     var audioFilename:URL!
-    var trackName = "track"
+  
+    var isRecording = false
+    var trackName   = "track"
+    var startedTime = Data()
+    var endTime     = Date()
+  
     private var docs:URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
@@ -50,7 +55,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 //                }
             }
         } catch {
-            // failed to record!
+            fatalError("cant initiate session, Error: \(error)")
         }
     }
     
@@ -100,10 +105,6 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     
 }
 
-
-
-
-
 // Recording protocol conformance
 extension Recorder {
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
@@ -113,6 +114,9 @@ extension Recorder {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("did finish recording",recorder.url)
         didFinishRecording?(recorder.url)
+      
+        endTime = Date()
+      
         print(recorder.currentTime)
     }
 

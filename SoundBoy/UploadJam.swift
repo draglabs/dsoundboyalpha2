@@ -196,7 +196,7 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
 }
 
 
-class JamUploadOperation: OperationRepresentable {
+class JamUpload: OperationRepresentable {
   let jam:Jam
   let userId:String
   let isSolo:Bool

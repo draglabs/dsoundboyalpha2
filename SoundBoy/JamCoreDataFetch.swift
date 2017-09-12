@@ -21,7 +21,7 @@ class JamFetcher: FetcherRepresentable {
       do {
         let result = try jamRequest.execute()
         if result.count > 0 {
-          print("numbe of jams",result.count)
+          print("number of jams",result.count)
           let user = result.first!
           callback(user, nil)
         }else {

@@ -1,29 +1,22 @@
 //
-//  JoinJamService.swift
+//  ExitJam.swift
 //  SoundBoy
 //
-//  Created by Marlon Monroy on 9/7/17.
+//  Created by Marlon Monroy on 9/10/17.
 //  Copyright © 2017 DragLabs. All rights reserved.
 //
 
 import Foundation
-
-
-class JoinJamOperaion:OperationRepresentable {
-  
+class ExitJam: OperationRepresentable {
   let userId:String
-  let jamPin:String
+  let jamId:String
   var responseError:((_ code:Int?, _ error:Error?)->())?
-  
-  var  request :RequestRepresentable {
-  
-  return JamRequest.join(uniqueId: userId, pin: jamPin)
-  }
-  var  store: StoreRepresentable {
+  var store: StoreRepresentable {
     return JamStore()
   }
   
-  func execute(in dispatcher:DispatcherRepresentable, result:@escaping (_ created:Bool) -> ()) {
+  
+  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ exited:Bool)->()) {
     dispatcher.execute(request: request) { (response) in
       switch response {
       case .data(let data):
@@ -31,15 +24,19 @@ class JoinJamOperaion:OperationRepresentable {
       case .json(let json):
         self.store.fromJSON(json: json, response: result)
       case .error(let statusCode, let error):
-        self.responseError?(statusCode,error)
         result(false)
+        self.responseError?(statusCode,error)
       }
     }
   }
   
+  var request: RequestRepresentable {
+    return JamRequest.exit(uniqueId: userId, jamId: jamId)
+    
+  }
   
-  init(userId:String, jamPin:String) {
+  init(userId:String, jamId:String) {
     self.userId = userId
-    self.jamPin = jamPin
+    self.jamId = jamId
   }
 }

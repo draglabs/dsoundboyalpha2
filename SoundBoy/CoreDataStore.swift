@@ -82,7 +82,7 @@ public class CoreDataStore:NSObject {
             do {
                 try context.save()
                 completion(true)
-                print("save")
+                print("saved")
             } catch  {
                 completion(false)
 //                let nserror = error as NSError
@@ -91,5 +91,6 @@ public class CoreDataStore:NSObject {
             }
         }
     }
-    
+  
+  
 }

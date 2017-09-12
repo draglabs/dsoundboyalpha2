@@ -25,6 +25,8 @@ class JoinStartJamView: UIView {
     fileprivate let buttonColor = UIColor(colorLiteralRed: 160/255, green: 16/255, blue: 33/255, alpha: 1)
     
     func setup() {
+      clipsToBounds = true
+      
         setupButtons()
     }
   
@@ -107,7 +109,7 @@ extension JoinStartJamView {
     func joinButtonPressed(sender:UIButton) {
         let fetch = JamFetcher()
         fetch.fetch { (jam, error) in
-          print(jam)
+          print(jam ?? "cant find jam")
       }
         didPressedJoin?(self, sender)
         delegate?.didPressedJoin(bottomView: self, join: sender)

@@ -53,6 +53,8 @@ class MainViewController: UIViewController, MainDisplayLogic {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
+   
+    //view.addSubview(pinView)
   }
   
   func nav() {
@@ -106,9 +108,17 @@ class MainViewController: UIViewController, MainDisplayLogic {
 
   func displayPin(viewModel:Main.Jam.ViewModel) {
     pinView.parentView = view
-    pinView.animateShow()
+    pinView.displayPin(pin: viewModel.pin)
+    if !viewModel.pin.isEmpty {
+      playPauseView.start()
+    }
   }
   
+  func playSolo(viewModel:Main.Jam.ViewModel) {
+    if viewModel.didStart {
+      playPauseView.start()
+    }
+  }
   
   func displayProgress(progress: Float) {
     

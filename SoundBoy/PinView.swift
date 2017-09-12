@@ -35,18 +35,20 @@ class PinView: UIView {
   }
   
   func animateShow() {
-    UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
-      
-    }, completion: {done in })
+   
   }
   
   func displayPin(pin:String) {
+    
     if let parent = parentView {
       self.pin = pin
-      self.frame = CGRect(x: 0, y: parent.bounds.midY, width: parent.bounds.width, height: parent.bounds.height / 2)
+     
       parent.addSubview(self)
+      UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+         self.frame = CGRect(x: 0, y: parent.bounds.midY + 100, width: parent.bounds.width, height:parent.bounds.midY - 160)
+      }, completion: {done in })
     }
-    
+    uiSetup()
   }
 
   func uiSetup() {
@@ -64,11 +66,13 @@ class PinView: UIView {
     pinLabel.textAlignment = .center
     pinLabel.font = UIFont.init(name: "Avenir-Medium", size: 32)
     pinLabel.textColor = .white
+    pinLabel.numberOfLines = 1
     
     messabeLabel.text = message
     messabeLabel.textAlignment = .center
     messabeLabel.font = UIFont.init(name: "Avenir-Book", size: 15)
     messabeLabel.textColor = .white
+    messabeLabel.numberOfLines = 2
     addSubview(topBarView)
     addSubview(pinLabel)
     addSubview(messabeLabel)
@@ -79,8 +83,10 @@ class PinView: UIView {
     pinLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     pinLabel.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 20).isActive = true
     pinLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+    pinLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     messabeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
-    messabeLabel.topAnchor.constraint(equalTo: pinLabel.bottomAnchor, constant: 15).isActive = true
+    messabeLabel.topAnchor.constraint(equalTo: pinLabel.bottomAnchor, constant: 8).isActive = true
     messabeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
+    messabeLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
   }
 }

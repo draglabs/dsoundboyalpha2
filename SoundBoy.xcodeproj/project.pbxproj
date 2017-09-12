@@ -13,7 +13,7 @@
 		44F840691F5D97D0004A7A76 /* FilesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840631F5D97D0004A7A76 /* FilesRouter.swift */; };
 		44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840641F5D97D0004A7A76 /* FilesViewController.swift */; };
 		44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840651F5D97D0004A7A76 /* FilesWorker.swift */; };
-		A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* WebService.swift */; };
+		A1017CBA1F17FCFF00AA1B31 /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* APIWorker.swift */; };
 		A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
 		A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F381F0B50A7009D8D6E /* baseOperation.swift */; };
@@ -28,7 +28,7 @@
 		A155FD241F3E510A00B4165F /* Customizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD231F3E510A00B4165F /* Customizer.swift */; };
 		A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689A1F59A89800E09CB1 /* UploadJam.swift */; };
 		A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689C1F5A931C00E09CB1 /* DataServices.swift */; };
-		A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4EBA1F42551200AF1D18 /* LocationManager.swift */; };
+		A17D4EBB1F42551200AF1D18 /* LocationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */; };
 		A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163A41F647AD300204C73 /* DSoundNav.swift */; };
 		A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163A71F64A0A600204C73 /* SettingsInteractor.swift */; };
 		A1A163AE1F64A0A600204C73 /* SettingsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163A81F64A0A600204C73 /* SettingsModels.swift */; };
@@ -37,6 +37,7 @@
 		A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */; };
 		A1A163B21F64A0A600204C73 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */; };
 		A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */; };
+		A1A163B71F65D33700204C73 /* ExitJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163B61F65D33700204C73 /* ExitJam.swift */; };
 		A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */; };
 		A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A331F02102500B979D6 /* Assets.xcassets */; };
 		A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */; };
@@ -69,7 +70,6 @@
 		A1F2030D1F61C7A20023484D /* JoinJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030C1F61C7A20023484D /* JoinJam.swift */; };
 		A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseServices.swift */; };
 		A1F203111F62341F0023484D /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* PinView.swift */; };
-		A1F203131F637E280023484D /* 0deea31.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1F203121F637E280023484D /* 0deea31.jpg */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
 		A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* StartJam.swift */; };
 /* End PBXBuildFile section */
@@ -84,7 +84,7 @@
 		62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dSoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.release.xcconfig"; sourceTree = "<group>"; };
-		A1017CB91F17FCFF00AA1B31 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		A1017CB91F17FCFF00AA1B31 /* APIWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
 		A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundBoyTests.swift; sourceTree = "<group>"; };
 		A1017CC31F1951A400AA1B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulsator.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		A155FD231F3E510A00B4165F /* Customizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customizer.swift; sourceTree = "<group>"; };
 		A17C689A1F59A89800E09CB1 /* UploadJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadJam.swift; sourceTree = "<group>"; };
 		A17C689C1F5A931C00E09CB1 /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
-		A17D4EBA1F42551200AF1D18 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWorker.swift; sourceTree = "<group>"; };
 		A1A163A41F647AD300204C73 /* DSoundNav.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSoundNav.swift; sourceTree = "<group>"; };
 		A1A163A71F64A0A600204C73 /* SettingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
 		A1A163A81F64A0A600204C73 /* SettingsModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsModels.swift; sourceTree = "<group>"; };
@@ -110,6 +110,7 @@
 		A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
 		A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableCell.swift; sourceTree = "<group>"; };
+		A1A163B61F65D33700204C73 /* ExitJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitJam.swift; sourceTree = "<group>"; };
 		A1AE8A291F02102500B979D6 /* dSoundBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dSoundBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1AE8A331F02102500B979D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,7 +144,6 @@
 		A1F2030C1F61C7A20023484D /* JoinJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJam.swift; sourceTree = "<group>"; };
 		A1F2030E1F61C8710023484D /* JamBaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseServices.swift; sourceTree = "<group>"; };
 		A1F203101F62341F0023484D /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
-		A1F203121F637E280023484D /* 0deea31.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0deea31.jpg; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A1FFEF971F59270A00F7784C /* StartJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJam.swift; sourceTree = "<group>"; };
 		A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -304,8 +304,8 @@
 		A17C68971F59289200E09CB1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A1017CB91F17FCFF00AA1B31 /* WebService.swift */,
-				A17D4EBA1F42551200AF1D18 /* LocationManager.swift */,
+				A1017CB91F17FCFF00AA1B31 /* APIWorker.swift */,
+				A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -317,6 +317,7 @@
 				A1FFEF971F59270A00F7784C /* StartJam.swift */,
 				A17C689A1F59A89800E09CB1 /* UploadJam.swift */,
 				A1F2030C1F61C7A20023484D /* JoinJam.swift */,
+				A1A163B61F65D33700204C73 /* ExitJam.swift */,
 				A1F203061F5E39490023484D /* JamCoreDataSave.swift */,
 				A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */,
 			);
@@ -389,7 +390,6 @@
 		A1AE8A2B1F02102500B979D6 /* SoundBoy */ = {
 			isa = PBXGroup;
 			children = (
-				A1F203121F637E280023484D /* 0deea31.jpg */,
 				A155FD201F3E40FE00B4165F /* App */,
 				A1017CB41F16CA8200AA1B31 /* Custom */,
 				A14F9F371F0B5088009D8D6E /* OperationsQueue */,
@@ -516,7 +516,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */,
-				A1F203131F637E280023484D /* 0deea31.jpg in Resources */,
 				A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,7 +603,7 @@
 				44F840661F5D97D0004A7A76 /* FilesInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
-				A1017CBA1F17FCFF00AA1B31 /* WebService.swift in Sources */,
+				A1017CBA1F17FCFF00AA1B31 /* APIWorker.swift in Sources */,
 				A1F203111F62341F0023484D /* PinView.swift in Sources */,
 				A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
@@ -618,6 +617,7 @@
 				A1A163AE1F64A0A600204C73 /* SettingsModels.swift in Sources */,
 				44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */,
 				A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */,
+				A1A163B71F65D33700204C73 /* ExitJam.swift in Sources */,
 				A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */,
@@ -627,7 +627,7 @@
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
 				A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */,
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
-				A17D4EBB1F42551200AF1D18 /* LocationManager.swift in Sources */,
+				A17D4EBB1F42551200AF1D18 /* LocationWorker.swift in Sources */,
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */,
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,

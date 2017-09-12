@@ -30,6 +30,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
     
     let response = Login.WelcomeText.Response()
     presenter?.presentText(response: response)
+    
   }
     
   func RegisterUser(request: Login.Register.Request) {
