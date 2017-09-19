@@ -4,7 +4,6 @@
 //
 //  Created by Marlon Monroy on 9/9/17.
 //  Copyright (c) 2017 DragLabs. All rights reserved.
-//
 
 
 import UIKit
@@ -65,10 +64,10 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
   func uiSetup() {
     title = "SETTINGS"
     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "forward"), style: .plain, target: self, action: #selector(navbarNuttonPressed(sender:)))
-    let titleDict: [String : Any] = [NSFontAttributeName:UIFont(name:"Avenir-Book", size:14)!,NSForegroundColorAttributeName: UIColor.white]
+    let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:14)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
     navigationController?.navigationBar.titleTextAttributes = titleDict
     
-    view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
+    view.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
     let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
     imageView.frame = view.frame
     view.addSubview(imageView)
@@ -78,12 +77,12 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
   func logOutUI() {
     let button = UIButton(type: .system)
     button.frame = CGRect(x: 0, y: view.bounds.height / 2 + 150, width: view.bounds.width, height: 44)
-    button.backgroundColor = UIColor(colorLiteralRed: 168/255, green: 36/255, blue: 36/255, alpha: 1)
+    button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
     button.setTitle("LOGOUT", for: .normal)
     button.tintColor = UIColor.white
     view.addSubview(button)
   }
-  func navbarNuttonPressed(sender:UIBarButtonItem) {
+  @objc func navbarNuttonPressed(sender:UIBarButtonItem) {
     router?.popBack()
   }
  

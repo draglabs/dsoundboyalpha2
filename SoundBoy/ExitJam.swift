@@ -15,7 +15,6 @@ class ExitJam: OperationRepresentable {
     return JamStore()
   }
   
-  
   func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ exited:Bool)->()) {
     dispatcher.execute(request: request) { (response) in
       switch response {
@@ -32,7 +31,6 @@ class ExitJam: OperationRepresentable {
   
   var request: RequestRepresentable {
     return JamRequest.exit(uniqueId: userId, jamId: jamId)
-    
   }
   
   init(userId:String, jamId:String) {

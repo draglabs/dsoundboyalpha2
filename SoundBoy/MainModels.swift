@@ -17,15 +17,14 @@ enum Main
     struct Request{}
     struct Response{}
     struct ViewModel{
+      
       let pin:String
-      let didStart:Bool
+      
     }
   }
   
   enum JamUpload {
-    struct Request {
-      let fileURL:URL
-    }
+    struct Request {}
     struct Response {}
     struct ViewModel {}
   }

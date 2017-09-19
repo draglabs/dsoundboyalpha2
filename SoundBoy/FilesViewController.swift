@@ -18,10 +18,7 @@ var songs: [(songName: String, id: Int)] = []
 class FilesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
-
-    let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
-    let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
-    
+  
     var table = UITableView()
     //Need to load the list of files from the user. When they are pressed, I need a new view with navigation that takes them to the play screen.
       // MARK: Object lifecycle
@@ -55,54 +52,41 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         setup()
         setupUI()
-        //get cells organized
+        let request = Files.Recordings.Request()
+        interactor?.loadRecordings(request: request)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
+
     // MARK: UI Setup and Constraints
     
     func setupUI()
     {
-        view.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 1)
-        let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
+        view.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
+      
         title = "FILES"
-        let titleDict: [String : Any] = [NSFontAttributeName:UIFont(name:"Avenir-Book", size:16)!,NSForegroundColorAttributeName: UIColor.white]
+      let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:16)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleDict
-        imageView.frame = view.frame
-        view.addSubview(imageView)
-        backLayer.frame = view.frame
-        view.addSubview(backLayer)
-        backgroundView.frame = view.frame
-        view.addSubview(backgroundView)
-        table = UITableView(frame: view.frame, style: .plain)
-        
+      
+      
+      table = UITableView(frame:view.frame, style: .plain)
+
         table.rowHeight = 200
         table.delegate = self
         table.dataSource = self
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        view.addSubview(self.table)
+        view.addSubview(table)
+      
         tableConstraints()
 
-        
-//        table.frame = view.frame
-        
-        
         
     }
     
     func tableConstraints()
     {
-        table.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:10).isActive = true
-        table.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:-10).isActive = true
-//        table.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-//        table.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        table.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
-        
-        table.widthAnchor.constraint(equalToConstant: 300).isActive = true
-        
+//        table.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:0).isActive = true
+//        table.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:0).isActive = true
+//        table.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
+//        table.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//
         //Add contraints
     }
     
@@ -113,14 +97,14 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return the number of rows = to the number of files
-        return songs.count
+      return  4 //songs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        let (songName, _) = songs[indexPath.row]
-        cell.textLabel?.text = songName
+      //let (songName, _) = songs[indexPath.row]
+       cell.textLabel?.text = "songName"
         return cell
     }
     

@@ -8,10 +8,9 @@
 
 import UIKit
 
-class FilesWorker
-{
-    func doSomeWork()
-    {
-        //Taken from the LoginWorker scene to build barebones
+class FilesWorker {
+  let activityWoker = UserActivityWorker()
+  func getUserActivity(completion:@escaping(_ done:Bool)->()) {
+    activityWoker.getActivity(completion:completion)
     }
 }

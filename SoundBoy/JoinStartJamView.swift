@@ -17,16 +17,17 @@ class JoinStartJamView: UIView {
     var delegate:JoinStartJamViewDelegate?
     let joinButton = UIButton(type: .system)
     let jamButton = UIButton(type: .system)
+  
     var didPressedJoin:((_ bottomView:JoinStartJamView,_ join:UIButton)->())?
     var didPressedJam:((_ bottomView:JoinStartJamView,_ jam:UIButton)->())?
     
-    let colorForMidOrange = UIColor(colorLiteralRed: 242/255, green: 241/255, blue: 241/255, alpha: 1)
-    fileprivate let borderColor = UIColor(colorLiteralRed: 193/255, green: 18/255, blue: 37/255, alpha: 1).cgColor
-    fileprivate let buttonColor = UIColor(colorLiteralRed: 160/255, green: 16/255, blue: 33/255, alpha: 1)
+    let colorForMidOrange = UIColor(displayP3Red: 242/255, green: 241/255, blue: 241/255, alpha: 1)
+ 
+    fileprivate let borderColor = UIColor(displayP3Red: 193/255, green: 18/255, blue: 37/255, alpha: 1).cgColor
+    fileprivate let buttonColor = UIColor(displayP3Red: 160/255, green: 16/255, blue: 33/255, alpha: 1)
     
     func setup() {
       clipsToBounds = true
-      
         setupButtons()
     }
   
@@ -44,14 +45,14 @@ class JoinStartJamView: UIView {
     }
     
    func setupButtons() {
+    
         jamButton.translatesAutoresizingMaskIntoConstraints = false
         joinButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(jamButton)
         addSubview(joinButton)
         setupConstraints()
     
-    
-        // style of buttons
+        // buttons
         jamButton.layer.borderColor  = UIColor.white.cgColor
         jamButton.layer.borderWidth = 1
         jamButton.backgroundColor = buttonColor
@@ -85,7 +86,7 @@ class JoinStartJamView: UIView {
         joinButton.topAnchor.constraint(equalTo: topAnchor, constant:20).isActive = true
         joinButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         joinButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
+      
     }
     
     // button actions
@@ -100,13 +101,12 @@ class JoinStartJamView: UIView {
 //MARK:button actions
 extension JoinStartJamView {
     
-    func jamButtonPressed(sender:UIButton) {
+  @objc func jamButtonPressed(sender:UIButton) {
         didPressedJam?(self,sender)
-
         delegate?.didPressedJam(bottomView: self, jam: sender)
     }
   
-    func joinButtonPressed(sender:UIButton) {
+  @objc func joinButtonPressed(sender:UIButton) {
         let fetch = JamFetcher()
         fetch.fetch { (jam, error) in
           print(jam ?? "cant find jam")

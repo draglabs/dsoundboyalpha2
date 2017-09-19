@@ -40,7 +40,7 @@ import CoreLocation
   func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
    
   }
-  /// Make sure you set `didGetLocation?()` 
+  /// Make sure you set `didGetLocation?()`
   /// so that youll get the results back
   
     func getAddress() {

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FilesPresentationLogic {
-//    add some functions
+  func presentActivitity()
 }
 
 
@@ -17,5 +17,8 @@ class FilesPresenter:FilesPresentationLogic {
     
     weak var viewController: FilesDisplayLogic?
     
-//    implement functions from the Presentation Protocol
+  func presentActivitity() {
+    
+  }
 }
+

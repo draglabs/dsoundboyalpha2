@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Jam" representedClassName="Jam" syncable="YES" codeGenerationType="class">
+        <attribute name="endTime" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="isCurrent" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pin" attributeType="String" syncable="YES"/>
+        <attribute name="startTime" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Recordings" representedClassName="Recordings" syncable="YES" codeGenerationType="class">
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isCurrent" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="pin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jamId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="s3Url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
@@ -16,6 +25,7 @@
     </entity>
     <elements>
         <element name="Jam" positionX="-54" positionY="0" width="128" height="120"/>
+        <element name="Recordings" positionX="-225" positionY="45" width="128" height="150"/>
         <element name="User" positionX="-396" positionY="6" width="128" height="120"/>
     </elements>
 </model>

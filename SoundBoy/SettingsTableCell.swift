@@ -30,6 +30,6 @@ class SettingsTableViewCell: UITableViewCell {
     }
 
   func setup() {
-    backgroundColor = UIColor(colorLiteralRed: 67/355, green: 36/255, blue: 36/255, alpha: 1)
+    backgroundColor = UIColor(displayP3Red: 67/355, green: 36/255, blue: 36/255, alpha: 1)
   }
 }

@@ -11,48 +11,83 @@ import UIKit
 
 protocol MainBusinessLogic {
   func startJam(request: Main.Jam.Request)
-  func settings(request:Main.Jam.Request)
-  func files( request:Main.Jam.Request)
-  func uploadJam(request:Main.JamUpload.Request)
+  func endRecording(request: Main.Jam.Request)
+  func exitJam(request: Main.Jam.Request)
+  func didJoin(request:Main.Jam.Request)
 }
 
 protocol MainDataStore {
-  var success: Bool { get set }
+  var didJoin:Bool { get set}
 }
 
 class MainInteractor: MainBusinessLogic, MainDataStore {
   var presenter: MainPresentationLogic?
   var worker: MainWorker?
-  
-  var success: Bool = false
-  // MARK: Do something
+  var jamFetcher = JamFetcher()
+  var isPlaying = false
+  var didJoin: Bool = false
   
   func startJam(request: Main.Jam.Request) {
      worker = MainWorker()
-     worker?.startJamRequest() { (done) in
-      print(done)
+    
+    jamFetcher.fetch { (jam, error) in
+      if jam == nil {
+        self.startJamWhen()
+      }else {
+        print("Jam already in place")
+      }
+    }
+    
+  }
+  
+  func endRecording(request: Main.Jam.Request) {
+     uploadJam()
+  }
+  
+  func startJamWhen() {
+    worker?.startJamRequest() { (done) in
+      if done {
+        self.jamFetcher.fetch(callback: { (jam, error) in
+          if let jam = jam {
+            self.presenter?.presentJamPin(jam: jam)
+          }
+        })
+      }else {
+        print("no done")
+      }
     }
   }
   
-  func uploadJam(request: Main.JamUpload.Request) {
-     worker = MainWorker()
-    worker?.uploadJam(url: request.fileURL, delegate: self)
+  
+  func exitJam(request: Main.Jam.Request) {
+    worker = MainWorker()
+  }
+  
+  func uploadJam() {
+    worker = MainWorker()
+    if let url = Recorder.shared.audioFilename {
+        let uploadWorker = JamUploadWorker()
+        uploadWorker.uploadJam(url: url, delegate: self)
+        presenter?.presentCurrentRecordEnded()
+    }
     
   }
- func settings(request: Main.Jam.Request) {
-  
-     
+  func didJoin(request: Main.Jam.Request) {
+    if self.didJoin {
+      startRecording()
+      
+    }
   }
-  
- func files(request: Main.Jam.Request) {
-  
-        
+  private func startRecording() {
+    Recorder.shared.startRecording()
+  }
+  private func stopRecording() {
+    Recorder.shared.stopRecording()
   }
 }
 
 extension MainInteractor:JamUpLoadNotifier {
   func currentProgress(progress:Float) {
-    print("current upload", progress)
     presenter?.presentProgress(progress: progress)
   }
   

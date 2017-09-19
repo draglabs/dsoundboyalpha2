@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import UIKit
 import MobileCoreServices
+
 protocol JamUpLoadNotifier {
     func currentProgress(progress:Float)
     func didSucceed()
     func response(statusCode:Int)
     func didFail(error:Error?)
 }
-
 enum JamUploadRequest:RequestRepresentable {
   
   case soloUpload(userId:String)
@@ -33,27 +32,20 @@ enum JamUploadRequest:RequestRepresentable {
       return "jam/upload/userid/\(userId)/jamid/\(jamId)"
     }
   }
-  
-  
   var parameters : RequestParams {
     switch self {
     case .soloUpload(let userId):
       return .body(["user_id":userId])
     case .upload( _,  _, let start, let end):
       return .body(["startTime":start,"endTime":end])
-    }
-    
+     }
   }
-  
-  
   var headers: [String:Any]? {
     
     return ["multipart/form-data; boundary=\(boundaryString)":"Content-Type"]
   }
   
-  
   var boundaryString: String {
-    
     return "Boundary-\(NSUUID().uuidString)"
   }
 
@@ -67,24 +59,22 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     var bodyData = Data()
     var delegate:JamUpLoadNotifier?
     var results:((_ response:Response)->())?
+  
+  
     var session:URLSession {
        let config = URLSessionConfiguration.default
-      
-        let s = URLSession(configuration: config, delegate: self, delegateQueue: nil)
-        
-        return s
+        let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+        return session
     }
+  
+  required init(enviroment: Enviroment) {
+    self.enviroment = enviroment
     
-    //MARK:TODO unused conformance, will refactor for multipart-form
+  }
     func execute(request: RequestRepresentable, result: @escaping (Response) -> ()) {
         self.results = result
-    
     }
-        required init(enviroment: Enviroment) {
-        self.enviroment = enviroment
-        
-    }
-    
+  
     convenience init(enviroment:Enviroment,fileURL:URL,delegate:JamUpLoadNotifier) {
         self.init(enviroment:enviroment)
         self.delegate = delegate
@@ -94,7 +84,7 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     
     func executeUpload(request:RequestRepresentable) {
        session.dataTask(with:prepareURLRequest(request: request)).resume()
-     
+      
     }
     
     private func prepareURLRequest(request:RequestRepresentable) ->URLRequest {
@@ -108,18 +98,14 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     }
   
 
-  
   private func prepareBody(request:RequestRepresentable) ->Data {
     var body = Data()
-    
     switch request.parameters {
     case .body(let json):
       body.append(buildBodyParams(params: json!))
-     
     default:
       break
     }
-  
       let fileKey = "audioFile"
       let filename = "track.caf"
       let data = try! Data(contentsOf: fileURL!)
@@ -132,11 +118,10 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
       body.append("\r\n")
     
     body.append("--\(boundary)--\r\n")
-    
     return body
   }
-  
 
+  
   func buildBodyParams(params:JSONDictionary) ->Data {
     var body = Data()
     
@@ -239,8 +224,45 @@ class JamUpload: OperationRepresentable {
         self.userId = userId
         self.jam = jam
         self.isSolo = isSolo
-        
     }
-    
-    
 }
+
+
+class JamUploadWorker {
+  
+  let env = Enviroment("production", host: "http://api.draglabs.com/v1.01")
+  let userFetcher = UserFether()
+  let jamFetcher = JamFetcher()
+  var uploadDelegate:JamUpLoadNotifier?
+  
+    func uploadJam(url:URL, delegate:JamUpLoadNotifier) {
+      self.uploadDelegate = delegate
+  
+      userFetcher.fetch { (user, error) in
+        if user != nil {
+          self.prepareUser(user: user!,url: url)
+        }
+      }
+    }
+  
+    private func prepareUser(user:User, url:URL) {
+      let userId = user.userId!
+  
+      jamFetcher.fetch { (jam, error) in
+        if jam != nil {
+          self.prepareJam(jam: jam!, userId: userId, url:url)
+        }
+      }
+    }
+
+    private func prepareJam(jam:Jam,userId:String, url:URL) {
+      let uploadDispatcher = JamUpLoadDispatcher(enviroment:env, fileURL: url, delegate: uploadDelegate!)
+      let task = JamUpload(userId: userId, jam: jam, isSolo: false)
+      task.executeUpload(in: uploadDispatcher)
+    }
+  
+  func uploadSolo(url:URL, delegate:JamUpLoadNotifier) {
+    
+  }
+}
+

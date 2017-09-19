@@ -9,6 +9,11 @@
 import Foundation
 import CoreLocation
 
+public enum JamResponseError {
+  case jamActive(message:String)
+  case invalidPin(message:String)
+  
+}
 public enum JamRequest:RequestRepresentable {
   
   case start(userId:String, jamLocation:String,jamName:String, jamCoordinates:CLLocationCoordinate2D)

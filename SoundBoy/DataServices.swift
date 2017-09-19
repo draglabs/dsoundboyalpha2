@@ -12,12 +12,11 @@ public protocol StoreRepresentable {
     func fromJSON(json:JSONDictionary, response:@escaping(_ result:Bool)->())
     func fromData(data:Data, response:@escaping(_ result:Bool)->())
   
-  
 }
 
 /* =====================FetcherRepresentable====================*/
 public protocol FetcherRepresentable {
-    var coreDataStore:CoreDataStore {get}
+    var coreDataStore:CoreDataStore {get }
     associatedtype A
     func fetch(callback: @escaping (_ result:A?, _ error:Error?) -> ())
 }

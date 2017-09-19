@@ -16,7 +16,6 @@ class JoinJamOperaion:OperationRepresentable {
   var responseError:((_ code:Int?, _ error:Error?)->())?
   
   var  request :RequestRepresentable {
-  
   return JamRequest.join(uniqueId: userId, pin: jamPin)
   }
   var  store: StoreRepresentable {

@@ -3,6 +3,7 @@
 //  SoundBoy
 //
 //  Created by Craig on 9/3/17.
+//  Modified by Marlon on 9/15/17
 //  Copyright © 2017 DragLabs. All rights reserved.
 //
 
@@ -14,9 +15,7 @@ protocol FilesBuisnessLogic {
     func loadRecordings(request: Files.Recordings.Request)
 }
 
-protocol FilesDataStore {
-    
-}
+protocol FilesDataStore {}
 
 class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
     
@@ -26,6 +25,8 @@ class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
     //add functions that FileBusinessLogic defines
     func loadRecordings(request: Files.Recordings.Request) {
         worker = FilesWorker()
-        worker?.doSomeWork()
+      worker?.getUserActivity(completion: {[weak self] (done) in
+        //self?.presenter?
+      })
     }
 }

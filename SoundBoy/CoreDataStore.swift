@@ -13,14 +13,17 @@ import CoreData
 enum EntitiesModel:String {
     case  user = "User"
     case  jam = "Jam"
+    case  recordings = "Recordings"
+  
     var toString:String {
         switch self {
         case .user:
             return String(self.rawValue)
         case .jam:
             return String(self.rawValue)
+        case .recordings:
+          return String(self.rawValue)
         }
-        
     }
 }
 
@@ -32,9 +35,11 @@ public class CoreDataStore:NSObject {
      init(entity:EntitiesModel) {
         switch entity {
         case .jam:
-            self.entity = .jam
+          self.entity = .jam
         case .user:
-            self.entity = .user
+          self.entity = .user
+        case .recordings:
+          self.entity = .recordings
         }
     }
     

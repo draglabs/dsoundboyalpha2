@@ -10,32 +10,36 @@
 import UIKit
 
 protocol JoinJamBusinessLogic {
-  func join(request: JoinJam.Commons.Request)
+  func join(request: JoinJam.Join.Request)
   func commons(request:JoinJam.Commons.Request)
 }
 
 protocol JoinJamDataStore {
-  //var name: String { get set }
+  var didJoin:Bool {get set}
 }
 
 class JoinJamInteractor: JoinJamBusinessLogic, JoinJamDataStore {
   var presenter: JoinJamPresentationLogic?
   var worker: JoinJamWorker?
-  //var name: String = ""
-
-  // MARK: Do something
+  let jam = JamFetcher()
+  var didJoin: Bool = false
+ 
   
-  func join(request: JoinJam.Commons.Request) {
+  func join(request: JoinJam.Join.Request) {
     worker = JoinJamWorker()
-    //worker?.joinJam(jam: <#T##Jam#>, completion: <#T##() -> ()#>)
-    
+    let pin = request.pin
+    worker?.joinJam(jamPin: pin, completion: { (didJoin) in
+      print("did Join \(didJoin)")
+      
+    })
     let response = JoinJam.Commons.Response()
-    presenter?.presentCommons(response: response)
+    //presenter?.presentCommons(response: response)
   }
   
   func commons(request: JoinJam.Commons.Request) {
     let response  = JoinJam.Commons.Response()
     presenter?.presentCommons(response: response)
+  
   }
  
  

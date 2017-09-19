@@ -13,6 +13,7 @@ extension Data {
   mutating func append(_ string: String) {
     let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
     append(data!)
+    
   }
 }
 
@@ -112,7 +113,6 @@ public enum Response {
   case data(_ :Data)
   case error(_:Int?, _:Error?)
   
-  
   init(_ response:(r:HTTPURLResponse?, data:Data?, error:Error?), for request:RequestRepresentable) {
     
     // Draglabs custom reponse message
@@ -163,8 +163,6 @@ public protocol DispatcherRepresentable {
   
   func execute(request:RequestRepresentable,result:@escaping(_:Response)->())
 }
-
-
 
 
 /* =====================NetworkDispatcher====================*/
@@ -228,7 +226,6 @@ public class NetworkDispatcher:DispatcherRepresentable {
     })
     
     urlRequest.httpMethod = request.method.rawValue
-    
     
     
     return urlRequest

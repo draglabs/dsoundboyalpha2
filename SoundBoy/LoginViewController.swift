@@ -76,7 +76,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     
     }
     
-  func loginButtonPressed(sender:UIButton) {
+  @objc func loginButtonPressed(sender:UIButton) {
         
     let request = Login.Register.Request()
     interactor?.RegisterUser(request: request)
@@ -105,7 +105,7 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
         loginButton.setTitle("Facebook", for: .normal)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.tintColor = UIColor.white
-        loginButton.backgroundColor = UIColor(colorLiteralRed: 59/255, green: 89/255, blue: 152/255, alpha: 1)
+        loginButton.backgroundColor = UIColor(displayP3Red: 59/255, green: 89/255, blue: 152/255, alpha: 1)
         view.addSubview(loginButton)
         loginButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         loginButtonConstraints()

@@ -33,7 +33,7 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
         let joinjamVC = JoinJamViewController()
         joinjamVC.modalPresentationStyle = .overCurrentContext
         
-        viewController?.present(joinjamVC, animated: true, completion: {
+        viewController?.present(joinjamVC, animated: false, completion: {
             //some completion here
         })
     }
@@ -49,17 +49,4 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
     
   }
  
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: MainViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: MainDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
 }

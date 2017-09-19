@@ -13,8 +13,9 @@
 		44F840691F5D97D0004A7A76 /* FilesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840631F5D97D0004A7A76 /* FilesRouter.swift */; };
 		44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840641F5D97D0004A7A76 /* FilesViewController.swift */; };
 		44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840651F5D97D0004A7A76 /* FilesWorker.swift */; };
-		A1017CBA1F17FCFF00AA1B31 /* APIWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* APIWorker.swift */; };
+		A1017CBA1F17FCFF00AA1B31 /* APIBaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* APIBaseWorker.swift */; };
 		A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */; };
+		A12174DD1F6C76BA00F139D6 /* UserActivityWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
 		A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F381F0B50A7009D8D6E /* baseOperation.swift */; };
 		A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */; };
@@ -60,7 +61,7 @@
 		A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA61F57470A001F3B00 /* JoinJamViewController.swift */; };
 		A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */; };
 		A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AAE1F57C9FA001F3B00 /* CoreData.xcdatamodeld */; };
-		A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserServices.swift */; };
+		A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */; };
 		A1F203001F5CEC820023484D /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
 		A1F203021F5E37A70023484D /* JamCoreDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */; };
 		A1F203051F5E38B80023484D /* FacebookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203041F5E38B80023484D /* FacebookAPI.swift */; };
@@ -69,7 +70,7 @@
 		A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */; };
 		A1F2030D1F61C7A20023484D /* JoinJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030C1F61C7A20023484D /* JoinJam.swift */; };
 		A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseServices.swift */; };
-		A1F203111F62341F0023484D /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* PinView.swift */; };
+		A1F203111F62341F0023484D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* ActivityView.swift */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
 		A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* StartJam.swift */; };
 /* End PBXBuildFile section */
@@ -84,10 +85,11 @@
 		62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dSoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.release.xcconfig"; sourceTree = "<group>"; };
-		A1017CB91F17FCFF00AA1B31 /* APIWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIWorker.swift; sourceTree = "<group>"; };
+		A1017CB91F17FCFF00AA1B31 /* APIBaseWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBaseWorker.swift; sourceTree = "<group>"; };
 		A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundBoyTests.swift; sourceTree = "<group>"; };
 		A1017CC31F1951A400AA1B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulsator.swift; sourceTree = "<group>"; };
+		A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWorker.swift; sourceTree = "<group>"; };
 		A14F9F2D1F09D892009D8D6E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A14F9F381F0B50A7009D8D6E /* baseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseOperation.swift; sourceTree = "<group>"; };
 		A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUploaderOperation.swift; sourceTree = "<group>"; };
@@ -135,7 +137,7 @@
 		A1B66AA61F57470A001F3B00 /* JoinJamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamViewController.swift; sourceTree = "<group>"; };
 		A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamWorker.swift; sourceTree = "<group>"; };
 		A1B66AAF1F57C9FA001F3B00 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
-		A1B66AB91F57FB3A001F3B00 /* UserServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
+		A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBaseService.swift; sourceTree = "<group>"; };
 		A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataFetch.swift; sourceTree = "<group>"; };
 		A1F203041F5E38B80023484D /* FacebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAPI.swift; sourceTree = "<group>"; };
 		A1F203061F5E39490023484D /* JamCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataSave.swift; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 		A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataSave.swift; sourceTree = "<group>"; };
 		A1F2030C1F61C7A20023484D /* JoinJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJam.swift; sourceTree = "<group>"; };
 		A1F2030E1F61C8710023484D /* JamBaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseServices.swift; sourceTree = "<group>"; };
-		A1F203101F62341F0023484D /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		A1F203101F62341F0023484D /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A1FFEF971F59270A00F7784C /* StartJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJam.swift; sourceTree = "<group>"; };
 		A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -304,7 +306,7 @@
 		A17C68971F59289200E09CB1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A1017CB91F17FCFF00AA1B31 /* APIWorker.swift */,
+				A1017CB91F17FCFF00AA1B31 /* APIBaseWorker.swift */,
 				A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */,
 			);
 			name = Common;
@@ -327,7 +329,8 @@
 		A17C68991F5928AF00E09CB1 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				A1B66AB91F57FB3A001F3B00 /* UserServices.swift */,
+				A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */,
+				A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */,
 				A1F203041F5E38B80023484D /* FacebookAPI.swift */,
 				A1F203081F5E39B10023484D /* UserCoreDataFetch.swift */,
 				A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */,
@@ -340,7 +343,7 @@
 			children = (
 				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
 				A153F80E1F082BBD00223379 /* PlayPause.swift */,
-				A1F203101F62341F0023484D /* PinView.swift */,
+				A1F203101F62341F0023484D /* ActivityView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -482,12 +485,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = DragLabs;
 				TargetAttributes = {
 					A1AE8A281F02102500B979D6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = V9QHFMVFWZ;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -603,8 +607,8 @@
 				44F840661F5D97D0004A7A76 /* FilesInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
-				A1017CBA1F17FCFF00AA1B31 /* APIWorker.swift in Sources */,
-				A1F203111F62341F0023484D /* PinView.swift in Sources */,
+				A1017CBA1F17FCFF00AA1B31 /* APIBaseWorker.swift in Sources */,
+				A1F203111F62341F0023484D /* ActivityView.swift in Sources */,
 				A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
 				A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */,
@@ -616,12 +620,13 @@
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
 				A1A163AE1F64A0A600204C73 /* SettingsModels.swift in Sources */,
 				44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */,
-				A1B66ABA1F57FB3A001F3B00 /* UserServices.swift in Sources */,
+				A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */,
 				A1A163B71F65D33700204C73 /* ExitJam.swift in Sources */,
 				A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
+				A12174DD1F6C76BA00F139D6 /* UserActivityWorker.swift in Sources */,
 				A1B66AA81F57470A001F3B00 /* JoinJamInteractor.swift in Sources */,
 				A1B66A901F555E64001F3B00 /* MainPresenter.swift in Sources */,
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
@@ -664,7 +669,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -672,7 +679,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -714,7 +725,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -722,7 +735,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -759,7 +776,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = draglabs.dSoundBoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -775,7 +793,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = draglabs.dSoundBoy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

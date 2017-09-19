@@ -12,15 +12,22 @@ import UIKit
 enum JoinJam
 {
   // MARK: Use cases
+  enum Join {
+    struct Request {
+      let pin:String
+    }
+    struct Response {
+      let didJoin:Bool
+    }
+    struct ViewModel {
+      let didJoin:Bool
+    }
+  }
   
   enum Commons
   {
-    struct Request
-    {
-    }
-    struct Response
-    {
-    }
+    struct Request{}
+    struct Response{}
     struct ViewModel
     {
       let joinTxt = "JOIN"

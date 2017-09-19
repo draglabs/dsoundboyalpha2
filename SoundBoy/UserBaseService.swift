@@ -85,7 +85,6 @@ class UserRegistrationOperation: OperationRepresentable {
         }
     }
     
-    
     init(facebookId:String,accessToken:String) {
         self.facebookId = facebookId
         self.accessToken = accessToken

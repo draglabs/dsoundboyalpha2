@@ -1,7 +1,6 @@
 //
 //  MainViewController.swift
 //  SoundBoy
-//
 //  Created by Marlon Monroy on 8/29/17.
 //  Copyright (c) 2017 DragLabs. All rights reserved.
 
@@ -10,20 +9,20 @@ import UIKit
 protocol MainDisplayLogic: class {
   func displayPin(viewModel:Main.Jam.ViewModel)
   func displayProgress(progress:Float)
+  func displayRecordEnded()
+  
 }
 
 class MainViewController: UIViewController, MainDisplayLogic {
   var interactor: MainBusinessLogic?
   var router: (NSObjectProtocol & MainRoutingLogic & MainDataPassing)?
-  var isPlaying = false
-    
+ 
   let playPauseView = PlayPauseView()
   let startJoinJamView = JoinStartJamView()
   let pulsor = Pulsator()
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
-  let pinView = PinView()
-  
+  let pinView = ActivityView()
   
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -35,7 +34,6 @@ class MainViewController: UIViewController, MainDisplayLogic {
     setup()
   }
   
-
   private func setup() {
     let viewController = self
     let interactor = MainInteractor()
@@ -49,12 +47,17 @@ class MainViewController: UIViewController, MainDisplayLogic {
     router.dataStore = interactor
     
   }
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-   
-    //view.addSubview(pinView)
+    pinView.parentView = view
+    view.addSubview(pinView)
+    
   }
   
   func nav() {
@@ -63,11 +66,13 @@ class MainViewController: UIViewController, MainDisplayLogic {
     navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back")
     self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back")
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+
   }
   
-  func setupUI() {
-    view.backgroundColor = UIColor.white
+ private func setupUI() {
+  
      nav()
+     view.backgroundColor = UIColor.white
      playPauseView.translatesAutoresizingMaskIntoConstraints = false
      startJoinJamView.translatesAutoresizingMaskIntoConstraints = false
      backLayer.frame = view.frame
@@ -76,9 +81,11 @@ class MainViewController: UIViewController, MainDisplayLogic {
      view.addSubview(backgroundView)
      view.addSubview(playPauseView)
      view.addSubview(startJoinJamView)
-     playPauseView.didPressedPlayButton = didPressedPlayButton
+     playPauseView.didFinishCounting = didFinishCounting
+     playPauseView.didStartCounting = didStartCounting
      startJoinJamView.didPressedJam = jamPressed
      startJoinJamView.didPressedJoin = didPreseJoin
+  
      uiContraints()
     
     let vs = UIView()
@@ -86,11 +93,10 @@ class MainViewController: UIViewController, MainDisplayLogic {
     pulsor.backgroundColor = UIColor.white.cgColor
     playPauseView.insertSubview(vs, belowSubview: playPauseView.pausePlayButton)
     vs.layer.addSublayer(pulsor)
-    
+  
     }
   
-    
-  func uiContraints() {
+ private func uiContraints() {
      // play pause view  constraints
      playPauseView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
      playPauseView.topAnchor.constraint(equalTo: view.topAnchor,constant:64).isActive = true
@@ -105,67 +111,51 @@ class MainViewController: UIViewController, MainDisplayLogic {
     
     }
   
-
   func displayPin(viewModel:Main.Jam.ViewModel) {
     pinView.parentView = view
-    pinView.displayPin(pin: viewModel.pin)
     if !viewModel.pin.isEmpty {
+      pinView.show(pin: viewModel.pin)
       playPauseView.start()
     }
   }
   
-  func playSolo(viewModel:Main.Jam.ViewModel) {
-    if viewModel.didStart {
-      playPauseView.start()
-    }
+  func displayRecordEnded(){
+    pinView.hide()
   }
   
-  func displayProgress(progress: Float) {
-    
-  }
-  
-  func navButtonPressed(sender:UIBarButtonItem) {
+  @objc func navButtonPressed(sender:UIBarButtonItem) {
     if sender == navigationItem.rightBarButtonItem {
       router?.pushFiles()
     }else {
       router?.pushSettings()
     }
   }
+  
 }
 
 extension MainViewController {
-    
-    // callbacks from views
-    
-    func  didPressedPlayButton(playPauseView:PlayPauseView, button:UIButton) {
-        
-        if !isPlaying {
-            pulsor.start()
-            Recorder.shared.startRecording()
-            isPlaying = true
-            playPauseView.updatePlayButton(isPlaying: isPlaying)
-            
-        }else {
-            pulsor.stop()
-          Recorder.shared.didFinishRecording = { url in
-            let uploadRequest = Main.JamUpload.Request(fileURL: url)
-            self.interactor?.uploadJam(request: uploadRequest)
-          }
-            Recorder.shared.stopRecording()
-            isPlaying = false
-            playPauseView.updatePlayButton(isPlaying: isPlaying)
-        }
-        
-    }
-    
-    func jamPressed(view:JoinStartJamView, button:UIButton) {
-        
-        playPauseView.start()
+
+  func didFinishCounting() {
+    pulsor.stop()
+    let endRecordingJamRequest = Main.Jam.Request()
+    interactor?.endRecording(request: endRecordingJamRequest)
+  }
+  
+  func didStartCounting() {
+    pulsor.start()
+    let startRequest = Main.Jam.Request()
+    interactor?.startJam(request: startRequest)
+  }
+  
+  func jamPressed(view:JoinStartJamView, button:UIButton) {
       let request = Main.Jam.Request()
       interactor?.startJam(request: request)
     }
-  
   func didPreseJoin(bottomView:JoinStartJamView,sender:UIButton) {
       router?.presentJoinJam()
+  }
+  
+  func displayProgress(progress: Float) {
+    print("progrees from presenter: \(progress)")
   }
 }
