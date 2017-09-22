@@ -13,12 +13,12 @@
 		44F840691F5D97D0004A7A76 /* FilesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840631F5D97D0004A7A76 /* FilesRouter.swift */; };
 		44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840641F5D97D0004A7A76 /* FilesViewController.swift */; };
 		44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840651F5D97D0004A7A76 /* FilesWorker.swift */; };
-		A1017CBA1F17FCFF00AA1B31 /* APIBaseWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* APIBaseWorker.swift */; };
+		A1017CBA1F17FCFF00AA1B31 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* APIBase.swift */; };
 		A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */; };
+		A11E93BA1F73462600E2EDEE /* UserLoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E93B91F73462600E2EDEE /* UserLoginTest.swift */; };
+		A11E93C21F73484200E2EDEE /* StartJamTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E93C11F73484200E2EDEE /* StartJamTest.swift */; };
 		A12174DD1F6C76BA00F139D6 /* UserActivityWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
-		A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F381F0B50A7009D8D6E /* baseOperation.swift */; };
-		A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */; };
 		A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */; };
 		A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8061F082BBD00223379 /* JoinStartJamView.swift */; };
 		A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8081F082BBD00223379 /* CoreDataStore.swift */; };
@@ -38,7 +38,6 @@
 		A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */; };
 		A1A163B21F64A0A600204C73 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */; };
 		A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */; };
-		A1A163B71F65D33700204C73 /* ExitJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163B61F65D33700204C73 /* ExitJam.swift */; };
 		A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */; };
 		A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A331F02102500B979D6 /* Assets.xcassets */; };
 		A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */; };
@@ -68,12 +67,21 @@
 		A1F203071F5E39490023484D /* JamCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203061F5E39490023484D /* JamCoreDataSave.swift */; };
 		A1F203091F5E39B10023484D /* UserCoreDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203081F5E39B10023484D /* UserCoreDataFetch.swift */; };
 		A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */; };
-		A1F2030D1F61C7A20023484D /* JoinJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030C1F61C7A20023484D /* JoinJam.swift */; };
-		A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseServices.swift */; };
+		A1F2030F1F61C8710023484D /* JamBaseOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseOperations.swift */; };
 		A1F203111F62341F0023484D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* ActivityView.swift */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
-		A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* StartJam.swift */; };
+		A1FFEF981F59270A00F7784C /* JamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* JamWorker.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A11E93BC1F73462600E2EDEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1AE8A211F02102500B979D6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1AE8A281F02102500B979D6;
+			remoteInfo = dSoundBoy;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		44F840601F5D97D0004A7A76 /* FilesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesInteractor.swift; sourceTree = "<group>"; };
@@ -85,14 +93,14 @@
 		62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dSoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.release.xcconfig"; sourceTree = "<group>"; };
-		A1017CB91F17FCFF00AA1B31 /* APIBaseWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBaseWorker.swift; sourceTree = "<group>"; };
-		A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundBoyTests.swift; sourceTree = "<group>"; };
-		A1017CC31F1951A400AA1B31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1017CB91F17FCFF00AA1B31 /* APIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
 		A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulsator.swift; sourceTree = "<group>"; };
+		A11E93B71F73462600E2EDEE /* dSoundBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dSoundBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11E93B91F73462600E2EDEE /* UserLoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginTest.swift; sourceTree = "<group>"; };
+		A11E93BB1F73462600E2EDEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A11E93C11F73484200E2EDEE /* StartJamTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJamTest.swift; sourceTree = "<group>"; };
 		A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWorker.swift; sourceTree = "<group>"; };
 		A14F9F2D1F09D892009D8D6E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		A14F9F381F0B50A7009D8D6E /* baseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = baseOperation.swift; sourceTree = "<group>"; };
-		A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioUploaderOperation.swift; sourceTree = "<group>"; };
 		A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
 		A153F8061F082BBD00223379 /* JoinStartJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStartJamView.swift; sourceTree = "<group>"; };
 		A153F8081F082BBD00223379 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
@@ -112,7 +120,6 @@
 		A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
 		A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableCell.swift; sourceTree = "<group>"; };
-		A1A163B61F65D33700204C73 /* ExitJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExitJam.swift; sourceTree = "<group>"; };
 		A1AE8A291F02102500B979D6 /* dSoundBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dSoundBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1AE8A331F02102500B979D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -143,17 +150,23 @@
 		A1F203061F5E39490023484D /* JamCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataSave.swift; sourceTree = "<group>"; };
 		A1F203081F5E39B10023484D /* UserCoreDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataFetch.swift; sourceTree = "<group>"; };
 		A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataSave.swift; sourceTree = "<group>"; };
-		A1F2030C1F61C7A20023484D /* JoinJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJam.swift; sourceTree = "<group>"; };
-		A1F2030E1F61C8710023484D /* JamBaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseServices.swift; sourceTree = "<group>"; };
+		A1F2030E1F61C8710023484D /* JamBaseOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseOperations.swift; sourceTree = "<group>"; };
 		A1F203101F62341F0023484D /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
-		A1FFEF971F59270A00F7784C /* StartJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartJam.swift; sourceTree = "<group>"; };
+		A1FFEF971F59270A00F7784C /* JamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamWorker.swift; sourceTree = "<group>"; };
 		A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.release.xcconfig"; sourceTree = "<group>"; };
 		C069FEA3A8D01821895BF5C5 /* Pods-SoundBoy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.debug.xcconfig"; sourceTree = "<group>"; };
 		F480E3F31B21DD8468E22F3E /* Pods-dSoundBoy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A11E93B41F73462600E2EDEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1AE8A261F02102500B979D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -207,13 +220,30 @@
 			name = Custom;
 			sourceTree = "<group>";
 		};
-		A1017CC01F1951A400AA1B31 /* SoundBoyTests */ = {
+		A11E93B81F73462600E2EDEE /* dSoundBoyTests */ = {
 			isa = PBXGroup;
 			children = (
-				A1017CC11F1951A400AA1B31 /* SoundBoyTests.swift */,
-				A1017CC31F1951A400AA1B31 /* Info.plist */,
+				A11E93C41F73495100E2EDEE /* Resources */,
+				A11E93C31F73494B00E2EDEE /* Data */,
+				A11E93B91F73462600E2EDEE /* UserLoginTest.swift */,
+				A11E93C11F73484200E2EDEE /* StartJamTest.swift */,
+				A11E93BB1F73462600E2EDEE /* Info.plist */,
 			);
-			path = SoundBoyTests;
+			path = dSoundBoyTests;
+			sourceTree = "<group>";
+		};
+		A11E93C31F73494B00E2EDEE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		A11E93C41F73495100E2EDEE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A14F9F291F09CD3F009D8D6E /* Recorder */ = {
@@ -277,23 +307,6 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		A14F9F371F0B5088009D8D6E /* OperationsQueue */ = {
-			isa = PBXGroup;
-			children = (
-				A14F9F3C1F0B634A009D8D6E /* Operation Resources */,
-				A14F9F381F0B50A7009D8D6E /* baseOperation.swift */,
-				A14F9F3A1F0B6197009D8D6E /* AudioUploaderOperation.swift */,
-			);
-			name = OperationsQueue;
-			sourceTree = "<group>";
-		};
-		A14F9F3C1F0B634A009D8D6E /* Operation Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Operation Resources";
-			sourceTree = "<group>";
-		};
 		A155FD201F3E40FE00B4165F /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +319,7 @@
 		A17C68971F59289200E09CB1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A1017CB91F17FCFF00AA1B31 /* APIBaseWorker.swift */,
+				A1017CB91F17FCFF00AA1B31 /* APIBase.swift */,
 				A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */,
 			);
 			name = Common;
@@ -315,11 +328,9 @@
 		A17C68981F5928A300E09CB1 /* Jam */ = {
 			isa = PBXGroup;
 			children = (
-				A1F2030E1F61C8710023484D /* JamBaseServices.swift */,
-				A1FFEF971F59270A00F7784C /* StartJam.swift */,
+				A1F2030E1F61C8710023484D /* JamBaseOperations.swift */,
+				A1FFEF971F59270A00F7784C /* JamWorker.swift */,
 				A17C689A1F59A89800E09CB1 /* UploadJam.swift */,
-				A1F2030C1F61C7A20023484D /* JoinJam.swift */,
-				A1A163B61F65D33700204C73 /* ExitJam.swift */,
 				A1F203061F5E39490023484D /* JamCoreDataSave.swift */,
 				A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */,
 			);
@@ -338,20 +349,20 @@
 			name = User;
 			sourceTree = "<group>";
 		};
-		A17C689E1F5B60CC00E09CB1 /* View */ = {
+		A17C689E1F5B60CC00E09CB1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
 				A153F80E1F082BBD00223379 /* PlayPause.swift */,
 				A1F203101F62341F0023484D /* ActivityView.swift */,
 			);
-			name = View;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		A1A163A61F64A08F00204C73 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				A1A163B31F64D88200204C73 /* view */,
+				A1A163B31F64D88200204C73 /* views */,
 				A1A163A71F64A0A600204C73 /* SettingsInteractor.swift */,
 				A1A163A81F64A0A600204C73 /* SettingsModels.swift */,
 				A1A163A91F64A0A600204C73 /* SettingsPresenter.swift */,
@@ -362,12 +373,12 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		A1A163B31F64D88200204C73 /* view */ = {
+		A1A163B31F64D88200204C73 /* views */ = {
 			isa = PBXGroup;
 			children = (
 				A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */,
 			);
-			name = view;
+			name = views;
 			sourceTree = "<group>";
 		};
 		A1AE8A201F02102500B979D6 = {
@@ -375,7 +386,7 @@
 			children = (
 				A1AE8A2B1F02102500B979D6 /* SoundBoy */,
 				A14F9F321F0B5023009D8D6E /* resources */,
-				A1017CC01F1951A400AA1B31 /* SoundBoyTests */,
+				A11E93B81F73462600E2EDEE /* dSoundBoyTests */,
 				A1AE8A2A1F02102500B979D6 /* Products */,
 				99495EC85BA2514731C07453 /* Pods */,
 				87AFCD388E9A1349D9414E3F /* Frameworks */,
@@ -386,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				A1AE8A291F02102500B979D6 /* dSoundBoy.app */,
+				A11E93B71F73462600E2EDEE /* dSoundBoyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -395,7 +407,6 @@
 			children = (
 				A155FD201F3E40FE00B4165F /* App */,
 				A1017CB41F16CA8200AA1B31 /* Custom */,
-				A14F9F371F0B5088009D8D6E /* OperationsQueue */,
 				A14F9F361F0B507D009D8D6E /* Services */,
 				A14F9F341F0B5059009D8D6E /* Scenes */,
 				A14F9F331F0B5041009D8D6E /* Models */,
@@ -431,7 +442,7 @@
 		A1FC8BB01F105F7000DB2EC0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				A17C689E1F5B60CC00E09CB1 /* View */,
+				A17C689E1F5B60CC00E09CB1 /* Views */,
 				A1B66A881F555E64001F3B00 /* MainInteractor.swift */,
 				A1B66A891F555E64001F3B00 /* MainModels.swift */,
 				A1B66A8A1F555E64001F3B00 /* MainPresenter.swift */,
@@ -458,6 +469,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A11E93B61F73462600E2EDEE /* dSoundBoyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A11E93BE1F73462600E2EDEE /* Build configuration list for PBXNativeTarget "dSoundBoyTests" */;
+			buildPhases = (
+				A11E93B31F73462600E2EDEE /* Sources */,
+				A11E93B41F73462600E2EDEE /* Frameworks */,
+				A11E93B51F73462600E2EDEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A11E93BD1F73462600E2EDEE /* PBXTargetDependency */,
+			);
+			name = dSoundBoyTests;
+			productName = dSoundBoyTests;
+			productReference = A11E93B71F73462600E2EDEE /* dSoundBoyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A1AE8A281F02102500B979D6 /* dSoundBoy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A1AE8A3B1F02102500B979D6 /* Build configuration list for PBXNativeTarget "dSoundBoy" */;
@@ -484,10 +513,16 @@
 		A1AE8A211F02102500B979D6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = DragLabs;
 				TargetAttributes = {
+					A11E93B61F73462600E2EDEE = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = K792737Z6L;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A1AE8A281F02102500B979D6;
+					};
 					A1AE8A281F02102500B979D6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = V9QHFMVFWZ;
@@ -510,11 +545,19 @@
 			projectRoot = "";
 			targets = (
 				A1AE8A281F02102500B979D6 /* dSoundBoy */,
+				A11E93B61F73462600E2EDEE /* dSoundBoyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A11E93B51F73462600E2EDEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1AE8A271F02102500B979D6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -575,6 +618,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A11E93B31F73462600E2EDEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A11E93BA1F73462600E2EDEE /* UserLoginTest.swift in Sources */,
+				A11E93C21F73484200E2EDEE /* StartJamTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A1AE8A251F02102500B979D6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -595,8 +647,6 @@
 				A153F81E1F082BBD00223379 /* PlayPause.swift in Sources */,
 				A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */,
 				A1B66A851F5559CA001F3B00 /* LoginRouter.swift in Sources */,
-				A14F9F3B1F0B6197009D8D6E /* AudioUploaderOperation.swift in Sources */,
-				A1F2030D1F61C7A20023484D /* JoinJam.swift in Sources */,
 				A1F203051F5E38B80023484D /* FacebookAPI.swift in Sources */,
 				A1B66A821F5559CA001F3B00 /* LoginInteractor.swift in Sources */,
 				A1F203071F5E39490023484D /* JamCoreDataSave.swift in Sources */,
@@ -607,13 +657,12 @@
 				44F840661F5D97D0004A7A76 /* FilesInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
-				A1017CBA1F17FCFF00AA1B31 /* APIBaseWorker.swift in Sources */,
+				A1017CBA1F17FCFF00AA1B31 /* APIBase.swift in Sources */,
 				A1F203111F62341F0023484D /* ActivityView.swift in Sources */,
 				A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
-				A1FFEF981F59270A00F7784C /* StartJam.swift in Sources */,
+				A1FFEF981F59270A00F7784C /* JamWorker.swift in Sources */,
 				A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */,
-				A14F9F391F0B50A7009D8D6E /* baseOperation.swift in Sources */,
 				A1B66AAA1F57470A001F3B00 /* JoinJamPresenter.swift in Sources */,
 				A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */,
 				A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */,
@@ -621,10 +670,9 @@
 				A1A163AE1F64A0A600204C73 /* SettingsModels.swift in Sources */,
 				44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */,
 				A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */,
-				A1A163B71F65D33700204C73 /* ExitJam.swift in Sources */,
 				A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
-				A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */,
+				A1F2030F1F61C8710023484D /* JamBaseOperations.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
 				A12174DD1F6C76BA00F139D6 /* UserActivityWorker.swift in Sources */,
 				A1B66AA81F57470A001F3B00 /* JoinJamInteractor.swift in Sources */,
@@ -647,6 +695,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A11E93BD1F73462600E2EDEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1AE8A281F02102500B979D6 /* dSoundBoy */;
+			targetProxy = A11E93BC1F73462600E2EDEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -659,6 +715,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A11E93BF1F73462600E2EDEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K792737Z6L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = dSoundBoyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.draglabs.dSoundBoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dSoundBoy.app/dSoundBoy";
+			};
+			name = Debug;
+		};
+		A11E93C01F73462600E2EDEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K792737Z6L;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = dSoundBoyTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.draglabs.dSoundBoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dSoundBoy.app/dSoundBoy";
+			};
+			name = Release;
+		};
 		A1AE8A391F02102500B979D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -801,6 +899,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A11E93BE1F73462600E2EDEE /* Build configuration list for PBXNativeTarget "dSoundBoyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A11E93BF1F73462600E2EDEE /* Debug */,
+				A11E93C01F73462600E2EDEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A1AE8A241F02102500B979D6 /* Build configuration list for PBXProject "SoundBoy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

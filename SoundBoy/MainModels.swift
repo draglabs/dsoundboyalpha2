@@ -12,14 +12,43 @@ import Foundation
 enum Main
 {
   // MARK: Use cases
+  enum Commons {
+    struct Request{}
+    struct Response{
+      let jamActive:Bool
+    }
+    struct ViewModel{
+      let jamActive:Bool
+    }
+  }
+
+  enum Progress {
+    struct Request {}
+    struct Response {
+      let progress:Float
+    }
+    struct ViewModel {
+      let progress:Float
+    }
+  }
+  
+  enum JamActive {
+    struct Request{}
+    struct Response{
+      let isActive:Bool
+    }
+    struct ViewModel{
+      let isActive:Bool
+    }
+  }
   
   enum Jam {
     struct Request{}
-    struct Response{}
-    struct ViewModel{
-      
+    struct Response{
       let pin:String
-      
+    }
+    struct ViewModel{
+      let pin:String
     }
   }
   

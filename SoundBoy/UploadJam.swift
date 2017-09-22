@@ -15,9 +15,10 @@ protocol JamUpLoadNotifier {
     func response(statusCode:Int)
     func didFail(error:Error?)
 }
+
 enum JamUploadRequest:RequestRepresentable {
   
-  case soloUpload(userId:String)
+  case soloUpload(userId:String, startTime:String, endTime:String)
   case upload(userId:String, jamId:String, start:String, endTime:String)
   
   var method: HTTPMethod { return .post }
@@ -25,8 +26,8 @@ enum JamUploadRequest:RequestRepresentable {
   
   var path: String {
     switch self {
-    case .soloUpload(let userId):
-      return "jam/upload/userid/\(userId)"
+    case .soloUpload(let userId,_,_):
+      return "soloupload/userid/\(userId)"
       
     case .upload(let userId, let jamId, _ , _ ):
       return "jam/upload/userid/\(userId)/jamid/\(jamId)"
@@ -34,8 +35,8 @@ enum JamUploadRequest:RequestRepresentable {
   }
   var parameters : RequestParams {
     switch self {
-    case .soloUpload(let userId):
-      return .body(["user_id":userId])
+    case .soloUpload(_,let start,let end):
+      return .body(["startTime":start,"endTime":end])
     case .upload( _,  _, let start, let end):
       return .body(["startTime":start,"endTime":end])
      }
@@ -84,7 +85,10 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     
     func executeUpload(request:RequestRepresentable) {
        session.dataTask(with:prepareURLRequest(request: request)).resume()
-      
+//      session.dataTask(with: prepareURLRequest(request: request), completionHandler: { (data, response, error) in
+//        let parser = Parser()
+//        print(parser.parse(to: .json, from: data) ?? "Cant parse data from uploading")
+//      }).resume()
     }
     
     private func prepareURLRequest(request:RequestRepresentable) ->URLRequest {
@@ -162,6 +166,11 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
         let urlResponse = response as! HTTPURLResponse
         let status = urlResponse.statusCode
         delegate?.response(statusCode: status)
+        if status == 200 || status < 300 {
+          delegate?.didSucceed()
+        }else {
+          delegate?.didFail(error: nil)
+      }
     }
   
   
@@ -182,7 +191,7 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
 
 
 class JamUpload: OperationRepresentable {
-  let jam:Jam
+  var jam:Jam?
   let userId:String
   let isSolo:Bool
     var responseError:((_ code:Int?, _ error:Error?)->())?
@@ -214,17 +223,18 @@ class JamUpload: OperationRepresentable {
   
     var request: RequestRepresentable {
       if isSolo {
-         return JamUploadRequest.soloUpload(userId: userId)
+        return JamUploadRequest.soloUpload(userId: userId, startTime: "3034:405", endTime: "405:405")
       }
-      return JamUploadRequest.upload(userId: userId, jamId: jam.id!, start: jam.startTime!, endTime: jam.endTime!)
+      return JamUploadRequest.upload(userId: userId, jamId: jam!.id!, start: jam!.startTime!, endTime: jam!.endTime!)
     }
     
     
-  init(userId:String, jam:Jam, isSolo:Bool) {
+  init(userId:String, jam:Jam?, isSolo:Bool) {
         self.userId = userId
         self.jam = jam
         self.isSolo = isSolo
     }
+  
 }
 
 
@@ -234,10 +244,20 @@ class JamUploadWorker {
   let userFetcher = UserFether()
   let jamFetcher = JamFetcher()
   var uploadDelegate:JamUpLoadNotifier?
+  var isSolo = false
   
-    func uploadJam(url:URL, delegate:JamUpLoadNotifier) {
+  func uploadJam(url:URL, delegate:JamUpLoadNotifier, isSolo:Bool) {
       self.uploadDelegate = delegate
-  
+    self.isSolo = isSolo
+    if isSolo {
+      userFetcher.fetch { (user, error) in
+        if user != nil {
+          self.prepareSolo(user: user!.userId!, url: url, delegate: delegate)
+        }
+      }
+      
+      return
+    }
       userFetcher.fetch { (user, error) in
         if user != nil {
           self.prepareUser(user: user!,url: url)
@@ -245,7 +265,7 @@ class JamUploadWorker {
       }
     }
   
-    private func prepareUser(user:User, url:URL) {
+  private func prepareUser(user:User, url:URL) {
       let userId = user.userId!
   
       jamFetcher.fetch { (jam, error) in
@@ -255,14 +275,18 @@ class JamUploadWorker {
       }
     }
 
-    private func prepareJam(jam:Jam,userId:String, url:URL) {
+  
+  private func prepareJam(jam:Jam,userId:String, url:URL) {
       let uploadDispatcher = JamUpLoadDispatcher(enviroment:env, fileURL: url, delegate: uploadDelegate!)
-      let task = JamUpload(userId: userId, jam: jam, isSolo: false)
+      let task = JamUpload(userId: userId, jam: jam, isSolo: isSolo)
       task.executeUpload(in: uploadDispatcher)
     }
   
-  func uploadSolo(url:URL, delegate:JamUpLoadNotifier) {
-    
+  
+  private func prepareSolo(user:String,url:URL, delegate:JamUpLoadNotifier) {
+    let uploadDispatcher = JamUpLoadDispatcher(enviroment:env, fileURL: url, delegate: uploadDelegate!)
+    let task = JamUpload(userId: user, jam: nil, isSolo: isSolo)
+    task.executeUpload(in: uploadDispatcher)
   }
 }
 

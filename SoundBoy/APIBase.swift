@@ -1,5 +1,5 @@
 //
-//  WebService.swift
+//  APIBase.swift
 //  SoundBoy
 //
 //  Created by Marlon Monroy on 7/13/17.
@@ -13,7 +13,6 @@ extension Data {
   mutating func append(_ string: String) {
     let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
     append(data!)
-    
   }
 }
 
@@ -50,7 +49,40 @@ public enum NetworkError :Error {
   
 }
 
-/// The enviroment were are hiting
+public enum ParsingOptions {
+  case json
+  case array
+  case dictionary
+  case raw
+}
+/// Parses raw Data to json
+///needs to be extended to support
+/// arrays more.
+public struct Parser {
+  
+  func parse(to parsingOptions:ParsingOptions,from data:Data?) -> JSONDictionary? {
+    
+    guard let raw = data else { return nil }
+    let jsonAny = try? JSONSerialization.jsonObject(with: raw, options: JSONSerialization.ReadingOptions())
+    guard let json = jsonAny as? JSONDictionary else { return nil }
+    return json
+  }
+  
+  func parse(to parsingOptions:ParsingOptions, from json:JSONDictionary) ->Data? {
+    return try? JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
+  }
+  
+  private func parseToArray(from data:Data) {
+    fatalError("`func parseToArray(from data:Data)` not implemented")
+  }
+  
+  private func parseToDictionary(from data:Data) {
+    fatalError("`func parseToDictionary(from data:Data)` not implemented")
+  }
+
+}
+
+/// The enviroment we're working on
 /// example: `Development`
 
 public struct Enviroment {
@@ -77,12 +109,6 @@ public struct Enviroment {
   
 }
 
-/* =====================MultipartRepresentable====================*/
-public protocol MultipartRepresentable {
-  var body:Data {get}
-  func createBody(boundary:String) ->Data
-  
-}
 /* =====================RequestRepresentable====================*/
 public protocol RequestRepresentable {
   
@@ -109,6 +135,8 @@ public protocol RequestRepresentable {
 /// Response enum
 /// Represent a reponse from the server
 public enum Response {
+
+  
   case json(_ :JSONDictionary)
   case data(_ :Data)
   case error(_:Int?, _:Error?)
@@ -116,9 +144,11 @@ public enum Response {
   init(_ response:(r:HTTPURLResponse?, data:Data?, error:Error?), for request:RequestRepresentable) {
     
     // Draglabs custom reponse message
-    if response.r?.statusCode == 400 || response.r?.statusCode == 409  {
-      let jsonRes = try! JSONSerialization.jsonObject(with: response.data!, options: JSONSerialization.ReadingOptions())
-      self = .json(jsonRes as! JSONDictionary)
+    if response.r!.statusCode >= 400 {
+      let parser = Parser()
+      let parsedjson = parser.parse(to: .dictionary, from: response.data)
+      self = .json(parsedjson!)
+
       return
     }
     
@@ -129,7 +159,6 @@ public enum Response {
     
     guard let data = response.data else {
       self = .error(response.r?.statusCode, NetworkError.noData)
-      
       return
     }
     
@@ -137,9 +166,15 @@ public enum Response {
     case .data:
       self = .data(data)
     case .JSON:
-      let jsonRes = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions())
-      guard let js = jsonRes as? JSONDictionary else {self = .error(response.r?.statusCode, NetworkError.unableToParse); return }
-      self = .json(js)
+      let parser = Parser()
+      let parsedjson = parser.parse(to: .dictionary, from: data)
+      if parsedjson != nil {
+        self = .json(parsedjson!)
+        return
+      }else {
+        self = .error(response.r?.statusCode, NetworkError.unableToParse)
+        return
+      }
     }
     
   }
@@ -164,11 +199,10 @@ public protocol DispatcherRepresentable {
   func execute(request:RequestRepresentable,result:@escaping(_:Response)->())
 }
 
-
 /* =====================NetworkDispatcher====================*/
 
 /// The Default network dispatcher
-public class NetworkDispatcher:DispatcherRepresentable {
+public class DefaultDispatcher:DispatcherRepresentable {
   
   private var enviroment:Enviroment
   
@@ -189,11 +223,8 @@ public class NetworkDispatcher:DispatcherRepresentable {
     
     let rq = prepareURLRequest(for: request)
     session.dataTask(with: rq) { (data, urlResponse, error) in
-      
       let res = Response((r: urlResponse as? HTTPURLResponse, data: data, error: error), for: request)
-      
       result(res)
-      
       }.resume()
   }
   
@@ -201,12 +232,12 @@ public class NetworkDispatcher:DispatcherRepresentable {
     let fullURL = "\(enviroment.host)/\(request.path)"
     var urlRequest = URLRequest(url: URL(string: fullURL)!)
     
-    
     switch request.parameters {
       
     case .body(let param):
+      let parser = Parser()
       if let bodyParams = param {
-        let body = try! JSONSerialization.data(withJSONObject: bodyParams, options: [])
+        let body = parser.parse(to: .raw, from: bodyParams)
         urlRequest.httpBody = body
       } else {
         fatalError("params cant be empty")
@@ -227,30 +258,9 @@ public class NetworkDispatcher:DispatcherRepresentable {
     
     urlRequest.httpMethod = request.method.rawValue
     
-    
     return urlRequest
   }
   
-  
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

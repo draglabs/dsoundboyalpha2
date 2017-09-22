@@ -95,6 +95,13 @@ class JoinStartJamView: UIView {
         jamButton.addTarget(self, action: #selector(jamButtonPressed(sender:)), for: .touchUpInside)
     }
   
+  func updateJamButton(isJamActive:Bool) {
+    if isJamActive {
+      jamButton.setTitle("Exit Jam", for: .normal)
+    }else{
+      jamButton.setTitle("Jam", for: .normal)
+    }
+  }
 }
 
 
@@ -107,13 +114,8 @@ extension JoinStartJamView {
     }
   
   @objc func joinButtonPressed(sender:UIButton) {
-        let fetch = JamFetcher()
-        fetch.fetch { (jam, error) in
-          print(jam ?? "cant find jam")
-      }
         didPressedJoin?(self, sender)
         delegate?.didPressedJoin(bottomView: self, join: sender)
     }
-    
-    
+  
 }

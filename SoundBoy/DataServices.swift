@@ -19,4 +19,5 @@ public protocol FetcherRepresentable {
     var coreDataStore:CoreDataStore {get }
     associatedtype A
     func fetch(callback: @escaping (_ result:A?, _ error:Error?) -> ())
+    func delete(callback:@escaping(_ deleted:Bool)->())
 }

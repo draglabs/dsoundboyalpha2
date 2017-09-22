@@ -132,7 +132,7 @@ class PlayPauseView: UIView {
       self.timeLabel.text = count
     }
     timeCounter.startTimeCounter()
-    didStartCounting?()
+    
   }
   
   func stop() {
@@ -141,6 +141,7 @@ class PlayPauseView: UIView {
     timeCounter.stopTimeCounter()
     didFinishCounting?()
   }
+  
 }
 
 

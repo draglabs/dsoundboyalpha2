@@ -36,6 +36,9 @@ private class AppFetcher: FetcherRepresentable {
         }
         
     }
+  func delete(callback: @escaping (_ deleted:Bool) -> ()) {
+    
+  }
 }
 
 class App: NSObject {

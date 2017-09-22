@@ -18,14 +18,12 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
   var router: (NSObjectProtocol & JoinJamRoutingLogic & JoinJamDataPassing)?
   let pinTextfiled = UITextField()
   let txtLabel = UILabel()
-  let cancel = UIButton(type: .system)
+  let cancel = UIButton(type: .custom)
   let doneBuntton = UIButton( type: .system)
   var indicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
   var txtfieldLeftAnchor:NSLayoutConstraint!
-  var doneButtonRightAnchor:NSLayoutConstraint!
-  var textTopAnchor:NSLayoutConstraint!
+
   // MARK: Object lifecycle
-  
   override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
     super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     setup()
@@ -64,15 +62,19 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     txtfieldLeftAnchor.constant -= 400
-    UIView.animate(withDuration: 0.4) {
+    UIView.animate(withDuration: 0.5) {
+      self.doneBuntton.alpha = 1
+      self.txtLabel.alpha = 1
       self.view.layoutIfNeeded()
     }
+    
     pinTextfiled.becomeFirstResponder()
     
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
+    txtLabel.alpha = 0
+    doneBuntton.alpha = 0
   }
     
   func displayCommons(viewModel: JoinJam.Commons.ViewModel) {
@@ -81,10 +83,13 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
       txtLabel.text = viewModel.labelTxt
   }
   func displayDidJoin(viewModel: JoinJam.Join.ViewModel) {
-    if viewModel.didJoin{
+    indicator.stopAnimating()
+    indicator.removeFromSuperview()
+    if viewModel.didJoin {
       router?.dismiss()
     }else {
-      
+      pinTextfiled.isEnabled = true
+      doneBuntton.isEnabled = true
     }
   }
   
@@ -94,11 +99,9 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
   }
   func uiSetup() {
     
-    view.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.2)
+    view.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
     view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTouch(sender:))))
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
-    imageView.frame = view.frame
-    //view.addSubview(imageView)
+  
     // commons
     pinTextfiled.translatesAutoresizingMaskIntoConstraints = false
     pinTextfiled.keyboardType = .numberPad
@@ -107,9 +110,10 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
     pinTextfiled.textAlignment = .center
     pinTextfiled.delegate = self
     cancel.translatesAutoresizingMaskIntoConstraints = false
+  
     cancel.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
     cancel.addTarget(self, action: #selector(canceButtonPressed(sender:)), for: .touchUpInside)
-    cancel.tintColor = UIColor.white
+   
     
     doneBuntton.translatesAutoresizingMaskIntoConstraints = false
     doneBuntton.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
@@ -150,8 +154,8 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
     
     cancel.topAnchor.constraint(equalTo: view.topAnchor, constant:20).isActive = true
     cancel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:-20).isActive = true
-    cancel.heightAnchor.constraint(equalToConstant: 25).isActive = true
-    cancel.widthAnchor.constraint(equalToConstant: 25).isActive = true
+    cancel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+    cancel.widthAnchor.constraint(equalToConstant: 40).isActive = true
     
     txtLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
     txtLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80).isActive = true
@@ -160,7 +164,6 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
     txtfieldLeftAnchor = NSLayoutConstraint(item: pinTextfiled,attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 420)
     txtfieldLeftAnchor.isActive = true
     
-    //pinTextfiled.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
     pinTextfiled.topAnchor.constraint(equalTo: txtLabel.bottomAnchor, constant: 40).isActive = true
     pinTextfiled.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
     pinTextfiled.heightAnchor.constraint(equalToConstant: 44).isActive = true
@@ -169,7 +172,6 @@ class JoinJamViewController: UIViewController, JoinJamDisplayLogic {
     doneBuntton.topAnchor.constraint(equalTo: pinTextfiled.bottomAnchor, constant: 20).isActive = true
     doneBuntton.heightAnchor.constraint(equalToConstant: 44).isActive = true
     doneBuntton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-    
     
   }
 }

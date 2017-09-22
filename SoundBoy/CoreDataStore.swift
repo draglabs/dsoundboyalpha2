@@ -90,9 +90,8 @@ public class CoreDataStore:NSObject {
                 print("saved")
             } catch  {
                 completion(false)
-//                let nserror = error as NSError
-//                fatalError("cant save contet \(nserror.userInfo)")
-                
+                let nserror = error as NSError
+                fatalError("cant save contet \(nserror.userInfo)")
             }
         }
     }

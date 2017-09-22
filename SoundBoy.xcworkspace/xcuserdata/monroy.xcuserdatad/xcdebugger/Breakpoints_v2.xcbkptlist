@@ -134,11 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundBoy/MainModels.swift"
-            timestampString = "527129174.211456"
+            timestampString = "527796620.063521"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "Jam"
             landmarkType = "13">
          </BreakpointContent>
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundBoy/UploadJam.swift"
-            timestampString = "527498687.990708"
+            timestampString = "527796620.063984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "mimeType(for:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -203,86 +203,6 @@
             endingLineNumber = "31"
             landmarkName = "init(parent:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoundBoy/JoinJamInteractor.swift"
-            timestampString = "527498687.990832"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "join(request:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoundBoy/JoinJamInteractor.swift"
-            timestampString = "527498687.990891"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "join(request:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SoundBoy/JoinJamInteractor.swift"
-            timestampString = "527498687.990939"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "join(request:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "dSoundBoy.JoinJamInteractor.join(request: dSoundBoy.JoinJam.Join.Request) -&gt; ()"
-                  moduleName = "dSoundBoy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/monroy/Desktop/dSoundBoy/dsoundboyalpha2/SoundBoy/JoinJamInteractor.swift"
-                  timestampString = "527498688.106561"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "216">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Bool) -&gt; () in dSoundBoy.JoinJamInteractor.join(request: dSoundBoy.JoinJam.Join.Request) -&gt; ()"
-                  moduleName = "dSoundBoy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/monroy/Desktop/dSoundBoy/dsoundboyalpha2/SoundBoy/JoinJamInteractor.swift"
-                  timestampString = "527498688.108323"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "412">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

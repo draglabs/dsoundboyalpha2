@@ -8,19 +8,15 @@
 
 import UIKit
 
-@objc protocol LoginRoutingLogic
-{
+@objc protocol LoginRoutingLogic {
     func routeToMainController(source:LoginViewController)
-    
 }
 
-protocol LoginDataPassing
-{
+protocol LoginDataPassing {
   var dataStore: LoginDataStore? { get }
 }
 
-class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing
-{
+class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
   weak var viewController: LoginViewController?
   var dataStore: LoginDataStore?
 
@@ -28,6 +24,7 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing
     
     func routeToMainController(source: LoginViewController) {
         let mainController = MainViewController()
+      Customizer.main(nav: source.navigationController!)
         source.navigationController?.setViewControllers([mainController], animated: true)
     }
     

@@ -9,31 +9,27 @@
 import UIKit
 
 protocol MainPresentationLogic {
-  func presentProgress(progress:Float)
-  func presentJamPin( jam:Jam)
-  func presentJamActive()
-  func presentCurrentRecordEnded()
+  func presentProgress(response:Main.Progress.Response)
+  func presentJamPin(response:Main.Jam.Response)
+  func presentJamActive(response:Main.JamActive.Response)
+  
 }
 
 class MainPresenter: MainPresentationLogic {
   weak var viewController: MainDisplayLogic?
   
-  func presentProgress(progress: Float) {
-    viewController?.displayProgress(progress: progress)
+  func presentProgress(response:Main.Progress.Response) {
+    viewController?.displayProgress(viewModel: Main.Progress.ViewModel(progress: response.progress))
   }
-  func presentJamPin(jam: Jam) {
-    if var pin = jam.pin {
+  func presentJamPin(response:Main.Jam.Response) {
+      var pin = response.pin
       pin.insert(separator: "-", every: 3)
       let model = Main.Jam.ViewModel(pin: pin)
      self.viewController?.displayPin(viewModel: model)
-    }
-  }
-  
-  func presentJamActive() {
     
   }
   
-  func presentCurrentRecordEnded() {
-    viewController?.displayRecordEnded()
+  func presentJamActive(response:Main.JamActive.Response) {
+    viewController?.displayIsJamActive(viewModel: Main.JamActive.ViewModel(isActive: response.isActive))
   }
 }

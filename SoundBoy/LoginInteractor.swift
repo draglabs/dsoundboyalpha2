@@ -26,7 +26,7 @@ class LoginInteractor: LoginBusinessLogic, LoginDataStore {
   
   func welcomeText(request: Login.WelcomeText.Request) {
     worker = LoginWorker()
-    worker?.doSomeWork()
+    worker?.requestPermisions()
     
     let response = Login.WelcomeText.Response()
     presenter?.presentText(response: response)

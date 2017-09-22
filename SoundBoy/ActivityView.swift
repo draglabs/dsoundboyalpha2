@@ -9,6 +9,7 @@ import UIKit
 
 class ActivityView: UIView {
   let topBarView = UIView()
+  private var isShown = false
   var pin:String = "" {
     willSet {
       pinLabel.text = newValue
@@ -48,12 +49,9 @@ class ActivityView: UIView {
     uiSetup()
   }
   
-  func animateShow() {
-   
-  }
   
   func show(pin:String) {
-    
+    if !isShown {
     if let parent = parentView {
       self.pin = pin
      
@@ -63,17 +61,21 @@ class ActivityView: UIView {
          self.frame = CGRect(x: 0, y: parent.bounds.midY + 120, width: parent.bounds.width, height:parent.bounds.midY - 120)
       }, completion: {done in })
     }
+     uiSetup()
+      isShown = true
+    }
     
-    
-    uiSetup()
   }
   
   func hide() {
+    if isShown {
     UIView.animate(withDuration: 0.6, animations: {
     self.center.y += self.parentView!.bounds.maxY
     }, completion: { done in
       self.removeFromSuperview()
     })
+      isShown = false
+    }
   }
 
   func uiSetup() {

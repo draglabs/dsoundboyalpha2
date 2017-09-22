@@ -18,10 +18,11 @@ class RecordindsStore:StoreRepresentable {
   func fromData(data: Data, response: @escaping (Bool) -> ()) {fatalError("Function not implemented")}
   func fromJSON(json: JSONDictionary, response: @escaping (Bool) -> ()) {
     self.response = response
+    print(json)
     guard let recordings = json["recordings"] as? [JSONDictionary] else {response(false); return }
-    saveRecordings(recordings: recordings)
+   // saveRecordings(recordings: recordings)
     guard let jams = json["jams"] as? [JSONDictionary] else {response(false);return}
-    saveJams(jams: jams)
+    //saveJams(jams: jams)
   }
   
   
@@ -59,6 +60,10 @@ class RecordindsFetcher:FetcherRepresentable {
         fatalError("Cant perform fetch for recordins error: \(error)")
       }
     }
+  }
+  
+  func delete(callback: @escaping (_ deleted:Bool) -> ()) {
+    fatalError("`func delete()` not implemented")
   }
 }
 
@@ -98,7 +103,7 @@ class UserActivityOperation: OperationRepresentable {
 
 class UserActivityWorker: NSObject {
   let user = UserFether()
-  let dispatcher = NetworkDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
+  let dispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
   func getActivity(completion:@escaping(_ done:Bool)->()) {
     
     user.fetch { (user, error) in

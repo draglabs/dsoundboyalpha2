@@ -18,9 +18,9 @@ class  JamStore: StoreRepresentable {
   func fromJSON(json: JSONDictionary, response: @escaping (Bool) -> ()) {
     print(json)
     
-    if let exited = json["message"] as? String {
-      exitedJam(response: response)
-      print(exited)
+   
+    if let error = json["error"] as? String {
+      print(error)
       return
     }
     
@@ -42,27 +42,8 @@ class  JamStore: StoreRepresentable {
     jamToSave.pin = pin
     jamToSave.startTime = startTime
     jamToSave.endTime = endTime
-    
+    jamToSave.isCurrent = true
     coreDataStore.save(completion: response)
   }
 
-  private func exitedJam(response: @escaping (Bool) -> ()) {
-    let context = coreDataStore.viewContext
-    let request:NSFetchRequest = Jam.fetchRequest()
-  
-    context.perform {
-      do {
-        let result = try request.execute()
-        if result.count > 0 {
-          result.forEach({jam in
-            context.delete(jam)
-          })
-          response(true)
-        }
-      }catch {
-        fatalError("cant perform fetch for deletion \(error)")
-      }
-    }
-    
-  }
 }

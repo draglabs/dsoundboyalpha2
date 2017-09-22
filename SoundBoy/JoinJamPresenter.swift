@@ -26,5 +26,7 @@ class JoinJamPresenter: JoinJamPresentationLogic {
     let viewModel = JoinJam.Join.ViewModel(didJoin: response.didJoin)
     viewController?.displayDidJoin(viewModel: viewModel)
   }
+  
+  
     
 }

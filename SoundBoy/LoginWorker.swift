@@ -7,11 +7,12 @@
 //
 
 
-import UIKit
+import Foundation
 
-class LoginWorker
-{
-  func doSomeWork()
-  {
+class LoginWorker {
+  let location = LocationWorker()
+  func requestPermisions() {
+    location.requestLocation()
+    Recorder.shared.prepareSession()
   }
 }

@@ -7,13 +7,15 @@
 //
 
 
-import UIKit
+import Foundation
 
 protocol MainBusinessLogic {
   func startJam(request: Main.Jam.Request)
   func endRecording(request: Main.Jam.Request)
   func exitJam(request: Main.Jam.Request)
   func didJoin(request:Main.Jam.Request)
+  func checkForActiveJam(request:Main.Jam.Request)
+  func startSolo(request:Main.Jam.Request)
 }
 
 protocol MainDataStore {
@@ -23,59 +25,77 @@ protocol MainDataStore {
 class MainInteractor: MainBusinessLogic, MainDataStore {
   var presenter: MainPresentationLogic?
   var worker: MainWorker?
+  let jamWorker = JamWorker()
   var jamFetcher = JamFetcher()
   var isPlaying = false
   var didJoin: Bool = false
+  var isJamActive = false
+  var isSolo = false
+  
+  func checkForActiveJam(request: Main.Jam.Request) {
+    self.jamFetcher.fetch(callback: {[unowned self] (jam, error) in
+      if let _ = jam {
+        self.presenter?.presentJamActive(response: Main.JamActive.Response(isActive: true))
+        self.isJamActive = true
+      }else {
+        self.presenter?.presentJamActive(response: Main.JamActive.Response(isActive: false))
+        self.isJamActive = false
+      }
+    })
+  }
   
   func startJam(request: Main.Jam.Request) {
-     worker = MainWorker()
-    
-    jamFetcher.fetch { (jam, error) in
-      if jam == nil {
-        self.startJamWhen()
-      }else {
-        print("Jam already in place")
-      }
+    if isJamActive {
+      exitJam(request: Main.Jam.Request())
+      return
     }
-    
-  }
-  
-  func endRecording(request: Main.Jam.Request) {
-     uploadJam()
-  }
-  
-  func startJamWhen() {
-    worker?.startJamRequest() { (done) in
+    jamWorker.startJam() {[unowned self] (done) in
       if done {
         self.jamFetcher.fetch(callback: { (jam, error) in
           if let jam = jam {
-            self.presenter?.presentJamPin(jam: jam)
+            self.startRecording()
+            self.presenter?.presentJamPin(response: Main.Jam.Response(pin: jam.pin!))
           }
         })
       }else {
-        print("no done")
+        print("cant start jam")
       }
     }
   }
   
+  func startSolo(request: Main.Jam.Request) {
+    isSolo = true
+    startRecording()
+  }
+  
+ 
   
   func exitJam(request: Main.Jam.Request) {
-    worker = MainWorker()
+    jamWorker.exitJam {[unowned self] (exited) in
+      if exited {
+        self.jamFetcher.delete(callback: { (deleted) in
+          if deleted {
+            self.isJamActive = false
+            DispatchQueue.main.async {
+             self.presenter?.presentJamActive(response: Main.JamActive.Response(isActive: false))
+            }
+          }
+        })
+      }
+    }
   }
   
   func uploadJam() {
     worker = MainWorker()
     if let url = Recorder.shared.audioFilename {
         let uploadWorker = JamUploadWorker()
-        uploadWorker.uploadJam(url: url, delegate: self)
-        presenter?.presentCurrentRecordEnded()
+      uploadWorker.uploadJam(url: url, delegate: self, isSolo: isSolo)
     }
     
   }
   func didJoin(request: Main.Jam.Request) {
     if self.didJoin {
       startRecording()
-      
     }
   }
   private func startRecording() {
@@ -84,20 +104,27 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   private func stopRecording() {
     Recorder.shared.stopRecording()
   }
+  
+  func endRecording(request: Main.Jam.Request) {
+    stopRecording()
+    uploadJam()
+  }
 }
 
 extension MainInteractor:JamUpLoadNotifier {
+  
   func currentProgress(progress:Float) {
-    presenter?.presentProgress(progress: progress)
+    presenter?.presentProgress(response: Main.Progress.Response(progress: progress))
   }
   
   func didSucceed() {
-    print("requesst succeeded")
+    print("request succeeded")
+    
   }
   func response(statusCode:Int) {
     print("status code from upload", statusCode)
   }
   func didFail(error:Error?) {
-    
+    print("request did fail")
   }
 }

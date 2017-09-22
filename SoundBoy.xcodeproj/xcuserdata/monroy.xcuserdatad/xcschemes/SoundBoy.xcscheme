@@ -39,6 +39,16 @@
                ReferencedContainer = "container:SoundBoy.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A11E93A81F7344D900E2EDEE"
+               BuildableName = "dSoundBoyTests.xctest"
+               BlueprintName = "dSoundBoyTests"
+               ReferencedContainer = "container:SoundBoy.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

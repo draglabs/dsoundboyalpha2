@@ -8,9 +8,8 @@ import UIKit
 
 protocol MainDisplayLogic: class {
   func displayPin(viewModel:Main.Jam.ViewModel)
-  func displayProgress(progress:Float)
-  func displayRecordEnded()
-  
+  func displayProgress(viewModel:Main.Progress.ViewModel)
+  func displayIsJamActive(viewModel:Main.JamActive.ViewModel)
 }
 
 class MainViewController: UIViewController, MainDisplayLogic {
@@ -51,13 +50,16 @@ class MainViewController: UIViewController, MainDisplayLogic {
     super.viewDidAppear(animated)
     
   }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
   
+  }
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
     pinView.parentView = view
     view.addSubview(pinView)
-    
+    interactor?.checkForActiveJam(request: Main.Jam.Request())
   }
   
   func nav() {
@@ -111,18 +113,6 @@ class MainViewController: UIViewController, MainDisplayLogic {
     
     }
   
-  func displayPin(viewModel:Main.Jam.ViewModel) {
-    pinView.parentView = view
-    if !viewModel.pin.isEmpty {
-      pinView.show(pin: viewModel.pin)
-      playPauseView.start()
-    }
-  }
-  
-  func displayRecordEnded(){
-    pinView.hide()
-  }
-  
   @objc func navButtonPressed(sender:UIBarButtonItem) {
     if sender == navigationItem.rightBarButtonItem {
       router?.pushFiles()
@@ -135,27 +125,42 @@ class MainViewController: UIViewController, MainDisplayLogic {
 
 extension MainViewController {
 
+  func didStartCounting() {
+    pulsor.start()
+    interactor?.startSolo(request: Main.Jam.Request())
+  }
+  
   func didFinishCounting() {
     pulsor.stop()
     let endRecordingJamRequest = Main.Jam.Request()
     interactor?.endRecording(request: endRecordingJamRequest)
+    interactor?.checkForActiveJam(request: Main.Jam.Request())
+    pinView.hide()
+    
   }
   
-  func didStartCounting() {
-    pulsor.start()
-    let startRequest = Main.Jam.Request()
-    interactor?.startJam(request: startRequest)
-  }
   
   func jamPressed(view:JoinStartJamView, button:UIButton) {
       let request = Main.Jam.Request()
       interactor?.startJam(request: request)
     }
+  
   func didPreseJoin(bottomView:JoinStartJamView,sender:UIButton) {
       router?.presentJoinJam()
   }
+ 
+  func displayPin(viewModel:Main.Jam.ViewModel) {
+    pinView.parentView = view
+    pinView.show(pin: viewModel.pin)
+    playPauseView.start()
+    
+  }
   
-  func displayProgress(progress: Float) {
-    print("progrees from presenter: \(progress)")
+  func displayIsJamActive(viewModel:Main.JamActive.ViewModel){
+    startJoinJamView.updateJamButton(isJamActive: viewModel.isActive)
+  }
+  
+  func displayProgress(viewModel:Main.Progress.ViewModel) {
+    print("progrees from presenter: \(viewModel.progress)")
   }
 }
