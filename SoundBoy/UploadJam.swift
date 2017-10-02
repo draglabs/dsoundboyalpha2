@@ -33,6 +33,7 @@ enum JamUploadRequest:RequestRepresentable {
       return "jam/upload/userid/\(userId)/jamid/\(jamId)"
     }
   }
+  
   var parameters : RequestParams {
     switch self {
     case .soloUpload(_,let start,let end):
@@ -80,7 +81,6 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
         self.init(enviroment:enviroment)
         self.delegate = delegate
         self.fileURL = fileURL
-        
     }
     
     func executeUpload(request:RequestRepresentable) {
@@ -110,8 +110,9 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     default:
       break
     }
+      let date = Date()
       let fileKey = "audioFile"
-      let filename = "track.caf"
+      let filename = "track.caf-\(date)"
       let data = try! Data(contentsOf: fileURL!)
       let mimetype = mimeType(for: fileURL!.path)
       print(fileURL!.path)
@@ -160,7 +161,6 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
         delegate?.currentProgress(progress: progress)
         
     }
-  
   
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         let urlResponse = response as! HTTPURLResponse
@@ -227,14 +227,12 @@ class JamUpload: OperationRepresentable {
       }
       return JamUploadRequest.upload(userId: userId, jamId: jam!.id!, start: jam!.startTime!, endTime: jam!.endTime!)
     }
-    
-    
+  
   init(userId:String, jam:Jam?, isSolo:Bool) {
         self.userId = userId
         self.jam = jam
         self.isSolo = isSolo
     }
-  
 }
 
 

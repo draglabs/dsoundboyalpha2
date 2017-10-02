@@ -20,10 +20,9 @@ class JamWorker {
  private func prepareStartJamRequest(user:User,completion:@escaping(_ result:Bool)->()) {
     let id = user.userId!
     let name = user.firstName!
-    
     locationWorker.didGetLocation = {[unowned self] location, address in
-      let date = Data()
-      let task = StartJamOperation(userId: id, name:"\(name)-\(String(describing: address["street"]!))", location: "-\(String(describing: address["city"]!))-\(String(describing: date))", coordinates: location.coordinate)
+      
+      let task = StartJamOperation(userId: id, name:"\(name)", location: "\(String(describing: address["city"]!))", coordinates: location.coordinate)
         task.execute(in: self.networkDispatcher, result: completion)
    }
     locationWorker.requestLocation()

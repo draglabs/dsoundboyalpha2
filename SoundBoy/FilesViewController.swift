@@ -72,7 +72,8 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
         table.rowHeight = 200
         table.delegate = self
         table.dataSource = self
-        table.register(FilesCell.self as AnyClass, forCellReuseIdentifier: "Cell")
+        table.register(FilesCell.self, forCellReuseIdentifier: "Cell")
+      
         view.addSubview(table)
       
         tableConstraints()
@@ -101,13 +102,12 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: FilesCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FilesCell
-        
-      //let (songName, _) = songs[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FilesCell
+
         cell.startTime.text = "StartTime"
         cell.endTime.text = "EndTime"
         cell.self.collaborators.text = "Craigery Huff"
-        return cell
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -25,7 +25,6 @@ class RecordindsStore:StoreRepresentable {
     //saveJams(jams: jams)
   }
   
-  
   private func saveRecordings(recordings:[JSONDictionary]) {
     let context = coreData.viewContext
     let recording = Recordings(context: context)
@@ -37,9 +36,9 @@ class RecordindsStore:StoreRepresentable {
     let context = coreData.viewContext
     let jam = Jam(context: context)
     coreData.save(completion: didSaveJam)
-  
   }
 }
+
 class RecordindsFetcher:FetcherRepresentable {
   var coreDataStore: CoreDataStore {
     return CoreDataStore(entity:.recordings)
@@ -98,7 +97,6 @@ class UserActivityOperation: OperationRepresentable {
   var request: RequestRepresentable {
     return UserRequest.activity(userId: userId)
   }
-  
 }
 
 class UserActivityWorker: NSObject {

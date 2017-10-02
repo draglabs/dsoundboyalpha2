@@ -138,8 +138,7 @@ extension MainViewController {
     pinView.hide()
     
   }
-  
-  
+
   func jamPressed(view:JoinStartJamView, button:UIButton) {
       let request = Main.Jam.Request()
       interactor?.startJam(request: request)
@@ -153,7 +152,6 @@ extension MainViewController {
     pinView.parentView = view
     pinView.show(pin: viewModel.pin)
     playPauseView.start()
-    
   }
   
   func displayIsJamActive(viewModel:Main.JamActive.ViewModel){

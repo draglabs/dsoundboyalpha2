@@ -134,7 +134,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundBoy/MainModels.swift"
-            timestampString = "527796620.063521"
+            timestampString = "527803176.874759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "46"
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SoundBoy/UploadJam.swift"
-            timestampString = "527796620.063984"
+            timestampString = "527816758.783577"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
             landmarkName = "mimeType(for:)"
             landmarkType = "7">
          </BreakpointContent>

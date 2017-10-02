@@ -68,8 +68,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     startRecording()
   }
   
- 
-  
+
   func exitJam(request: Main.Jam.Request) {
     jamWorker.exitJam {[unowned self] (exited) in
       if exited {
@@ -98,6 +97,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
       startRecording()
     }
   }
+  
   private func startRecording() {
     Recorder.shared.startRecording()
   }
