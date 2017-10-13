@@ -10,8 +10,8 @@ import CoreLocation
 
 class JamWorker {
   
-  let production = Enviroment("production", host: "http://api.draglabs.com/v1.01")
-  let networkDispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
+  let production = Enviroment("production", host: "https://api.draglabs.com/v1.01")
+  let networkDispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "http://api.draglabs.com/v1.01"))
   
   let locationWorker = LocationWorker()
   let userFetcher = UserFether()

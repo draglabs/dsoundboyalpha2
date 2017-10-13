@@ -12,7 +12,7 @@ import UIKit
 
 protocol FilesBuisnessLogic {
     //add functions Files needs to handle
-    func loadRecordings(request: Files.Recordings.Request)
+    func loadRecordings(request: Files.Request.Request)
 }
 
 protocol FilesDataStore {}
@@ -23,7 +23,7 @@ class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
     var worker: FilesWorker?
     
     //add functions that FileBusinessLogic defines
-    func loadRecordings(request: Files.Recordings.Request) {
+    func loadRecordings(request: Files.Request.Request) {
         worker = FilesWorker()
       worker?.getUserActivity(completion: {[weak self] (done) in
         //self?.presenter?

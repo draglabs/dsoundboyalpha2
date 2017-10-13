@@ -225,6 +225,9 @@ public class DefaultDispatcher:DispatcherRepresentable {
     session.dataTask(with: rq) { (data, urlResponse, error) in
       let res = Response((r: urlResponse as? HTTPURLResponse, data: data, error: error), for: request)
       result(res)
+//      print(data)
+//      print(urlResponse)
+//      print(error)
       }.resume()
   }
   

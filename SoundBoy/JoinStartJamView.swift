@@ -16,7 +16,8 @@ protocol JoinStartJamViewDelegate {
 class JoinStartJamView: UIView {
     var delegate:JoinStartJamViewDelegate?
     let joinButton = UIButton(type: .system)
-    let jamButton = UIButton(type: .system)
+    let jamButton  = UIButton(type: .system)
+    let soloJam    = UIButton(type: .system)
   
     var didPressedJoin:((_ bottomView:JoinStartJamView,_ join:UIButton)->())?
     var didPressedJam:((_ bottomView:JoinStartJamView,_ jam:UIButton)->())?
@@ -69,8 +70,10 @@ class JoinStartJamView: UIView {
         joinButton.layer.cornerRadius = joinButton.bounds.height / 2
     
         // titles and font for buttons 
-        jamButton.setTitle("Jam", for: .normal)
+        jamButton.setTitle ("Jam",  for: .normal)
         joinButton.setTitle("Join", for: .normal)
+        soloJam.setTitle   ("Solo", for: .normal)
+    
         setupConstraints()
         addButtonActions()
     

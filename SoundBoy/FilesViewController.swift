@@ -9,19 +9,16 @@
 import UIKit
 
 protocol FilesDisplayLogic:class {
-    //To be completed
+  func displayJams(viewModel:Files.Request.ViewModel)
 }
 
-var songs: [(songName: String, id: Int)] = []
 
-
-class FilesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FilesDisplayLogic {
+class FilesViewController: UIViewController, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
-  
-    var table = UITableView()
+  var collection:FilesCollectionView!
     //Need to load the list of files from the user. When they are pressed, I need a new view with navigation that takes them to the play screen.
-      // MARK: Object lifecycle
+    // MARK: Object lifecycle
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,70 +49,23 @@ class FilesViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         setup()
         setupUI()
-        let request = Files.Recordings.Request()
+        let request = Files.Request.Request()
         interactor?.loadRecordings(request: request)
     }
 
     // MARK: UI Setup and Constraints
     
-    func setupUI()
-    {
+    func setupUI() {
         view.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
-      
-        title = "FILES"
+       title = "FILES"
       let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:16)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleDict
-      
-      
-      table = UITableView(frame:view.frame, style: .plain)
-
-        table.rowHeight = 200
-        table.delegate = self
-        table.dataSource = self
-        table.register(FilesCell.self, forCellReuseIdentifier: "Cell")
-      
-        view.addSubview(table)
-      
-        tableConstraints()
-
-        
+       collection = FilesCollectionView(frame: view.bounds)
     }
+  
+  
+   func displayJams(viewModel: Files.Request.ViewModel) {
     
-    func tableConstraints()
-    {
-//        table.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:0).isActive = true
-//        table.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:0).isActive = true
-//        table.topAnchor.constraint(equalTo: view.topAnchor, constant: 50)
-//        table.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-//
-        //Add contraints
-    }
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return the number of rows = to the number of files
-      return  4 //songs.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FilesCell
-
-        cell.startTime.text = "StartTime"
-        cell.endTime.text = "EndTime"
-        cell.self.collaborators.text = "Craigery Huff"
-        return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-
-    func handleTouch(sender:UITapGestureRecognizer) {
-       
     }
     
 }

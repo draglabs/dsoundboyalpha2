@@ -16,6 +16,16 @@ protocol JamUpLoadNotifier {
     func didFail(error:Error?)
 }
 
+
+struct Multipart {
+  init(params:RequestParams, fileURL:URL) {
+    
+  }
+  
+}
+
+
+
 enum JamUploadRequest:RequestRepresentable {
   
   case soloUpload(userId:String, startTime:String, endTime:String)
@@ -145,7 +155,7 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     
     if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
       if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
-        print(mimetype)
+        
         return mimetype as String
       }
     }
@@ -238,7 +248,7 @@ class JamUpload: OperationRepresentable {
 
 class JamUploadWorker {
   
-  let env = Enviroment("production", host: "http://api.draglabs.com/v1.01")
+  let env = Enviroment("production", host: "https://api.draglabs.com/v1.01")
   let userFetcher = UserFether()
   let jamFetcher = JamFetcher()
   var uploadDelegate:JamUpLoadNotifier?

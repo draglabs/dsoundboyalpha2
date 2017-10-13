@@ -10,18 +10,13 @@ import UIKit
 
 enum Files
 {
-    enum Recordings
+    enum Request
     {
-        struct Request
-        {
-            
-        }
-        struct Response
-        {
-        }
+        struct Request{}
+        struct Response{}
         struct ViewModel
         {
-            //Data associated with the jam?
+          let jams:[Jam]
         }
     }
     

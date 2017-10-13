@@ -9,15 +9,15 @@
 import UIKit
 
 protocol FilesPresentationLogic {
-  func presentActivitity()
+  func presentJams(response:Files.Request.Response)
 }
 
 
 class FilesPresenter:FilesPresentationLogic {
     
-    weak var viewController: FilesDisplayLogic?
+  weak var viewController: FilesDisplayLogic?
     
-  func presentActivitity() {
+  func presentJams(response: Files.Request.Response) {
     
   }
 }

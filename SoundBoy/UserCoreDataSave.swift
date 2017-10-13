@@ -29,6 +29,7 @@ class UserStore: StoreRepresentable {
       let lastName = userJson["last_name"] as? String
       else {return}
     user.userId = id
+    print(id)
     user.firstName = name
     user.lastName = lastName
     coreDataStore.save(completion: response)

@@ -19,7 +19,8 @@ final class FacebookAPI: NSObject {
       case .success(_,  _, let token):
         
         let userRegistration = UserRegistrationOperation(facebookId: token.userId!, accessToken: token.authenticationToken)
-        
+        print(token)
+        print(token.userId)
         userRegistration.execute(in: self.networkDispatcher, result: { (registered) in
           DispatchQueue.main.async {
             result(registered)
