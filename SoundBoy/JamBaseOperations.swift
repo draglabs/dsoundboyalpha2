@@ -112,16 +112,15 @@ class StartJamOperation: OperationRepresentable {
     
   }
   
-  func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ started:Bool)->()) {
+  func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ started:Result<Any>)->()) {
     dispatcher.execute(request: request) { (response) in
       
       switch response {
-      case .json(let json):
-        self.store.fromJSON(json: json, response: result)
-      case .data(let data):
-        self.store.fromData(data: data, response: result)
-      case .error(let status, let error):
-        self.responseError?(status, error)
+      case .success(let data):
+        self.store.from(data: data, response: result)
+      case .error(_,_):
+        result(Result.failed(message: "Cant start jam", error: nil))
+        break
       }
     }
   }
@@ -146,17 +145,15 @@ class JoinJamOperation:OperationRepresentable {
     return JamStore()
   }
   
-  func execute(in dispatcher:DispatcherRepresentable, result:@escaping (_ joined:Bool) -> ()) {
+  func execute(in dispatcher:DispatcherRepresentable, result:@escaping (_ joined:Result<Any>) -> ()) {
     dispatcher.execute(request: request) { (response) in
       
       switch response {
-      case .data(let data):
-        self.store.fromData(data: data, response: result)
-      case .json(let json):
-        self.store.fromJSON(json: json, response: result)
-      case .error(let statusCode, let error):
-        self.responseError?(statusCode,error)
-        
+      case .success(let data):
+        self.store.from(data: data, response: result)
+      case .error(_,_):
+       result(Result.failed(message: "Cant joint Jam", error: nil))
+        break
       }
     }
   }
@@ -189,17 +186,10 @@ class ExitJamOperation: OperationRepresentable {
   
   private func parseReponse(response:Response,result: @escaping (_ exited:Bool)->()) {
     switch response {
-    case .json(let json):
-      print(json)
-      if let code = json["code"] as? NSNumber {
-        if code == 200 {
-          result(true)
-        }else {
-          result(false)
-        }
-      }
-    default:
-      break
+    case .success(_):
+      result(true)
+    case .error(_,_):
+      result(false)
     }
   }
   

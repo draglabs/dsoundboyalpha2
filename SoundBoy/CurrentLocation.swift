@@ -8,9 +8,11 @@
 
 import Foundation
 
-struct AudioFile {
-    var name:String
-    var offlineURL:String
-    var mimeType:String
+struct CurrentLocation {
+  var number:String?
+  let street:String
+  let city:String
+  let state:String
+  let zipCode:String
 
 }

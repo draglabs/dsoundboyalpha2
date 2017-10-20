@@ -4,27 +4,16 @@
 //
 //  Created by Marlon Monroy on 6/30/17.
 //  Copyright © 2017 DragLabs. All rights reserved.
-//
 
 import UIKit
 
-protocol JoinStartJamViewDelegate {
-    func didPressedJoin(bottomView:JoinStartJamView,join:UIButton)
-    func didPressedJam(bottomView:JoinStartJamView,jam:UIButton)
-}
-
 class JoinStartJamView: UIView {
-    var delegate:JoinStartJamViewDelegate?
-    let joinButton = UIButton(type: .system)
-    let jamButton  = UIButton(type: .system)
-    let soloJam    = UIButton(type: .system)
-  
+  let joinButton = UIButton(type: .system)
+  let jamButton  = UIButton(type: .system)
+
     var didPressedJoin:((_ bottomView:JoinStartJamView,_ join:UIButton)->())?
     var didPressedJam:((_ bottomView:JoinStartJamView,_ jam:UIButton)->())?
-    
-    let colorForMidOrange = UIColor(displayP3Red: 242/255, green: 241/255, blue: 241/255, alpha: 1)
- 
-    fileprivate let borderColor = UIColor(displayP3Red: 193/255, green: 18/255, blue: 37/255, alpha: 1).cgColor
+  
     fileprivate let buttonColor = UIColor(displayP3Red: 160/255, green: 16/255, blue: 33/255, alpha: 1)
     
     func setup() {
@@ -70,9 +59,9 @@ class JoinStartJamView: UIView {
         joinButton.layer.cornerRadius = joinButton.bounds.height / 2
     
         // titles and font for buttons 
-        jamButton.setTitle ("Jam",  for: .normal)
+        jamButton.setTitle ("Rec",  for: .normal)
         joinButton.setTitle("Join", for: .normal)
-        soloJam.setTitle   ("Solo", for: .normal)
+    
     
         setupConstraints()
         addButtonActions()
@@ -89,7 +78,6 @@ class JoinStartJamView: UIView {
         joinButton.topAnchor.constraint(equalTo: topAnchor, constant:20).isActive = true
         joinButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
         joinButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
-      
     }
     
     // button actions
@@ -100,9 +88,9 @@ class JoinStartJamView: UIView {
   
   func updateJamButton(isJamActive:Bool) {
     if isJamActive {
-      jamButton.setTitle("Exit Jam", for: .normal)
-    }else{
-      jamButton.setTitle("Jam", for: .normal)
+      joinButton.setTitle("Exit Jam", for: .normal)
+    }else {
+      joinButton.setTitle("Join", for: .normal)
     }
   }
 }
@@ -113,12 +101,8 @@ extension JoinStartJamView {
     
   @objc func jamButtonPressed(sender:UIButton) {
         didPressedJam?(self,sender)
-        delegate?.didPressedJam(bottomView: self, jam: sender)
     }
-  
   @objc func joinButtonPressed(sender:UIButton) {
         didPressedJoin?(self, sender)
-        delegate?.didPressedJoin(bottomView: self, join: sender)
     }
-  
 }

@@ -16,16 +16,6 @@ protocol JamUpLoadNotifier {
     func didFail(error:Error?)
 }
 
-
-struct Multipart {
-  init(params:RequestParams, fileURL:URL) {
-    
-  }
-  
-}
-
-
-
 enum JamUploadRequest:RequestRepresentable {
   
   case soloUpload(userId:String, startTime:String, endTime:String)
@@ -95,10 +85,6 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     
     func executeUpload(request:RequestRepresentable) {
        session.dataTask(with:prepareURLRequest(request: request)).resume()
-//      session.dataTask(with: prepareURLRequest(request: request), completionHandler: { (data, response, error) in
-//        let parser = Parser()
-//        print(parser.parse(to: .json, from: data) ?? "Cant parse data from uploading")
-//      }).resume()
     }
     
     private func prepareURLRequest(request:RequestRepresentable) ->URLRequest {
@@ -193,34 +179,26 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
         }
     }
   
-    func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        print("did received data", data)
-    }
-
 }
 
 
 class JamUpload: OperationRepresentable {
   var jam:Jam?
   let userId:String
-  let isSolo:Bool
+  var notes:String?
     var responseError:((_ code:Int?, _ error:Error?)->())?
     var store: StoreRepresentable {
         return JamStore()
     }
-    
-    
-    func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ uploaded:Bool)->()) {
+  
+    func execute(in dispatcher: DispatcherRepresentable, result: @escaping(_ uploaded:Result<Any>)->()) {
       
         dispatcher.execute(request: request) { (response) in
             switch response {
-            case .data(let data):
-                self.store.fromData(data: data,response: result)
-            case .json(let json):
-                self.store.fromJSON(json: json, response: result)
-            case .error(let statuscode, let error):
-                self.responseError?(statuscode,error)
-                result(false)
+            case .success(let data):
+                self.store.from(data: data,response: result)
+            case .error(_,_):
+                result(Result.failed(message: "unable to uploaded", error: nil))
             }
         }
     }
@@ -232,16 +210,13 @@ class JamUpload: OperationRepresentable {
   }
   
     var request: RequestRepresentable {
-      if isSolo {
-        return JamUploadRequest.soloUpload(userId: userId, startTime: "3034:405", endTime: "405:405")
-      }
+    
       return JamUploadRequest.upload(userId: userId, jamId: jam!.id!, start: jam!.startTime!, endTime: jam!.endTime!)
     }
   
-  init(userId:String, jam:Jam?, isSolo:Bool) {
+  init(userId:String, jam:Jam?) {
         self.userId = userId
         self.jam = jam
-        self.isSolo = isSolo
     }
 }
 
@@ -254,18 +229,9 @@ class JamUploadWorker {
   var uploadDelegate:JamUpLoadNotifier?
   var isSolo = false
   
-  func uploadJam(url:URL, delegate:JamUpLoadNotifier, isSolo:Bool) {
+  func uploadJam(url:URL, delegate:JamUpLoadNotifier) {
       self.uploadDelegate = delegate
-    self.isSolo = isSolo
-    if isSolo {
-      userFetcher.fetch { (user, error) in
-        if user != nil {
-          self.prepareSolo(user: user!.userId!, url: url, delegate: delegate)
-        }
-      }
-      
-      return
-    }
+  
       userFetcher.fetch { (user, error) in
         if user != nil {
           self.prepareUser(user: user!,url: url)
@@ -286,14 +252,14 @@ class JamUploadWorker {
   
   private func prepareJam(jam:Jam,userId:String, url:URL) {
       let uploadDispatcher = JamUpLoadDispatcher(enviroment:env, fileURL: url, delegate: uploadDelegate!)
-      let task = JamUpload(userId: userId, jam: jam, isSolo: isSolo)
+      let task = JamUpload(userId: userId, jam: jam)
       task.executeUpload(in: uploadDispatcher)
     }
   
   
   private func prepareSolo(user:String,url:URL, delegate:JamUpLoadNotifier) {
     let uploadDispatcher = JamUpLoadDispatcher(enviroment:env, fileURL: url, delegate: uploadDelegate!)
-    let task = JamUpload(userId: user, jam: nil, isSolo: isSolo)
+    let task = JamUpload(userId: user, jam: nil)
     task.executeUpload(in: uploadDispatcher)
   }
 }

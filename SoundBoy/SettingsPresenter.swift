@@ -23,6 +23,9 @@ class SettingsPresenter: SettingsPresentationLogic
   func presentSomething(response: Settings.Something.Response)
   {
     let viewModel = Settings.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
+    DispatchQueue.main.async {
+      self.viewController?.displaySomething(viewModel: viewModel)
+    }
+    
   }
 }

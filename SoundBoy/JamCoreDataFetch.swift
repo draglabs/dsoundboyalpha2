@@ -35,15 +35,19 @@ class JamFetcher: FetcherRepresentable {
   
   func delete(callback: @escaping (_ deleted:Bool) -> ()) {
     let context = coreDataStore.viewContext
-    let request:NSFetchRequest<Jam> = Jam.fetchRequest()
-    if let result = try? context.fetch(request) {
-      result.forEach({ (jam) in
-        context.delete(jam)
-      })
-     try! context.save()
-      callback(true)
-    }else {
-      callback(false)
+    let request:NSFetchRequest = Jam.fetchRequest()
+    
+    context.perform {
+      do {
+       let result = try request.execute()
+        context.delete(result.first!)
+        try context.save()
+        callback(true)
+        print("Jam Deleted")
+      }catch {
+        print("Error deleting error: \(error)")
+        callback(false)
+      }
     }
  
   }

@@ -13,33 +13,27 @@ class FilesCell: UICollectionViewCell {
     
     let startTimeLabel = UILabel()
     let startTimeVal = UILabel()
-    let endTimeLable = UILabel()
+    let endTimeLabel = UILabel()
     let endTimeVal = UILabel()
-    var jamName = UILabel()
-    var collaborators = UILabel()
-    var exportButton = UIButton()
+    let jamNameLabel = UILabel()
+    let jamNameVal = UILabel()
+    let collaboratorsLabel = UILabel()
+    let collaboratorsVal = UILabel()
+    let exportButton = UIButton()
   
   func UiSetup() {
-    exportButton = UIButton(type: .infoDark)
-    //make this a custom button image
     exportButton.addTarget(self, action: #selector(exportButtonPressed(sender:)), for: .touchUpInside)
-    startTimeLabel = UILabel(frame: contentView.bounds)
     startTimeLabel.font = UIFont(name:"Avenir-Book", size:16)
+    endTimeLabel.font = UIFont(name:"Avenir-Book", size:16)
+    jamNameLabel.font = UIFont(name:"Avenir-Book", size:16)
+    collaboratorsLabel.font = UIFont(name:"Avenir-Book", size:16)
     
-    endTime = UILabel(frame: contentView.bounds)
-    endTime.font = UIFont(name:"Avenir-Book", size:16)
-    
-    jamName = UILabel(frame: contentView.bounds)
-    jamName.font = UIFont(name:"Avenir-Book", size:16)
-    
-    collaborators = UILabel(frame: contentView.bounds)
-    collaborators.font = UIFont(name:"Avenir-Book", size:16)
     
     contentView.addSubview(exportButton)
-    contentView.addSubview(startTime)
-    contentView.addSubview(endTime)
-    contentView.addSubview(jamName)
-    contentView.addSubview(collaborators)
+    contentView.addSubview(startTimeLabel)
+    contentView.addSubview(endTimeLabel)
+    contentView.addSubview(jamNameLabel)
+    contentView.addSubview(collaboratorsLabel)
     
   }
   
@@ -60,20 +54,13 @@ class FilesCell: UICollectionViewCell {
   
   func setup(with jam:Jam) {
     UiSetup()
-    startTime.text = jam.startTime
-    endTime.text = jam.endTime
-    
+  
   }
   
   override func prepareForReuse() {
-    reset()
-  }
-  func reset() {
-    endTime.text = nil
-    startTime.text = nil
-    
-  }
   
+  }
+ 
   @objc func exportButtonPressed(sender:UIButton) {
     
   }
@@ -82,7 +69,7 @@ class FilesCell: UICollectionViewCell {
 
 class FilesCollectionView: UIView {
 
-  public var jams:[Jam]{
+  public var jams:[Jam] = []{
     didSet {
       collection.reloadData()
     }

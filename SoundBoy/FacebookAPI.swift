@@ -13,14 +13,13 @@ final class FacebookAPI: NSObject {
   
   let networkDispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
   
-  func loginUser(result:@escaping (_ registered:Bool)->()) {
+  func loginUser(result:@escaping (_ registered:Result<Any>)->()) {
     LoginManager().logIn([.publicProfile], viewController: nil) { (fbAPiResult) in
       switch fbAPiResult {
       case .success(_,  _, let token):
         
         let userRegistration = UserRegistrationOperation(facebookId: token.userId!, accessToken: token.authenticationToken)
-        print(token)
-        print(token.userId)
+        
         userRegistration.execute(in: self.networkDispatcher, result: { (registered) in
           DispatchQueue.main.async {
             result(registered)

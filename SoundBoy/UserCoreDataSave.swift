@@ -9,32 +9,28 @@
 import CoreData
 
 class UserStore: StoreRepresentable {
-  let coreDataStore = CoreDataStore(entity: .user)
-  var userFetchResult:((_ user:User?,_ error:Error?)->())?
-  
-  
-  func fromData(data: Data, response: @escaping(_ uploaded:Bool)->()) {
-    //MARK:TODO finish implementation
-  }
-  
-  func fromJSON(json: JSONDictionary, response: @escaping(_ uploaded:Bool)->()) {
-    
+  func from(data: Data, response: @escaping (Result<Any>) -> ()) {
     let context = coreDataStore.viewContext
     let user = User(context: context)
-    print(json)
-    
-    guard let userJson = json["user"] as? JSONDictionary,
-      let id  = userJson["id"] as? String,
-      let name = userJson["first_name"] as? String,
-      let lastName = userJson["last_name"] as? String
-      else {return}
-    user.userId = id
-    print(id)
-    user.firstName = name
-    user.lastName = lastName
-    coreDataStore.save(completion: response)
+    let decoder = JSONDecoder()
+    let resp = try! decoder.decode(UserResponse.self, from: data)
+   
+    user.userId = resp.user.id
+    user.firstName = resp.user.name
+    user.lastName = resp.user.lastName
+
+    context.perform {
+      do {
+        try context.save()
+        response(Result.success(data:user))
+      }catch {
+        response(Result.failed(message: "Cant save user", error: error))
+      }
+    }
     
   }
-
   
+
+  let coreDataStore = CoreDataStore(entity: .user)
+
 }

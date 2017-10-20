@@ -10,7 +10,7 @@ import UIKit
 
 class FilesWorker {
   let activityWoker = UserActivityWorker()
-  func getUserActivity(completion:@escaping(_ done:Bool)->()) {
+  func getUserActivity(completion:@escaping(_ done:Result<Any>)->()) {
     activityWoker.getActivity(completion:completion)
     }
 }

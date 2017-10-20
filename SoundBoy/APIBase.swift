@@ -72,14 +72,14 @@ public struct Parser {
     return try? JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions())
   }
   
-  private func parseToArray(from data:Data) {
-    fatalError("`func parseToArray(from data:Data)` not implemented")
+  func parseToAny(from data:Data?) ->Any? {
+    guard let raw = data else { return nil }
+    let jsonAny = try? JSONSerialization.jsonObject(with: raw, options: JSONSerialization.ReadingOptions())
+    if let any = jsonAny {
+      return any
+    }
+    return nil
   }
-  
-  private func parseToDictionary(from data:Data) {
-    fatalError("`func parseToDictionary(from data:Data)` not implemented")
-  }
-
 }
 
 /// The enviroment we're working on
@@ -134,51 +134,37 @@ public protocol RequestRepresentable {
 
 /// Response enum
 /// Represent a reponse from the server
+public enum Result<T> {
+  case success(data:T)
+  case failed(message:String?, error:Error?)
+  
+}
 public enum Response {
 
-  
-  case json(_ :JSONDictionary)
-  case data(_ :Data)
-  case error(_:Int?, _:Error?)
+  case error(statusCode:Int?, error:Error?)
+  case success(data:Data)
   
   init(_ response:(r:HTTPURLResponse?, data:Data?, error:Error?), for request:RequestRepresentable) {
     
-    // Draglabs custom reponse message
-    if response.r!.statusCode >= 400 {
+    guard response.r!.statusCode < 400 else{
       let parser = Parser()
-      let parsedjson = parser.parse(to: .dictionary, from: response.data)
-      self = .json(parsedjson!)
-
-      return
-    }
-    
-    guard response.r?.statusCode == 200, response.error == nil else {
-      self = .error(response.r?.statusCode, response.error)
-      return
-    }
-    
-    guard let data = response.data else {
-      self = .error(response.r?.statusCode, NetworkError.noData)
-      return
-    }
-    
-    switch request.dataType {
-    case .data:
-      self = .data(data)
-    case .JSON:
-      let parser = Parser()
-      let parsedjson = parser.parse(to: .dictionary, from: data)
-      if parsedjson != nil {
-        self = .json(parsedjson!)
-        return
-      }else {
-        self = .error(response.r?.statusCode, NetworkError.unableToParse)
-        return
+      if let data = parser.parse(to: .json, from: response.data) {
+        print(data)
       }
+      self = .error(statusCode: response.r?.statusCode, error: response.error)
+      return
     }
     
+    if let data = response.data{
+      print(data)
+      self = .success(data: data)
+      return
+    }
+    self = .error(statusCode: response.r?.statusCode, error: response.error)
   }
+  
 }
+
 
 /* =====================OperationRepresentable====================*/
 public protocol OperationRepresentable {
@@ -186,7 +172,7 @@ public protocol OperationRepresentable {
   associatedtype ResultType
   
   var  request :RequestRepresentable { get }
-  var  store: StoreRepresentable {get } //
+  var  store:StoreRepresentable {get } //
   func execute(in dispatcher:DispatcherRepresentable, result:@escaping(_ result:ResultType)->())
 }
 
@@ -225,9 +211,6 @@ public class DefaultDispatcher:DispatcherRepresentable {
     session.dataTask(with: rq) { (data, urlResponse, error) in
       let res = Response((r: urlResponse as? HTTPURLResponse, data: data, error: error), for: request)
       result(res)
-//      print(data)
-//      print(urlResponse)
-//      print(error)
       }.resume()
   }
   

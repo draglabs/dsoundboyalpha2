@@ -13,14 +13,17 @@ import CoreLocation
     
     
   var lastLocation:CLLocation?
-  var didGetLocation:((_ location:CLLocation, _ address:Dictionary<String,String>)->())?
+  var address:CurrentLocation?
+  var didGetLocation:((_ location:CLLocation, _ address:CurrentLocation)->())?
   var manager = CLLocationManager()
   
+  ///Ask permission and starts
+  /// getting the user location
   func requestLocation() {
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        
+    
     }
   
     
@@ -30,34 +33,44 @@ import CoreLocation
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if locations.last != nil && lastLocation == nil {
+        if locations.last != nil {
+          print("will stop location")
           manager.stopUpdatingLocation()
             lastLocation = locations.last!
             getAddress()
         }
+      
     }
   
   func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-   
+    print("Location Manager did stop updating location")
+    
   }
+  
   /// Make sure you set `didGetLocation?()`
   /// so that youll get the results back
-  
-    func getAddress() {
-    
+    private func getAddress() {
+      print("will reverse location")
         if let location = lastLocation {
         let coder = CLGeocoder()
-        coder.reverseGeocodeLocation(location) { (placeMarks, error) in
+        coder.reverseGeocodeLocation(location) {[weak self] (placeMarks, error) in
+          print("Reversing location")
             guard let places = placeMarks else{return}
             guard  let place = places.first else{return}
-            
-  
+          
+            let number = place.subThoroughfare
             let street = place.thoroughfare
             let city = place.locality
             let state = place.administrativeArea
             let zipCode = place.postalCode
-            self.didGetLocation?(location,["street":street!, "city":city!,"state":state!,"zipcode":zipCode!])
+          
+          let address = CurrentLocation(number: number, street: street!, city: city!, state: state!, zipCode: zipCode!)
+            self?.address = address
+       
+            self?.didGetLocation?(location,address)
             }
         }
     }
+  
+
 }

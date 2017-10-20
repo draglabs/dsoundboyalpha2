@@ -9,40 +9,22 @@
 import Foundation
 import CoreData
 
-class RecordindsStore:StoreRepresentable {
-  let coreData = CoreDataStore(entity: .recordings)
-  var didSaveRecordings:((_ saved:Bool)->()) = { _ in   }
-  var didSaveJam:((_ saved:Bool)->()) = {_ in }
-  
-  var response:((Bool) -> ())?
-  func fromData(data: Data, response: @escaping (Bool) -> ()) {fatalError("Function not implemented")}
-  func fromJSON(json: JSONDictionary, response: @escaping (Bool) -> ()) {
-    self.response = response
-    print(json)
-    guard let recordings = json["recordings"] as? [JSONDictionary] else {response(false); return }
-   // saveRecordings(recordings: recordings)
-    guard let jams = json["jams"] as? [JSONDictionary] else {response(false);return}
-    //saveJams(jams: jams)
-  }
-  
-  private func saveRecordings(recordings:[JSONDictionary]) {
-    let context = coreData.viewContext
-    let recording = Recordings(context: context)
+class RecordindsStore:StoreRepresentable{
+  func from(data: Data, response: @escaping (Result<Any>) -> ()) {
     
-    coreData.save(completion: didSaveRecordings)
   }
   
- private func saveJams(jams:[JSONDictionary]) {
-    let context = coreData.viewContext
-    let jam = Jam(context: context)
-    coreData.save(completion: didSaveJam)
-  }
+  let coreData = CoreDataStore(entity: .recordings)
+
 }
+
+
 
 class RecordindsFetcher:FetcherRepresentable {
   var coreDataStore: CoreDataStore {
     return CoreDataStore(entity:.recordings)
   }
+  
   func fetch(callback: @escaping ([Recordings]?, Error?) -> ()) {
     let requst:NSFetchRequest = Recordings.fetchRequest()
     let context = coreDataStore.viewContext
@@ -71,21 +53,19 @@ class UserActivityOperation: OperationRepresentable {
   
   var responseError:((_ code:Int?, _ error:Error?)->())?
   
-  var store:StoreRepresentable {
+  var store:StoreRepresentable{
     return RecordindsStore()
   }
   
-  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Bool) -> ()) {
+  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Result<Any>) -> ()) {
     
     dispatcher.execute(request: request) { (response) in
       
       switch response {
-      case .data(let data):
-        self.store.fromData(data: data, response: result)
-      case .json(let json):
-        self.store.fromJSON(json: json, response: result)
-      case .error(let statusCode, let error):
-        self.responseError?(statusCode, error)
+      case .success(let data):
+        self.store.from(data: data, response: result)
+      case .error(_, _):
+        result(Result.failed(message: "Cant get user activity", error: nil))
       }
     }
   }
@@ -102,7 +82,7 @@ class UserActivityOperation: OperationRepresentable {
 class UserActivityWorker: NSObject {
   let user = UserFether()
   let dispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
-  func getActivity(completion:@escaping(_ done:Bool)->()) {
+  func getActivity(completion:@escaping(_ done:Result<Any>)->()) {
     
     user.fetch { (user, error) in
       if user != nil {

@@ -14,8 +14,7 @@ protocol MainBusinessLogic {
   func endRecording(request: Main.Jam.Request)
   func exitJam(request: Main.Jam.Request)
   func didJoin(request:Main.Jam.Request)
-  func checkForActiveJam(request:Main.Jam.Request)
-  func startSolo(request:Main.Jam.Request)
+  func checkForActiveJam(request: Main.Jam.Request)
 }
 
 protocol MainDataStore {
@@ -30,7 +29,6 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   var isPlaying = false
   var didJoin: Bool = false
   var isJamActive = false
-  var isSolo = false
   
   func checkForActiveJam(request: Main.Jam.Request) {
     self.jamFetcher.fetch(callback: {[unowned self] (jam, error) in
@@ -49,23 +47,15 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
       exitJam(request: Main.Jam.Request())
       return
     }
-    jamWorker.startJam() {[unowned self] (done) in
-      if done {
-        self.jamFetcher.fetch(callback: { (jam, error) in
-          if let jam = jam {
-            self.startRecording()
-            self.presenter?.presentJamPin(response: Main.Jam.Response(pin: jam.pin!))
-          }
-        })
-      }else {
-        print("cant start jam")
+    jamWorker.startJam() {[unowned self] (result) in
+      switch result {
+        case .failed(_,_):
+          break
+        case .success( let data):
+          let jam = data as! Jam
+          self.presenter?.presentJamPin(response: Main.Jam.Response(pin: jam.pin!))
       }
     }
-  }
-  
-  func startSolo(request: Main.Jam.Request) {
-    isSolo = true
-    startRecording()
   }
   
 
@@ -88,7 +78,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     worker = MainWorker()
     if let url = Recorder.shared.audioFilename {
         let uploadWorker = JamUploadWorker()
-      uploadWorker.uploadJam(url: url, delegate: self, isSolo: isSolo)
+      uploadWorker.uploadJam(url: url, delegate: self)
     }
     
   }
@@ -114,11 +104,13 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
 extension MainInteractor:JamUpLoadNotifier {
   
   func currentProgress(progress:Float) {
-    presenter?.presentProgress(response: Main.Progress.Response(progress: progress))
+    DispatchQueue.main.async {
+    self.presenter?.presentProgress(response: Main.Progress.Response(progress: progress))
+    }
   }
   
   func didSucceed() {
-    print("request succeeded")
+    presenter?.presentUploadCompleted(response: Main.JamUpload.Response())
     
   }
   func response(statusCode:Int) {

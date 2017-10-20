@@ -6,6 +6,16 @@
         <attribute name="isCurrent" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="pin" attributeType="String" syncable="YES"/>
         <attribute name="startTime" attributeType="String" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="jam" inverseEntity="Location" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitiude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipcode" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="jam" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Jam" inverseName="location" inverseEntity="Jam" syncable="YES"/>
     </entity>
     <entity name="Recordings" representedClassName="Recordings" syncable="YES" codeGenerationType="class">
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,8 +34,9 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Jam" positionX="-54" positionY="0" width="128" height="120"/>
+        <element name="Jam" positionX="-54" positionY="0" width="128" height="135"/>
         <element name="Recordings" positionX="-225" positionY="45" width="128" height="150"/>
         <element name="User" positionX="-396" positionY="6" width="128" height="120"/>
+        <element name="Location" positionX="-225" positionY="72" width="128" height="150"/>
     </elements>
 </model>

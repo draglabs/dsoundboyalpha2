@@ -9,9 +9,7 @@
 import CoreData
 /* =====================StoreRepresentable====================*/
 public protocol StoreRepresentable {
-    func fromJSON(json:JSONDictionary, response:@escaping(_ result:Bool)->())
-    func fromData(data:Data, response:@escaping(_ result:Bool)->())
-  
+  func from(data:Data, response:@escaping(_ result:Result<Any>)->())
 }
 
 /* =====================FetcherRepresentable====================*/

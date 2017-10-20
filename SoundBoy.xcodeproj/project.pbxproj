@@ -16,13 +16,13 @@
 		A1017CBA1F17FCFF00AA1B31 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* APIBase.swift */; };
 		A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */; };
 		A11E93BA1F73462600E2EDEE /* UserLoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E93B91F73462600E2EDEE /* UserLoginTest.swift */; };
-		A11E93C21F73484200E2EDEE /* StartJamTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E93C11F73484200E2EDEE /* StartJamTest.swift */; };
+		A11E93C21F73484200E2EDEE /* JamTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E93C11F73484200E2EDEE /* JamTest.swift */; };
 		A12174DD1F6C76BA00F139D6 /* UserActivityWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
-		A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */; };
+		A14F9F3E1F0B6363009D8D6E /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3D1F0B6363009D8D6E /* CurrentLocation.swift */; };
 		A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8061F082BBD00223379 /* JoinStartJamView.swift */; };
 		A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8081F082BBD00223379 /* CoreDataStore.swift */; };
-		A153F81E1F082BBD00223379 /* PlayPause.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80E1F082BBD00223379 /* PlayPause.swift */; };
+		A153F81E1F082BBD00223379 /* PlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80E1F082BBD00223379 /* PlayingView.swift */; };
 		A153F81F1F082BBD00223379 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80F1F082BBD00223379 /* Recorder.swift */; };
 		A153F8211F082BBD00223379 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8121F082BBD00223379 /* Timer.swift */; };
 		A155FD221F3E411500B4165F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD211F3E411500B4165F /* App.swift */; };
@@ -62,6 +62,7 @@
 		A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */; };
 		A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AAE1F57C9FA001F3B00 /* CoreData.xcdatamodeld */; };
 		A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */; };
+		A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E120C91F98708D005B7095 /* ResponseModel.swift */; };
 		A1F203001F5CEC820023484D /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
 		A1F203021F5E37A70023484D /* JamCoreDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */; };
 		A1F203051F5E38B80023484D /* FacebookAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203041F5E38B80023484D /* FacebookAPI.swift */; };
@@ -100,13 +101,13 @@
 		A11E93B71F73462600E2EDEE /* dSoundBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dSoundBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11E93B91F73462600E2EDEE /* UserLoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginTest.swift; sourceTree = "<group>"; };
 		A11E93BB1F73462600E2EDEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A11E93C11F73484200E2EDEE /* StartJamTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartJamTest.swift; sourceTree = "<group>"; };
+		A11E93C11F73484200E2EDEE /* JamTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamTest.swift; sourceTree = "<group>"; };
 		A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWorker.swift; sourceTree = "<group>"; };
 		A14F9F2D1F09D892009D8D6E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFile.swift; sourceTree = "<group>"; };
+		A14F9F3D1F0B6363009D8D6E /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
 		A153F8061F082BBD00223379 /* JoinStartJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStartJamView.swift; sourceTree = "<group>"; };
 		A153F8081F082BBD00223379 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
-		A153F80E1F082BBD00223379 /* PlayPause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayPause.swift; sourceTree = "<group>"; };
+		A153F80E1F082BBD00223379 /* PlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingView.swift; sourceTree = "<group>"; };
 		A153F80F1F082BBD00223379 /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
 		A153F8121F082BBD00223379 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		A155FD211F3E411500B4165F /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 		A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamWorker.swift; sourceTree = "<group>"; };
 		A1B66AAF1F57C9FA001F3B00 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBaseService.swift; sourceTree = "<group>"; };
+		A1E120C91F98708D005B7095 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataFetch.swift; sourceTree = "<group>"; };
 		A1F203041F5E38B80023484D /* FacebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAPI.swift; sourceTree = "<group>"; };
 		A1F203061F5E39490023484D /* JamCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataSave.swift; sourceTree = "<group>"; };
@@ -236,7 +238,7 @@
 				A11E93C41F73495100E2EDEE /* Resources */,
 				A11E93C31F73494B00E2EDEE /* Data */,
 				A11E93B91F73462600E2EDEE /* UserLoginTest.swift */,
-				A11E93C11F73484200E2EDEE /* StartJamTest.swift */,
+				A11E93C11F73484200E2EDEE /* JamTest.swift */,
 				A11E93BB1F73462600E2EDEE /* Info.plist */,
 			);
 			path = dSoundBoyTests;
@@ -289,7 +291,7 @@
 		A14F9F331F0B5041009D8D6E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A14F9F3D1F0B6363009D8D6E /* AudioFile.swift */,
+				A14F9F3D1F0B6363009D8D6E /* CurrentLocation.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -363,7 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
-				A153F80E1F082BBD00223379 /* PlayPause.swift */,
+				A153F80E1F082BBD00223379 /* PlayingView.swift */,
 				A1F203101F62341F0023484D /* ActivityView.swift */,
 			);
 			name = Views;
@@ -415,6 +417,7 @@
 		A1AE8A2B1F02102500B979D6 /* SoundBoy */ = {
 			isa = PBXGroup;
 			children = (
+				A1E120C81F98706F005B7095 /* ResponseModels */,
 				A155FD201F3E40FE00B4165F /* App */,
 				A1017CB41F16CA8200AA1B31 /* Custom */,
 				A14F9F361F0B507D009D8D6E /* Services */,
@@ -437,6 +440,14 @@
 				A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */,
 			);
 			name = JoinJam;
+			sourceTree = "<group>";
+		};
+		A1E120C81F98706F005B7095 /* ResponseModels */ = {
+			isa = PBXGroup;
+			children = (
+				A1E120C91F98708D005B7095 /* ResponseModel.swift */,
+			);
+			name = ResponseModels;
 			sourceTree = "<group>";
 		};
 		A1F203031F5E37D20023484D /* CoreData */ = {
@@ -634,7 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A11E93BA1F73462600E2EDEE /* UserLoginTest.swift in Sources */,
-				A11E93C21F73484200E2EDEE /* StartJamTest.swift in Sources */,
+				A11E93C21F73484200E2EDEE /* JamTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,11 +663,11 @@
 				A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */,
 				A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */,
 				A1A163AF1F64A0A600204C73 /* SettingsPresenter.swift in Sources */,
-				A14F9F3E1F0B6363009D8D6E /* AudioFile.swift in Sources */,
+				A14F9F3E1F0B6363009D8D6E /* CurrentLocation.swift in Sources */,
 				A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */,
 				A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */,
 				A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */,
-				A153F81E1F082BBD00223379 /* PlayPause.swift in Sources */,
+				A153F81E1F082BBD00223379 /* PlayingView.swift in Sources */,
 				A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */,
 				A1B66A851F5559CA001F3B00 /* LoginRouter.swift in Sources */,
 				A1F203051F5E38B80023484D /* FacebookAPI.swift in Sources */,
@@ -692,6 +703,7 @@
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
 				A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */,
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
+				A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationWorker.swift in Sources */,
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */,

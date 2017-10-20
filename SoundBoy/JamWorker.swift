@@ -17,12 +17,12 @@ class JamWorker {
   let userFetcher = UserFether()
   let jamFetcher = JamFetcher()
  
- private func prepareStartJamRequest(user:User,completion:@escaping(_ result:Bool)->()) {
+ private func prepareStartJamRequest(user:User,completion:@escaping(_ result:Result<Any>)->()) {
     let id = user.userId!
     let name = user.firstName!
     locationWorker.didGetLocation = {[unowned self] location, address in
       
-      let task = StartJamOperation(userId: id, name:"\(name)", location: "\(String(describing: address["city"]!))", coordinates: location.coordinate)
+      let task = StartJamOperation(userId: id, name:"\(name)", location: address.city, coordinates: location.coordinate)
         task.execute(in: self.networkDispatcher, result: completion)
    }
     locationWorker.requestLocation()
@@ -38,7 +38,7 @@ class JamWorker {
     }
   }
   
-  func startJam(completion:@escaping(_ result:Bool)->()) {
+  func startJam(completion:@escaping(_ result:Result<Any>)->()) {
     
     self.checkForExitingJam {[unowned self]  (exits) in
       if !exits {
@@ -50,13 +50,13 @@ class JamWorker {
           }
         }
       }else {
-        completion(false)
+        completion(Result.failed(message: "Cant start jam", error: nil))
       }
     }
     
   }
  
-  func joinJam(jamPin:String, completion:@escaping(_ join:Bool)->()) {
+  func joinJam(jamPin:String, completion:@escaping(_ join:Result<Any>)->()) {
     
      userFetcher.fetch { (user, error) in
       if user != nil {

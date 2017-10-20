@@ -65,22 +65,20 @@ class UserRegistrationOperation: OperationRepresentable {
     let accessToken:String
     
     var responseError:((_ code:Int?, _ error:Error?)->())?
-    
+
     var store:StoreRepresentable {
         return UserStore()
     }
     
-    func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Bool) -> ()) {
+  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Result<Any>) -> ()) {
         
         dispatcher.execute(request: request) { (response) in
             
             switch response {
-            case .data(let data):
-                self.store.fromData(data: data, response: result)
-            case .json(let json):
-                self.store.fromJSON(json: json, response: result)
-            case .error(let statusCode, let error):
-                self.responseError?(statusCode, error)
+            case .success(let data):
+                self.store.from(data: data, response: result)
+            case .error(_, _):
+              result(Result.failed(message: "unable to login", error: nil))
             }
         }
     }

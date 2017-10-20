@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PlayPauseView: UIView {
+class PlayingView: UIView {
     var isPlaying = false
   
     let colorForOrangeBackground = UIColor(displayP3Red: 160/255, green: 16/255, blue: 33/255, alpha: 0.68)
@@ -29,7 +29,6 @@ class PlayPauseView: UIView {
       
     addSubview(gradientBackLayer)
   
-      
     gradientBackLayer.frame = CGRect(x: 10, y: 10, width: UIScreen.main.bounds.width - 20, height: UIScreen.main.bounds.width - 20)
        
     gradientBackLayer.backgroundColor = colorForOrangeBackground
@@ -51,7 +50,6 @@ class PlayPauseView: UIView {
 
     func setupPausePlay() {
       
-     pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
      pausePlayButton.tintColor = UIColor.white
      pausePlayButton.translatesAutoresizingMaskIntoConstraints = false
      pausePlayButton.backgroundColor = buttonBackgroundColor
@@ -61,11 +59,9 @@ class PlayPauseView: UIView {
      pausePlayButton.layer.cornerRadius = 50
      midleLayerView.addSubview(pausePlayButton)
      pausePlayButton.addTarget(self, action: #selector(pausePlayButtonPressed(sender:)), for: .touchUpInside)
-      
       setupConstraints()
   }
-  
-  
+
     func setupLabels() {
       timeLabel.text = "00:00"
       timeLabel.font = UIFont(name: "Avenir-Light", size: 66)
@@ -87,20 +83,12 @@ class PlayPauseView: UIView {
   }
     
     @objc func pausePlayButtonPressed(sender:UIButton) {
-      if !isPlaying {
-        isPlaying = true
-        timeCounter.counting = {[unowned self] count in
-          self.timeLabel.text = count
-        }
-        self.didStartCounting?()
-        timeCounter.startTimeCounter()
-        
-      }else {
+      if isPlaying {
         isPlaying = false
         didFinishCounting?()
         timeCounter.stopTimeCounter()
-      }
         updatePlayButton()
+      }
   }
     
     override init(frame: CGRect) {
@@ -118,9 +106,9 @@ class PlayPauseView: UIView {
     
     func updatePlayButton() {
         if isPlaying {
-            pausePlayButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
+          pausePlayButton.setImage(#imageLiteral(resourceName: "pause"), for: .normal)
         }else {
-          pausePlayButton.setImage(#imageLiteral(resourceName: "play"), for: .normal)
+          pausePlayButton.setImage(UIImage(), for: .normal)
           timeCounter.stopTimeCounter()
         }
   }

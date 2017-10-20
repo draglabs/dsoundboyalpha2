@@ -28,7 +28,7 @@ enum Main
       let progress:Float
     }
     struct ViewModel {
-      let progress:Float
+      let progress:String
     }
   }
   

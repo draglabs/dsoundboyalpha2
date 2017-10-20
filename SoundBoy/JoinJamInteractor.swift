@@ -28,10 +28,16 @@ class JoinJamInteractor: JoinJamBusinessLogic, JoinJamDataStore {
   func join(request: JoinJam.Join.Request) {
     
     let pin = request.pin
-    jamWorker.joinJam(jamPin: pin, completion: { (didJoin) in
-      DispatchQueue.main.async {
-       self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: didJoin))
+    jamWorker.joinJam(jamPin: pin, completion: { (result) in
+      switch result {
+      case .failed(_,_):
+        break
+      case .success(_):
+        DispatchQueue.main.async {
+          self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: true))
+        }
       }
+      
     })
   }
   
