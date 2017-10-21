@@ -8,22 +8,12 @@
 
 import UIKit
 
-enum Files
-{
-    enum Request
-    {
-        struct Request{}
-        struct Response{}
-        struct ViewModel
-        {
-          let jams:[Jam]
-        }
-    }
-    
-    enum Listen
-    {
-        struct Request{}
-        struct Response {}
-        struct ViewModel {}
-    }
+enum Files {
+  struct Request{}
+  struct Response{
+    let Activity:UserActivityResponse
+   }
+  struct ViewModel{
+    let Activity:UserActivityResponse
+  }
 }

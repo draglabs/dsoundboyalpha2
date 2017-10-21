@@ -26,13 +26,17 @@ class JoinJamRouter: NSObject, JoinJamRoutingLogic, JoinJamDataPassing {
   
   
   func dismiss() {
-    let main = MainViewController()
-    var mainDataStore = main.router!.dataStore
-    passDataToMain(source: dataStore!, destination: &mainDataStore!)
-    viewController?.dismiss(animated: false, completion: nil)
+    //let main = MainViewController()
+    if let main = viewController?.presentingViewController?.childViewControllers.first as? MainViewController{
+      var mainDataStore = main.router!.dataStore
+      passDataToMain(source: dataStore!, destination: &mainDataStore!)
+      viewController?.dismiss(animated: false, completion: nil)
+    }
+    
   }
   
   func passDataToMain(source: JoinJamDataStore, destination: inout MainDataStore) {
+
     destination.didJoin = source.didJoin
   }
 }

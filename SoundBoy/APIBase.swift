@@ -38,6 +38,7 @@ public enum HTTPMethod:String {
 public enum RequestParams {
   case body(_ :JSONDictionary?)
   case url(_ :JSONDictionary?)
+  case none
 }
 
 

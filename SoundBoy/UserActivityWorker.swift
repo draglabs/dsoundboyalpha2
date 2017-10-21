@@ -9,16 +9,38 @@
 import Foundation
 import CoreData
 
-class RecordindsStore:StoreRepresentable{
+final class RecordindsStore:StoreRepresentable{
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
-    
+    let decoder = JSONDecoder()
+    do {
+      let res = try decoder.decode(UserActivityResponse.self, from: data)
+      response(Result.success(data: res))
+    }catch {
+      print(error)
+      response(Result.failed(message: "Cant Decode results", error: error))
+    }
   }
   
   let coreData = CoreDataStore(entity: .recordings)
 
 }
 
-
+final class DetailStore:StoreRepresentable {
+  func from(data: Data, response: @escaping (Result<Any>) -> ()) {
+     let rs = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)
+      print(rs)
+      response(Result.success(data: rs))
+//    let decoder = JSONDecoder()
+//    do {
+//      let res = try decoder.decode(JamDetailResponse.self, from: data)
+//      response(Result.success(data: res))
+//    }catch {
+//      print(error)
+//      response(Result.failed(message: "Cant Decode results", error: error))
+//    }
+//  }
+  }
+}
 
 class RecordindsFetcher:FetcherRepresentable {
   var coreDataStore: CoreDataStore {
@@ -51,8 +73,6 @@ class RecordindsFetcher:FetcherRepresentable {
 class UserActivityOperation: OperationRepresentable {
   let userId:String
   
-  var responseError:((_ code:Int?, _ error:Error?)->())?
-  
   var store:StoreRepresentable{
     return RecordindsStore()
   }
@@ -79,8 +99,38 @@ class UserActivityOperation: OperationRepresentable {
   }
 }
 
+class jamDetailsOperation: OperationRepresentable {
+  let userId:String
+  let jamId:String
+  var store: StoreRepresentable {
+    return DetailStore()
+  }
+  
+  var request: RequestRepresentable {
+    return UserRequest.details(userId: userId, jamId: jamId)
+  }
+  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ result:Result<Any>) -> ()) {
+    dispatcher.execute(request: request) { (response) in
+      switch response {
+       case .error(_, let error):
+        result(Result.failed(message: "something when wrong", error: error))
+      case .success(let data):
+        self.store.from(data: data, response: result)
+      }
+    }
+  }
+
+  init(userId:String,jamId:String) {
+    self.userId = userId
+    self.jamId = jamId
+  }
+
+}
+
+
 class UserActivityWorker: NSObject {
   let user = UserFether()
+  
   let dispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
   func getActivity(completion:@escaping(_ done:Result<Any>)->()) {
     
@@ -90,6 +140,16 @@ class UserActivityWorker: NSObject {
         operation.execute(in: self.dispatcher, result: completion)
       }
     }
+  }
+  
+  func details(jamId:String,completion:@escaping(_ response:Result<Any>)->()) {
+    
+      self.user.fetch { (user, error) in
+        if user != nil {
+          let operation = jamDetailsOperation(userId: user!.userId!,jamId: jamId)
+          operation.execute(in: self.dispatcher, result: completion)
+        }
+      }
   }
   
 }

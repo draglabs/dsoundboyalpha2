@@ -56,6 +56,7 @@ class App: NSObject {
         
         userFetcher.fetch {[unowned self] (user, error) in
             if user != nil {
+              print(user!.userId)
                   Customizer.main(nav: self.navController)
                 self.navController.setViewControllers([self.mainVC], animated: true)
                

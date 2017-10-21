@@ -46,13 +46,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
             try recordingSession.setActive(true)
             recordingSession.requestRecordPermission() { allowed in
-//                DispatchQueue.main.async {
-//                    if allowed {
-//                        //self.loadRecordingUI()
-//                    } else {
-//                        // failed to record!
-//                    }
-//                }
+              print("User permisson for recording: \(allowed)")
             }
         } catch {
             fatalError("cant initiate session, Error: \(error)")

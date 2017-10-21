@@ -31,7 +31,7 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
   
     func presentJoinJam() {
         let joinjamVC = JoinJamViewController()
-        joinjamVC.modalPresentationStyle = .overCurrentContext
+        //joinjamVC.modalPresentationStyle = .overCurrentContext
         
         viewController?.present(joinjamVC, animated: false, completion: {
             //some completion here

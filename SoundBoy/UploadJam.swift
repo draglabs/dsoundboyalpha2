@@ -210,7 +210,6 @@ class JamUpload: OperationRepresentable {
   }
   
     var request: RequestRepresentable {
-    
       return JamUploadRequest.upload(userId: userId, jamId: jam!.id!, start: jam!.startTime!, endTime: jam!.endTime!)
     }
   

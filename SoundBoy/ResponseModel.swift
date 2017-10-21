@@ -7,31 +7,36 @@
 //
 
 import Foundation
-struct UserActivityResponseCordinates:Decodable {
-  
-}
-struct UserActivityResponsCreator:Decodable {
+
+struct UserActivityResponsCreator:Codable {
   var email:String
   var id:String
   var name:String
 }
-
-struct UserActivityResponse: Decodable {
+struct Jams:Codable {
+  
   var collaboratorCount:Int
   var endTime:String
   var id:String
   var startTime:String
-  var location:String
+  //var location:String
   var name:String
+  var coordinates:[Double]
   var creator: UserActivityResponsCreator
-  
+}
+struct UserActivityResponse: Codable {
+  var jams:[Jams]
 }
 //=======JamResponse===============
-struct JamResponse:Decodable {
+struct Jm:Codable{
   var id:String
   var pin:String
   var startTime:String
   var endTime:String
+  
+}
+struct JamResponse:Decodable {
+  var jam:Jm
 }
 
 //=======UserResponse===============
@@ -53,6 +58,6 @@ struct UserResponse:Codable {
   }
 }
 
-struct JoinJamResponse:Decodable {
+struct JamDetailResponse:Decodable {
   
 }

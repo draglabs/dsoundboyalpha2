@@ -12,21 +12,30 @@ import UIKit
 
 protocol FilesBuisnessLogic {
     //add functions Files needs to handle
-    func loadRecordings(request: Files.Request.Request)
+    func loadRecordings(request: Files.Request)
 }
 
-protocol FilesDataStore {}
+protocol FilesDataStore {
+  var activity:UserActivityResponse? { get }
+}
 
 class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
-    
+    var activity: UserActivityResponse?
     var presenter: FilesPresentationLogic?
     var worker: FilesWorker?
     
     //add functions that FileBusinessLogic defines
-    func loadRecordings(request: Files.Request.Request) {
+    func loadRecordings(request: Files.Request) {
         worker = FilesWorker()
-      worker?.getUserActivity(completion: {[weak self] (done) in
-        //self?.presenter?
+      worker?.getUserActivity(completion: {[weak self] (result) in
+        switch result {
+        case .success(let data):
+          let jams = data as! UserActivityResponse
+          self?.activity = jams
+          self?.presenter?.presentJams(response: Files.Response(Activity: jams))
+        default:
+          break
+        }
       })
     }
 }

@@ -8,6 +8,7 @@ import UIKit
 
 protocol MainDisplayLogic: class {
   func displayPin(viewModel:Main.Jam.ViewModel)
+  func displayJoinJam(viewModel:Main.Jam.ViewModel)
   func displayProgress(viewModel:Main.Progress.ViewModel)
   func displayIsJamActive(viewModel:Main.JamActive.ViewModel)
   func displayUploadCompleted(viewModel:Main.JamUpload.ViewModel)
@@ -53,7 +54,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
   }
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-  
+    interactor?.didJoin(request: Main.Jam.Request())
   }
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -134,8 +135,7 @@ extension MainViewController {
     pulsor.stop()
     let endRecordingJamRequest = Main.Jam.Request()
     interactor?.endRecording(request: endRecordingJamRequest)
-    //pinView.hide()
-    pinView.messageLabel.text = "Please white while /n we upload your recording"
+    pinView.messageLabel.text = "Hang on while we upload your recording"
   }
 
   func jamPressed(view:JoinStartJamView, button:UIButton) {
@@ -153,6 +153,9 @@ extension MainViewController {
     pinView.show(pin: viewModel.pin)
     playingView.start()
   }
+  func displayJoinJam(viewModel: Main.Jam.ViewModel) {
+    
+  }
   
   func displayIsJamActive(viewModel:Main.JamActive.ViewModel){
     startJoinJamView.updateJamButton(isJamActive: viewModel.isActive)
@@ -162,7 +165,7 @@ extension MainViewController {
     pinView.pinLabel.text =  viewModel.progress
   }
   func displayUploadCompleted(viewModel: Main.JamUpload.ViewModel) {
-    pinView.pinLabel.text = "Upload Completed"
+    pinView.pinLabel.text = "Upload Complete"
     pinView.messageLabel.text = "Will dismiss  in 2 seconds"
     let deadline = DispatchTime.now() + .seconds(2)
     interactor?.checkForActiveJam(request: Main.Jam.Request())

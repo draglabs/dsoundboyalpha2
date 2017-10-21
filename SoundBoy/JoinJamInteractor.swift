@@ -31,9 +31,13 @@ class JoinJamInteractor: JoinJamBusinessLogic, JoinJamDataStore {
     jamWorker.joinJam(jamPin: pin, completion: { (result) in
       switch result {
       case .failed(_,_):
-        break
+        DispatchQueue.main.async {
+          self.didJoin = false
+          self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: false))
+        }
       case .success(_):
         DispatchQueue.main.async {
+          self.didJoin = true
           self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: true))
         }
       }

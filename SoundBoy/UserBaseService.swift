@@ -12,6 +12,7 @@ public enum UserRequest: RequestRepresentable {
     
     case register(facebookId:String, accessToken:String)
     case activity(userId:String)
+    case details(userId:String,jamId:String)
   
     public var path: String {
         switch self {
@@ -19,14 +20,18 @@ public enum UserRequest: RequestRepresentable {
             return "user/auth"
         case .activity(_):
           return "user/activity"
+        case .details(_,let jamId):
+          return "user/jam-details?jamId=\(jamId)"
         }
     }
 
     public var method: HTTPMethod {
         switch self {
         case .register(_:_):
-            return .post
+          return .post
         case .activity(_):
+          return .get
+        case .details(_,_):
           return .get
         }
     }
@@ -37,6 +42,9 @@ public enum UserRequest: RequestRepresentable {
             return .body(["facebook_id":facebookId,"access_token":accessToken])
         case .activity(let userId):
           return .url(["user_id":userId])
+        default:
+          return .none
+        
         }
 
     }
@@ -44,8 +52,10 @@ public enum UserRequest: RequestRepresentable {
     public var headers: [String : Any]? {
         switch self {
         case .register(_: _):
-            return["application/json":"Content-Type"]
+          return["application/json":"Content-Type"]
         case .activity(let userId):
+          return [userId:"user_id"]
+        case .details(let userId,_):
           return [userId:"user_id"]
         }
       

@@ -53,6 +53,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
           break
         case .success( let data):
           let jam = data as! Jam
+          self.startRecording()
           self.presenter?.presentJamPin(response: Main.Jam.Response(pin: jam.pin!))
       }
     }
@@ -83,8 +84,11 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     
   }
   func didJoin(request: Main.Jam.Request) {
-    if self.didJoin {
+    
+    if didJoin {
       startRecording()
+      self.presenter?.presentJamPin(response: Main.Jam.Response(pin: "jam.pin"))
+      didJoin = false
     }
   }
   

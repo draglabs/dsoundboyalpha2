@@ -9,7 +9,7 @@
 import UIKit
 
 protocol FilesPresentationLogic {
-  func presentJams(response:Files.Request.Response)
+  func presentJams(response:Files.Response)
 }
 
 
@@ -17,8 +17,10 @@ class FilesPresenter:FilesPresentationLogic {
     
   weak var viewController: FilesDisplayLogic?
     
-  func presentJams(response: Files.Request.Response) {
-    
+  func presentJams(response: Files.Response) {
+    DispatchQueue.main.async {
+      self.viewController?.displayJams(viewModel: Files.ViewModel(Activity: response.Activity))
+    }
   }
 }
 

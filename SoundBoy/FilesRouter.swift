@@ -8,28 +8,36 @@
 
 import UIKit
 
-@objc protocol FilesRoutingLogic
-{
-    func routeToMain()
+@objc protocol FilesRoutingLogic {
+  func routeToDetail(index:Int)
 }
 
 protocol FilesDataPassing {
     
-    var dataStore: FilesDataStore? { get }
+  var dataStore: FilesDataStore? { get }
 }
 
 class FilesRouter: NSObject, FilesRoutingLogic, FilesDataPassing {
     weak var viewController: FilesViewController?
     var dataStore: FilesDataStore?
+    var row:Int!
+  
+  func routeToDetail(index:Int) {
+    self.row = index
+    let detailVC = FilesDetailViewController()
+    var destinationDS = detailVC.router!.dataStore!
+    passDataTo(source: dataStore!, destination: &destinationDS)
+   
+    navigateTo(source: viewController!, destination: detailVC)
     
-    func routeToMain() {
-        let nav = viewController!.presentingViewController as! UINavigationController
-        let main = nav.viewControllers.first as! MainViewController
-        
-        navigateToMain(source: viewController!, destination: main)
-    }
+  }
     
-    func navigateToMain(source:FilesViewController, destination:MainViewController){
-        source.dismiss(animated: true, completion: {})
+  func navigateTo(source:FilesViewController, destination:UIViewController){
+        source.navigationController?.pushViewController(destination, animated: true)
     }
+  func passDataTo(source: FilesDataStore, destination: inout FilesDetailDataStore) {
+      destination.jamId = source.activity!.jams[row].id
+    
+  }
+ 
 }

@@ -71,6 +71,13 @@
 		A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */; };
 		A1F2030F1F61C8710023484D /* JamBaseOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseOperations.swift */; };
 		A1F203111F62341F0023484D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* ActivityView.swift */; };
+		A1FA986D1F9B03BC00BD7E9E /* FilesDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA98671F9B03BC00BD7E9E /* FilesDetailInteractor.swift */; };
+		A1FA986E1F9B03BC00BD7E9E /* FilesDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA98681F9B03BC00BD7E9E /* FilesDetailModels.swift */; };
+		A1FA986F1F9B03BC00BD7E9E /* FilesDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA98691F9B03BC00BD7E9E /* FilesDetailPresenter.swift */; };
+		A1FA98701F9B03BC00BD7E9E /* FilesDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA986A1F9B03BC00BD7E9E /* FilesDetailRouter.swift */; };
+		A1FA98711F9B03BC00BD7E9E /* FilesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA986B1F9B03BC00BD7E9E /* FilesDetailViewController.swift */; };
+		A1FA98721F9B03BC00BD7E9E /* FilesDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA986C1F9B03BC00BD7E9E /* FilesDetailWorker.swift */; };
+		A1FA98741F9B043000BD7E9E /* JamDetailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA98731F9B043000BD7E9E /* JamDetailWorker.swift */; };
 		A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */; };
 		A1FFEF981F59270A00F7784C /* JamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FFEF971F59270A00F7784C /* JamWorker.swift */; };
 /* End PBXBuildFile section */
@@ -156,6 +163,13 @@
 		A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataSave.swift; sourceTree = "<group>"; };
 		A1F2030E1F61C8710023484D /* JamBaseOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseOperations.swift; sourceTree = "<group>"; };
 		A1F203101F62341F0023484D /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		A1FA98671F9B03BC00BD7E9E /* FilesDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailInteractor.swift; sourceTree = "<group>"; };
+		A1FA98681F9B03BC00BD7E9E /* FilesDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailModels.swift; sourceTree = "<group>"; };
+		A1FA98691F9B03BC00BD7E9E /* FilesDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailPresenter.swift; sourceTree = "<group>"; };
+		A1FA986A1F9B03BC00BD7E9E /* FilesDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailRouter.swift; sourceTree = "<group>"; };
+		A1FA986B1F9B03BC00BD7E9E /* FilesDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailViewController.swift; sourceTree = "<group>"; };
+		A1FA986C1F9B03BC00BD7E9E /* FilesDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailWorker.swift; sourceTree = "<group>"; };
+		A1FA98731F9B043000BD7E9E /* JamDetailWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JamDetailWorker.swift; sourceTree = "<group>"; };
 		A1FC8BAA1F0EB26200DB2EC0 /* Notifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		A1FFEF971F59270A00F7784C /* JamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamWorker.swift; sourceTree = "<group>"; };
 		A6C9E836C41A9D63E634CE27 /* Pods-dSoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dSoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy.release.xcconfig"; sourceTree = "<group>"; };
@@ -299,6 +313,7 @@
 		A14F9F341F0B5059009D8D6E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A1FA98661F9B038000BD7E9E /* FilesDetail */,
 				A1A163A61F64A08F00204C73 /* Settings */,
 				A1B66AA11F5746E3001F3B00 /* JoinJam */,
 				A1017CA71F15F11F00AA1B31 /* Login */,
@@ -345,6 +360,7 @@
 				A17C689A1F59A89800E09CB1 /* UploadJam.swift */,
 				A1F203061F5E39490023484D /* JamCoreDataSave.swift */,
 				A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */,
+				A1FA98731F9B043000BD7E9E /* JamDetailWorker.swift */,
 			);
 			name = Jam;
 			sourceTree = "<group>";
@@ -458,6 +474,19 @@
 				A153F8081F082BBD00223379 /* CoreDataStore.swift */,
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		A1FA98661F9B038000BD7E9E /* FilesDetail */ = {
+			isa = PBXGroup;
+			children = (
+				A1FA98671F9B03BC00BD7E9E /* FilesDetailInteractor.swift */,
+				A1FA98681F9B03BC00BD7E9E /* FilesDetailModels.swift */,
+				A1FA98691F9B03BC00BD7E9E /* FilesDetailPresenter.swift */,
+				A1FA986A1F9B03BC00BD7E9E /* FilesDetailRouter.swift */,
+				A1FA986B1F9B03BC00BD7E9E /* FilesDetailViewController.swift */,
+				A1FA986C1F9B03BC00BD7E9E /* FilesDetailWorker.swift */,
+			);
+			name = FilesDetail;
 			sourceTree = "<group>";
 		};
 		A1FC8BB01F105F7000DB2EC0 /* Main */ = {
@@ -667,17 +696,21 @@
 				A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */,
 				A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */,
 				A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */,
+				A1FA986E1F9B03BC00BD7E9E /* FilesDetailModels.swift in Sources */,
 				A153F81E1F082BBD00223379 /* PlayingView.swift in Sources */,
 				A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */,
 				A1B66A851F5559CA001F3B00 /* LoginRouter.swift in Sources */,
 				A1F203051F5E38B80023484D /* FacebookAPI.swift in Sources */,
+				A1FA98721F9B03BC00BD7E9E /* FilesDetailWorker.swift in Sources */,
 				A1B66A821F5559CA001F3B00 /* LoginInteractor.swift in Sources */,
 				A1F203071F5E39490023484D /* JamCoreDataSave.swift in Sources */,
 				A153F81F1F082BBD00223379 /* Recorder.swift in Sources */,
 				A1A163B21F64A0A600204C73 /* SettingsWorker.swift in Sources */,
 				A153F8211F082BBD00223379 /* Timer.swift in Sources */,
 				A1F203091F5E39B10023484D /* UserCoreDataFetch.swift in Sources */,
+				A1FA98711F9B03BC00BD7E9E /* FilesDetailViewController.swift in Sources */,
 				44F840661F5D97D0004A7A76 /* FilesInteractor.swift in Sources */,
+				A1FA986D1F9B03BC00BD7E9E /* FilesDetailInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* APIBase.swift in Sources */,
@@ -702,12 +735,15 @@
 				A1B66A901F555E64001F3B00 /* MainPresenter.swift in Sources */,
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
 				A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */,
+				A1FA986F1F9B03BC00BD7E9E /* FilesDetailPresenter.swift in Sources */,
+				A1FA98701F9B03BC00BD7E9E /* FilesDetailRouter.swift in Sources */,
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
 				A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationWorker.swift in Sources */,
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */,
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,
+				A1FA98741F9B043000BD7E9E /* JamDetailWorker.swift in Sources */,
 				A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */,
 				A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */,
 				A1B66A861F5559CA001F3B00 /* LoginViewController.swift in Sources */,
