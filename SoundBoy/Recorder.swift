@@ -22,8 +22,9 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
   
     var isRecording = false
     var trackName   = "track"
-    var startedTime = Date()
-    var endTime     = Date()
+    private let formatter = DateFormatter()
+    var startedTime = ""
+    var endTime = ""
   
     private var docs:URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -32,10 +33,12 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     }
     
     
-    
     static let shared = Recorder()
     override private init() {
-        super.init()
+        super.init()            //YYYY-MM-DDTHH:mm:ss // js
+                                //yyyy-MM-dd HH:mm:ss // switt
+       // formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+      
         prepareSession()
     }
     
@@ -67,7 +70,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.delegate = self
             audioRecorder.record()
-            startedTime = Date(timeIntervalSince1970: NSTimeIntervalSince1970)
+          startedTime = String(describing:Date())
             isRecording = true
            willStartRecording?()
             
@@ -93,7 +96,6 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
         if !success {
             print("notify the user for failing to record")
         }
-        
     }
   
 }
@@ -107,9 +109,7 @@ extension Recorder {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("did finish recording",recorder.url)
         didFinishRecording?(recorder.url)
-        endTime = Date(timeIntervalSince1970: NSTimeIntervalSince1970)
-      
-        print(recorder.currentTime)
+      endTime = String(describing:Date())
     }
 
     

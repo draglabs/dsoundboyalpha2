@@ -11,7 +11,7 @@ import FacebookLogin
 
 final class FacebookAPI: NSObject {
   
-  let networkDispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
+  let networkDispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "http://api.draglabs.com/v1.01"))
   
   func loginUser(result:@escaping (_ registered:Result<Any>)->()) {
     LoginManager().logIn([.publicProfile], viewController: nil) { (fbAPiResult) in

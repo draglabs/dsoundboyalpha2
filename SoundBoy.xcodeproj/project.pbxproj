@@ -13,7 +13,7 @@
 		44F840691F5D97D0004A7A76 /* FilesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840631F5D97D0004A7A76 /* FilesRouter.swift */; };
 		44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840641F5D97D0004A7A76 /* FilesViewController.swift */; };
 		44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F840651F5D97D0004A7A76 /* FilesWorker.swift */; };
-		A1017CBA1F17FCFF00AA1B31 /* APIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* APIBase.swift */; };
+		A1017CBA1F17FCFF00AA1B31 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1017CB91F17FCFF00AA1B31 /* Base.swift */; };
 		A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */; };
 		A11E93BA1F73462600E2EDEE /* UserLoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E93B91F73462600E2EDEE /* UserLoginTest.swift */; };
 		A11E93C21F73484200E2EDEE /* JamTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11E93C11F73484200E2EDEE /* JamTest.swift */; };
@@ -28,6 +28,18 @@
 		A155FD221F3E411500B4165F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD211F3E411500B4165F /* App.swift */; };
 		A155FD241F3E510A00B4165F /* Customizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD231F3E510A00B4165F /* Customizer.swift */; };
 		A15B05171F81D017007BBE77 /* FilesCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443AA6121F81B63E0003BB98 /* FilesCollectionView.swift */; };
+		A167500A1FA91FBF00E1B258 /* EditJamInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16750041FA91FBF00E1B258 /* EditJamInteractor.swift */; };
+		A167500B1FA91FBF00E1B258 /* EditJamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16750051FA91FBF00E1B258 /* EditJamModels.swift */; };
+		A167500C1FA91FBF00E1B258 /* EditJamPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16750061FA91FBF00E1B258 /* EditJamPresenter.swift */; };
+		A167500D1FA91FBF00E1B258 /* EditJamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16750071FA91FBF00E1B258 /* EditJamRouter.swift */; };
+		A167500E1FA91FBF00E1B258 /* EditJamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16750081FA91FBF00E1B258 /* EditJamViewController.swift */; };
+		A167500F1FA91FBF00E1B258 /* EditJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16750091FA91FBF00E1B258 /* EditJamWorker.swift */; };
+		A17289D01FA2D33700F9F82F /* ExportJamInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17289CA1FA2D33700F9F82F /* ExportJamInteractor.swift */; };
+		A17289D11FA2D33700F9F82F /* ExportJamModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17289CB1FA2D33700F9F82F /* ExportJamModels.swift */; };
+		A17289D21FA2D33700F9F82F /* ExportJamPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17289CC1FA2D33700F9F82F /* ExportJamPresenter.swift */; };
+		A17289D31FA2D33700F9F82F /* ExportJamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17289CD1FA2D33700F9F82F /* ExportJamRouter.swift */; };
+		A17289D41FA2D33700F9F82F /* ExportJamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17289CE1FA2D33700F9F82F /* ExportJamViewController.swift */; };
+		A17289D51FA2D33700F9F82F /* ExportJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17289CF1FA2D33700F9F82F /* ExportJamWorker.swift */; };
 		A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689A1F59A89800E09CB1 /* UploadJam.swift */; };
 		A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17C689C1F5A931C00E09CB1 /* DataServices.swift */; };
 		A17D4EBB1F42551200AF1D18 /* LocationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */; };
@@ -62,6 +74,7 @@
 		A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */; };
 		A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AAE1F57C9FA001F3B00 /* CoreData.xcdatamodeld */; };
 		A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */; };
+		A1D756151FA8608E00BCB8D7 /* jamOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D756141FA8608E00BCB8D7 /* jamOperations.swift */; };
 		A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E120C91F98708D005B7095 /* ResponseModel.swift */; };
 		A1F203001F5CEC820023484D /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
 		A1F203021F5E37A70023484D /* JamCoreDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */; };
@@ -69,7 +82,7 @@
 		A1F203071F5E39490023484D /* JamCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203061F5E39490023484D /* JamCoreDataSave.swift */; };
 		A1F203091F5E39B10023484D /* UserCoreDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203081F5E39B10023484D /* UserCoreDataFetch.swift */; };
 		A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */; };
-		A1F2030F1F61C8710023484D /* JamBaseOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseOperations.swift */; };
+		A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F2030E1F61C8710023484D /* JamBaseServices.swift */; };
 		A1F203111F62341F0023484D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F203101F62341F0023484D /* ActivityView.swift */; };
 		A1FA986D1F9B03BC00BD7E9E /* FilesDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA98671F9B03BC00BD7E9E /* FilesDetailInteractor.swift */; };
 		A1FA986E1F9B03BC00BD7E9E /* FilesDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FA98681F9B03BC00BD7E9E /* FilesDetailModels.swift */; };
@@ -103,7 +116,7 @@
 		62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dSoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746C380C11FCC93E86152ECD /* Pods_SoundBoy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SoundBoy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DF8B6C1905F85895AC7A46 /* Pods-SoundBoy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SoundBoy.release.xcconfig"; path = "Pods/Target Support Files/Pods-SoundBoy/Pods-SoundBoy.release.xcconfig"; sourceTree = "<group>"; };
-		A1017CB91F17FCFF00AA1B31 /* APIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIBase.swift; sourceTree = "<group>"; };
+		A1017CB91F17FCFF00AA1B31 /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		A10E3ED91F5CC2D900DE7812 /* Pulsator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pulsator.swift; sourceTree = "<group>"; };
 		A11E93B71F73462600E2EDEE /* dSoundBoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dSoundBoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11E93B91F73462600E2EDEE /* UserLoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginTest.swift; sourceTree = "<group>"; };
@@ -119,6 +132,18 @@
 		A153F8121F082BBD00223379 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		A155FD211F3E411500B4165F /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		A155FD231F3E510A00B4165F /* Customizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customizer.swift; sourceTree = "<group>"; };
+		A16750041FA91FBF00E1B258 /* EditJamInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJamInteractor.swift; sourceTree = "<group>"; };
+		A16750051FA91FBF00E1B258 /* EditJamModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJamModels.swift; sourceTree = "<group>"; };
+		A16750061FA91FBF00E1B258 /* EditJamPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJamPresenter.swift; sourceTree = "<group>"; };
+		A16750071FA91FBF00E1B258 /* EditJamRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJamRouter.swift; sourceTree = "<group>"; };
+		A16750081FA91FBF00E1B258 /* EditJamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJamViewController.swift; sourceTree = "<group>"; };
+		A16750091FA91FBF00E1B258 /* EditJamWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditJamWorker.swift; sourceTree = "<group>"; };
+		A17289CA1FA2D33700F9F82F /* ExportJamInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportJamInteractor.swift; sourceTree = "<group>"; };
+		A17289CB1FA2D33700F9F82F /* ExportJamModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportJamModels.swift; sourceTree = "<group>"; };
+		A17289CC1FA2D33700F9F82F /* ExportJamPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportJamPresenter.swift; sourceTree = "<group>"; };
+		A17289CD1FA2D33700F9F82F /* ExportJamRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportJamRouter.swift; sourceTree = "<group>"; };
+		A17289CE1FA2D33700F9F82F /* ExportJamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportJamViewController.swift; sourceTree = "<group>"; };
+		A17289CF1FA2D33700F9F82F /* ExportJamWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportJamWorker.swift; sourceTree = "<group>"; };
 		A17C689A1F59A89800E09CB1 /* UploadJam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadJam.swift; sourceTree = "<group>"; };
 		A17C689C1F5A931C00E09CB1 /* DataServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataServices.swift; sourceTree = "<group>"; };
 		A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationWorker.swift; sourceTree = "<group>"; };
@@ -155,13 +180,14 @@
 		A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamWorker.swift; sourceTree = "<group>"; };
 		A1B66AAF1F57C9FA001F3B00 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBaseService.swift; sourceTree = "<group>"; };
+		A1D756141FA8608E00BCB8D7 /* jamOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jamOperations.swift; sourceTree = "<group>"; };
 		A1E120C91F98708D005B7095 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataFetch.swift; sourceTree = "<group>"; };
 		A1F203041F5E38B80023484D /* FacebookAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookAPI.swift; sourceTree = "<group>"; };
 		A1F203061F5E39490023484D /* JamCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataSave.swift; sourceTree = "<group>"; };
 		A1F203081F5E39B10023484D /* UserCoreDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataFetch.swift; sourceTree = "<group>"; };
 		A1F2030A1F5E39E00023484D /* UserCoreDataSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCoreDataSave.swift; sourceTree = "<group>"; };
-		A1F2030E1F61C8710023484D /* JamBaseOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseOperations.swift; sourceTree = "<group>"; };
+		A1F2030E1F61C8710023484D /* JamBaseServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamBaseServices.swift; sourceTree = "<group>"; };
 		A1F203101F62341F0023484D /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		A1FA98671F9B03BC00BD7E9E /* FilesDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailInteractor.swift; sourceTree = "<group>"; };
 		A1FA98681F9B03BC00BD7E9E /* FilesDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesDetailModels.swift; sourceTree = "<group>"; };
@@ -313,6 +339,8 @@
 		A14F9F341F0B5059009D8D6E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A16750031FA91F9900E1B258 /* EditJam */,
+				A17289C91FA2D30100F9F82F /* ExportJam */,
 				A1FA98661F9B038000BD7E9E /* FilesDetail */,
 				A1A163A61F64A08F00204C73 /* Settings */,
 				A1B66AA11F5746E3001F3B00 /* JoinJam */,
@@ -343,10 +371,36 @@
 			name = App;
 			sourceTree = "<group>";
 		};
+		A16750031FA91F9900E1B258 /* EditJam */ = {
+			isa = PBXGroup;
+			children = (
+				A16750041FA91FBF00E1B258 /* EditJamInteractor.swift */,
+				A16750051FA91FBF00E1B258 /* EditJamModels.swift */,
+				A16750061FA91FBF00E1B258 /* EditJamPresenter.swift */,
+				A16750071FA91FBF00E1B258 /* EditJamRouter.swift */,
+				A16750081FA91FBF00E1B258 /* EditJamViewController.swift */,
+				A16750091FA91FBF00E1B258 /* EditJamWorker.swift */,
+			);
+			name = EditJam;
+			sourceTree = "<group>";
+		};
+		A17289C91FA2D30100F9F82F /* ExportJam */ = {
+			isa = PBXGroup;
+			children = (
+				A17289CA1FA2D33700F9F82F /* ExportJamInteractor.swift */,
+				A17289CB1FA2D33700F9F82F /* ExportJamModels.swift */,
+				A17289CC1FA2D33700F9F82F /* ExportJamPresenter.swift */,
+				A17289CD1FA2D33700F9F82F /* ExportJamRouter.swift */,
+				A17289CE1FA2D33700F9F82F /* ExportJamViewController.swift */,
+				A17289CF1FA2D33700F9F82F /* ExportJamWorker.swift */,
+			);
+			path = ExportJam;
+			sourceTree = "<group>";
+		};
 		A17C68971F59289200E09CB1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				A1017CB91F17FCFF00AA1B31 /* APIBase.swift */,
+				A1017CB91F17FCFF00AA1B31 /* Base.swift */,
 				A17D4EBA1F42551200AF1D18 /* LocationWorker.swift */,
 			);
 			name = Common;
@@ -355,9 +409,9 @@
 		A17C68981F5928A300E09CB1 /* Jam */ = {
 			isa = PBXGroup;
 			children = (
-				A1F2030E1F61C8710023484D /* JamBaseOperations.swift */,
+				A1D756131FA8603700BCB8D7 /* Operation */,
+				A1F2030E1F61C8710023484D /* JamBaseServices.swift */,
 				A1FFEF971F59270A00F7784C /* JamWorker.swift */,
-				A17C689A1F59A89800E09CB1 /* UploadJam.swift */,
 				A1F203061F5E39490023484D /* JamCoreDataSave.swift */,
 				A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */,
 				A1FA98731F9B043000BD7E9E /* JamDetailWorker.swift */,
@@ -456,6 +510,15 @@
 				A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */,
 			);
 			name = JoinJam;
+			sourceTree = "<group>";
+		};
+		A1D756131FA8603700BCB8D7 /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				A17C689A1F59A89800E09CB1 /* UploadJam.swift */,
+				A1D756141FA8608E00BCB8D7 /* jamOperations.swift */,
+			);
+			name = Operation;
 			sourceTree = "<group>";
 		};
 		A1E120C81F98706F005B7095 /* ResponseModels */ = {
@@ -687,20 +750,24 @@
 				A1B66A841F5559CA001F3B00 /* LoginPresenter.swift in Sources */,
 				A1F203021F5E37A70023484D /* JamCoreDataFetch.swift in Sources */,
 				A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */,
+				A167500C1FA91FBF00E1B258 /* EditJamPresenter.swift in Sources */,
 				44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */,
 				44F840671F5D97D0004A7A76 /* FilesModels.swift in Sources */,
 				A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */,
 				A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */,
 				A1A163AF1F64A0A600204C73 /* SettingsPresenter.swift in Sources */,
+				A167500B1FA91FBF00E1B258 /* EditJamModels.swift in Sources */,
 				A14F9F3E1F0B6363009D8D6E /* CurrentLocation.swift in Sources */,
 				A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */,
 				A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */,
+				A167500F1FA91FBF00E1B258 /* EditJamWorker.swift in Sources */,
 				A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */,
 				A1FA986E1F9B03BC00BD7E9E /* FilesDetailModels.swift in Sources */,
 				A153F81E1F082BBD00223379 /* PlayingView.swift in Sources */,
 				A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */,
 				A1B66A851F5559CA001F3B00 /* LoginRouter.swift in Sources */,
 				A1F203051F5E38B80023484D /* FacebookAPI.swift in Sources */,
+				A17289D31FA2D33700F9F82F /* ExportJamRouter.swift in Sources */,
 				A1FA98721F9B03BC00BD7E9E /* FilesDetailWorker.swift in Sources */,
 				A1B66A821F5559CA001F3B00 /* LoginInteractor.swift in Sources */,
 				A1F203071F5E39490023484D /* JamCoreDataSave.swift in Sources */,
@@ -713,10 +780,13 @@
 				A1FA986D1F9B03BC00BD7E9E /* FilesDetailInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
-				A1017CBA1F17FCFF00AA1B31 /* APIBase.swift in Sources */,
+				A1017CBA1F17FCFF00AA1B31 /* Base.swift in Sources */,
+				A17289D11FA2D33700F9F82F /* ExportJamModels.swift in Sources */,
+				A1D756151FA8608E00BCB8D7 /* jamOperations.swift in Sources */,
 				A1F203111F62341F0023484D /* ActivityView.swift in Sources */,
 				A1B66AA91F57470A001F3B00 /* JoinJamModels.swift in Sources */,
 				A1B66A931F555E64001F3B00 /* MainWorker.swift in Sources */,
+				A17289D01FA2D33700F9F82F /* ExportJamInteractor.swift in Sources */,
 				A1FFEF981F59270A00F7784C /* JamWorker.swift in Sources */,
 				A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */,
 				A1B66AAA1F57470A001F3B00 /* JoinJamPresenter.swift in Sources */,
@@ -728,17 +798,22 @@
 				A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */,
 				A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
-				A1F2030F1F61C8710023484D /* JamBaseOperations.swift in Sources */,
+				A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */,
+				A167500A1FA91FBF00E1B258 /* EditJamInteractor.swift in Sources */,
 				A155FD241F3E510A00B4165F /* Customizer.swift in Sources */,
 				A12174DD1F6C76BA00F139D6 /* UserActivityWorker.swift in Sources */,
 				A1B66AA81F57470A001F3B00 /* JoinJamInteractor.swift in Sources */,
 				A1B66A901F555E64001F3B00 /* MainPresenter.swift in Sources */,
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
+				A17289D41FA2D33700F9F82F /* ExportJamViewController.swift in Sources */,
 				A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */,
 				A1FA986F1F9B03BC00BD7E9E /* FilesDetailPresenter.swift in Sources */,
+				A17289D51FA2D33700F9F82F /* ExportJamWorker.swift in Sources */,
 				A1FA98701F9B03BC00BD7E9E /* FilesDetailRouter.swift in Sources */,
+				A167500D1FA91FBF00E1B258 /* EditJamRouter.swift in Sources */,
 				A1B66A831F5559CA001F3B00 /* LoginModels.swift in Sources */,
 				A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */,
+				A167500E1FA91FBF00E1B258 /* EditJamViewController.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationWorker.swift in Sources */,
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */,
@@ -748,6 +823,7 @@
 				A1B66AAB1F57470A001F3B00 /* JoinJamRouter.swift in Sources */,
 				A1B66A861F5559CA001F3B00 /* LoginViewController.swift in Sources */,
 				44F840681F5D97D0004A7A76 /* FilesPresenter.swift in Sources */,
+				A17289D21FA2D33700F9F82F /* ExportJamPresenter.swift in Sources */,
 				A1B66A8E1F555E64001F3B00 /* MainInteractor.swift in Sources */,
 				A1B66A911F555E64001F3B00 /* MainRouter.swift in Sources */,
 			);

@@ -21,8 +21,13 @@ class UserLoginTest: XCTestCase {
   func testLogin() {
     
     let xpt = expectation(description:"Should log an user in")
-    fbAPi.loginUser { (logged) in
-      XCTAssertTrue(logged)
+    fbAPi.loginUser { (response) in
+      switch response {
+      case .failed(_,_):
+        assert(false)
+      case .success(_):
+        assert(true)
+      }
       xpt.fulfill()
     }
     waitForExpectations(timeout: (3)) { (error) in

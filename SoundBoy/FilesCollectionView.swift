@@ -47,6 +47,7 @@ class DottedView: UIView {
 
 
 class FilesCell: UICollectionViewCell {
+  
     fileprivate let valColor = UIColor(displayP3Red: 245/255, green: 145/255, blue: 32/1255, alpha: 1)
     fileprivate let labelFont = UIFont(name:"Avenir-Medium", size:16)
     let startTimeLabel = UILabel()
@@ -61,6 +62,7 @@ class FilesCell: UICollectionViewCell {
     let collaboratorsVal = UILabel()
     let exportButton = UIButton()
     let separotor = UIView()
+    var exportPressed:(()->())?
   
   func uiSetup() {
     backgroundColor = UIColor.white
@@ -75,7 +77,8 @@ class FilesCell: UICollectionViewCell {
     collaboratorsLabel.font = labelFont
     jamNameVal.textAlignment = .center
     exportButton.setTitle("Export", for: .normal)
-    exportButton.backgroundColor = UIColor.red
+    exportButton.backgroundColor = UIColor(displayP3Red: 109/255, green: 0/255, blue: 0/255, alpha: 1)
+    exportButton.layer.cornerRadius = 5
     separotor.frame = CGRect(x: 40, y: 40, width: bounds.width - 80, height: 1)
     
     contentView.addSubview(exportButton)
@@ -103,7 +106,7 @@ class FilesCell: UICollectionViewCell {
     endTimeVal.textColor = valColor
     collaboratorsVal.textColor = valColor
     locationVal.textColor = valColor
-    exportButton.setTitleColor(valColor, for: .normal)
+    //exportButton.setTitleColor(valColor, for: .normal)
   }
   private func setMasking() {
     startTimeVal.translatesAutoresizingMaskIntoConstraints = false
@@ -166,10 +169,13 @@ class FilesCell: UICollectionViewCell {
   }
   
   private func populateVals(with jam:Jams) {
+    
     jamNameVal.text = jam.name
+    
     collaboratorsVal.text = "\(jam.collaboratorCount)"
     startTimeVal.text = jam.startTime
     endTimeVal.text = jam.endTime
+    locationVal.text = jam.location
     poplulateLabels()
     valColors()
   }
@@ -182,6 +188,7 @@ class FilesCell: UICollectionViewCell {
     
   }
   func setup(with jam:Jams) {
+  
     uiSetup()
     populateVals(with: jam)
     
@@ -192,7 +199,7 @@ class FilesCell: UICollectionViewCell {
   }
  
   @objc func exportButtonPressed(sender:UIButton) {
-    
+    self.exportPressed?()
   }
 }
 
@@ -202,7 +209,7 @@ class FilesCollectionView: UIView {
   public var activity:UserActivityResponse!
   var collection:UICollectionView!
   let layout = UICollectionViewFlowLayout()
-  
+  var exportPressed:((_ index:Int)->())?
   override init(frame: CGRect) {
    super.init(frame: frame)
     
@@ -231,6 +238,7 @@ class FilesCollectionView: UIView {
     collection.register(FilesCell.self, forCellWithReuseIdentifier:"cell")
     collection.delegate = self
     collection.dataSource = self
+    collection.backgroundColor = UIColor(displayP3Red: 109/255, green: 0/255, blue: 0/255, alpha: 1)
     addSubview(collection)
   }
 }
@@ -246,11 +254,27 @@ extension FilesCollectionView:UICollectionViewDelegate,UICollectionViewDataSourc
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FilesCell
     cell.setup(with: activity.jams[indexPath.row])
+    cell.exportPressed = {[weak self] in
+      self?.exportPressed?(indexPath.row)
+    }
     return cell
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("selected:\(indexPath.row)")
     delegate?.filesCollectionViewDidSelect(collection: self, index:indexPath.row)
   }
+  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    let translate:CGPoint = collectionView.panGestureRecognizer.translation(in: self)
+    if translate.y < 0 {
+      cell.alpha = 0
+      cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
+      UIView.animate(withDuration: 0.4, animations: { () -> Void in
+        cell.alpha = 1
+        cell.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, 1, 1)
+      })
+    }
+    
+  }
 }
+
 

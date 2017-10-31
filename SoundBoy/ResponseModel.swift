@@ -19,7 +19,7 @@ struct Jams:Codable {
   var endTime:String
   var id:String
   var startTime:String
-  //var location:String
+  var location:String
   var name:String
   var coordinates:[Double]
   var creator: UserActivityResponsCreator

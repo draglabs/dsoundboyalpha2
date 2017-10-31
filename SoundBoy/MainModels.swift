@@ -51,7 +51,11 @@ enum Main
       let pin:String
     }
   }
-  
+  enum Join {
+    struct Request {}
+    struct Response {}
+    struct ViewModel {}
+  }
   enum JamUpload {
     struct Request {}
     struct Response {}

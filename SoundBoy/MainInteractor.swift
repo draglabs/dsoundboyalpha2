@@ -11,10 +11,12 @@ import Foundation
 
 protocol MainBusinessLogic {
   func startJam(request: Main.Jam.Request)
+  func startNewRec(request:Main.Jam.Request)
   func endRecording(request: Main.Jam.Request)
   func exitJam(request: Main.Jam.Request)
   func didJoin(request:Main.Jam.Request)
   func checkForActiveJam(request: Main.Jam.Request)
+  func exitOrJoin(request:Main.Jam.Request)
 }
 
 protocol MainDataStore {
@@ -44,10 +46,10 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   
   func startJam(request: Main.Jam.Request) {
     if isJamActive {
-      exitJam(request: Main.Jam.Request())
+      startNewRec(request: Main.Jam.Request())
       return
     }
-    jamWorker.startJam() {[unowned self] (result) in
+    jamWorker.start() {[unowned self] (result) in
       switch result {
         case .failed(_,_):
           break
@@ -59,9 +61,26 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     }
   }
   
-
+  /// When called directly it will not check
+  /// if theres an active jam like `startJam(request:)` does
+  /// To start a new Rec call `StartJam(request:)` instead
+  func startNewRec(request: Main.Jam.Request) {
+    jamFetcher.fetch { (jam, error) in
+      guard let j = jam else { return }
+      self.startRecording()
+      self.presenter?.presentJamPin(response: Main.Jam.Response(pin: j.pin!))
+      }
+    
+  }
+  func exitOrJoin(request: Main.Jam.Request) {
+    if isJamActive {
+      exitJam(request: Main.Jam.Request())
+    }else {
+      self.presenter?.presentToReroute(viewModel: Main.Join.ViewModel())
+    }
+  }
   func exitJam(request: Main.Jam.Request) {
-    jamWorker.exitJam {[unowned self] (exited) in
+    jamWorker.exit {[unowned self] (exited) in
       if exited {
         self.jamFetcher.delete(callback: { (deleted) in
           if deleted {
@@ -83,11 +102,12 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     }
     
   }
+  
   func didJoin(request: Main.Jam.Request) {
     
     if didJoin {
       startRecording()
-      self.presenter?.presentJamPin(response: Main.Jam.Response(pin: "jam.pin"))
+      self.presenter?.presentJamJoin(response: Main.Join.Response())
       didJoin = false
     }
   }
@@ -115,12 +135,12 @@ extension MainInteractor:JamUpLoadNotifier {
   
   func didSucceed() {
     presenter?.presentUploadCompleted(response: Main.JamUpload.Response())
-    
+    checkForActiveJam(request: Main.Jam.Request())
   }
   func response(statusCode:Int) {
-    print("status code from upload", statusCode)
+   
   }
   func didFail(error:Error?) {
-    print("request did fail")
+   presenter?.presentUploadCompleted(response: Main.JamUpload.Response())
   }
 }

@@ -16,7 +16,6 @@ final class RecordindsStore:StoreRepresentable{
       let res = try decoder.decode(UserActivityResponse.self, from: data)
       response(Result.success(data: res))
     }catch {
-      print(error)
       response(Result.failed(message: "Cant Decode results", error: error))
     }
   }
@@ -131,7 +130,7 @@ class jamDetailsOperation: OperationRepresentable {
 class UserActivityWorker: NSObject {
   let user = UserFether()
   
-  let dispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "https://api.draglabs.com/v1.01"))
+  let dispatcher = DefaultDispatcher(enviroment: Env().dev)
   func getActivity(completion:@escaping(_ done:Result<Any>)->()) {
     
     user.fetch { (user, error) in

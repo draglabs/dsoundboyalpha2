@@ -8,10 +8,11 @@ import UIKit
 
 protocol MainDisplayLogic: class {
   func displayPin(viewModel:Main.Jam.ViewModel)
-  func displayJoinJam(viewModel:Main.Jam.ViewModel)
+  func displayJamJoined(viewModel:Main.Join.ViewModel)
   func displayProgress(viewModel:Main.Progress.ViewModel)
   func displayIsJamActive(viewModel:Main.JamActive.ViewModel)
   func displayUploadCompleted(viewModel:Main.JamUpload.ViewModel)
+  func diplayToReroute(viewModel: Main.Join.ViewModel)
 }
 
 class MainViewController: UIViewController, MainDisplayLogic {
@@ -23,7 +24,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
   let pulsor = Pulsator()
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
-  let pinView = ActivityView()
+  var activityView:ActivityView!
   
 
   required init?(coder aDecoder: NSCoder){
@@ -48,10 +49,7 @@ class MainViewController: UIViewController, MainDisplayLogic {
     router.dataStore = interactor
     
   }
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
-    
-  }
+ 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     interactor?.didJoin(request: Main.Jam.Request())
@@ -59,8 +57,8 @@ class MainViewController: UIViewController, MainDisplayLogic {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-    pinView.parentView = view
-    view.addSubview(pinView)
+   
+    activityView = ActivityView(parent: self.view)
     interactor?.checkForActiveJam(request: Main.Jam.Request())
   }
   
@@ -85,10 +83,10 @@ class MainViewController: UIViewController, MainDisplayLogic {
      view.addSubview(backgroundView)
      view.addSubview(playingView)
      view.addSubview(startJoinJamView)
-     playingView.didFinishCounting = didFinishCounting
-     playingView.didStartCounting = didStartCounting
-     startJoinJamView.didPressedJam = jamPressed
-     startJoinJamView.didPressedJoin = didPreseJoin
+     playingView.didFinishCounting   =  didFinishCounting
+     playingView.didStartCounting    =  didStartCounting
+     startJoinJamView.didPressedJam  =  jamPressed
+     startJoinJamView.didPressedJoin =  didPreseJoin
   
      uiContraints()
     
@@ -135,26 +133,32 @@ extension MainViewController {
     pulsor.stop()
     let endRecordingJamRequest = Main.Jam.Request()
     interactor?.endRecording(request: endRecordingJamRequest)
-    pinView.messageLabel.text = "Hang on while we upload your recording"
+    activityView.message = "Hang on while we upload your recording"
   }
 
   func jamPressed(view:JoinStartJamView, button:UIButton) {
-      let request = Main.Jam.Request()
-      interactor?.startJam(request: request)
+      interactor?.startJam(request: Main.Jam.Request())
     }
   
   func didPreseJoin(bottomView:JoinStartJamView,sender:UIButton) {
-      router?.presentJoinJam()
+   interactor?.exitOrJoin(request: Main.Jam.Request())
   }
- 
   func displayPin(viewModel:Main.Jam.ViewModel) {
     pulsor.start()
-    pinView.parentView = view
-    pinView.show(pin: viewModel.pin)
+    activityView.show(title: viewModel.pin, isPin:true)
     playingView.start()
   }
-  func displayJoinJam(viewModel: Main.Jam.ViewModel) {
+  
+  func diplayToReroute(viewModel: Main.Join.ViewModel) {
+      router?.presentJoinJam()
     
+    }
+  
+  func displayJamJoined(viewModel: Main.Join.ViewModel) {
+    pulsor.start()
+    activityView.show(title:"Jam Join", isPin:false)
+    activityView.message = "You have join a Jam"
+    playingView.start()
   }
   
   func displayIsJamActive(viewModel:Main.JamActive.ViewModel){
@@ -162,15 +166,14 @@ extension MainViewController {
   }
   
   func displayProgress(viewModel:Main.Progress.ViewModel) {
-    pinView.pinLabel.text =  viewModel.progress
+    activityView.title =  viewModel.progress
   }
   func displayUploadCompleted(viewModel: Main.JamUpload.ViewModel) {
-    pinView.pinLabel.text = "Upload Complete"
-    pinView.messageLabel.text = "Will dismiss  in 2 seconds"
+    activityView.title = "Upload Complete"
+    activityView.message = "Will dismiss  in 2 seconds"
     let deadline = DispatchTime.now() + .seconds(2)
-    interactor?.checkForActiveJam(request: Main.Jam.Request())
     DispatchQueue.main.asyncAfter(deadline: deadline) {
-      self.pinView.hide()
+      self.activityView.hide()
     }
   }
 }

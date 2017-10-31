@@ -9,49 +9,22 @@
 
 import UIKit
 
-@objc protocol FilesDetailRoutingLogic
-{
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
+@objc protocol FilesDetailRoutingLogic {
+  func routeToExport()
 }
 
-protocol FilesDetailDataPassing
-{
+protocol FilesDetailDataPassing {
   var dataStore: FilesDetailDataStore? { get }
 }
 
-class FilesDetailRouter: NSObject, FilesDetailRoutingLogic, FilesDetailDataPassing
-{
+class FilesDetailRouter: NSObject, FilesDetailRoutingLogic, FilesDetailDataPassing {
   weak var viewController: FilesDetailViewController?
   var dataStore: FilesDetailDataStore?
   
   // MARK: Routing
-  
-  //func routeToSomewhere(segue: UIStoryboardSegue?)
-  //{
-  //  if let segue = segue {
-  //    let destinationVC = segue.destination as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //  } else {
-  //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-  //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-  //    var destinationDS = destinationVC.router!.dataStore!
-  //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-  //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-  //  }
-  //}
+  func routeToExport() {
+    let exportVC = ExportJamViewController()
+    viewController?.present(exportVC, animated: true, completion: nil)
+  }
 
-  // MARK: Navigation
-  
-  //func navigateToSomewhere(source: FilesDetailViewController, destination: SomewhereViewController)
-  //{
-  //  source.show(destination, sender: nil)
-  //}
-  
-  // MARK: Passing data
-  
-  //func passDataToSomewhere(source: FilesDetailDataStore, destination: inout SomewhereDataStore)
-  //{
-  //  destination.name = source.name
-  //}
 }

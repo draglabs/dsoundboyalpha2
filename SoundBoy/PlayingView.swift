@@ -110,12 +110,14 @@ class PlayingView: UIView {
         }else {
           pausePlayButton.setImage(UIImage(), for: .normal)
           timeCounter.stopTimeCounter()
+          
         }
   }
   
   func start() {
     isPlaying = true
     updatePlayButton()
+    timeCounter.reset()
     timeCounter.counting = {[unowned self] count in
       self.timeLabel.text = count
     }

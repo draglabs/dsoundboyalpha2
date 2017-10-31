@@ -70,7 +70,7 @@ public enum UserRequest: RequestRepresentable {
     
 }
 
-class UserRegistrationOperation: OperationRepresentable {
+struct UserRegistrationOperation: OperationRepresentable {
     let facebookId :String
     let accessToken:String
     

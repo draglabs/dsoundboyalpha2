@@ -12,7 +12,9 @@ protocol MainPresentationLogic {
   func presentProgress(response:Main.Progress.Response)
   func presentJamPin(response:Main.Jam.Response)
   func presentJamActive(response:Main.JamActive.Response)
+  func presentJamJoin(response:Main.Join.Response)
   func presentUploadCompleted(response:Main.JamUpload.Response)
+  func presentToReroute(viewModel: Main.Join.ViewModel)
 }
 
 class MainPresenter: MainPresentationLogic {
@@ -28,11 +30,22 @@ class MainPresenter: MainPresentationLogic {
       pin.insert(separator: "-", every: 3)
       let model = Main.Jam.ViewModel(pin: pin)
      self.viewController?.displayPin(viewModel: model)
+    print(pin)
+    
+  }
+
+  func presentJamActive(response:Main.JamActive.Response) {
+    viewController?.displayIsJamActive(viewModel: Main.JamActive.ViewModel(isActive: response.isActive))
+  }
+  func presentJamJoin(response: Main.Join.Response) {
+     DispatchQueue.main.async {
+      self.viewController?.displayJamJoined(viewModel: Main.Join.ViewModel())
+    }
     
   }
   
-  func presentJamActive(response:Main.JamActive.Response) {
-    viewController?.displayIsJamActive(viewModel: Main.JamActive.ViewModel(isActive: response.isActive))
+  func presentToReroute(viewModel: Main.Join.ViewModel) {
+    viewController?.diplayToReroute(viewModel: Main.Join.ViewModel())
   }
   
   func presentUploadCompleted(response: Main.JamUpload.Response) {

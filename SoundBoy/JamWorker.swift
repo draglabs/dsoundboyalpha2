@@ -10,9 +10,8 @@ import CoreLocation
 
 class JamWorker {
   
-  let production = Enviroment("production", host: "https://api.draglabs.com/v1.01")
-  let networkDispatcher = DefaultDispatcher(enviroment: Enviroment("production", host: "http://api.draglabs.com/v1.01"))
   
+  let networkDispatcher = DefaultDispatcher(enviroment:Env().dev)
   let locationWorker = LocationWorker()
   let userFetcher = UserFether()
   let jamFetcher = JamFetcher()
@@ -21,14 +20,18 @@ class JamWorker {
     let id = user.userId!
     let name = user.firstName!
     locationWorker.didGetLocation = {[unowned self] location, address in
+      let date = Date()
+      let formatter = DateFormatter()
+      formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+      let time = formatter.string(from: date)
       
-      let task = StartJamOperation(userId: id, name:"\(name)", location: address.city, coordinates: location.coordinate)
+      let task = StartJamOperation(userId: id, name:"\(name + time)", location: address.number! + address.street, coordinates: location.coordinate)
         task.execute(in: self.networkDispatcher, result: completion)
    }
     locationWorker.requestLocation()
   }
   
- private func checkForExitingJam(completion:@escaping(_ exits:Bool)->()) {
+ private func checkForExistingJam(completion:@escaping(_ exits:Bool)->()) {
     jamFetcher.fetch { (jam, error) in
       if jam != nil {
         completion(true)
@@ -38,9 +41,9 @@ class JamWorker {
     }
   }
   
-  func startJam(completion:@escaping(_ result:Result<Any>)->()) {
+  func start(completion:@escaping(_ result:Result<Any>)->()) {
     
-    self.checkForExitingJam {[unowned self]  (exits) in
+    self.checkForExistingJam {[unowned self]  (exits) in
       if !exits {
         self.userFetcher.fetch {(user, error) in
           if user != nil {
@@ -56,7 +59,7 @@ class JamWorker {
     
   }
  
-  func joinJam(jamPin:String, completion:@escaping(_ join:Result<Any>)->()) {
+  func join(jamPin:String, completion:@escaping(_ join:Result<Any>)->()) {
     
      userFetcher.fetch { (user, error) in
       if user != nil {
@@ -66,7 +69,7 @@ class JamWorker {
     }
   }
   
-  func exitJam(completion:@escaping(Bool)->()) {
+  func exit(completion:@escaping(Bool)->()) {
     userFetcher.fetch { (user, error) in
       if user != nil {
         let id = user!.userId!
@@ -85,4 +88,32 @@ class JamWorker {
       }
   }
   
+  func update(updates:[String:String?],completion:@escaping(_ join:Result<Any>)->()){
+    
+  }
+  
+  func export(jamId:String, completion:@escaping(Result<Any>)->()) {
+    
+    prepareUser {[unowned self] user in
+      let task = ExportJamOperation(userId: user.userId!, jamId: jamId)
+      task.execute(in: self.networkDispatcher) { (result) in
+        switch result {
+        case .success(let succeeded):
+          completion(Result.success(data: succeeded))
+        case .failed(let message, let error):
+          completion(Result.failed(message: message, error: error))
+        }
+      }
+    }
+   
+  }
+  
+  private func prepareUser(completion:@escaping(User)->()) {
+    let userFetcher = UserFether()
+    userFetcher.fetch { (usr, error) in
+      if error == nil && usr != nil {
+        completion(usr!)
+      }
+    }
+  }
 }

@@ -113,12 +113,12 @@ public struct Enviroment {
 /* =====================RequestRepresentable====================*/
 public protocol RequestRepresentable {
   
-  /// relative to the path of the enpodint we want to call, (i.e`/user/authorize`)
+  /// relative to the path of the endpoint we want to call, (i.e`/user/auth`)
   
   var path       : String        { get }
   
   /// This define the HTTP method we should use to perform the call
-  /// we hace defined ir inside an String based enum called `HTTPMethod`
+  /// we have define it inside an string based enum called `HTTPMethod`
   var method     : HTTPMethod    {get }
   
   /// These are the params we need to send along with the call
@@ -129,17 +129,23 @@ public protocol RequestRepresentable {
   var headers    : [String:Any]? { get }
   
   /// The kind of data we expect as response
+  /// Not much in use since swift 4 codable takes
+  //  care of pretty much all the heavy lifting
   var dataType   : DataType      { get }
   
 }
 
-/// Response enum
-/// Represent a reponse from the server
+
+/// Result enum
+/// Represent a result from the response
 public enum Result<T> {
   case success(data:T)
   case failed(message:String?, error:Error?)
   
 }
+
+/// Response enum
+/// Represent a reponse from the server
 public enum Response {
 
   case error(statusCode:Int?, error:Error?)
@@ -150,6 +156,7 @@ public enum Response {
     guard response.r!.statusCode < 400 else{
       let parser = Parser()
       if let data = parser.parse(to: .json, from: response.data) {
+        print("Printing Error")
         print(data)
       }
       self = .error(statusCode: response.r?.statusCode, error: response.error)
@@ -157,7 +164,8 @@ public enum Response {
     }
     
     if let data = response.data{
-      print(data)
+        let d = Parser().parse(to: .json, from: data)
+        print(d)
       self = .success(data: data)
       return
     }
@@ -189,13 +197,13 @@ public protocol DispatcherRepresentable {
 /* =====================NetworkDispatcher====================*/
 
 /// The Default network dispatcher
-public class DefaultDispatcher:DispatcherRepresentable {
+public struct DefaultDispatcher:DispatcherRepresentable {
   
   private var enviroment:Enviroment
   
   private var session:URLSession
   
-  public required init(enviroment: Enviroment) {
+  public init(enviroment: Enviroment) {
     self.enviroment = enviroment
     let config = URLSessionConfiguration.default
     config.timeoutIntervalForRequest = 30 * 60
@@ -250,4 +258,7 @@ public class DefaultDispatcher:DispatcherRepresentable {
   
 }
 
-
+struct Env {
+  let dev = Enviroment("dev", host: "http://api.draglabs.com/v1.01")
+  let prod = Enviroment("production", host: "http://api.draglabs.com/v1.01")
+}

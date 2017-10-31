@@ -39,6 +39,7 @@ enum JamUploadRequest:RequestRepresentable {
     case .soloUpload(_,let start,let end):
       return .body(["startTime":start,"endTime":end])
     case .upload( _,  _, let start, let end):
+
       return .body(["startTime":start,"endTime":end])
      }
   }
@@ -84,7 +85,13 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     }
     
     func executeUpload(request:RequestRepresentable) {
-       session.dataTask(with:prepareURLRequest(request: request)).resume()
+      session.dataTask(with:prepareURLRequest(request: request)).resume()
+//      session.dataTask(with: prepareURLRequest(request: request)) { (data, res, err) in
+//        if let a = Parser().parse(to: .json, from: data) {
+//            print(a)
+//            }
+//
+//      }.resume()
     }
     
     private func prepareURLRequest(request:RequestRepresentable) ->URLRequest {
@@ -209,8 +216,14 @@ class JamUpload: OperationRepresentable {
     
   }
   
+
     var request: RequestRepresentable {
-      return JamUploadRequest.upload(userId: userId, jamId: jam!.id!, start: jam!.startTime!, endTime: jam!.endTime!)
+//      let formatter = DateFormatter()
+//      formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//      let start = formatter.string(from: Recorder.shared.startedTime)
+//      let end = formatter.string(from: Recorder.shared.endTime)
+     
+      return JamUploadRequest.upload(userId: userId, jamId: jam!.id!, start: Recorder.shared.startedTime, endTime: Recorder.shared.endTime)
     }
   
   init(userId:String, jam:Jam?) {
@@ -219,10 +232,8 @@ class JamUpload: OperationRepresentable {
     }
 }
 
-
 class JamUploadWorker {
   
-  let env = Enviroment("production", host: "https://api.draglabs.com/v1.01")
   let userFetcher = UserFether()
   let jamFetcher = JamFetcher()
   var uploadDelegate:JamUpLoadNotifier?
@@ -250,14 +261,14 @@ class JamUploadWorker {
 
   
   private func prepareJam(jam:Jam,userId:String, url:URL) {
-      let uploadDispatcher = JamUpLoadDispatcher(enviroment:env, fileURL: url, delegate: uploadDelegate!)
+      let uploadDispatcher = JamUpLoadDispatcher(enviroment:Env().dev, fileURL: url, delegate: uploadDelegate!)
       let task = JamUpload(userId: userId, jam: jam)
       task.executeUpload(in: uploadDispatcher)
     }
   
   
   private func prepareSolo(user:String,url:URL, delegate:JamUpLoadNotifier) {
-    let uploadDispatcher = JamUpLoadDispatcher(enviroment:env, fileURL: url, delegate: uploadDelegate!)
+    let uploadDispatcher = JamUpLoadDispatcher(enviroment:Env().dev, fileURL: url, delegate: uploadDelegate!)
     let task = JamUpload(userId: user, jam: nil)
     task.executeUpload(in: uploadDispatcher)
   }

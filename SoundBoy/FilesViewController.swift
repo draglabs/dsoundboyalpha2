@@ -56,18 +56,18 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
     
     func setupUI() {
 
-      view.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
-       title = "FILES"
+    view.backgroundColor = UIColor(displayP3Red: 109/255, green: 0/255, blue: 0/255, alpha: 1)
+     title = "FILES"
       let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:16)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleDict
        
     }
   
-  
    func displayJams(viewModel: Files.ViewModel) {
     
     collection = FilesCollectionView(frame: view.bounds, activity: viewModel.Activity)
     collection.delegate = self
+    collection.exportPressed = exportJam
     view.addSubview(collection)
    }
 }
@@ -76,6 +76,10 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
 extension FilesViewController:FilesCollectionViewDelegate {
   func filesCollectionViewDidSelect(collection: FilesCollectionView, index:Int) {
     self.router?.routeToDetail(index: index)
+  }
+  
+  func exportJam(index:Int) {
+    router?.routeToExport(index:index)
   }
 }
 
