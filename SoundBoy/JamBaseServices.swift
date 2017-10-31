@@ -19,9 +19,24 @@ public enum JamResponseError {
 ///- case : join
 ///- case : exit
 ///- case : collaborator
-
+///- case : update
 public enum JamRequest:RequestRepresentable {
-  
+  func parseUpdates(updates:[String:String?]) ->JSONDictionary? {
+    var upds = [String:String]()
+    if let usrId = updates["jam"] {
+      upds["jam_id"] = usrId
+    }
+    if let name = updates["name"] {
+      upds["update_name"] = name
+    }
+    if let location = updates["location"] {
+      upds["location"] = location
+    }
+    if let notes = updates["notes"] {
+      upds["update_notes"] = notes
+    }
+    return upds
+  }
   case start(userId:String, jamLocation:String,jamName:String, jamCoordinates:CLLocationCoordinate2D)
   
   case join(uniqueId:String,pin:String)
@@ -30,6 +45,7 @@ public enum JamRequest:RequestRepresentable {
   
   case collaborator(uniqueId:String, jamId:String)
   
+  case update (userId:String,updates:[String:String?])
   
   public var dataType: DataType {
     switch self {
@@ -42,8 +58,13 @@ public enum JamRequest:RequestRepresentable {
   
   /// these are optional list of headers we can send alogn with the call
   public var headers: [String : Any]? {
+    switch self {
+    case .update(let userId,_):
+      return["application/json":"Content-Type",userId:"user_id"]
+    default:
+      return["application/json":"Content-Type"]
+    }
     
-    return["application/json":"Content-Type"]
   }
   
   /// These are the params we need to send along with the call
@@ -61,6 +82,8 @@ public enum JamRequest:RequestRepresentable {
     case .collaborator( let uniqueId, let jamId):
       
       return .body(["user_id":uniqueId, "jam_id":jamId])
+    case .update(_, let updates):
+      return .body(parseUpdates(updates: updates))
     }
     
   }
@@ -68,6 +91,8 @@ public enum JamRequest:RequestRepresentable {
   
   public  var method: HTTPMethod {
     switch self {
+    case .update:
+      return .patch
     default:
       return .post
     }
@@ -84,11 +109,11 @@ public enum JamRequest:RequestRepresentable {
       return "jam/collaborators"
     case .join:
       return "jam/join"
+    case .update:
+      return "jam/update"
     }
   }
 }
-
-
 
 //=============StartJamOperation============================
 
@@ -196,5 +221,37 @@ class ExitJamOperation: OperationRepresentable {
   init(userId:String, jamId:String) {
     self.userId = userId
     self.jamId = jamId
+  }
+}
+class UpdateJamOperation: OperationRepresentable {
+  let userId:String
+  let updates:[String:String?]
+  var responseError:((_ code:Int?, _ error:Error?)->())?
+  var store: StoreRepresentable {
+    return JamStore()
+  }
+  
+  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ exited:Bool)->()) {
+    dispatcher.execute(request: request) { (response) in
+      self.parseReponse(response: response, result: result)
+    }
+  }
+  
+  var request: RequestRepresentable {
+    return JamRequest.update(userId: userId, updates: updates)
+  }
+  
+  private func parseReponse(response:Response,result: @escaping (_ exited:Bool)->()) {
+    switch response {
+    case .success(_):
+      result(true)
+    case .error(_,_):
+      result(false)
+    }
+  }
+  
+  init(userId:String,updates:[String:String?]) {
+    self.userId = userId
+    self.updates = updates
   }
 }
