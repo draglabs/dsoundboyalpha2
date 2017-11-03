@@ -15,6 +15,7 @@ import UIKit
     func presentJoinJam()
     func pushFiles()
     func pushSettings()
+    func presentEditjam()
 }
 
 protocol MainDataPassing
@@ -48,5 +49,9 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
     nav.reversePush(controller: settings, animated: true)
     
   }
- 
+  
+  func presentEditjam() {
+    let editVC = EditJamViewController()
+    viewController?.present(editVC, animated: true, completion: nil)
+  }
 }

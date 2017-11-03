@@ -98,7 +98,7 @@ class ActivityView: UIView {
     backgroundColor = UIColor(displayP3Red: 33/255, green: 47/255, blue: 62/255, alpha: 1)
     
     // topView
-    topBarView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: 20)
+    topBarView.frame = CGRect(x: 0, y: 0, width: parentView!.bounds.width, height: 20)
     topBarView.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
     
     setupInitialView()
@@ -147,17 +147,18 @@ class ActivityView: UIView {
     titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
     titleLabel.topAnchor.constraint(equalTo: topBarView.bottomAnchor, constant: 10).isActive = true
     titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    titleLabel.heightAnchor.constraint(equalToConstant: 35).isActive = true
+    titleLabel.heightAnchor.constraint(equalToConstant: 38).isActive = true
     
     messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
     messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0).isActive = true
     messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
-    messageLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    //messageLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
     
-    editJamButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor).isActive = true
+    //editJamButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor).isActive = true
     editJamButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
     editJamButton.leadingAnchor.constraint(equalTo: leadingAnchor,constant:100).isActive = true
     editJamButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -100).isActive = true
+    editJamButton.bottomAnchor.constraint(equalTo: bottomAnchor,constant:-8).isActive = true
   }
   
 

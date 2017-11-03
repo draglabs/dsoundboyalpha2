@@ -15,10 +15,12 @@ class  JamStore:StoreRepresentable {
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
     let decorder = JSONDecoder()
     let resp = try? decorder.decode(JamResponse.self, from: data)
+   
     guard let jamRes = resp else{response(Result.failed(message: "unable to parse response", error: nil)); return}
-    
+ 
     let context = coreDataStore.viewContext
-    var jamToSave = Jam(context: context)
+    
+     var jamToSave = Jam(context: context)
     if let existingJam = jamExist(resp: jamRes) {
       existingJam.id = jamRes.jam.id
       existingJam.pin = jamRes.jam.pin
@@ -26,19 +28,20 @@ class  JamStore:StoreRepresentable {
       existingJam.endTime = jamRes.jam.endTime
       existingJam.isCurrent = true
       jamToSave = existingJam
-    }else {
+    }
+      jamToSave.name = jamRes.jam.name
       jamToSave.id = jamRes.jam.id
       jamToSave.pin = jamRes.jam.pin
       jamToSave.startTime = jamRes.jam.startTime
       jamToSave.endTime = jamRes.jam.endTime
       jamToSave.isCurrent = true
-    }
     
     context.perform {
       do {
         try context.save()
         response(Result.success(data: jamToSave))
       }catch {
+        print("not saved",error)
         response(Result.failed(message: "Unable to save jam", error: error))
       }
     }

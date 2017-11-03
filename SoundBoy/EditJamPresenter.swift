@@ -10,12 +10,13 @@ import UIKit
 
 protocol EditJamPresentationLogic {
   func presentCurrentJam(response: EditJam.CurrentJam.Response)
+  func presentUpdated(response:EditJam.Update.Response)
 }
 
 class EditJamPresenter: EditJamPresentationLogic {
   weak var viewController: EditJamDisplayLogic?
   
-  // MARK: Do something
+  // MARK: Do
   
   func presentCurrentJam(response: EditJam.CurrentJam.Response) {
     let name =    response.name!
@@ -25,4 +26,7 @@ class EditJamPresenter: EditJamPresentationLogic {
     viewController?.displayCurrentJam(viewModel: viewModel)
     
    }
+  func presentUpdated(response:EditJam.Update.Response){
+    
+  }
 }

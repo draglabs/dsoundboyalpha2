@@ -152,7 +152,7 @@ public enum Response {
   case success(data:Data)
   
   init(_ response:(r:HTTPURLResponse?, data:Data?, error:Error?), for request:RequestRepresentable) {
-    
+  
     guard response.r!.statusCode < 400 else{
       let parser = Parser()
       if let data = parser.parse(to: .json, from: response.data) {
@@ -164,11 +164,11 @@ public enum Response {
     }
     
     if let data = response.data{
-        let d = Parser().parse(to: .json, from: data)
-        print(d)
+      
       self = .success(data: data)
       return
     }
+    
     self = .error(statusCode: response.r?.statusCode, error: response.error)
   }
   

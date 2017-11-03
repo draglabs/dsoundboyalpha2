@@ -29,8 +29,9 @@ struct UserActivityResponse: Codable {
 }
 //=======JamResponse===============
 struct Jm:Codable{
+  var name:String?
   var id:String
-  var pin:String
+  var pin:String?
   var startTime:String
   var endTime:String
   

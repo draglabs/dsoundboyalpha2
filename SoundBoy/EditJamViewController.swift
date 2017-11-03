@@ -12,6 +12,7 @@ import UIKit
 protocol EditJamDisplayLogic: class
 {
   func displayCurrentJam(viewModel: EditJam.CurrentJam.ViewModel)
+  func displayUpdated(viewMode:EditJam.Update.ViewModel)
 }
 
 class EditJamViewController: UIViewController, EditJamDisplayLogic
@@ -53,6 +54,7 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
   override func viewDidLoad() {
     super.viewDidLoad()
     currentJam()
+    editJamUISetup()
   }
   
   // MARK:Properties
@@ -61,7 +63,7 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
   let locationtextfield = UITextField()
   let notesTextView = UITextView()
   let doneButton = UIButton(type:.system)
-  
+  let swipeGesture = UISwipeGestureRecognizer()
   
   func currentJam() {
     let request = EditJam.CurrentJam.Request()
@@ -73,11 +75,17 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
     locationtextfield.text = viewModel.location
     notesTextView.text = viewModel.notes
     
-    // NotificationCenter.default.addObserver(self, selector: #selector(handleWillShow(notification:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+  }
+  func displayUpdated(viewMode:EditJam.Update.ViewModel){
+    
   }
   
-  
   private func editJamUISetup() {
+    view.backgroundColor = UIColor(displayP3Red: 33/255, green: 47/255, blue: 62/255, alpha: 1)
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
+    swipeGesture.addTarget(self, action: #selector(handleSwipe(sender:)))
+    swipeGesture.direction = .down
+    view.addGestureRecognizer(swipeGesture)
     jamNameTextfield.placeholder = "Name of the jam"
     jamNameTextfield.clearsOnInsertion = true
     jamNameTextfield.textAlignment = .center
@@ -117,7 +125,7 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
   
   private func editJamConstraints() {
     jamNameTextfield.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant:50).isActive = true
-    jamNameTextfield.topAnchor.constraint(equalTo: view.topAnchor,constant:28).isActive = true
+    jamNameTextfield.topAnchor.constraint(equalTo: view.topAnchor,constant:65).isActive = true
     jamNameTextfield.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant:-50).isActive = true
     jamNameTextfield.heightAnchor.constraint(equalToConstant: 35).isActive = true
     
@@ -129,7 +137,7 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
     notesTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50).isActive = true
     notesTextView.topAnchor.constraint(equalTo: locationtextfield.bottomAnchor, constant: 18).isActive = true
     notesTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50).isActive = true
-    notesTextView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+    notesTextView.heightAnchor.constraint(equalToConstant: 250).isActive = true
     
     doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100).isActive = true
     doneButton.topAnchor.constraint(equalTo: notesTextView.bottomAnchor, constant: 8).isActive = true
@@ -141,6 +149,22 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
 
 extension EditJamViewController:UITextFieldDelegate,UITextViewDelegate {
   @objc func handleDismiss(sender:UIButton) {
-    
+    view.endEditing(true)
+    router?.dismiss()
+  }
+  @objc func handleTap(sender:UISwipeGestureRecognizer) {
+      view.endEditing(true)
+  }
+  @objc func handleSwipe(sender:UISwipeGestureRecognizer) {
+    router?.dismiss()
+  }
+ func validateFields() -> Bool {
+  return  locationtextfield.text != nil || jamNameTextfield.text != nil || notesTextView.text != nil ? true : false
+  }
+  
+  //MARK:Delegates
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    view.endEditing(true)
+    return true
   }
 }

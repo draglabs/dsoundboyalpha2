@@ -178,7 +178,7 @@ struct ExportJamOperation: OperationRepresentable {
     switch response {
     case .success(_):
       result(Result.success(data: true))
-    case .error(let msg,let error):
+    case .error(_,let error):
       result(Result.failed(message: "Unable to Export Jam", error: error))
     }
   }

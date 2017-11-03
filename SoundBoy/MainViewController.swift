@@ -59,6 +59,9 @@ class MainViewController: UIViewController, MainDisplayLogic {
     setupUI()
    
     activityView = ActivityView(parent: self.view)
+    activityView.prepareForEditJam = {
+      self.router?.presentEditjam()
+    }
     interactor?.checkForActiveJam(request: Main.Jam.Request())
   }
   

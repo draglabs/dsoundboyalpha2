@@ -26,6 +26,6 @@ class EditJamRouter: NSObject, EditJamRoutingLogic, EditJamDataPassing
   
   // MARK: Routing
   func dismiss() {
-    
+    viewController?.dismiss(animated: true, completion: nil)
   }
 }

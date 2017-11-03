@@ -34,7 +34,11 @@ enum EditJam
       let location:String
       let notes:String
     }
-    struct Response {}
-    struct ViewModel {}
+    struct Response {
+      let updated:Bool
+    }
+    struct ViewModel {
+      let updated:Bool
+    }
   }
 }
