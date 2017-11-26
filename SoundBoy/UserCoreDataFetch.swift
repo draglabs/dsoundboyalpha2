@@ -13,7 +13,7 @@ class UserFether: FetcherRepresentable {
   var coreDataStore: CoreDataStore {
     return CoreDataStore(entity: .jam)
   }
-  
+
   func fetch(callback: @escaping (_ result:User?, _ error:Error?) -> ()) {
     let context = coreDataStore.viewContext
     let jamRequest:NSFetchRequest<User> = User.fetchRequest()

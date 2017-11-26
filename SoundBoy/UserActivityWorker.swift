@@ -11,11 +11,16 @@ import CoreData
 
 final class RecordindsStore:StoreRepresentable{
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
+    let d = Parser().parseToAny(from: data)
+    print(d)
+
     let decoder = JSONDecoder()
     do {
-      let res = try decoder.decode(UserActivityResponse.self, from: data)
+      let res = try decoder.decode([JamResponse].self, from: data)
+      
       response(Result.success(data: res))
     }catch {
+      print(error)
       response(Result.failed(message: "Cant Decode results", error: error))
     }
   }
@@ -27,7 +32,7 @@ final class RecordindsStore:StoreRepresentable{
 final class DetailStore:StoreRepresentable {
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
      let rs = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)
-      print(rs)
+      
       response(Result.success(data: rs))
 //    let decoder = JSONDecoder()
 //    do {
@@ -149,6 +154,42 @@ class UserActivityWorker: NSObject {
           operation.execute(in: self.dispatcher, result: completion)
         }
       }
+  }
+  
+}
+
+struct UserRegistrationOperation: OperationRepresentable {
+  let facebookId :String
+  let accessToken:String
+  
+  var responseError:((_ code:Int?, _ error:Error?)->())?
+  
+  var store:StoreRepresentable {
+    return UserStore()
+  }
+  
+  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Result<Any>) -> ()) {
+    
+    dispatcher.execute(request: request) { (response) in
+      
+      switch response {
+      case .success(let data):
+        self.store.from(data: data, response: result)
+      case .error(_, _):
+        
+        result(Result.failed(message: "unable to login", error: nil))
+        
+      }
+    }
+  }
+  
+  init(facebookId:String,accessToken:String) {
+    self.facebookId = facebookId
+    self.accessToken = accessToken
+  }
+  
+  var request: RequestRepresentable {
+    return UserRequest.register(facebookId: facebookId, accessToken: accessToken)
   }
   
 }

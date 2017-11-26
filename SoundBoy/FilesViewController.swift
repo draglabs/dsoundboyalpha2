@@ -16,12 +16,6 @@ protocol FilesDisplayLogic:class {
 class FilesViewController: UIViewController, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
-  var collection:FilesCollectionView!
-  
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
   
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,23 +46,17 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
       interactor?.loadRecordings(request: request)
     }
  
-    // MARK: UI Setup and Constraints
-    
+    // MARK: Properties
+     @IBOutlet weak  var collection:FilesCollectionView!
     func setupUI() {
-
-    view.backgroundColor = UIColor(displayP3Red: 109/255, green: 0/255, blue: 0/255, alpha: 1)
      title = "FILES"
-      let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:16)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
+      let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:20)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
         navigationController?.navigationBar.titleTextAttributes = titleDict
-       
+      collection.exportPressed = exportJam
     }
   
    func displayJams(viewModel: Files.ViewModel) {
-    
-    collection = FilesCollectionView(frame: view.bounds, activity: viewModel.Activity)
-    collection.delegate = self
-    collection.exportPressed = exportJam
-    view.addSubview(collection)
+    collection.display(jams: viewModel.Activity)
    }
 }
 

@@ -16,11 +16,11 @@ protocol FilesBuisnessLogic {
 }
 
 protocol FilesDataStore {
-  var activity:UserActivityResponse? { get }
+  var activity:[JamResponse]? { get }
 }
 
-class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
-    var activity: UserActivityResponse?
+class FilesInteractor: FilesBuisnessLogic, FilesDataStore {  
+    var activity: [JamResponse]?
     var presenter: FilesPresentationLogic?
     var worker: FilesWorker?
     
@@ -30,7 +30,7 @@ class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
       worker?.getUserActivity(completion: {[weak self] (result) in
         switch result {
         case .success(let data):
-          let jams = data as! UserActivityResponse
+          let jams = data as! [JamResponse]
           self?.activity = jams
           self?.presenter?.presentJams(response: Files.Response(Activity: jams))
         default:

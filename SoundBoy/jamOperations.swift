@@ -43,7 +43,7 @@ struct StartJamOperation: OperationRepresentable {
     }
   }
   var request: RequestRepresentable {
-    return JamRequest.start(userId: userId, jamLocation: location, jamName: name, jamCoordinates: jamCoordinates)
+    return JamRequest.new(userId: userId, jamLocation: location, jamName: name, jamCoordinates: jamCoordinates)
   }
   
 }
@@ -179,6 +179,7 @@ struct ExportJamOperation: OperationRepresentable {
     case .success(_):
       result(Result.success(data: true))
     case .error(_,let error):
+      print(error)
       result(Result.failed(message: "Unable to Export Jam", error: error))
     }
   }

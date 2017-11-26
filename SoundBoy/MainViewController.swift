@@ -19,23 +19,11 @@ class MainViewController: UIViewController, MainDisplayLogic {
   var interactor: MainBusinessLogic?
   var router: (NSObjectProtocol & MainRoutingLogic & MainDataPassing)?
  
-  let playingView = PlayingView()
-  let startJoinJamView = JoinStartJamView()
-  let pulsor = Pulsator()
-  let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
-  let backLayer = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
-  var activityView:ActivityView!
-  
-
   required init?(coder aDecoder: NSCoder){
     super.init(coder: aDecoder)
     setup()
   }
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
+
   private func setup() {
     let viewController = self
     let interactor = MainInteractor()
@@ -47,7 +35,6 @@ class MainViewController: UIViewController, MainDisplayLogic {
     presenter.viewController = viewController
     router.viewController = viewController
     router.dataStore = interactor
-    
   }
  
   override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +44,6 @@ class MainViewController: UIViewController, MainDisplayLogic {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
-   
-    activityView = ActivityView(parent: self.view)
     activityView.prepareForEditJam = {
       self.router?.presentEditjam()
     }
@@ -71,50 +56,40 @@ class MainViewController: UIViewController, MainDisplayLogic {
     navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back")
     self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back")
     self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-
+    
   }
   
  private func setupUI() {
+    nav()
+    recButton.layer.cornerRadius = 73/3
+    container.layer.cornerRadius = 203/2
   
-     nav()
-     view.backgroundColor = UIColor.white
-     playingView.translatesAutoresizingMaskIntoConstraints = false
-     startJoinJamView.translatesAutoresizingMaskIntoConstraints = false
-     backLayer.frame = view.frame
-     view.addSubview(backLayer)
-     backgroundView.frame = view.frame
-     view.addSubview(backgroundView)
-     view.addSubview(playingView)
-     view.addSubview(startJoinJamView)
-     playingView.didFinishCounting   =  didFinishCounting
-     playingView.didStartCounting    =  didStartCounting
-     startJoinJamView.didPressedJam  =  jamPressed
-     startJoinJamView.didPressedJoin =  didPreseJoin
-  
-     uiContraints()
-    
     let vs = UIView()
-    vs.frame = CGRect(x: view.bounds.width / 2, y: 120, width: 300, height: 300)
+    vs.frame = CGRect(x: 100, y: 120, width: 300, height: 300)
     pulsor.backgroundColor = UIColor.white.cgColor
-    playingView.insertSubview(vs, belowSubview: playingView.pausePlayButton)
+     pulsor.radius = 203
+    container.insertSubview(vs, belowSubview: recButton)
     vs.layer.addSublayer(pulsor)
   
-    }
+    recButton.addTarget(self, action: #selector(recPressed(sender:)), for: .touchUpInside)
+    new.addTarget(self, action: #selector(jamPressed(sender:)), for: .touchUpInside)
+    join.addTarget(self, action: #selector(joinPressed(sender:)), for: .touchUpInside)
+ 
+  timeCounter.counting = {[unowned self] count in
+    self.time.text = count
+  }
+}
   
- private func uiContraints() {
-     // play pause view  constraints
-     playingView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-     playingView.topAnchor.constraint(equalTo: view.topAnchor,constant:64).isActive = true
-     playingView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-     NSLayoutConstraint.init(item: playingView, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: 1/1.7, constant: 0).isActive = true
-    
-    //Start Join Jam view constraints
-    startJoinJamView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-    startJoinJamView.topAnchor.constraint(equalTo: playingView.bottomAnchor).isActive = true
-    startJoinJamView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-    startJoinJamView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    
-    }
+  @IBOutlet weak var bottonConstaint:NSLayoutConstraint!
+  @IBOutlet weak var container:UIView!
+  @IBOutlet weak var recButton:UIButton!
+  @IBOutlet weak var time:UILabel!
+  @IBOutlet weak var new:UIButton!
+  @IBOutlet weak var join:UIButton!
+  @IBOutlet weak var activityView:ActivityView!
+  let timeCounter = TimeCounter(direction: .up)
+  let pulsor = Pulsator()
+  var isRec = false
   
   @objc func navButtonPressed(sender:UIBarButtonItem) {
     if sender == navigationItem.rightBarButtonItem {
@@ -128,30 +103,49 @@ class MainViewController: UIViewController, MainDisplayLogic {
 
 extension MainViewController {
 
-  func didStartCounting() {
+  func didStart() {
+    interactor?.startJam(request: Main.Jam.Request())
+    recButton.setTitle("Stop", for: .normal)
+    timeCounter.reset()
+    timeCounter.startTimeCounter()
     pulsor.start()
+    animate()
   }
   
-  func didFinishCounting() {
+  @objc func recPressed(sender:UIButton) {
+    if !isRec {
+     didStart()
+      isRec = true
+    }else {
+      didStop()
+      isRec = false
+    }
+  }
+  
+  func didStop() {
+    recButton.setTitle("Rec", for: .normal)
+    timeCounter.stopTimeCounter()
     pulsor.stop()
+    animate()
     let endRecordingJamRequest = Main.Jam.Request()
     interactor?.endRecording(request: endRecordingJamRequest)
     activityView.message = "Hang on while we upload your recording"
   }
 
-  func jamPressed(view:JoinStartJamView, button:UIButton) {
+  @objc func jamPressed(sender:UIButton) {
       interactor?.startJam(request: Main.Jam.Request())
     }
   
-  func didPreseJoin(bottomView:JoinStartJamView,sender:UIButton) {
+  @objc func joinPressed(sender:UIButton) {
    interactor?.exitOrJoin(request: Main.Jam.Request())
   }
+  
   func displayPin(viewModel:Main.Jam.ViewModel) {
     pulsor.start()
-    activityView.show(title: viewModel.pin, isPin:true)
-    playingView.start()
+   activityView.show(title: viewModel.pin,message:"Share this pin for other to join")
+   
   }
-  
+
   func diplayToReroute(viewModel: Main.Join.ViewModel) {
       router?.presentJoinJam()
     
@@ -159,24 +153,42 @@ extension MainViewController {
   
   func displayJamJoined(viewModel: Main.Join.ViewModel) {
     pulsor.start()
-    activityView.show(title:"Jam Join", isPin:false)
-    activityView.message = "You have join a Jam"
-    playingView.start()
+    activityView.show(title:"Jam Join",message: "You have join a Jam")
+  
   }
   
   func displayIsJamActive(viewModel:Main.JamActive.ViewModel){
-    startJoinJamView.updateJamButton(isJamActive: viewModel.isActive)
+   
   }
   
   func displayProgress(viewModel:Main.Progress.ViewModel) {
     activityView.title =  viewModel.progress
   }
+  
   func displayUploadCompleted(viewModel: Main.JamUpload.ViewModel) {
-    activityView.title = "Upload Complete"
-    activityView.message = "Will dismiss  in 2 seconds"
+    activityView.show(title: "Upload Complete", message: "Will dismiss  in 2 seconds")
+    animate()
+    interactor?.checkForActiveJam(request: Main.Jam.Request())
     let deadline = DispatchTime.now() + .seconds(2)
     DispatchQueue.main.asyncAfter(deadline: deadline) {
-      self.activityView.hide()
+      self.animate()
+      
+    }
+  }
+  
+  func animate() {
+    if !activityView.isShown {
+      bottonConstaint.constant -= 112
+      UIView.animate(withDuration: 0.5, animations: {
+        self.view.layoutIfNeeded()
+      })
+      activityView.isShown = true
+    }else {
+      bottonConstaint.constant += 112
+      UIView.animate(withDuration: 0.5, animations: {
+        self.view.layoutIfNeeded()
+      })
+      activityView.isShown = false
     }
   }
 }

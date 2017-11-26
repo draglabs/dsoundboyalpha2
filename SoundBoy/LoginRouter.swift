@@ -23,7 +23,7 @@ class LoginRouter: NSObject, LoginRoutingLogic, LoginDataPassing {
   // MARK: Routing
     
     func routeToMainController(source: LoginViewController) {
-        let mainController = MainViewController()
+        let mainController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! MainViewController
       Customizer.main(nav: source.navigationController!)
         source.navigationController?.setViewControllers([mainController], animated: true)
     }

@@ -74,6 +74,9 @@
 		A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */; };
 		A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AAE1F57C9FA001F3B00 /* CoreData.xcdatamodeld */; };
 		A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */; };
+		A1CB24611FCB397B0078E17A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24601FCB397B0078E17A /* Main.storyboard */; };
+		A1CB24631FCB5B2B0078E17A /* Files.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24621FCB5B2B0078E17A /* Files.storyboard */; };
+		A1CB24651FCB68E90078E17A /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24641FCB68E90078E17A /* Edit.storyboard */; };
 		A1D756151FA8608E00BCB8D7 /* jamOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D756141FA8608E00BCB8D7 /* jamOperations.swift */; };
 		A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E120C91F98708D005B7095 /* ResponseModel.swift */; };
 		A1F203001F5CEC820023484D /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
@@ -180,6 +183,9 @@
 		A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamWorker.swift; sourceTree = "<group>"; };
 		A1B66AAF1F57C9FA001F3B00 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBaseService.swift; sourceTree = "<group>"; };
+		A1CB24601FCB397B0078E17A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A1CB24621FCB5B2B0078E17A /* Files.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Files.storyboard; sourceTree = "<group>"; };
+		A1CB24641FCB68E90078E17A /* Edit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Edit.storyboard; sourceTree = "<group>"; };
 		A1D756141FA8608E00BCB8D7 /* jamOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jamOperations.swift; sourceTree = "<group>"; };
 		A1E120C91F98708D005B7095 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataFetch.swift; sourceTree = "<group>"; };
@@ -380,6 +386,7 @@
 				A16750071FA91FBF00E1B258 /* EditJamRouter.swift */,
 				A16750081FA91FBF00E1B258 /* EditJamViewController.swift */,
 				A16750091FA91FBF00E1B258 /* EditJamWorker.swift */,
+				A1CB24641FCB68E90078E17A /* Edit.storyboard */,
 			);
 			name = EditJam;
 			sourceTree = "<group>";
@@ -562,6 +569,7 @@
 				A1B66A8B1F555E64001F3B00 /* MainRouter.swift */,
 				A1B66A8C1F555E64001F3B00 /* MainViewController.swift */,
 				A1B66A8D1F555E64001F3B00 /* MainWorker.swift */,
+				A1CB24601FCB397B0078E17A /* Main.storyboard */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -576,6 +584,7 @@
 				44F840631F5D97D0004A7A76 /* FilesRouter.swift */,
 				44F840641F5D97D0004A7A76 /* FilesViewController.swift */,
 				44F840651F5D97D0004A7A76 /* FilesWorker.swift */,
+				A1CB24621FCB5B2B0078E17A /* Files.storyboard */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -676,7 +685,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1CB24611FCB397B0078E17A /* Main.storyboard in Resources */,
+				A1CB24651FCB68E90078E17A /* Edit.storyboard in Resources */,
 				A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */,
+				A1CB24631FCB5B2B0078E17A /* Files.storyboard in Resources */,
 				A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

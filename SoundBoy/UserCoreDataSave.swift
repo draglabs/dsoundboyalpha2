@@ -15,9 +15,9 @@ class UserStore: StoreRepresentable {
     let decoder = JSONDecoder()
     let resp = try! decoder.decode(UserResponse.self, from: data)
    
-    user.userId = resp.user.id
-    user.firstName = resp.user.name
-    user.lastName = resp.user.lastName
+    user.userId = resp.id
+    user.firstName = resp.name
+    user.lastName = resp.lastName
 
     context.perform {
       do {

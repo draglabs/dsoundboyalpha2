@@ -152,13 +152,13 @@ public enum Response {
   case success(data:Data)
   
   init(_ response:(r:HTTPURLResponse?, data:Data?, error:Error?), for request:RequestRepresentable) {
-  
     guard response.r!.statusCode < 400 else{
       let parser = Parser()
       if let data = parser.parse(to: .json, from: response.data) {
         print("Printing Error")
         print(data)
       }
+      print(response.r?.statusCode)
       self = .error(statusCode: response.r?.statusCode, error: response.error)
       return
     }
@@ -259,6 +259,6 @@ public struct DefaultDispatcher:DispatcherRepresentable {
 }
 
 struct Env {
-  let dev = Enviroment("dev", host: "http://api.draglabs.com/v1.01")
-  let prod = Enviroment("production", host: "http://api.draglabs.com/v1.01")
+  let dev = Enviroment("dev", host: "http://api.draglabs.com/api/v2.0")
+  let prod = Enviroment("production", host: "http://api.draglabs.com/api/v2.0")
 }

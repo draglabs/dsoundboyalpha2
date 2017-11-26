@@ -14,6 +14,8 @@ class  JamStore:StoreRepresentable {
   
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
     let decorder = JSONDecoder()
+    let d = Parser().parse(to: .json, from: data)
+    print(d ?? "")
     let resp = try? decorder.decode(JamResponse.self, from: data)
    
     guard let jamRes = resp else{response(Result.failed(message: "unable to parse response", error: nil)); return}
@@ -22,18 +24,18 @@ class  JamStore:StoreRepresentable {
     
      var jamToSave = Jam(context: context)
     if let existingJam = jamExist(resp: jamRes) {
-      existingJam.id = jamRes.jam.id
-      existingJam.pin = jamRes.jam.pin
-      existingJam.startTime = jamRes.jam.startTime
-      existingJam.endTime = jamRes.jam.endTime
+      existingJam.id = jamRes.id
+      existingJam.pin = jamRes.pin
+      existingJam.startTime = jamRes.startTime
+      existingJam.endTime = jamRes.endTime
       existingJam.isCurrent = true
       jamToSave = existingJam
     }
-      jamToSave.name = jamRes.jam.name
-      jamToSave.id = jamRes.jam.id
-      jamToSave.pin = jamRes.jam.pin
-      jamToSave.startTime = jamRes.jam.startTime
-      jamToSave.endTime = jamRes.jam.endTime
+      jamToSave.name = jamRes.name
+      jamToSave.id = jamRes.id
+      jamToSave.pin = jamRes.pin
+      jamToSave.startTime = jamRes.startTime
+      jamToSave.endTime = jamRes.endTime
       jamToSave.isCurrent = true
     
     context.perform {
@@ -51,7 +53,7 @@ class  JamStore:StoreRepresentable {
    
     var jam:Jam?
     let context = coreDataStore.viewContext
-    let predicate = NSPredicate(format: "id == %@", resp.jam.id)
+    let predicate = NSPredicate(format: "id == %@", resp.id)
     let request:NSFetchRequest = Jam.fetchRequest()
     request.predicate = predicate
     context.performAndWait {

@@ -47,151 +47,20 @@ class DottedView: UIView {
 
 
 class FilesCell: UICollectionViewCell {
+  @IBOutlet weak var name:UILabel!
+  @IBOutlet weak var exportButton:UIButton!
   
-    fileprivate let valColor = UIColor(displayP3Red: 245/255, green: 145/255, blue: 32/1255, alpha: 1)
-    fileprivate let labelFont = UIFont(name:"Avenir-Medium", size:16)
-    let startTimeLabel = UILabel()
-    let startTimeVal = UILabel()
-    let endTimeLabel = UILabel()
-    let endTimeVal = UILabel()
-    let jamNameLabel = UILabel()
-    let jamNameVal = UILabel()
-    let locationLabel = UILabel()
-    let locationVal = UILabel()
-    let collaboratorsLabel = UILabel()
-    let collaboratorsVal = UILabel()
-    let exportButton = UIButton()
-    let separotor = UIView()
     var exportPressed:(()->())?
   
-  func uiSetup() {
-    backgroundColor = UIColor.white
-    separotor.backgroundColor = UIColor.lightGray
-    setMasking()
-    
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+  }
+  func setup(with jam:JamResponse) {
+    name.text = jam.name!
     exportButton.addTarget(self, action: #selector(exportButtonPressed(sender:)), for: .touchUpInside)
-    startTimeLabel.font = labelFont
-    endTimeLabel.font = labelFont
-    jamNameLabel.font = labelFont
-    locationLabel.font = labelFont
-    collaboratorsLabel.font = labelFont
-    jamNameVal.textAlignment = .center
-    exportButton.setTitle("Export", for: .normal)
-    exportButton.backgroundColor = UIColor(displayP3Red: 109/255, green: 0/255, blue: 0/255, alpha: 1)
-    exportButton.layer.cornerRadius = 5
-    separotor.frame = CGRect(x: 40, y: 40, width: bounds.width - 80, height: 1)
-    
-    contentView.addSubview(exportButton)
-    contentView.addSubview(startTimeLabel)
-    contentView.addSubview(startTimeVal)
-    contentView.addSubview(endTimeLabel)
-    contentView.addSubview(endTimeVal)
-    contentView.addSubview(jamNameLabel)
-    contentView.addSubview(jamNameVal)
-    contentView.addSubview(locationLabel)
-    contentView.addSubview(locationVal)
-    contentView.addSubview(collaboratorsLabel)
-    contentView.addSubview(separotor)
-    
-    let dots = DottedView(frame: CGRect(x: 0, y: 50, width: 40, height: bounds.height))
-    dots.backgroundColor = UIColor.clear
-    contentView.addSubview(dots)
-    setConstraints()
-    
-  }
-  
-  private func valColors() {
-    jamNameVal.textColor = valColor
-    startTimeVal.textColor = valColor
-    endTimeVal.textColor = valColor
-    collaboratorsVal.textColor = valColor
-    locationVal.textColor = valColor
-    //exportButton.setTitleColor(valColor, for: .normal)
-  }
-  private func setMasking() {
-    startTimeVal.translatesAutoresizingMaskIntoConstraints = false
-    startTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-    endTimeLabel.translatesAutoresizingMaskIntoConstraints = false
-    endTimeVal.translatesAutoresizingMaskIntoConstraints = false
-    jamNameLabel.translatesAutoresizingMaskIntoConstraints = false
-    jamNameVal.translatesAutoresizingMaskIntoConstraints = false
-    locationLabel.translatesAutoresizingMaskIntoConstraints = false
-    locationVal.translatesAutoresizingMaskIntoConstraints = false
-    collaboratorsLabel.translatesAutoresizingMaskIntoConstraints = false
-    collaboratorsVal.translatesAutoresizingMaskIntoConstraints = false
-    exportButton.translatesAutoresizingMaskIntoConstraints = false
-    
-  }
-  
-  
-  func setConstraints() {
-    jamNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant:40).isActive = true
-    jamNameLabel.topAnchor.constraint(equalTo: topAnchor,constant:10).isActive = true
-    jamNameLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    
-    jamNameVal.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    jamNameVal.topAnchor.constraint(equalTo: topAnchor,constant:10).isActive = true
-    jamNameVal.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    
-  
-    startTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
-    startTimeLabel.topAnchor.constraint(equalTo: jamNameVal.bottomAnchor, constant: 20).isActive = true
-    startTimeLabel.trailingAnchor.constraint(equalTo:centerXAnchor).isActive = true
-    
-    startTimeVal.leadingAnchor.constraint(equalTo:centerXAnchor).isActive = true
-    startTimeVal.topAnchor.constraint(equalTo: jamNameVal.bottomAnchor, constant: 20).isActive = true
-    startTimeVal.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    
-    endTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
-    endTimeLabel.topAnchor.constraint(equalTo: startTimeLabel.bottomAnchor,constant:20).isActive = true
-    endTimeLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    
-    endTimeVal.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    endTimeVal.topAnchor.constraint(equalTo: startTimeVal.bottomAnchor,constant:20).isActive = true
-    endTimeVal.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    
-    locationLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
-    locationLabel.topAnchor.constraint(equalTo: endTimeLabel.bottomAnchor, constant: 20).isActive = true
-    locationLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    
-    locationVal.leadingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    locationVal.topAnchor.constraint(equalTo: endTimeVal.bottomAnchor, constant: 20).isActive = true
-    locationVal.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-    
-    collaboratorsLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40).isActive = true
-    collaboratorsLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 20).isActive = true
-    collaboratorsLabel.trailingAnchor.constraint(equalTo: centerXAnchor).isActive = true
-    
-    exportButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-    exportButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
-    exportButton.heightAnchor.constraint(equalToConstant: 35).isActive = true
-    exportButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
-  }
-  
-  private func populateVals(with jam:Jams) {
-    
-    jamNameVal.text = jam.name
-    
-    collaboratorsVal.text = "\(jam.collaboratorCount)"
-    startTimeVal.text = jam.startTime
-    endTimeVal.text = jam.endTime
-    locationVal.text = jam.location
-    poplulateLabels()
-    valColors()
-  }
-  private func poplulateLabels() {
-    jamNameLabel.text   = "Jam Name"
-    startTimeLabel.text = "Start Time"
-    endTimeLabel.text   = "End Time"
-    locationLabel.text  = "Location"
-    collaboratorsLabel.text = "Collaborators"
-    
-  }
-  func setup(with jam:Jams) {
-  
-    uiSetup()
-    populateVals(with: jam)
-    
   }
   
   override func prepareForReuse() {
@@ -204,64 +73,52 @@ class FilesCell: UICollectionViewCell {
 }
 
 
-class FilesCollectionView: UIView {
-  var delegate:FilesCollectionViewDelegate?
-  public var activity:UserActivityResponse!
-  var collection:UICollectionView!
+class FilesCollectionView: UICollectionView {
+  var fileDelegate:FilesCollectionViewDelegate?
+  public var activity:[JamResponse] = []
   let layout = UICollectionViewFlowLayout()
   var exportPressed:((_ index:Int)->())?
-  override init(frame: CGRect) {
-   super.init(frame: frame)
-    
-  }
-  convenience init(frame:CGRect,activity:UserActivityResponse) {
-     self.init(frame: frame)
-     self.activity = activity
-     setup()
-    
-  }
-  
+
   required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
+   super.init(coder: aDecoder)
+    setup()
   }
   
   
-  func configLayout(layout:UICollectionViewFlowLayout) {
-    layout.scrollDirection = .vertical
-    layout.itemSize = CGSize(width: self.bounds.width, height:210)
-    
+  func display(jams:[JamResponse]){
+    activity = jams
+    reloadData()
   }
-  
   func setup() {
-    configLayout(layout: layout)
-    collection = UICollectionView(frame: bounds, collectionViewLayout: layout)
-    collection.register(FilesCell.self, forCellWithReuseIdentifier:"cell")
-    collection.delegate = self
-    collection.dataSource = self
-    collection.backgroundColor = UIColor(displayP3Red: 109/255, green: 0/255, blue: 0/255, alpha: 1)
-    addSubview(collection)
+    layout.scrollDirection = .vertical
+    layout.itemSize = CGSize(width: self.bounds.width, height:90)
+    collectionViewLayout = layout
+    delegate = self
+    dataSource = self
+    backgroundColor = .clear
   }
 }
+
 extension FilesCollectionView:UICollectionViewDelegate,UICollectionViewDataSource {
   func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
   }
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return activity.jams.count
+    return activity.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FilesCell
-    cell.setup(with: activity.jams[indexPath.row])
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FilesCell
+    cell.setup(with: activity[indexPath.row])
     cell.exportPressed = {[weak self] in
       self?.exportPressed?(indexPath.row)
     }
+    cell.setup(with: activity[indexPath.row])
     return cell
   }
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    print("selected:\(indexPath.row)")
-    delegate?.filesCollectionViewDidSelect(collection: self, index:indexPath.row)
+    fileDelegate?.filesCollectionViewDidSelect(collection: self, index:indexPath.row)
   }
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     let translate:CGPoint = collectionView.panGestureRecognizer.translation(in: self)

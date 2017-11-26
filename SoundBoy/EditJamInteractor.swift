@@ -28,12 +28,22 @@ class EditJamInteractor: EditJamBusinessLogic, EditJamDataStore {
   // MARK: DisplayCurrentJam
   
   func currentJam(request: EditJam.CurrentJam.Request){
-    location.didGetLocation = {[weak self] location, address in
-      let loc = "\(address.number!) \(address.street)"
-      let notes = "Recorded at \(loc)"
-      self?.presenter?.presentCurrentJam(response: EditJam.CurrentJam.Response(name: "", location: loc, notes: notes))
+    jamFetcher.fetch { (jam, err) in
+      if let jam = jam {
+        var location = ""
+        var notes = ""
+        if jam.location != nil {location = jam.location!}
+        if jam.notes != nil{notes = jam.notes!}
+        
+       self.presenter?.presentCurrentJam(response: EditJam.CurrentJam.Response(name: jam.name!, location: location, notes:notes))
+      }
     }
-    location.requestLocation()
+//    location.didGetLocation = {[weak self] location, address in
+//      let loc = "\(address.number!) \(address.street)"
+//      let notes = "Recorded at \(loc)"
+//      self?.presenter?.presentCurrentJam(response: EditJam.CurrentJam.Response(name: "", location: loc, notes: notes))
+//    }
+//    location.requestLocation()
   }
   
   func update(request:EditJam.Update.Request) {

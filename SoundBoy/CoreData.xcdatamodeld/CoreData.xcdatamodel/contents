@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Jam" representedClassName="Jam" syncable="YES" codeGenerationType="class">
         <attribute name="endTime" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" syncable="YES"/>
         <attribute name="isCurrent" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isJoined" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +36,7 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Jam" positionX="-54" positionY="0" width="128" height="165"/>
+        <element name="Jam" positionX="-54" positionY="0" width="128" height="180"/>
         <element name="Location" positionX="-225" positionY="72" width="128" height="135"/>
         <element name="Recordings" positionX="-225" positionY="45" width="128" height="150"/>
         <element name="User" positionX="-396" positionY="6" width="128" height="120"/>

@@ -40,8 +40,9 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
     }
   
   func pushFiles() {
-    let filesVC = FilesViewController()
-    viewController?.navigationController?.pushViewController(filesVC, animated: true)
+    let filesVC = UIStoryboard(name: "Files", bundle: nil).instantiateInitialViewController()
+    
+    viewController?.navigationController?.pushViewController(filesVC!, animated: true)
   }
   func pushSettings() {
     let nav = viewController?.navigationController as! dSoundNav
@@ -51,7 +52,7 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
   }
   
   func presentEditjam() {
-    let editVC = EditJamViewController()
-    viewController?.present(editVC, animated: true, completion: nil)
+    let editVC = UIStoryboard(name: "Edit", bundle: nil).instantiateInitialViewController()
+    viewController?.present(editVC!, animated: true, completion: nil)
   }
 }

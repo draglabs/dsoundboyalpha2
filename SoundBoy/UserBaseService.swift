@@ -5,7 +5,6 @@
 //  Created by Marlon Monroy on 8/31/17.
 //  Copyright © 2017 DragLabs. All rights reserved.
 
-
 import Foundation
 
 public enum UserRequest: RequestRepresentable {
@@ -17,11 +16,11 @@ public enum UserRequest: RequestRepresentable {
     public var path: String {
         switch self {
         case .register(_:_):
-            return "user/auth"
+            return "user/register"
         case .activity(_):
           return "user/activity"
         case .details(_,let jamId):
-          return "user/jam-details?jamId=\(jamId)"
+          return "user/jam/active/\(jamId)"
         }
     }
 
@@ -40,8 +39,8 @@ public enum UserRequest: RequestRepresentable {
         switch self {
         case .register(let facebookId, let accessToken):
             return .body(["facebook_id":facebookId,"access_token":accessToken])
-        case .activity(let userId):
-          return .url(["user_id":userId])
+        case .activity:
+          return .none
         default:
           return .none
         
@@ -70,37 +69,5 @@ public enum UserRequest: RequestRepresentable {
     
 }
 
-struct UserRegistrationOperation: OperationRepresentable {
-    let facebookId :String
-    let accessToken:String
-    
-    var responseError:((_ code:Int?, _ error:Error?)->())?
 
-    var store:StoreRepresentable {
-        return UserStore()
-    }
-    
-  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Result<Any>) -> ()) {
-        
-        dispatcher.execute(request: request) { (response) in
-            
-            switch response {
-            case .success(let data):
-                self.store.from(data: data, response: result)
-            case .error(_, _):
-              result(Result.failed(message: "unable to login", error: nil))
-            }
-        }
-    }
-    
-    init(facebookId:String,accessToken:String) {
-        self.facebookId = facebookId
-        self.accessToken = accessToken
-    }
-    
-    var request: RequestRepresentable {
-        return UserRequest.register(facebookId: facebookId, accessToken: accessToken)
-    }
-
-}
 

@@ -39,7 +39,7 @@ public enum JamRequest:RequestRepresentable {
     }
     return upds
   }
-  case start(userId:String, jamLocation:String,jamName:String, jamCoordinates:CLLocationCoordinate2D)
+  case new(userId:String, jamLocation:String,jamName:String, jamCoordinates:CLLocationCoordinate2D)
   
   case join(userId:String,pin:String)
   
@@ -51,7 +51,7 @@ public enum JamRequest:RequestRepresentable {
   
   public var dataType: DataType {
     switch self {
-    case .start:
+    case .new:
       return .JSON
     default:
       return .JSON
@@ -61,6 +61,8 @@ public enum JamRequest:RequestRepresentable {
   /// these are optional list of headers we can send alogn with the call
   public var headers: [String : Any]? {
     switch self {
+    case .new(let userId,_,_,_):
+      return["application/json":"Content-Type",userId:"user_id"]
      case .update(let userId,_):
       return["application/json":"Content-Type",userId:"user_id"]
     case .export(let userId, _):
@@ -74,8 +76,8 @@ public enum JamRequest:RequestRepresentable {
   /// These are the params we need to send along with the call
   public var parameters: RequestParams {
     switch self {
-    case .start(let userId,let jamLocation, let jamName, let jamCoordinates):
-      return .body(["user_id":userId,"jam_location":jamLocation,"jam_name":jamName, "jam_lat":"\(jamCoordinates.latitude)", "jam_long":"\(jamCoordinates.longitude)"])
+    case .new(let userId,let location, let name, let coordinates):
+      return .body(["user_id":userId,"location":location,"name":name, "lat":coordinates.latitude, "lng":coordinates.longitude])
       
     case .join(let userId, let pin):
       return .body(["user_id":userId, "pin":pin])
@@ -104,8 +106,8 @@ public enum JamRequest:RequestRepresentable {
   /// relative to the path of the enpodint we want to call, (i.e`/user/authorize/`)
   public var path: String {
     switch self {
-    case .start:
-      return "jam/start"
+    case .new:
+      return "jam/new"
     case .exit :
       return "jam/exit"
       

@@ -17,8 +17,7 @@ protocol JamUpLoadNotifier {
 }
 
 enum JamUploadRequest:RequestRepresentable {
-  
-  case soloUpload(userId:String, startTime:String, endTime:String)
+
   case upload(userId:String, jamId:String, start:String, endTime:String)
   
   var method: HTTPMethod { return .post }
@@ -26,26 +25,23 @@ enum JamUploadRequest:RequestRepresentable {
   
   var path: String {
     switch self {
-    case .soloUpload(let userId,_,_):
-      return "soloupload/userid/\(userId)"
-      
-    case .upload(let userId, let jamId, _ , _ ):
-      return "jam/upload/userid/\(userId)/jamid/\(jamId)"
+    case .upload:
+      return "jam/upload"
     }
   }
   
   var parameters : RequestParams {
     switch self {
-    case .soloUpload(_,let start,let end):
-      return .body(["startTime":start,"endTime":end])
-    case .upload( _,  _, let start, let end):
+    case .upload(let user,  let id, let start, let end):
 
-      return .body(["startTime":start,"endTime":end])
+      return .body(["start_time":start,"end_time":end,"user_id":user,"id":id])
      }
   }
   var headers: [String:Any]? {
-    
-    return ["multipart/form-data; boundary=\(boundaryString)":"Content-Type"]
+    switch self {
+    case .upload(let userId,_,_,_):
+      return ["multipart/form-data; boundary=\(boundaryString)":"Content-Type","\(userId)":"user_id"]
+    }
   }
   
   var boundaryString: String {
@@ -113,12 +109,11 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     default:
       break
     }
-      let date = Date()
       let fileKey = "audioFile"
-      let filename = "track.caf-\(date)"
+      let filename = "track.caf"
       let data = try! Data(contentsOf: fileURL!)
       let mimetype = mimeType(for: fileURL!.path)
-      print(fileURL!.path)
+  
       body.append("--\(boundary)\r\n")
       body.append("Content-Disposition: form-data; name=\"\(fileKey)\"; filename=\"\(filename)\"\r\n")
       body.append("Content-Type: \(mimetype)\r\n\r\n")

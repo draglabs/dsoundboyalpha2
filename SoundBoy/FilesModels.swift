@@ -11,9 +11,9 @@ import UIKit
 enum Files {
   struct Request{}
   struct Response{
-    let Activity:UserActivityResponse
+    let Activity:[JamResponse]
    }
   struct ViewModel{
-    let Activity:UserActivityResponse
+    let Activity:[JamResponse]
   }
 }

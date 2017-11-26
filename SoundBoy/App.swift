@@ -43,7 +43,7 @@ private class AppFetcher: FetcherRepresentable {
 
 class App: NSObject {
   
-   let mainVC = MainViewController()
+   let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
    let oboadingVC = LoginViewController()
    var navController = dSoundNav()
     
@@ -56,9 +56,9 @@ class App: NSObject {
         
         userFetcher.fetch {[unowned self] (user, error) in
             if user != nil {
-              print(user!.userId)
+             
                   Customizer.main(nav: self.navController)
-                self.navController.setViewControllers([self.mainVC], animated: true)
+              self.navController.setViewControllers([self.mainVC!], animated: true)
                
             }else {
                 self.navController.setViewControllers([self.oboadingVC], animated: true)

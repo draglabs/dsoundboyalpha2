@@ -46,12 +46,12 @@ class FilesRouter: NSObject, FilesRoutingLogic, FilesDataPassing {
         source.navigationController?.pushViewController(destination, animated: true)
     }
   func passDataToDetails(source: FilesDataStore, destination: inout FilesDetailDataStore) {
-      destination.jamId = source.activity!.jams[row].id
+      destination.jamId = source.activity![row].id
     
   }
   
   func passDataToExport(source:FilesDataStore, destination: inout ExportJamDataStore) {
-    destination.jamId = source.activity!.jams[row].id
+    destination.jamId = source.activity![row].id
   }
  
 }

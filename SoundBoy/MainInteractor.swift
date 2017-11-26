@@ -13,7 +13,6 @@ protocol MainBusinessLogic {
   func startJam(request: Main.Jam.Request)
   func startNewRec(request:Main.Jam.Request)
   func endRecording(request: Main.Jam.Request)
-  func exitJam(request: Main.Jam.Request)
   func didJoin(request:Main.Jam.Request)
   func checkForActiveJam(request: Main.Jam.Request)
   func exitOrJoin(request:Main.Jam.Request)
@@ -55,8 +54,8 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
           break
         case .success( let data):
           let jam = data as! Jam
-          self.startRecording()
           self.presenter?.presentJamPin(response: Main.Jam.Response(pin: jam.pin!))
+        self.startRecording()
       }
     }
   }
@@ -73,25 +72,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     
   }
   func exitOrJoin(request: Main.Jam.Request) {
-    if isJamActive {
-      exitJam(request: Main.Jam.Request())
-    }else {
       self.presenter?.presentToReroute(viewModel: Main.Join.ViewModel())
-    }
-  }
-  func exitJam(request: Main.Jam.Request) {
-    jamWorker.exit {[unowned self] (exited) in
-      if exited {
-        self.jamFetcher.delete(callback: { (deleted) in
-          if deleted {
-            self.isJamActive = false
-            DispatchQueue.main.async {
-             self.presenter?.presentJamActive(response: Main.JamActive.Response(isActive: false))
-            }
-          }
-        })
-      }
-    }
   }
   
   func uploadJam() {
