@@ -41,8 +41,11 @@ struct JamResponse:Codable {
 }
 
 //=======UserResponse===============
-struct Usr:Codable {
-  
+struct UpdateParams:Codable {
+  var id:String
+  var name:String
+  var location:String
+  var notes:String
 }
 struct UserResponse:Codable {
   var id:String

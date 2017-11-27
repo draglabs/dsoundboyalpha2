@@ -10,7 +10,6 @@ import UIKit
 
 protocol FilesDisplayLogic:class {
   func displayJams(viewModel:Files.ViewModel)
-  
  }
 
 class FilesViewController: UIViewController, FilesDisplayLogic {
@@ -54,18 +53,16 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
         navigationController?.navigationBar.titleTextAttributes = titleDict
       collection.exportPressed = exportJam
     }
-  
+
    func displayJams(viewModel: Files.ViewModel) {
     collection.display(jams: viewModel.Activity)
    }
 }
 
-
 extension FilesViewController:FilesCollectionViewDelegate {
   func filesCollectionViewDidSelect(collection: FilesCollectionView, index:Int) {
     self.router?.routeToDetail(index: index)
   }
-  
   func exportJam(index:Int) {
     router?.routeToExport(index:index)
   }

@@ -29,22 +29,10 @@ class JamWorker {
         task.execute(in: self.networkDispatcher, result: completion)
    }
     locationWorker.requestLocation()
-  }
   
- private func checkForExistingJam(completion:@escaping(_ exits:Bool)->()) {
-    jamFetcher.fetch { (jam, error) in
-      if jam != nil {
-        completion(true)
-      }else {
-        completion(false)
-      }
-    }
   }
   
   func start(completion:@escaping(_ result:Result<Any>)->()) {
-    
-    self.checkForExistingJam {[unowned self]  (exits) in
-      if !exits {
         self.userFetcher.fetch {(user, error) in
           if user != nil {
             self.prepareStartJamRequest(user: user!,completion: completion)
@@ -52,13 +40,8 @@ class JamWorker {
             fatalError("Starting jam but theres no user saved")
           }
         }
-      }else {
-        completion(Result.failed(message: "Cant start jam", error: nil))
-      }
     }
-    
-  }
- 
+  
   func join(jamPin:String, completion:@escaping(_ join:Result<Any>)->()) {
     
      userFetcher.fetch { (user, error) in
@@ -69,26 +52,12 @@ class JamWorker {
     }
   }
   
-  func exit(completion:@escaping(Bool)->()) {
-    userFetcher.fetch { (user, error) in
-      if user != nil {
-        let id = user!.userId!
-        self.prepareForExitingJam(userId: id, completion: completion)
-      }
-    }
-  }
-  
-  private func prepareForExitingJam(userId:String, completion:@escaping(Bool)->()) {
-      jamFetcher.fetch {[unowned self] (jam, error) in
-        if jam != nil {
-          let jamId = jam!.id!
-          let exitOperation = ExitJamOperation(userId:userId, jamId: jamId)
-          exitOperation.execute(in: self.networkDispatcher, result: completion)
-        }
-      }
-  }
   
   func update(updates:[String:String?],completion:@escaping(_ join:Result<Any>)->()){
+    prepareUser { (user) in
+      let update = UpdateJamOperation(userId: user.userId!, updates: updates)
+      update.execute(in: self.networkDispatcher, result: completion)
+    }
     
   }
   

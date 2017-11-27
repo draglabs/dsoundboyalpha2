@@ -34,7 +34,6 @@ class EditJamInteractor: EditJamBusinessLogic, EditJamDataStore {
         var notes = ""
         if jam.location != nil {location = jam.location!}
         if jam.notes != nil{notes = jam.notes!}
-        
        self.presenter?.presentCurrentJam(response: EditJam.CurrentJam.Response(name: jam.name!, location: location, notes:notes))
       }
     }
@@ -52,7 +51,7 @@ class EditJamInteractor: EditJamBusinessLogic, EditJamDataStore {
     let notes = request.notes
     
     prepareForUpdate {[weak self] (jamId) in
-      let updates = ["id":jamId, "name":name,"loc":loc,"notes":notes]
+      let updates = ["id":jamId, "name":name,"location":loc,"notes":notes]
       self?.jamWorker.update(updates: updates, completion: { (result) in
         switch result {
         case .success:

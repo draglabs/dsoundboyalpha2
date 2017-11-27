@@ -27,6 +27,6 @@ class EditJamPresenter: EditJamPresentationLogic {
     
    }
   func presentUpdated(response:EditJam.Update.Response){
-    
+    viewController?.displayUpdated(viewMode: EditJam.Update.ViewModel(updated: response.updated))
   }
 }

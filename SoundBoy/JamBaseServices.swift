@@ -26,16 +26,16 @@ public enum JamRequest:RequestRepresentable {
   func parseUpdates(updates:[String:String?]) ->JSONDictionary? {
     var upds = [String:String]()
     if let usrId = updates["id"] {
-      upds["jam_id"] = usrId
+      upds["id"] = usrId
     }
     if let name = updates["name"] {
-      upds["update_name"] = name
+      upds["name"] = name
     }
     if let location = updates["location"] {
       upds["location"] = location
     }
     if let notes = updates["notes"] {
-      upds["update_notes"] = notes
+      upds["notes"] = notes
     }
     return upds
   }
@@ -62,6 +62,8 @@ public enum JamRequest:RequestRepresentable {
   public var headers: [String : Any]? {
     switch self {
     case .new(let userId,_,_,_):
+      return["application/json":"Content-Type",userId:"user_id"]
+    case .join(let userId,_):
       return["application/json":"Content-Type",userId:"user_id"]
      case .update(let userId,_):
       return["application/json":"Content-Type",userId:"user_id"]
@@ -98,7 +100,7 @@ public enum JamRequest:RequestRepresentable {
   public  var method: HTTPMethod {
     switch self {
     case .update:
-      return .patch
+      return .post
     default:
       return .post
     }

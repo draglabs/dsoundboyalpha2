@@ -10,12 +10,10 @@
 import Foundation
 
 protocol MainBusinessLogic {
-  func startJam(request: Main.Jam.Request)
-  func startNewRec(request:Main.Jam.Request)
+  func new(request: Main.Jam.Request)
+  func rec(request:Main.Jam.Request)
   func endRecording(request: Main.Jam.Request)
   func didJoin(request:Main.Jam.Request)
-  func checkForActiveJam(request: Main.Jam.Request)
-  func exitOrJoin(request:Main.Jam.Request)
 }
 
 protocol MainDataStore {
@@ -31,50 +29,42 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   var didJoin: Bool = false
   var isJamActive = false
   
-  func checkForActiveJam(request: Main.Jam.Request) {
-    self.jamFetcher.fetch(callback: {[unowned self] (jam, error) in
-      if let _ = jam {
-        self.presenter?.presentJamActive(response: Main.JamActive.Response(isActive: true))
-        self.isJamActive = true
-      }else {
-        self.presenter?.presentJamActive(response: Main.JamActive.Response(isActive: false))
-        self.isJamActive = false
-      }
-    })
-  }
-  
-  func startJam(request: Main.Jam.Request) {
-    if isJamActive {
-      startNewRec(request: Main.Jam.Request())
-      return
+  func new(request: Main.Jam.Request) {
+    delete {
+          self.jamWorker.start() {[unowned self] (result) in
+            switch result {
+              case .failed(_,_):
+                break
+              case .success:
+                self.jamFetcher.fetch { (jam, error) in
+                  guard let j = jam else { return }
+                  self.startRecording()
+                  var pin = ""
+                  if j.pin != nil{pin = j.pin!}
+                  self.presenter?.presentJam(response: Main.Jam.Response(pin: pin))
+              }
+            }
+        }
     }
-    jamWorker.start() {[unowned self] (result) in
-      switch result {
-        case .failed(_,_):
-          break
-        case .success( let data):
-          let jam = data as! Jam
-          self.presenter?.presentJamPin(response: Main.Jam.Response(pin: jam.pin!))
-        self.startRecording()
-      }
+
+  }
+  private func delete(block:@escaping ()->()) {
+    jamFetcher.delete { (deleted) in
+      print("Deleted",deleted)
+      block()
     }
   }
   
-  /// When called directly it will not check
-  /// if theres an active jam like `startJam(request:)` does
-  /// To start a new Rec call `StartJam(request:)` instead
-  func startNewRec(request: Main.Jam.Request) {
-    jamFetcher.fetch { (jam, error) in
+  func rec(request: Main.Jam.Request) {
+    self.jamFetcher.fetch { (jam, error) in
       guard let j = jam else { return }
       self.startRecording()
-      self.presenter?.presentJamPin(response: Main.Jam.Response(pin: j.pin!))
-      }
-    
+      var pin = ""
+      if j.pin != nil{pin = j.pin!}
+      self.presenter?.presentJam(response: Main.Jam.Response(pin: pin))
+      
+    }
   }
-  func exitOrJoin(request: Main.Jam.Request) {
-      self.presenter?.presentToReroute(viewModel: Main.Join.ViewModel())
-  }
-  
   func uploadJam() {
     worker = MainWorker()
     if let url = Recorder.shared.audioFilename {
@@ -85,10 +75,14 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
   }
   
   func didJoin(request: Main.Jam.Request) {
-    
     if didJoin {
-      startRecording()
-      self.presenter?.presentJamJoin(response: Main.Join.Response())
+      self.jamFetcher.fetch { (jam, error) in
+        guard let j = jam else { return }
+        self.startRecording()
+        var pin = ""
+        if j.pin != nil{pin = j.pin!}
+        self.presenter?.presentJam(response: Main.Jam.Response(pin: pin))
+      }
       didJoin = false
     }
   }
@@ -116,7 +110,6 @@ extension MainInteractor:JamUpLoadNotifier {
   
   func didSucceed() {
     presenter?.presentUploadCompleted(response: Main.JamUpload.Response())
-    checkForActiveJam(request: Main.Jam.Request())
   }
   func response(statusCode:Int) {
    

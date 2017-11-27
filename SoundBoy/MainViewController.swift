@@ -7,12 +7,11 @@
 import UIKit
 
 protocol MainDisplayLogic: class {
-  func displayPin(viewModel:Main.Jam.ViewModel)
+  func displayJam(viewModel:Main.Jam.ViewModel)
   func displayJamJoined(viewModel:Main.Join.ViewModel)
   func displayProgress(viewModel:Main.Progress.ViewModel)
-  func displayIsJamActive(viewModel:Main.JamActive.ViewModel)
   func displayUploadCompleted(viewModel:Main.JamUpload.ViewModel)
-  func diplayToReroute(viewModel: Main.Join.ViewModel)
+ 
 }
 
 class MainViewController: UIViewController, MainDisplayLogic {
@@ -47,7 +46,6 @@ class MainViewController: UIViewController, MainDisplayLogic {
     activityView.prepareForEditJam = {
       self.router?.presentEditjam()
     }
-    interactor?.checkForActiveJam(request: Main.Jam.Request())
   }
   
   func nav() {
@@ -98,31 +96,20 @@ class MainViewController: UIViewController, MainDisplayLogic {
       router?.pushSettings()
     }
   }
-  
 }
 
 extension MainViewController {
 
-  func didStart() {
-    interactor?.startJam(request: Main.Jam.Request())
+  func didStartRec() {
     recButton.setTitle("Stop", for: .normal)
     timeCounter.reset()
     timeCounter.startTimeCounter()
     pulsor.start()
     animate()
+    isRec = true
   }
   
-  @objc func recPressed(sender:UIButton) {
-    if !isRec {
-     didStart()
-      isRec = true
-    }else {
-      didStop()
-      isRec = false
-    }
-  }
-  
-  func didStop() {
+  func didStopRec() {
     recButton.setTitle("Rec", for: .normal)
     timeCounter.stopTimeCounter()
     pulsor.stop()
@@ -130,35 +117,35 @@ extension MainViewController {
     let endRecordingJamRequest = Main.Jam.Request()
     interactor?.endRecording(request: endRecordingJamRequest)
     activityView.message = "Hang on while we upload your recording"
+     isRec = false
   }
-
+  
+  @objc func recPressed(sender:UIButton) {
+    if !isRec {
+      interactor?.rec(request: Main.Jam.Request())
+    }else {
+      didStopRec()
+    }
+  }
   @objc func jamPressed(sender:UIButton) {
-      interactor?.startJam(request: Main.Jam.Request())
+      interactor?.new(request: Main.Jam.Request())
     }
   
   @objc func joinPressed(sender:UIButton) {
-   interactor?.exitOrJoin(request: Main.Jam.Request())
+   router?.presentJoinJam()
   }
   
-  func displayPin(viewModel:Main.Jam.ViewModel) {
-    pulsor.start()
-   activityView.show(title: viewModel.pin,message:"Share this pin for other to join")
-   
-  }
-
-  func diplayToReroute(viewModel: Main.Join.ViewModel) {
-      router?.presentJoinJam()
-    
+  func displayJam(viewModel: Main.Jam.ViewModel){
+    if viewModel.pin == "" {
+      activityView.show(title: viewModel.pin,message:"you have join a jam")
+      didStartRec()
+      return
     }
-  
-  func displayJamJoined(viewModel: Main.Join.ViewModel) {
-    pulsor.start()
-    activityView.show(title:"Jam Join",message: "You have join a Jam")
-  
+    activityView.show(title: viewModel.pin,message:"Share this pin for other to join")
+    didStartRec()
   }
-  
-  func displayIsJamActive(viewModel:Main.JamActive.ViewModel){
-   
+  func displayJamJoined(viewModel: Main.Join.ViewModel) {
+    activityView.show(title:"Jam Join",message: "You have join a Jam")
   }
   
   func displayProgress(viewModel:Main.Progress.ViewModel) {
@@ -168,7 +155,6 @@ extension MainViewController {
   func displayUploadCompleted(viewModel: Main.JamUpload.ViewModel) {
     activityView.show(title: "Upload Complete", message: "Will dismiss  in 2 seconds")
     animate()
-    interactor?.checkForActiveJam(request: Main.Jam.Request())
     let deadline = DispatchTime.now() + .seconds(2)
     DispatchQueue.main.asyncAfter(deadline: deadline) {
       self.animate()

@@ -10,11 +10,9 @@ import UIKit
 
 protocol MainPresentationLogic {
   func presentProgress(response:Main.Progress.Response)
-  func presentJamPin(response:Main.Jam.Response)
-  func presentJamActive(response:Main.JamActive.Response)
+  func presentJam(response:Main.Jam.Response)
   func presentJamJoin(response:Main.Join.Response)
   func presentUploadCompleted(response:Main.JamUpload.Response)
-  func presentToReroute(viewModel: Main.Join.ViewModel)
 }
 
 class MainPresenter: MainPresentationLogic {
@@ -25,27 +23,19 @@ class MainPresenter: MainPresentationLogic {
     let progString = "Uploading \(progress)%"
     viewController?.displayProgress(viewModel: Main.Progress.ViewModel(progress:progString))
   }
-  func presentJamPin(response:Main.Jam.Response) {
+  func presentJam(response:Main.Jam.Response) {
       var pin = response.pin
-      pin.insert(separator: "-", every: 3)
+      pin.insert(separator: "-", every: 2)
       let model = Main.Jam.ViewModel(pin: pin)
-     self.viewController?.displayPin(viewModel: model)
-    print(pin)
-    
+    DispatchQueue.main.async {
+      self.viewController?.displayJam(viewModel: model)
+    }
   }
-
-  func presentJamActive(response:Main.JamActive.Response) {
-    viewController?.displayIsJamActive(viewModel: Main.JamActive.ViewModel(isActive: response.isActive))
-  }
+  
   func presentJamJoin(response: Main.Join.Response) {
      DispatchQueue.main.async {
       self.viewController?.displayJamJoined(viewModel: Main.Join.ViewModel())
     }
-    
-  }
-  
-  func presentToReroute(viewModel: Main.Join.ViewModel) {
-    viewController?.diplayToReroute(viewModel: Main.Join.ViewModel())
   }
   
   func presentUploadCompleted(response: Main.JamUpload.Response) {

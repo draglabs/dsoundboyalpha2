@@ -78,7 +78,7 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
     
   }
   func displayUpdated(viewMode:EditJam.Update.ViewModel){
-    
+    router?.dismiss()
   }
   
   private func editJamUISetup() {
@@ -114,7 +114,11 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic
 extension EditJamViewController:UITextFieldDelegate,UITextViewDelegate {
   @objc func handleDismiss(sender:UIButton) {
     view.endEditing(true)
-    router?.dismiss()
+    if valid() {
+      let request = EditJam.Update.Request(name: jamNameTextfield.text!, location: locationtextfield.text!
+      , notes: notesText.text!)
+    interactor?.update(request: request)
+    }
   }
   @objc func handleTap(sender:UISwipeGestureRecognizer) {
       view.endEditing(true)
@@ -122,7 +126,7 @@ extension EditJamViewController:UITextFieldDelegate,UITextViewDelegate {
   @objc func handleSwipe(sender:UISwipeGestureRecognizer) {
     router?.dismiss()
   }
- func validateFields() -> Bool {
+ func valid() -> Bool {
   return  locationtextfield.text != nil || jamNameTextfield.text != nil || notesText.text != nil ? true : false
   }
   

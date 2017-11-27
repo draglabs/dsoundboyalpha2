@@ -40,10 +40,15 @@ class JamFetcher: FetcherRepresentable {
     context.perform {
       do {
        let result = try request.execute()
-        context.delete(result.first!)
-        try context.save()
-        callback(true)
-        print("Jam Deleted")
+        if let first = result.first {
+          context.delete(first)
+          try context.save()
+          callback(true)
+          print("Jam Deleted")
+        }else {
+          callback(false)
+        }
+       
       }catch {
         print("Error deleting error: \(error)")
         callback(false)

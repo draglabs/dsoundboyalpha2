@@ -21,21 +21,19 @@ class  JamStore:StoreRepresentable {
     guard let jamRes = resp else{response(Result.failed(message: "unable to parse response", error: nil)); return}
  
     let context = coreDataStore.viewContext
+      delete()
+     let jamToSave = Jam(context: context)
     
-     var jamToSave = Jam(context: context)
-    if let existingJam = jamExist(resp: jamRes) {
-      existingJam.id = jamRes.id
-      existingJam.pin = jamRes.pin
-      existingJam.startTime = jamRes.startTime
-      existingJam.endTime = jamRes.endTime
-      existingJam.isCurrent = true
-      jamToSave = existingJam
-    }
       jamToSave.name = jamRes.name
       jamToSave.id = jamRes.id
+      if jamRes.pin == nil{
+        jamToSave.isJoined = true
+      }
       jamToSave.pin = jamRes.pin
+      jamToSave.location = jamRes.location
       jamToSave.startTime = jamRes.startTime
       jamToSave.endTime = jamRes.endTime
+      jamToSave.notes = jamRes.notes
       jamToSave.isCurrent = true
     
     context.perform {
@@ -49,19 +47,16 @@ class  JamStore:StoreRepresentable {
     }
   }
   
-  func jamExist(resp:JamResponse) ->Jam? {
-   
-    var jam:Jam?
+  func delete(){
     let context = coreDataStore.viewContext
-    let predicate = NSPredicate(format: "id == %@", resp.id)
     let request:NSFetchRequest = Jam.fetchRequest()
-    request.predicate = predicate
+    
     context.performAndWait {
       do  {
         let result = try request.execute()
         print("result from exist", result.count)
         if result.count > 0 {
-          jam = result.first
+          context.delete(result.first!)
         }
         
       }catch {
@@ -70,7 +65,6 @@ class  JamStore:StoreRepresentable {
       
     }
     
-    return jam
   }
   
 }

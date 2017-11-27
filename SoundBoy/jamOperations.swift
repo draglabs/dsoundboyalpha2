@@ -129,7 +129,7 @@ struct UpdateJamOperation: OperationRepresentable {
     return JamStore()
   }
   
-  func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ exited:Bool)->()) {
+   func execute(in dispatcher:DispatcherRepresentable, result:@escaping (_ joined:Result<Any>) -> ()) {
     dispatcher.execute(request: request) { (response) in
       self.parseReponse(response: response, result: result)
     }
@@ -139,12 +139,12 @@ struct UpdateJamOperation: OperationRepresentable {
     return JamRequest.update(userId: userId, updates: updates)
   }
   
-  private func parseReponse(response:Response,result: @escaping (_ exited:Bool)->()) {
+  private func parseReponse(response:Response,result:@escaping (_ joined:Result<Any>) -> ()){
     switch response {
-    case .success(_):
-      result(true)
+    case .success(let data):
+      store.from(data: data, response: result)
     case .error(_,_):
-      result(false)
+      result(Result.failed(message: nil, error: nil))
     }
   }
   
