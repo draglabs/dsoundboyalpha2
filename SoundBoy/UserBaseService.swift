@@ -60,7 +60,7 @@ public enum UserRequest: RequestRepresentable {
       
     }
     
-    public var dataType: DataType {
+    public var datasType: DataType {
         switch self {
         default:
             return .JSON

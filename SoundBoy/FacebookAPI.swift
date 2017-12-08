@@ -14,7 +14,7 @@ final class FacebookAPI: NSObject {
   let networkDispatcher = DefaultDispatcher(enviroment: Env().dev)
   
   func loginUser(result:@escaping (_ registered:Result<Any>)->()) {
-    LoginManager().logIn([.publicProfile], viewController: nil) { (fbAPiResult) in
+    LoginManager().logIn([.publicProfile, .email], viewController: nil) { (fbAPiResult) in
       switch fbAPiResult {
       case .success(_,  _, let token):
         
