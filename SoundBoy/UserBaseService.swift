@@ -8,7 +8,13 @@
 import Foundation
 
 public enum UserRequest: RequestRepresentable {
-    
+  public var dataType: DataType {
+    switch self {
+    default:
+      return .JSON
+    }
+  }
+
     case register(facebookId:String, accessToken:String)
     case activity(userId:String)
     case details(userId:String,jamId:String)
@@ -59,15 +65,9 @@ public enum UserRequest: RequestRepresentable {
         }
       
     }
-    
-    public var datasType: DataType {
-        switch self {
-        default:
-            return .JSON
-        }
-    }
-    
+  
 }
+
 
 
 
