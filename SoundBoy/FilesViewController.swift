@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import MessageUI
 protocol FilesDisplayLogic:class {
   func displayJams(viewModel:Files.ViewModel)
  }
@@ -15,7 +15,7 @@ protocol FilesDisplayLogic:class {
 class FilesViewController: UIViewController, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
-  
+    let messageCompose = MFMessageComposeViewController()
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -43,6 +43,7 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
         setupUI()
       let request = Files.Request()
       interactor?.loadRecordings(request: request)
+      messageCompose.messageComposeDelegate = self
     }
  
     // MARK: Properties
@@ -56,16 +57,35 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
 
    func displayJams(viewModel: Files.ViewModel) {
     collection.display(jams: viewModel.Activity)
+    collection.fileDelegate = self
    }
 }
 
-extension FilesViewController:FilesCollectionViewDelegate {
+extension FilesViewController:FilesCollectionViewDelegate,MFMessageComposeViewControllerDelegate {
+  func shareButtonPressed(collection: FilesCollectionView, index: IndexPath) {
+    print("did presed share button")
+    if let jam = router?.dataStore?.activity?[index.row] {
+      
+      if let link = jam.link {
+        messageCompose.body = "Hey here's the link to dowloand our jam session! \n\(link)"
+         present(messageCompose, animated: true, completion: nil)
+      }
+     
+    }
+   
+  }
+  
+  func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+    messageCompose.dismiss(animated: true, completion: nil)
+  }
+  
   func filesCollectionViewDidSelect(collection: FilesCollectionView, index:Int) {
     self.router?.routeToDetail(index: index)
   }
   func exportJam(index:Int) {
     router?.routeToExport(index:index)
   }
+  
 }
 
 

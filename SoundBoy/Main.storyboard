@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="awN-ei-q38">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="awN-ei-q38">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,6 +41,7 @@
                                     <constraint firstAttribute="width" constant="73" id="Rwa-e3-KPF"/>
                                     <constraint firstAttribute="height" constant="83" id="asf-Vn-62o"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="19"/>
                                 <state key="normal" title="Rec">
                                     <color key="titleColor" red="0.24216419458389282" green="0.34158474206924438" blue="0.5961260199546814" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -49,16 +50,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M5R-aD-uiL">
                                 <rect key="frame" x="0.0" y="557" width="375" height="110"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwQ-BI-gnP">
-                                        <rect key="frame" x="39" y="40" width="31" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwQ-BI-gnP">
+                                        <rect key="frame" x="27" y="37" width="37" height="33"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="New">
                                             <color key="titleColor" red="0.24216419459999999" green="0.34158474210000001" blue="0.59612602000000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXw-Kd-9fD">
-                                        <rect key="frame" x="318" y="40" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXw-Kd-9fD">
+                                        <rect key="frame" x="313" y="37" width="35" height="33"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <state key="normal" title="Join">
                                             <color key="titleColor" red="0.24216419459999999" green="0.34158474210000001" blue="0.59612602000000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
@@ -66,6 +67,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="yXw-Kd-9fD" secondAttribute="bottom" constant="40" id="1jJ-eD-CxY"/>
+                                    <constraint firstAttribute="trailing" secondItem="yXw-Kd-9fD" secondAttribute="trailing" constant="27" id="6Qm-Cf-BW6"/>
+                                    <constraint firstAttribute="bottom" secondItem="vwQ-BI-gnP" secondAttribute="bottom" constant="40" id="L4V-j8-RKs"/>
+                                    <constraint firstItem="vwQ-BI-gnP" firstAttribute="leading" secondItem="M5R-aD-uiL" secondAttribute="leading" constant="27" id="ehk-0A-69C"/>
                                     <constraint firstAttribute="height" constant="110" id="ifg-44-WKe"/>
                                 </constraints>
                             </view>

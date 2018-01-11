@@ -74,6 +74,13 @@
 		A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */; };
 		A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AAE1F57C9FA001F3B00 /* CoreData.xcdatamodeld */; };
 		A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */; };
+		A1BB6E4C1FFB6EB90033231C /* EditTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BB6E4B1FFB6EB90033231C /* EditTableView.swift */; };
+		A1C6C6CD20018715007AC96B /* SharePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6C6C720018715007AC96B /* SharePresenter.swift */; };
+		A1C6C6CE20018715007AC96B /* ShareWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6C6C820018715007AC96B /* ShareWorker.swift */; };
+		A1C6C6CF20018715007AC96B /* ShareRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6C6C920018715007AC96B /* ShareRouter.swift */; };
+		A1C6C6D020018715007AC96B /* ShareModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6C6CA20018715007AC96B /* ShareModels.swift */; };
+		A1C6C6D120018715007AC96B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6C6CB20018715007AC96B /* ShareViewController.swift */; };
+		A1C6C6D220018715007AC96B /* ShareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6C6CC20018715007AC96B /* ShareInteractor.swift */; };
 		A1CB24611FCB397B0078E17A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24601FCB397B0078E17A /* Main.storyboard */; };
 		A1CB24631FCB5B2B0078E17A /* Files.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24621FCB5B2B0078E17A /* Files.storyboard */; };
 		A1CB24651FCB68E90078E17A /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24641FCB68E90078E17A /* Edit.storyboard */; };
@@ -183,6 +190,13 @@
 		A1B66AA71F57470A001F3B00 /* JoinJamWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinJamWorker.swift; sourceTree = "<group>"; };
 		A1B66AAF1F57C9FA001F3B00 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		A1B66AB91F57FB3A001F3B00 /* UserBaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserBaseService.swift; sourceTree = "<group>"; };
+		A1BB6E4B1FFB6EB90033231C /* EditTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableView.swift; sourceTree = "<group>"; };
+		A1C6C6C720018715007AC96B /* SharePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePresenter.swift; sourceTree = "<group>"; };
+		A1C6C6C820018715007AC96B /* ShareWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareWorker.swift; sourceTree = "<group>"; };
+		A1C6C6C920018715007AC96B /* ShareRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareRouter.swift; sourceTree = "<group>"; };
+		A1C6C6CA20018715007AC96B /* ShareModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareModels.swift; sourceTree = "<group>"; };
+		A1C6C6CB20018715007AC96B /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		A1C6C6CC20018715007AC96B /* ShareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInteractor.swift; sourceTree = "<group>"; };
 		A1CB24601FCB397B0078E17A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A1CB24621FCB5B2B0078E17A /* Files.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Files.storyboard; sourceTree = "<group>"; };
 		A1CB24641FCB68E90078E17A /* Edit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Edit.storyboard; sourceTree = "<group>"; };
@@ -345,6 +359,7 @@
 		A14F9F341F0B5059009D8D6E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				A1C6C6C6200186F6007AC96B /* Share */,
 				A16750031FA91F9900E1B258 /* EditJam */,
 				A17289C91FA2D30100F9F82F /* ExportJam */,
 				A1FA98661F9B038000BD7E9E /* FilesDetail */,
@@ -380,6 +395,7 @@
 		A16750031FA91F9900E1B258 /* EditJam */ = {
 			isa = PBXGroup;
 			children = (
+				A1BB6E4A1FFB6EA40033231C /* Views */,
 				A16750041FA91FBF00E1B258 /* EditJamInteractor.swift */,
 				A16750051FA91FBF00E1B258 /* EditJamModels.swift */,
 				A16750061FA91FBF00E1B258 /* EditJamPresenter.swift */,
@@ -519,6 +535,27 @@
 			name = JoinJam;
 			sourceTree = "<group>";
 		};
+		A1BB6E4A1FFB6EA40033231C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1BB6E4B1FFB6EB90033231C /* EditTableView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		A1C6C6C6200186F6007AC96B /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				A1C6C6C720018715007AC96B /* SharePresenter.swift */,
+				A1C6C6C820018715007AC96B /* ShareWorker.swift */,
+				A1C6C6C920018715007AC96B /* ShareRouter.swift */,
+				A1C6C6CA20018715007AC96B /* ShareModels.swift */,
+				A1C6C6CB20018715007AC96B /* ShareViewController.swift */,
+				A1C6C6CC20018715007AC96B /* ShareInteractor.swift */,
+			);
+			name = Share;
+			sourceTree = "<group>";
+		};
 		A1D756131FA8603700BCB8D7 /* Operation */ = {
 			isa = PBXGroup;
 			children = (
@@ -651,6 +688,11 @@
 						DevelopmentTeam = V9QHFMVFWZ;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -759,18 +801,21 @@
 			files = (
 				A15B05171F81D017007BBE77 /* FilesCollectionView.swift in Sources */,
 				44F840691F5D97D0004A7A76 /* FilesRouter.swift in Sources */,
+				A1C6C6CF20018715007AC96B /* ShareRouter.swift in Sources */,
 				A1B66A841F5559CA001F3B00 /* LoginPresenter.swift in Sources */,
 				A1F203021F5E37A70023484D /* JamCoreDataFetch.swift in Sources */,
 				A1B66AAD1F57470A001F3B00 /* JoinJamWorker.swift in Sources */,
 				A167500C1FA91FBF00E1B258 /* EditJamPresenter.swift in Sources */,
 				44F8406A1F5D97D0004A7A76 /* FilesViewController.swift in Sources */,
 				44F840671F5D97D0004A7A76 /* FilesModels.swift in Sources */,
+				A1C6C6D020018715007AC96B /* ShareModels.swift in Sources */,
 				A10E3EDA1F5CC2D900DE7812 /* Pulsator.swift in Sources */,
 				A1FC8BAB1F0EB26200DB2EC0 /* Notifier.swift in Sources */,
 				A1A163AF1F64A0A600204C73 /* SettingsPresenter.swift in Sources */,
 				A167500B1FA91FBF00E1B258 /* EditJamModels.swift in Sources */,
 				A14F9F3E1F0B6363009D8D6E /* CurrentLocation.swift in Sources */,
 				A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */,
+				A1C6C6CD20018715007AC96B /* SharePresenter.swift in Sources */,
 				A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */,
 				A167500F1FA91FBF00E1B258 /* EditJamWorker.swift in Sources */,
 				A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */,
@@ -792,6 +837,7 @@
 				A1FA986D1F9B03BC00BD7E9E /* FilesDetailInteractor.swift in Sources */,
 				A17C689D1F5A931C00E09CB1 /* DataServices.swift in Sources */,
 				A155FD221F3E411500B4165F /* App.swift in Sources */,
+				A1C6C6D220018715007AC96B /* ShareInteractor.swift in Sources */,
 				A1017CBA1F17FCFF00AA1B31 /* Base.swift in Sources */,
 				A17289D11FA2D33700F9F82F /* ExportJamModels.swift in Sources */,
 				A1D756151FA8608E00BCB8D7 /* jamOperations.swift in Sources */,
@@ -805,9 +851,11 @@
 				A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */,
 				A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */,
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
+				A1C6C6CE20018715007AC96B /* ShareWorker.swift in Sources */,
 				A1A163AE1F64A0A600204C73 /* SettingsModels.swift in Sources */,
 				44F8406B1F5D97D0004A7A76 /* FilesWorker.swift in Sources */,
 				A1B66ABA1F57FB3A001F3B00 /* UserBaseService.swift in Sources */,
+				A1BB6E4C1FFB6EB90033231C /* EditTableView.swift in Sources */,
 				A1A163AD1F64A0A600204C73 /* SettingsInteractor.swift in Sources */,
 				A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */,
 				A1F2030F1F61C8710023484D /* JamBaseServices.swift in Sources */,
@@ -827,6 +875,7 @@
 				A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */,
 				A167500E1FA91FBF00E1B258 /* EditJamViewController.swift in Sources */,
 				A17D4EBB1F42551200AF1D18 /* LocationWorker.swift in Sources */,
+				A1C6C6D120018715007AC96B /* ShareViewController.swift in Sources */,
 				A1B66AAC1F57470A001F3B00 /* JoinJamViewController.swift in Sources */,
 				A1A163B01F64A0A600204C73 /* SettingsRouter.swift in Sources */,
 				A1B66A871F5559CA001F3B00 /* LoginWorker.swift in Sources */,

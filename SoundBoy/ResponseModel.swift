@@ -14,8 +14,6 @@ struct UserActivityResponsCreator:Codable {
   var name:String
 }
 
-
-
 //=======JamResponse===============
 struct JamResponse:Codable {
   var name:String?
@@ -26,7 +24,9 @@ struct JamResponse:Codable {
   var startTime:String
   var endTime:String?
   var notes:String?
+  var link:String?
   var collaborators:Int?
+  
   enum CodingKeys:String,CodingKey{
     case name
     case id
@@ -34,6 +34,7 @@ struct JamResponse:Codable {
     case location
     case collaborators
     case notes
+    case link
     case startTime = "start_time"
     case endTime = "end_time"
     case isCurrent = "is_current"
@@ -42,6 +43,7 @@ struct JamResponse:Codable {
 
 //=======UserResponse===============
 struct UpdateParams:Codable {
+  
   var id:String
   var name:String
   var location:String

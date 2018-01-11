@@ -15,10 +15,15 @@ class ActivityView: UIView {
   @IBOutlet weak var titleLabel:UILabel!
   
   var prepareForEditJam:(()->())?
-  var isShown = false
+  var isShown = false {
+    didSet {
+      self.titleLabel.isHidden = isShown ? false : true
+    }
+  }
   var title:String = "" {
     willSet {
       titleLabel.text = newValue
+
     }
   }
   
@@ -30,6 +35,9 @@ class ActivityView: UIView {
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
+  }
+  override func awakeFromNib() {
+    super.awakeFromNib()
     setup()
   }
   
@@ -37,13 +45,14 @@ class ActivityView: UIView {
      gesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
     gesture.direction = .up
     addGestureRecognizer(gesture)
+    titleLabel.isHidden = true
     
   }
   
   func show(title:String,message:String) {
     titleLabel.text = title
     messageLabel.text = message
-    
+  
   }
   
   @objc func handleSwipe(gesture:UISwipeGestureRecognizer) {

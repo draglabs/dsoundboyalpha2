@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 protocol FilesCollectionViewDelegate {
   func filesCollectionViewDidSelect(collection:FilesCollectionView, index:Int)
+  func shareButtonPressed(collection:FilesCollectionView, index:IndexPath)
 }
 class DottedView: UIView {
   override func draw(_ rect: CGRect) {
@@ -49,9 +50,9 @@ class DottedView: UIView {
 class FilesCell: UICollectionViewCell {
   @IBOutlet weak var name:UILabel!
   @IBOutlet weak var exportButton:UIButton!
-  
+  @IBOutlet weak var shareButton:UIButton!
     var exportPressed:(()->())?
-  
+    var sharePressed:(()->())?
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
   }
@@ -61,14 +62,14 @@ class FilesCell: UICollectionViewCell {
   func setup(with jam:JamResponse) {
     name.text = jam.name!
     exportButton.addTarget(self, action: #selector(exportButtonPressed(sender:)), for: .touchUpInside)
+    shareButton.addTarget(self, action: #selector(shareButtonPressed(sender:)), for: .touchUpInside)
   }
   
-  override func prepareForReuse() {
-    // reset labels
-  }
- 
   @objc func exportButtonPressed(sender:UIButton) {
     self.exportPressed?()
+  }
+  @objc func shareButtonPressed(sender:UIButton) {
+    self.sharePressed?()
   }
 }
 
@@ -91,7 +92,7 @@ class FilesCollectionView: UICollectionView {
   }
   func setup() {
     layout.scrollDirection = .vertical
-    layout.itemSize = CGSize(width: self.bounds.width, height:90)
+    layout.itemSize = CGSize(width: self.bounds.width, height:253)
     collectionViewLayout = layout
     delegate = self
     dataSource = self
@@ -111,9 +112,8 @@ extension FilesCollectionView:UICollectionViewDelegate,UICollectionViewDataSourc
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! FilesCell
     cell.setup(with: activity[indexPath.row])
-    cell.exportPressed = {[weak self] in
-      self?.exportPressed?(indexPath.row)
-    }
+    cell.exportPressed = { self.exportPressed?(indexPath.row)}
+    cell.sharePressed = {self.fileDelegate?.shareButtonPressed(collection: self, index: indexPath)}
     cell.setup(with: activity[indexPath.row])
     return cell
   }

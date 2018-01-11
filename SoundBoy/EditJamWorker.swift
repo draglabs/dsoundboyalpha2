@@ -11,7 +11,6 @@ import UIKit
 
 class EditJamWorker
 {
-  func doSomeWork()
-  {
+  func doSomeWork() {
   }
 }

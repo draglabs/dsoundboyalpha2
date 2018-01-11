@@ -11,7 +11,6 @@ protocol MainDisplayLogic: class {
   func displayJamJoined(viewModel:Main.Join.ViewModel)
   func displayProgress(viewModel:Main.Progress.ViewModel)
   func displayUploadCompleted(viewModel:Main.JamUpload.ViewModel)
- 
 }
 
 class MainViewController: UIViewController, MainDisplayLogic {
@@ -128,6 +127,7 @@ extension MainViewController {
     }
   }
   @objc func jamPressed(sender:UIButton) {
+      new.isEnabled = false
       interactor?.new(request: Main.Jam.Request())
     }
   
@@ -141,7 +141,7 @@ extension MainViewController {
       didStartRec()
       return
     }
-    activityView.show(title: viewModel.pin,message:"Share this pin for other to join")
+    activityView.show(title: viewModel.pin,message:"Share this pin for others to join")
     didStartRec()
   }
   func displayJamJoined(viewModel: Main.Join.ViewModel) {
@@ -153,9 +153,9 @@ extension MainViewController {
   }
   
   func displayUploadCompleted(viewModel: Main.JamUpload.ViewModel) {
-    activityView.show(title: "Upload Complete", message: "Will dismiss  in 2 seconds")
+    activityView.show(title: "Upload Complete", message: "Will dismiss  in 1 seconds")
     animate()
-    let deadline = DispatchTime.now() + .seconds(2)
+    let deadline = DispatchTime.now() + .seconds(1)
     DispatchQueue.main.asyncAfter(deadline: deadline) {
       self.animate()
       
@@ -171,9 +171,11 @@ extension MainViewController {
       activityView.isShown = true
     }else {
       bottonConstaint.constant += 112
+      
       UIView.animate(withDuration: 0.5, animations: {
         self.view.layoutIfNeeded()
       })
+      new.isEnabled = true
       activityView.isShown = false
     }
   }

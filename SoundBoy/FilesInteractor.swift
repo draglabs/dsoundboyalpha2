@@ -31,8 +31,10 @@ class FilesInteractor: FilesBuisnessLogic, FilesDataStore {
         switch result {
         case .success(let data):
           let jams = data as! [JamResponse]
-          self?.activity = jams
-          self?.presenter?.presentJams(response: Files.Response(Activity: jams))
+          
+          self?.activity = jams.reversed()
+          
+          self?.presenter?.presentJams(response: Files.Response(Activity: jams.reversed()))
         default:
           break
         }

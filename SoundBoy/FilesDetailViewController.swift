@@ -26,16 +26,14 @@ class FilesDetailViewController: UIViewController, FilesDetailDisplayLogic {
     setup()
   }
   
-  required init?(coder aDecoder: NSCoder)
-  {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    //setup()
+   
   }
   
   // MARK: Setup
   
-  private func setup()
-  {
+  private func setup() {
     let viewController = self
     let interactor = FilesDetailInteractor()
     let presenter = FilesDetailPresenter()
@@ -49,13 +47,9 @@ class FilesDetailViewController: UIViewController, FilesDetailDisplayLogic {
     view.backgroundColor = UIColor.white
   }
   
-  // MARK: Routing
-  
-  
   // MARK: View lifecycle
   
-  override func viewDidLoad()
-  {
+  override func viewDidLoad() {
     super.viewDidLoad()
    
   }
@@ -63,17 +57,14 @@ class FilesDetailViewController: UIViewController, FilesDetailDisplayLogic {
     super.viewWillAppear(animated)
      requestDetails()
   }
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
+  // MARK: Properties
   
   func requestDetails() {
     let request = FilesDetail.Detail.Request()
     interactor?.detail(request: request)
   }
   
-  func displaydetail(viewModel: FilesDetail.Detail.ViewModel)
-  {
+  func displaydetail(viewModel: FilesDetail.Detail.ViewModel) {
     //nameTextField.text = viewModel.name
   }
 }
