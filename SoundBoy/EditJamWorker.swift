@@ -9,8 +9,7 @@
 
 import UIKit
 
-class EditJamWorker
-{
+class EditJamWorker {
   func doSomeWork() {
   }
 }

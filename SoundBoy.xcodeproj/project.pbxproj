@@ -20,9 +20,7 @@
 		A12174DD1F6C76BA00F139D6 /* UserActivityWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */; };
 		A14F9F2E1F09D892009D8D6E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F2D1F09D892009D8D6E /* Helpers.swift */; };
 		A14F9F3E1F0B6363009D8D6E /* CurrentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F9F3D1F0B6363009D8D6E /* CurrentLocation.swift */; };
-		A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8061F082BBD00223379 /* JoinStartJamView.swift */; };
 		A153F8191F082BBD00223379 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8081F082BBD00223379 /* CoreDataStore.swift */; };
-		A153F81E1F082BBD00223379 /* PlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80E1F082BBD00223379 /* PlayingView.swift */; };
 		A153F81F1F082BBD00223379 /* Recorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F80F1F082BBD00223379 /* Recorder.swift */; };
 		A153F8211F082BBD00223379 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A153F8121F082BBD00223379 /* Timer.swift */; };
 		A155FD221F3E411500B4165F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A155FD211F3E411500B4165F /* App.swift */; };
@@ -51,6 +49,8 @@
 		A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */; };
 		A1A163B21F64A0A600204C73 /* SettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */; };
 		A1A163B51F64D8B400204C73 /* SettingsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */; };
+		A1A356E92010413100E2216D /* RequestParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A356E82010413100E2216D /* RequestParameters.swift */; };
+		A1A356EC20129A4700E2216D /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1A356EB20129A4700E2216D /* Settings.storyboard */; };
 		A1AE8A2D1F02102500B979D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */; };
 		A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A331F02102500B979D6 /* Assets.xcassets */; };
 		A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1AE8A351F02102500B979D6 /* LaunchScreen.storyboard */; };
@@ -83,7 +83,6 @@
 		A1C6C6D220018715007AC96B /* ShareInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6C6CC20018715007AC96B /* ShareInteractor.swift */; };
 		A1CB24611FCB397B0078E17A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24601FCB397B0078E17A /* Main.storyboard */; };
 		A1CB24631FCB5B2B0078E17A /* Files.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24621FCB5B2B0078E17A /* Files.storyboard */; };
-		A1CB24651FCB68E90078E17A /* Edit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CB24641FCB68E90078E17A /* Edit.storyboard */; };
 		A1D756151FA8608E00BCB8D7 /* jamOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D756141FA8608E00BCB8D7 /* jamOperations.swift */; };
 		A1E120CA1F98708D005B7095 /* ResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E120C91F98708D005B7095 /* ResponseModel.swift */; };
 		A1F203001F5CEC820023484D /* Pods_dSoundBoy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62F3494BCF273792E0C433FA /* Pods_dSoundBoy.framework */; };
@@ -135,9 +134,7 @@
 		A12174DC1F6C76BA00F139D6 /* UserActivityWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivityWorker.swift; sourceTree = "<group>"; };
 		A14F9F2D1F09D892009D8D6E /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A14F9F3D1F0B6363009D8D6E /* CurrentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentLocation.swift; sourceTree = "<group>"; };
-		A153F8061F082BBD00223379 /* JoinStartJamView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinStartJamView.swift; sourceTree = "<group>"; };
 		A153F8081F082BBD00223379 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
-		A153F80E1F082BBD00223379 /* PlayingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayingView.swift; sourceTree = "<group>"; };
 		A153F80F1F082BBD00223379 /* Recorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recorder.swift; sourceTree = "<group>"; };
 		A153F8121F082BBD00223379 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		A155FD211F3E411500B4165F /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -165,6 +162,8 @@
 		A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWorker.swift; sourceTree = "<group>"; };
 		A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableCell.swift; sourceTree = "<group>"; };
+		A1A356E82010413100E2216D /* RequestParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestParameters.swift; sourceTree = "<group>"; };
+		A1A356EB20129A4700E2216D /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		A1AE8A291F02102500B979D6 /* dSoundBoy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dSoundBoy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1AE8A2C1F02102500B979D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1AE8A331F02102500B979D6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -199,7 +198,6 @@
 		A1C6C6CC20018715007AC96B /* ShareInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareInteractor.swift; sourceTree = "<group>"; };
 		A1CB24601FCB397B0078E17A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A1CB24621FCB5B2B0078E17A /* Files.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Files.storyboard; sourceTree = "<group>"; };
-		A1CB24641FCB68E90078E17A /* Edit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Edit.storyboard; sourceTree = "<group>"; };
 		A1D756141FA8608E00BCB8D7 /* jamOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jamOperations.swift; sourceTree = "<group>"; };
 		A1E120C91F98708D005B7095 /* ResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseModel.swift; sourceTree = "<group>"; };
 		A1F203011F5E37A70023484D /* JamCoreDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JamCoreDataFetch.swift; sourceTree = "<group>"; };
@@ -375,6 +373,7 @@
 		A14F9F361F0B507D009D8D6E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A1A356E72010411700E2216D /* RequestParameters */,
 				A1F203031F5E37D20023484D /* CoreData */,
 				A17C68991F5928AF00E09CB1 /* User */,
 				A17C68981F5928A300E09CB1 /* Jam */,
@@ -402,7 +401,6 @@
 				A16750071FA91FBF00E1B258 /* EditJamRouter.swift */,
 				A16750081FA91FBF00E1B258 /* EditJamViewController.swift */,
 				A16750091FA91FBF00E1B258 /* EditJamWorker.swift */,
-				A1CB24641FCB68E90078E17A /* Edit.storyboard */,
 			);
 			name = EditJam;
 			sourceTree = "<group>";
@@ -457,8 +455,6 @@
 		A17C689E1F5B60CC00E09CB1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A153F8061F082BBD00223379 /* JoinStartJamView.swift */,
-				A153F80E1F082BBD00223379 /* PlayingView.swift */,
 				A1F203101F62341F0023484D /* ActivityView.swift */,
 			);
 			name = Views;
@@ -474,6 +470,7 @@
 				A1A163AA1F64A0A600204C73 /* SettingsRouter.swift */,
 				A1A163AB1F64A0A600204C73 /* SettingsViewController.swift */,
 				A1A163AC1F64A0A600204C73 /* SettingsWorker.swift */,
+				A1A356EB20129A4700E2216D /* Settings.storyboard */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -484,6 +481,14 @@
 				A1A163B41F64D8B400204C73 /* SettingsTableCell.swift */,
 			);
 			name = views;
+			sourceTree = "<group>";
+		};
+		A1A356E72010411700E2216D /* RequestParameters */ = {
+			isa = PBXGroup;
+			children = (
+				A1A356E82010413100E2216D /* RequestParameters.swift */,
+			);
+			name = RequestParameters;
 			sourceTree = "<group>";
 		};
 		A1AE8A201F02102500B979D6 = {
@@ -728,10 +733,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1CB24611FCB397B0078E17A /* Main.storyboard in Resources */,
-				A1CB24651FCB68E90078E17A /* Edit.storyboard in Resources */,
 				A1AE8A371F02102500B979D6 /* LaunchScreen.storyboard in Resources */,
 				A1CB24631FCB5B2B0078E17A /* Files.storyboard in Resources */,
 				A1AE8A341F02102500B979D6 /* Assets.xcassets in Resources */,
+				A1A356EC20129A4700E2216D /* Settings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,13 +764,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dSoundBoy-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		58D852F7E035F1D5E3202A56 /* [CP] Embed Pods Frameworks */ = {
@@ -774,9 +782,28 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-dSoundBoy/Pods-dSoundBoy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -820,7 +847,6 @@
 				A167500F1FA91FBF00E1B258 /* EditJamWorker.swift in Sources */,
 				A1A163B11F64A0A600204C73 /* SettingsViewController.swift in Sources */,
 				A1FA986E1F9B03BC00BD7E9E /* FilesDetailModels.swift in Sources */,
-				A153F81E1F082BBD00223379 /* PlayingView.swift in Sources */,
 				A1A163A51F647AD300204C73 /* DSoundNav.swift in Sources */,
 				A1B66A851F5559CA001F3B00 /* LoginRouter.swift in Sources */,
 				A1F203051F5E38B80023484D /* FacebookAPI.swift in Sources */,
@@ -848,7 +874,6 @@
 				A1FFEF981F59270A00F7784C /* JamWorker.swift in Sources */,
 				A1B66AB01F57C9FA001F3B00 /* CoreData.xcdatamodeld in Sources */,
 				A1B66AAA1F57470A001F3B00 /* JoinJamPresenter.swift in Sources */,
-				A153F8171F082BBD00223379 /* JoinStartJamView.swift in Sources */,
 				A1F2030B1F5E39E00023484D /* UserCoreDataSave.swift in Sources */,
 				A1B66A8F1F555E64001F3B00 /* MainModels.swift in Sources */,
 				A1C6C6CE20018715007AC96B /* ShareWorker.swift in Sources */,
@@ -866,6 +891,7 @@
 				A1B66A901F555E64001F3B00 /* MainPresenter.swift in Sources */,
 				A1B66A921F555E64001F3B00 /* MainViewController.swift in Sources */,
 				A17289D41FA2D33700F9F82F /* ExportJamViewController.swift in Sources */,
+				A1A356E92010413100E2216D /* RequestParameters.swift in Sources */,
 				A17C689B1F59A89800E09CB1 /* UploadJam.swift in Sources */,
 				A1FA986F1F9B03BC00BD7E9E /* FilesDetailPresenter.swift in Sources */,
 				A17289D51FA2D33700F9F82F /* ExportJamWorker.swift in Sources */,

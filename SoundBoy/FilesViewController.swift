@@ -15,7 +15,8 @@ protocol FilesDisplayLogic:class {
 class FilesViewController: UIViewController, FilesDisplayLogic {
     var interactor: FilesBuisnessLogic?
     var router: (NSObjectProtocol & FilesRoutingLogic & FilesDataPassing)?
-    let messageCompose = MFMessageComposeViewController()
+    var messageCompose:MFMessageComposeViewController!
+  
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -39,11 +40,10 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+      super.viewDidLoad()
         setupUI()
       let request = Files.Request()
       interactor?.loadRecordings(request: request)
-      messageCompose.messageComposeDelegate = self
     }
  
     // MARK: Properties
@@ -63,24 +63,25 @@ class FilesViewController: UIViewController, FilesDisplayLogic {
 
 extension FilesViewController:FilesCollectionViewDelegate,MFMessageComposeViewControllerDelegate {
   func shareButtonPressed(collection: FilesCollectionView, index: IndexPath) {
-    print("did presed share button")
     if let jam = router?.dataStore?.activity?[index.row] {
       
-      if let link = jam.link {
-        messageCompose.body = "Hey here's the link to dowloand our jam session! \n\(link)"
-         present(messageCompose, animated: true, completion: nil)
-      }
-     
+        messageCompose = MFMessageComposeViewController()
+        messageCompose.body = "Hey here's the link to download our jam session! \n\(jam.link!)"
+        messageCompose.messageComposeDelegate = self
+        present(messageCompose, animated: true, completion: nil)
     }
-   
   }
   
   func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
     messageCompose.dismiss(animated: true, completion: nil)
+    messageCompose = nil
   }
   
   func filesCollectionViewDidSelect(collection: FilesCollectionView, index:Int) {
     self.router?.routeToDetail(index: index)
+  }
+  func editButtonPressed(collection: FilesCollectionView, index: IndexPath) {
+    router?.routeToEdit(index: index.row)
   }
   func exportJam(index:Int) {
     router?.routeToExport(index:index)

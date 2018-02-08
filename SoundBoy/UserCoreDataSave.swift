@@ -34,3 +34,7 @@ class UserStore: StoreRepresentable {
   let coreDataStore = CoreDataStore(entity: .user)
 
 }
+
+struct RealmUserStore {
+  
+}

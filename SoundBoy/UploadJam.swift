@@ -52,13 +52,12 @@ enum JamUploadRequest:RequestRepresentable {
 
 class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     let enviroment:Enviroment
-    
+  
     var fileURL:URL?
     let boundary = "Boundary-\(NSUUID().uuidString)"
     var bodyData = Data()
     var delegate:JamUpLoadNotifier?
     var results:((_ response:Response)->())?
-  
   
     var session:URLSession {
        let config = URLSessionConfiguration.default
@@ -66,10 +65,11 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
         return session
     }
   
-  required init(enviroment: Enviroment) {
+   required init(enviroment: Enviroment) {
     self.enviroment = enviroment
     
-  }
+    }
+  
     func execute(request: RequestRepresentable, result: @escaping (Response) -> ()) {
         self.results = result
     }
@@ -82,14 +82,8 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     
     func executeUpload(request:RequestRepresentable) {
       session.dataTask(with:prepareURLRequest(request: request)).resume()
-//      session.dataTask(with: prepareURLRequest(request: request)) { (data, res, err) in
-//        if let a = Parser().parse(to: .json, from: data) {
-//            print(a)
-//            }
-//
-//      }.resume()
     }
-    
+  
     private func prepareURLRequest(request:RequestRepresentable) ->URLRequest {
       var urlRequest = URLRequest(url: URL(string: "\(enviroment.host)/\(request.path)")!)
       urlRequest.httpMethod = request.method.rawValue
@@ -100,8 +94,7 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
         return urlRequest
     }
   
-
-  private func prepareBody(request:RequestRepresentable) ->Data {
+   private func prepareBody(request:RequestRepresentable) ->Data {
     var body = Data()
     switch request.parameters {
     case .body(let json):
@@ -124,7 +117,6 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     return body
   }
 
-  
   func buildBodyParams(params:JSONDictionary) ->Data {
     var body = Data()
     
@@ -135,7 +127,6 @@ class JamUpLoadDispatcher:NSObject, DispatcherRepresentable {
     }
     return body
   }
-  
   
   func mimeType(for path: String) -> String {
     let url = NSURL(fileURLWithPath: path)
@@ -171,7 +162,6 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
       }
     }
   
-  
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
         if let error = error {
           print(error)
@@ -182,7 +172,6 @@ extension JamUpLoadDispatcher:URLSessionDataDelegate,URLSessionTaskDelegate  {
     }
   
 }
-
 
 class JamUpload: OperationRepresentable {
   var jam:Jam?

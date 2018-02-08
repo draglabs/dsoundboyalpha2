@@ -41,7 +41,6 @@ public enum RequestParams {
   case none
 }
 
-
 /// Error from network call
 public enum NetworkError :Error {
   case badInput
@@ -110,7 +109,6 @@ public struct Enviroment {
   
 }
 
-/* =====================RequestRepresentable====================*/
 public protocol RequestRepresentable {
   
   /// relative to the path of the endpoint we want to call, (i.e`/user/auth`)
@@ -128,11 +126,6 @@ public protocol RequestRepresentable {
   /// these are optional list of headers we can send alogn with the call
   var headers    : [String:Any]? { get }
   
-  /// The kind of data we expect as response
-  /// Not much in use since swift 4 codable takes
-  //  care of pretty much all the heavy lifting
-  var dataType   : DataType      { get }
-  
 }
 
 
@@ -141,7 +134,6 @@ public protocol RequestRepresentable {
 public enum Result<T> {
   case success(data:T)
   case failed(message:String?, error:Error?)
-  
 }
 
 /// Response enum
@@ -157,50 +149,35 @@ public enum Response {
       if let data = parser.parse(to: .json, from: response.data) {
         print("Printing Error")
         print(data)
-      }
-      print(response.r?.statusCode)
+     }
+      print(response.r?.statusCode ?? "no response error code")
       self = .error(statusCode: response.r?.statusCode, error: response.error)
       return
     }
-    
     if let data = response.data{
-      
       self = .success(data: data)
       return
     }
-    
     self = .error(statusCode: response.r?.statusCode, error: response.error)
   }
   
 }
 
-
-/* =====================OperationRepresentable====================*/
 public protocol OperationRepresentable {
-  
   associatedtype ResultType
-  
   var  request :RequestRepresentable { get }
-  var  store:StoreRepresentable {get } //
   func execute(in dispatcher:DispatcherRepresentable, result:@escaping(_ result:ResultType)->())
 }
 
-
-/* =====================DispatcherRepresentable====================*/
 public protocol DispatcherRepresentable {
-  
   init(enviroment:Enviroment)
-  
   func execute(request:RequestRepresentable,result:@escaping(_:Response)->())
 }
-
-/* =====================NetworkDispatcher====================*/
 
 /// The Default network dispatcher
 public struct DefaultDispatcher:DispatcherRepresentable {
   
   private var enviroment:Enviroment
-  
   private var session:URLSession
   
   public init(enviroment: Enviroment) {
@@ -209,13 +186,10 @@ public struct DefaultDispatcher:DispatcherRepresentable {
     config.timeoutIntervalForRequest = 30 * 60
     config.timeoutIntervalForResource = 30 * 60
     config.requestCachePolicy = enviroment.cachePolicy
-    
     self.session = URLSession(configuration: config)
-    
   }
   
   public func execute(request: RequestRepresentable, result:@escaping (_:Response)->()) {
-    
     let rq = prepareURLRequest(for: request)
     session.dataTask(with: rq) { (data, urlResponse, error) in
       let res = Response((r: urlResponse as? HTTPURLResponse, data: data, error: error), for: request)
@@ -228,8 +202,7 @@ public struct DefaultDispatcher:DispatcherRepresentable {
     var urlRequest = URLRequest(url: URL(string: fullURL)!)
     
     switch request.parameters {
-      
-    case .body(let param):
+      case .body(let param):
       let parser = Parser()
       if let bodyParams = param {
         let body = parser.parse(to: .raw, from: bodyParams)
@@ -237,8 +210,7 @@ public struct DefaultDispatcher:DispatcherRepresentable {
       } else {
         fatalError("params cant be empty")
       }
-      
-    default:
+     default:
       break
       
     }
@@ -246,13 +218,10 @@ public struct DefaultDispatcher:DispatcherRepresentable {
     enviroment.headers?.forEach({ (value, field) in
       urlRequest.addValue(value, forHTTPHeaderField: field as! String)
     })
-    
     request.headers?.forEach({ (value, field) in
       urlRequest.addValue(value, forHTTPHeaderField: field as! String)
     })
-    
     urlRequest.httpMethod = request.method.rawValue
-    
     return urlRequest
   }
   

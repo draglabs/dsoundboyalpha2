@@ -52,7 +52,7 @@ class MainRouter: NSObject, MainRoutingLogic, MainDataPassing
   }
   
   func presentEditjam() {
-    let editVC = UIStoryboard(name: "Edit", bundle: nil).instantiateInitialViewController()
-    viewController?.present(editVC!, animated: true, completion: nil)
+    let editVC = UIStoryboard(name: "Files", bundle: nil).instantiateViewController(withIdentifier: "Edit")
+    viewController?.present(editVC, animated: true, completion: nil)
   }
 }

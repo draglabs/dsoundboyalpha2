@@ -82,11 +82,11 @@ struct JoinJamOperation:OperationRepresentable {
   }
 }
 
-//=============ExitJamOperation============================
+//=============DetailsJamOperation============================
 
-struct ExitJamOperation: OperationRepresentable {
-  let userId:String
-  let jamId:String
+struct detailJamOperation: OperationRepresentable {
+ 
+  let id:String
   var responseError:((_ code:Int?, _ error:Error?)->())?
   var store: StoreRepresentable {
     return JamStore()
@@ -99,7 +99,7 @@ struct ExitJamOperation: OperationRepresentable {
   }
   
   var request: RequestRepresentable {
-    return JamRequest.exit(userId: userId, jamId: jamId)
+    return JamRequest.detail(id: id)
   }
   
   private func parseReponse(response:Response,result: @escaping (_ exited:Bool)->()) {
@@ -111,13 +111,10 @@ struct ExitJamOperation: OperationRepresentable {
     }
   }
   
-  init(userId:String, jamId:String) {
-    self.userId = userId
-    self.jamId = jamId
+  init(jamId:String) {
+    self.id = jamId
   }
 }
-
-
 
 //=============UpdateJamOperation============================
 
@@ -179,7 +176,7 @@ struct ExportJamOperation: OperationRepresentable {
     case .success(_):
       result(Result.success(data: true))
     case .error(_,let error):
-      print(error)
+      print(error ?? "not error")
       result(Result.failed(message: "Unable to Export Jam", error: error))
     }
   }

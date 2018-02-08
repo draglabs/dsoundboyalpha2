@@ -25,20 +25,23 @@ struct JamResponse:Codable {
   var endTime:String?
   var notes:String?
   var link:String?
-  var collaborators:Int?
+ // var collaborators:[Any]?
+  var coordinates:[Double]
   
   enum CodingKeys:String,CodingKey{
     case name
     case id
     case pin
     case location
-    case collaborators
+  //  case collaborators
     case notes
     case link
     case startTime = "start_time"
     case endTime = "end_time"
     case isCurrent = "is_current"
+    case coordinates
   }
+  
 }
 
 //=======UserResponse===============
@@ -49,6 +52,7 @@ struct UpdateParams:Codable {
   var location:String
   var notes:String
 }
+
 struct UserResponse:Codable {
   var id:String
   var name:String
@@ -61,6 +65,4 @@ struct UserResponse:Codable {
   }
 }
 
-struct JamDetailResponse:Decodable {
-  
-}
+struct JamDetailResponse:Decodable {}

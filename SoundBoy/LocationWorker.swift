@@ -17,19 +17,15 @@ import CoreLocation
   var didGetLocation:((_ location:CLLocation, _ address:CurrentLocation)->())?
   var manager = CLLocationManager()
   
-  ///Ask permission and starts
+  /// Ask permission and starts
   /// getting the user location
   func requestLocation() {
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-    
     }
   
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {}
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -39,13 +35,9 @@ import CoreLocation
             lastLocation = locations.last!
             getAddress()
         }
-      
     }
   
-  func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
-    print("Location Manager did stop updating location")
-    
-  }
+  func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {}
   
   /// Make sure you set `didGetLocation?()`
   /// so that youll get the results back

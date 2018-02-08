@@ -43,7 +43,7 @@ public enum JamRequest:RequestRepresentable {
   
   case join(userId:String,pin:String)
   
-  case exit (userId:String, jamId:String)
+  case detail (id:String)
   
   case export(userId:String, jamId:String)
   
@@ -72,7 +72,6 @@ public enum JamRequest:RequestRepresentable {
     default:
       return["application/json":"Content-Type"]
     }
-    
   }
   
   /// These are the params we need to send along with the call
@@ -83,9 +82,9 @@ public enum JamRequest:RequestRepresentable {
       
     case .join(let userId, let pin):
       return .body(["user_id":userId, "pin":pin])
-      
-    case .exit(let uniqueId, let jamId):
-      return .body(["user_id":uniqueId, "jam_id":jamId])
+  
+    case .detail:
+      return .none
       
     case .export( let userId, let jamId):
       return .body(["user_id":userId, "jam_id":jamId])
@@ -95,7 +94,14 @@ public enum JamRequest:RequestRepresentable {
     }
     
   }
-  
+  var queries:String {
+    switch self {
+    case .detail(let id):
+      return "/\(id)"
+    default:
+      return ""
+    }
+  }
   
   public  var method: HTTPMethod {
     switch self {
@@ -110,8 +116,8 @@ public enum JamRequest:RequestRepresentable {
     switch self {
     case .new:
       return "jam/new"
-    case .exit :
-      return "jam/exit"
+    case .detail :
+      return "jam/detail" + queries
       
     case .export:
       return "jam/archive"

@@ -17,10 +17,22 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.23.0):
     - FBSDKCoreKit
+  - PromiseKit/CoreLocation (4.5.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/CorePromise (4.5.1)
+  - ReachabilitySwift (4.1.0)
+  - Realm (3.0.2):
+    - Realm/Headers (= 3.0.2)
+  - Realm/Headers (3.0.2)
+  - RealmSwift (3.0.2):
+    - Realm (= 3.0.2)
 
 DEPENDENCIES:
   - FacebookCore
   - FacebookLogin
+  - PromiseKit/CoreLocation (~> 4.0)
+  - ReachabilitySwift
+  - RealmSwift
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
@@ -28,7 +40,11 @@ SPEC CHECKSUMS:
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
   FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
   FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
+  PromiseKit: 445dac9b2c3c3b4b31b5f842bc325700b848a8bd
+  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
+  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
+  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
 
-PODFILE CHECKSUM: 73d03ea885ef0cd8f155cf01d641a6eeceec23a0
+PODFILE CHECKSUM: 69b0d5cc23d2b81b0fe251564f1ad44f32a73fad
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

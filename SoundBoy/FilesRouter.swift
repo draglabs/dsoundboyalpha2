@@ -11,6 +11,7 @@ import UIKit
 @objc protocol FilesRoutingLogic {
   func routeToDetail(index:Int)
   func routeToExport(index:Int)
+  func routeToEdit(index:Int)
 }
 
 protocol FilesDataPassing {
@@ -28,7 +29,6 @@ class FilesRouter: NSObject, FilesRoutingLogic, FilesDataPassing {
     let detailVC = FilesDetailViewController()
     var destinationDS = detailVC.router!.dataStore!
     passDataToDetails(source: dataStore!, destination: &destinationDS)
-   
     navigateTo(source: viewController!, destination: detailVC)
     
   }
@@ -41,17 +41,26 @@ class FilesRouter: NSObject, FilesRoutingLogic, FilesDataPassing {
     passDataToExport(source: dataStore!, destination: &destinationDS)
     viewController?.present(exportVC, animated: false, completion: nil)
   }
-    
+  func routeToEdit(index:Int) {
+    self.row = index
+    let edit = UIStoryboard(name: "Files", bundle: nil).instantiateViewController(withIdentifier: "Edit") as! EditJamViewController
+    var ds = edit.router!.dataStore!
+    passDataToEdit(source: dataStore!, destination: &ds)
+    viewController?.present(edit, animated: true, completion: nil)
+  }
+  
   func navigateTo(source:FilesViewController, destination:UIViewController){
         source.navigationController?.pushViewController(destination, animated: true)
     }
   func passDataToDetails(source: FilesDataStore, destination: inout FilesDetailDataStore) {
       destination.jamId = source.activity![row].id
-    
   }
   
   func passDataToExport(source:FilesDataStore, destination: inout ExportJamDataStore) {
     destination.jamId = source.activity![row].id
   }
- 
+  
+  func passDataToEdit(source:FilesDataStore, destination: inout EditJamDataStore) {
+    destination.jamId = source.activity![row].id
+  }
 }

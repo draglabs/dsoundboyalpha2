@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0900"
+   LastUpgradeVersion = "0920"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -43,7 +43,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A11E93A81F7344D900E2EDEE"
+               BlueprintIdentifier = "A11E93B61F73462600E2EDEE"
                BuildableName = "dSoundBoyTests.xctest"
                BlueprintName = "dSoundBoyTests"
                ReferencedContainer = "container:SoundBoy.xcodeproj">

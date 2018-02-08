@@ -58,7 +58,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    doSomething()
     uiSetup()
   }
   func uiSetup() {
@@ -66,32 +65,13 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "forward"), style: .plain, target: self, action: #selector(navbarNuttonPressed(sender:)))
     let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:14)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
     navigationController?.navigationBar.titleTextAttributes = titleDict
-    
-    view.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "background"))
-    imageView.frame = view.frame
-    view.addSubview(imageView)
-    logOutUI()
+  
   }
   
-  func logOutUI() {
-    let button = UIButton(type: .system)
-    button.frame = CGRect(x: 0, y: view.bounds.height / 2 + 150, width: view.bounds.width, height: 44)
-    button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
-    button.setTitle("LOGOUT", for: .normal)
-    button.tintColor = UIColor.white
-    view.addSubview(button)
-  }
+
   @objc func navbarNuttonPressed(sender:UIBarButtonItem) {
     router?.popBack()
   }
- 
-  func doSomething() {
-    
-    let request = Settings.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
   func displaySomething(viewModel: Settings.Something.ViewModel) {
     //nameTextField.text = viewModel.name
   }

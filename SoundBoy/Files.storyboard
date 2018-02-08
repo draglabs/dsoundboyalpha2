@@ -63,9 +63,6 @@
                                                             <state key="normal" title="EDIT">
                                                                 <color key="titleColor" red="0.40000396970000002" green="0.39999473089999998" blue="0.39999657869999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             </state>
-                                                            <connections>
-                                                                <segue destination="aSw-CT-uhW" kind="show" id="ja2-yf-unK"/>
-                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgu-4x-h8a">
                                                             <rect key="frame" x="8" y="159" width="341" height="30"/>
@@ -82,11 +79,11 @@
                                                         <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GuG-Xg-Dlw">
                                                             <rect key="frame" x="0.0" y="0.0" width="357" height="151"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXk-hb-qFq">
-                                                                    <rect key="frame" x="324" y="15" width="25" height="25"/>
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXk-hb-qFq">
+                                                                    <rect key="frame" x="305" y="15" width="44" height="44"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="25" id="8VI-I5-71a"/>
-                                                                        <constraint firstAttribute="height" constant="25" id="pky-Sj-qKb"/>
+                                                                        <constraint firstAttribute="width" constant="44" id="8VI-I5-71a"/>
+                                                                        <constraint firstAttribute="height" constant="44" id="pky-Sj-qKb"/>
                                                                     </constraints>
                                                                     <state key="normal" image="share">
                                                                         <color key="titleColor" red="0.80392915009999999" green="0.80391168589999995" blue="0.803915143" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -123,7 +120,9 @@
                                                 </constraints>
                                                 <size key="customSize" width="357" height="253"/>
                                                 <connections>
+                                                    <outlet property="editButton" destination="l9o-wn-clx" id="sDC-iR-6M3"/>
                                                     <outlet property="exportButton" destination="Yzg-zV-9it" id="ZAW-Tw-lO8"/>
+                                                    <outlet property="imageView" destination="RSa-9e-X3n" id="kLM-yi-q06"/>
                                                     <outlet property="name" destination="tgu-4x-h8a" id="Nkb-gW-WlL"/>
                                                     <outlet property="shareButton" destination="mXk-hb-qFq" id="Jl7-tg-Yle"/>
                                                 </connections>
@@ -161,10 +160,10 @@
             </objects>
             <point key="canvasLocation" x="-236" y="-394"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Jam View Controller-->
         <scene sceneID="L4z-Hy-IFs">
             <objects>
-                <viewController id="aSw-CT-uhW" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Edit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aSw-CT-uhW" customClass="EditJamViewController" customModule="dSoundBoy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iaH-mh-X2N">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -306,10 +305,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QW7-ZV-IU0"/>
                     </view>
+                    <connections>
+                        <outlet property="doneButton" destination="gQs-8d-LQJ" id="2ZV-0u-bQf"/>
+                        <outlet property="ediTableView" destination="0dS-2K-5Yc" id="wTC-Uw-lIg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Uh-F2-AEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479" y="87"/>
+            <point key="canvasLocation" x="465" y="-351"/>
         </scene>
         <!--Share View Controller-->
         <scene sceneID="Oh0-Bd-tQ7">
@@ -324,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GoZ-Vn-7YY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="-607"/>
+            <point key="canvasLocation" x="1260" y="-351"/>
         </scene>
     </scenes>
     <resources>
