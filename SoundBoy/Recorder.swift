@@ -37,7 +37,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     override private init() {
         super.init()            //YYYY-MM-DDTHH:mm:ss // js
                                 //yyyy-MM-dd HH:mm:ss // switt
-        formatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ss.SS"
+        formatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ss.SS' 'Z"
         prepareSession()
     }
     
@@ -70,6 +70,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
             audioRecorder.delegate = self
             audioRecorder.record()
           startedTime = formatter.string(from: Date())//date(from: String(describing:))
+          //  startedTime = String(describing:Date())
             
             isRecording = true
            willStartRecording?()
@@ -109,7 +110,8 @@ extension Recorder {
     func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
         print("did finish recording",recorder.url)
         didFinishRecording?(recorder.url)
-      endTime = String(describing:Date())
+        endTime = formatter.string(from: Date())
+      // endTime = String(describing:Date())
     }
 
     
