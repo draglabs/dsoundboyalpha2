@@ -69,7 +69,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.delegate = self
             audioRecorder.record()
-          startedTime = formatter.string(from: Date())//date(from: String(describing:))
+          startedTime = formatter.string(from: Date())
           //  startedTime = String(describing:Date())
             
             isRecording = true
