@@ -22,7 +22,7 @@ class JamWorker {
     locationWorker.didGetLocation = {[unowned self] location, address in
       let date = Date()
       let formatter = DateFormatter()
-      formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+      formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SS"
       let time = formatter.string(from: date)
       
       let task = StartJamOperation(userId: id, name:"\(name + time)", location: address.number! + address.street, coordinates: location.coordinate)
