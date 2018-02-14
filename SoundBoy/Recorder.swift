@@ -37,8 +37,7 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
     override private init() {
         super.init()            //YYYY-MM-DDTHH:mm:ss // js
                                 //yyyy-MM-dd HH:mm:ss // switt
-       // formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-      
+        formatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ss.SS"
         prepareSession()
     }
     
@@ -70,7 +69,8 @@ class Recorder: NSObject,AVAudioPlayerDelegate, AVAudioRecorderDelegate {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.delegate = self
             audioRecorder.record()
-          startedTime = String(describing:Date())
+          startedTime = formatter.string(from: Date())//date(from: String(describing:))
+            
             isRecording = true
            willStartRecording?()
             
