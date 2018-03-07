@@ -61,13 +61,53 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     uiSetup()
   }
   func uiSetup() {
-    title = "SETTINGS"
+    title = "INSTRUCTIONS"
     navigationItem.rightBarButtonItem = UIBarButtonItem(image:#imageLiteral(resourceName: "forward"), style: .plain, target: self, action: #selector(navbarNuttonPressed(sender:)))
     let titleDict: [NSAttributedStringKey : Any] = [NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue):UIFont(name:"Avenir-Book", size:14)!,NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.white]
     navigationController?.navigationBar.titleTextAttributes = titleDict
   
-  }
-  
+    
+    view.backgroundColor = UIColor(displayP3Red: 33, green: 66, blue: 99, alpha: 0.5)
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "Instructions"))
+    imageView.frame = view.frame
+    view.addSubview(imageView)
+    
+    feedBack()
+   // logOutUI()
+    }
+    
+    func feedBack() {
+      //  let url = NSURL(string: "http://www.google.com") as! URL
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: 0, y: view.bounds.height - 120, width: view.bounds.width, height: 54)
+        button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
+        button.setTitle("FEEDBACK", for: .normal)
+        button.tintColor = UIColor.white
+        view.addSubview(button)
+        button.addTarget(self, action:#selector(goToFeedback(sender:)), for: .allEvents)
+    print(view.bounds.height)
+        //  logOut()
+        
+
+            
+        }
+    
+        @objc func goToFeedback(sender:UIButton){
+            let url = NSURL(string: "http://www.google.com")! as URL
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//    func logOutUI() {
+//        let button = UIButton(type: .system)
+//        button.frame = CGRect(x: 0, y: view.bounds.height / 2 + 150, width: view.bounds.width, height: 44)
+//        button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
+//        button.setTitle("LOGOUT", for: .normal)
+//        button.tintColor = UIColor.white
+//        view.addSubview(button)
+      //  logOut()
+        
+
+        
+    }
+
 
   @objc func navbarNuttonPressed(sender:UIBarButtonItem) {
     router?.popBack()

@@ -35,7 +35,7 @@ class JoinJamRouter: NSObject, JoinJamRoutingLogic, JoinJamDataPassing {
     
   }
   
-  func passDataToMain(source: JoinJamDataStore, destination: inout MainDataStore) {
+    func passDataToMain(source: JoinJamDataStore, destination: inout MainDataStore) {
 
     destination.didJoin = source.didJoin
   }

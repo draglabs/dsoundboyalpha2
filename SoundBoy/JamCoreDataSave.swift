@@ -13,13 +13,15 @@ class  JamStore:StoreRepresentable {
     let coreDataStore = CoreDataStore(entity: .jam)
   
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
-    let decorder = JSONDecoder()
+  //  let dataString: String = data.base64EncodedString()
+    let decoder = JSONDecoder()
     let d = Parser().parse(to: .json, from: data)
     print(d ?? "")
-    let resp = try? decorder.decode(JamResponse.self, from: data)
-   
-    guard let jamRes = resp else{response(Result.failed(message: "unable to parse response", error: nil)); return}
- 
+    let resp = try? decoder.decode(JamResponse.self, from: data)
+
+    guard let jamRes = resp else{response(Result.failed(message: "unable to parse response", error: nil));
+
+        return}
     let context = coreDataStore.viewContext
       delete()
      let jamToSave = Jam(context: context)
@@ -43,6 +45,7 @@ class  JamStore:StoreRepresentable {
       }catch {
         print("not saved",error)
         response(Result.failed(message: "Unable to save jam", error: error))
+        print("data not saved")
       }
     }
   }

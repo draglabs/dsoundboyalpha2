@@ -25,8 +25,8 @@ struct JamResponse:Codable {
   var endTime:String?
   var notes:String?
   var link:String?
- // var collaborators:[Any]?
-  var coordinates:[Double]
+ // var collaborators:Int?
+  var coordinates:[Double]?
   
   enum CodingKeys:String,CodingKey{
     case name

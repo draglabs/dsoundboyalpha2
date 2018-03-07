@@ -30,17 +30,20 @@ class JoinJamInteractor: JoinJamBusinessLogic, JoinJamDataStore {
     let pin = request.pin
     jamWorker.join(jamPin: pin, completion: { (result) in
       switch result {
-      case .failed(_,_):
-        DispatchQueue.main.async {
-          self.didJoin = false
-          self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: false))
+        case .failed(_,_):
+          DispatchQueue.main.async {
+            // case failed(message:String?, error:Error?)
+            print("Step 14 case fail at the Jam worker in the Jam interactor" )
+            self.didJoin = false
+            self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: false))
+          }
+        case .success(_):
+          DispatchQueue.main.async {
+            print("Step 14 case succedded at the Jam worker in the Jam interactor")
+            self.didJoin = true
+            self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: true))
+          }
         }
-      case .success(_):
-        DispatchQueue.main.async {
-          self.didJoin = true
-          self.presenter?.presentDidJoinJam(response: JoinJam.Join.Response(didJoin: true))
-        }
-      }
       
     })
   }

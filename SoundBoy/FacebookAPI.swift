@@ -25,6 +25,9 @@ final class FacebookAPI: NSObject {
             result(registered)
           }
         })
+        func logoutUser(){
+            
+        }
         
       default:
         break

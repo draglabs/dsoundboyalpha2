@@ -18,7 +18,7 @@ protocol LoginDisplayLogic: class
 class LoginViewController: UIViewController, LoginDisplayLogic {
   var interactor: LoginBusinessLogic?
   var router: (NSObjectProtocol & LoginRoutingLogic & LoginDataPassing)?
-  let backgrundImageView = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
+  let backgroundImageView = UIImageView(image: #imageLiteral(resourceName: "backLayer"))
   let backgroundView = UIImageView(image: #imageLiteral(resourceName: "background"))
   let loginButton = UIButton(type: UIButtonType.system)
   let slogan = UILabel()
@@ -85,8 +85,8 @@ class LoginViewController: UIViewController, LoginDisplayLogic {
     
     func setupUI() {
         
-        backgrundImageView.frame = view.bounds
-        view.addSubview(backgrundImageView)
+        backgroundImageView.frame = view.bounds
+        view.addSubview(backgroundImageView)
         
         backgroundView.frame = view.bounds
         

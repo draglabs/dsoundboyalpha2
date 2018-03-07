@@ -22,7 +22,7 @@ class JamWorker {
     locationWorker.didGetLocation = {[unowned self] location, address in
       let date = Date()
       let formatter = DateFormatter()
-      formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+      formatter.dateFormat = "yyyy-MM-dd HH-mm-ss"
       let time = formatter.string(from: date)
       
       let task = StartJamOperation(userId: id, name:"\(name + time)", location: address.number! + address.street, coordinates: location.coordinate)
@@ -43,10 +43,11 @@ class JamWorker {
     }
   
   func join(jamPin:String, completion:@escaping(_ join:Result<Any>)->()) {
-    
+    print("step 6 Join in Jamworker.swift")
      userFetcher.fetch { (user, error) in
       if user != nil {
         let jamTask = JoinJamOperation(userId: user!.userId!, jamPin: jamPin)
+        print("Step 7 userFetcher.fetch \(jamTask)")
         jamTask.execute(in: self.networkDispatcher, result: completion)
       }
     }

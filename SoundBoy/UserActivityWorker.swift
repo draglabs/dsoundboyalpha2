@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-final class RecordindsStore:StoreRepresentable{
+final class RecordingsStore:StoreRepresentable{
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
     let d = Parser().parseToAny(from: data)
-    print(d)
+    print(d as Any)
     let decoder = JSONDecoder()
     do {
       let res = try decoder.decode([JamResponse].self, from: data)
@@ -66,7 +66,7 @@ class UserActivityOperation: OperationRepresentable {
   let userId:String
   
   var store:StoreRepresentable{
-    return RecordindsStore()
+    return RecordingsStore()
   }
   
   func execute(in dispatcher: DispatcherRepresentable, result: @escaping (_ created:Result<Any>) -> ()) {

@@ -156,9 +156,11 @@ public enum Response {
     }
     if let data = response.data{
       self = .success(data: data)
+        print("step 7.5 Success in base.swift")
       return
     }
     self = .error(statusCode: response.r?.statusCode, error: response.error)
+    
   }
   
 }
