@@ -93,7 +93,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         }
     
         @objc func goToFeedback(sender:UIButton){
-            let url = NSURL(string: "http://www.google.com")! as URL
+            let url = NSURL(string: "http://goo.gl/PjRQRg")! as URL
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
 //    func logOutUI() {
 //        let button = UIButton(type: .system)
