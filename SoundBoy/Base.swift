@@ -156,7 +156,6 @@ public enum Response {
     }
     if let data = response.data{
       self = .success(data: data)
-        print("step 7.5 Success in base.swift")
       return
     }
     self = .error(statusCode: response.r?.statusCode, error: response.error)
@@ -201,6 +200,9 @@ public struct DefaultDispatcher:DispatcherRepresentable {
   
   private func prepareURLRequest(for request:RequestRepresentable)  -> URLRequest {
     let fullURL = "\(enviroment.host)/\(request.path)"
+    print(request.path)
+    print(enviroment.host)
+    print(fullURL)
     var urlRequest = URLRequest(url: URL(string: fullURL)!)
     
     switch request.parameters {
@@ -224,12 +226,14 @@ public struct DefaultDispatcher:DispatcherRepresentable {
       urlRequest.addValue(value, forHTTPHeaderField: field as! String)
     })
     urlRequest.httpMethod = request.method.rawValue
+    print(urlRequest)
     return urlRequest
+    
   }
   
 }
 
 struct Env {
-  let dev = Enviroment("dev", host: "http://api.draglabs.com/api/v2.0")
-  let prod = Enviroment("production", host: "http://api.draglabs.com/api/v2.0")
+  let dev = Enviroment("dev", host: "https://api.draglabs.com/api/v2.0")
+  let prod = Enviroment("production", host: "https://api.draglabs.com/api/v2.0")
 }

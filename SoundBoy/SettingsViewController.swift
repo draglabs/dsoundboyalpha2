@@ -1,5 +1,5 @@
 //
-//  SettingsViewController.swift
+//  Scenes/Settings/SettingsViewController.swift
 //  SoundBoy
 //
 //  Created by Marlon Monroy on 9/9/17.
@@ -77,7 +77,6 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     }
     
     func feedBack() {
-      //  let url = NSURL(string: "http://www.google.com") as! URL
         let button = UIButton(type: .system)
         button.frame = CGRect(x: 0, y: view.bounds.height - 120, width: view.bounds.width, height: 54)
         button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
@@ -85,7 +84,7 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         button.tintColor = UIColor.white
         view.addSubview(button)
         button.addTarget(self, action:#selector(goToFeedback(sender:)), for: .allEvents)
-    print(view.bounds.height)
+        print(view.bounds.height)
         //  logOut()
         
 
@@ -95,7 +94,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         @objc func goToFeedback(sender:UIButton){
             let url = NSURL(string: "http://goo.gl/PjRQRg")! as URL
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//    func logOutUI() {
+
+            
+//        func logOutUI() {
 //        let button = UIButton(type: .system)
 //        button.frame = CGRect(x: 0, y: view.bounds.height / 2 + 150, width: view.bounds.width, height: 44)
 //        button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
