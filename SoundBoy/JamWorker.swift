@@ -43,11 +43,9 @@ class JamWorker {
     }
   
   func join(jamPin:String, completion:@escaping(_ join:Result<Any>)->()) {
-    print("step 6 Join in Jamworker.swift")
      userFetcher.fetch { (user, error) in
       if user != nil {
         let jamTask = JoinJamOperation(userId: user!.userId!, jamPin: jamPin)
-        print("Step 7 userFetcher.fetch \(jamTask)")
         jamTask.execute(in: self.networkDispatcher, result: completion)
       }
     }

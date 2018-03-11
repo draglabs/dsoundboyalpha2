@@ -148,7 +148,7 @@ public enum Response {
       let parser = Parser()
       if let data = parser.parse(to: .json, from: response.data) {
         print("Printing Error")
-        print(data)
+     //   print(data)
      }
       print(response.r?.statusCode ?? "no response error code")
       self = .error(statusCode: response.r?.statusCode, error: response.error)
@@ -200,9 +200,9 @@ public struct DefaultDispatcher:DispatcherRepresentable {
   
   private func prepareURLRequest(for request:RequestRepresentable)  -> URLRequest {
     let fullURL = "\(enviroment.host)/\(request.path)"
-    print(request.path)
-    print(enviroment.host)
-    print(fullURL)
+   // print(request.path)
+   // print(enviroment.host)
+   // print(fullURL)
     var urlRequest = URLRequest(url: URL(string: fullURL)!)
     
     switch request.parameters {

@@ -65,7 +65,7 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic {
   
   private func editJamUISetup() {
     
-    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
+ //   view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
     swipeGesture.addTarget(self, action: #selector(handleSwipe(sender:)))
     swipeGesture.direction = .down
     view.addGestureRecognizer(swipeGesture)
@@ -83,16 +83,18 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic {
         view.addSubview(button)
         print(view.bounds.height)
         button.addTarget(self, action: #selector(doneButtonPressed(sender:)), for: .touchUpInside)
-        
     }
 
   
   @objc func doneButtonPressed(sender:UIButton) {
+    resignFirstResponder()
     router?.dismiss()
     if valid() {
       print("should update!!!")
             let request = EditJam.Update.Request(name:ediTableView.updates.name, location:ediTableView.updates.location, notes: ediTableView.updates.notes)
           interactor?.update(request: request)
+        
+
     }else {
         print("--name----\(ediTableView.updates.name)----location--\(ediTableView.updates.location)----notes---\(ediTableView.updates.notes)-----")
 
@@ -114,16 +116,15 @@ extension EditJamViewController:UITextFieldDelegate,UITextViewDelegate {
     }
   }
   
-  @objc func handleTap(sender:UISwipeGestureRecognizer) {
-      view.endEditing(true)
-  }
+//  @objc func handleTap(sender:UISwipeGestureRecognizer) {
+//      view.endEditing(true)
+//  }
   @objc func handleSwipe(sender:UISwipeGestureRecognizer) {
     router?.dismiss()
   }
 
  func valid() -> Bool {
-  if ediTableView.updates.name != "" && ediTableView.updates.location != ""
-    && ediTableView.updates.notes != "" {
+  if ediTableView.updates.name != "" && ediTableView.updates.location != "" && ediTableView.updates.notes != "" {
     print("--name----\(ediTableView.updates.name)----location--\(ediTableView.updates.location)----notes---\(ediTableView.updates.notes)-----")
     return true
   }
