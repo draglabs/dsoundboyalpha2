@@ -48,7 +48,6 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic {
   // MARK:Properties
   let swipeGesture = UISwipeGestureRecognizer()
   @IBOutlet weak var ediTableView:EditTableView!
-  @IBOutlet weak var doneButton:UIButton!
   func currentJam() {
     let request = EditJam.CurrentJam.Request()
     interactor?.currentJam(request: request)
@@ -62,12 +61,37 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic {
   }
   
   private func editJamUISetup() {
+//    let keyboardFrame:NSValue = userInfo.valueForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+//    let keyboardRectangle = keyboardFrame.CGRectValue()
+//    let keyboardHeight = keyboardRectangle.height
+  //  let keyboardFrame:CGRect = ([UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+   
+   // dont
     view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
-    doneButton.addTarget(self, action: #selector(doneButtonPressed(sender:)), for: .touchUpInside)
     swipeGesture.addTarget(self, action: #selector(handleSwipe(sender:)))
     swipeGesture.direction = .down
     view.addGestureRecognizer(swipeGesture)
+    doneButton()
+
    }
+    
+    func doneButton(){
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: 0, y: view.bounds.height - 120, width: view.bounds.width, height: 54)
+        button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
+        button.setTitle("NewDoneButton", for: .normal)
+        button.tintColor = UIColor.white
+        view.addSubview(button)
+      //  button.addTarget(self, action:#selector(goToFeedback(sender:)), for: .allEvents)
+        print(view.bounds.height)
+        
+        //    let doneButton = UIButton(type: .system)
+            button.addTarget(self, action: #selector(doneButtonPressed(sender:)), for: .touchUpInside)
+
+        
+        
+    }
+
   
   @objc func doneButtonPressed(sender:UIButton) {
     router?.dismiss()

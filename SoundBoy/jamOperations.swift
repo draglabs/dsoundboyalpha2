@@ -171,6 +171,7 @@ struct ExportJamOperation: OperationRepresentable {
   }
   
   var request: RequestRepresentable {
+    print(userId)
     return JamRequest.export(userId: userId, jamId: jamId)
   }
   
