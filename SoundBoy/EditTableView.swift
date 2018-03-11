@@ -92,10 +92,12 @@ class EditTableView: UITableView {
     jamText["name"] = name
     jamText["location"] = location
     jamText["notes"] = notes
+
     updates = Updates(name: name, location: location, notes: notes)
     DispatchQueue.main.async {
       self.reloadData()
     }
+    
  }
   
   func customize() {
@@ -126,6 +128,7 @@ extension EditTableView:UITableViewDelegate,UITableViewDataSource,EditingCellDel
     case 0:
       let cell = tableView.dequeueReusableCell(withIdentifier: "editName") as! EditNameCell
       cell.textfield.text = jamText["name"]
+      cell.textfield.becomeFirstResponder()
       cell.delegate = self
       return cell
     case 1:
@@ -142,6 +145,7 @@ extension EditTableView:UITableViewDelegate,UITableViewDataSource,EditingCellDel
       let cell = tableView.dequeueReusableCell(withIdentifier: "edit") as! EditNameCell
       return cell
     }
+    
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

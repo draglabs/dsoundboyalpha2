@@ -11,8 +11,8 @@ import CoreData
 
 final class RecordingsStore:StoreRepresentable{
   func from(data: Data, response: @escaping (Result<Any>) -> ()) {
-    let d = Parser().parseToAny(from: data)
-    print(d as Any)
+//    let d = Parser().parseToAny(from: data)
+//    print(d as Any)
     let decoder = JSONDecoder()
     do {
       let res = try decoder.decode([JamResponse].self, from: data)

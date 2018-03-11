@@ -37,7 +37,7 @@ class EditJamInteractor: EditJamBusinessLogic, EditJamDataStore {
         var notes = ""
         self.jamId = jam.id!
         if jam.location != nil {location = jam.location!}
-        if jam.notes != nil{notes = jam.notes!}
+        if jam.notes != nil {notes = jam.notes!}
        self.presenter?.presentCurrentJam(response: EditJam.CurrentJam.Response(name: jam.name!, location: location, notes:notes))
         }
       }
@@ -73,8 +73,10 @@ class EditJamInteractor: EditJamBusinessLogic, EditJamDataStore {
         switch result {
         case .success:
           self.presenter?.presentUpdated(response: EditJam.Update.Response(updated: true))
+            print("Success updating Notes")
         case .failed:
           self.presenter?.presentUpdated(response: EditJam.Update.Response(updated: false))
+            print("Failed updating Notes")
         }
       })
    // }
