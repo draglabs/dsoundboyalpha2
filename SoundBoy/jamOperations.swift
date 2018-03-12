@@ -60,7 +60,6 @@ struct JoinJamOperation:OperationRepresentable {
     return JamRequest.join(userId: userId, pin: jamPin)
   }
   var  store: StoreRepresentable {
-    print("Step 9 Run JamStore from JoinJamOperation")
     return JamStore()
   }
   
@@ -69,7 +68,6 @@ struct JoinJamOperation:OperationRepresentable {
       
       switch response {
       case .success(let data):
-        print("Step 8 Case success in the func execute in the Join Jam operation. ")
         self.store.from(data: data, response: result)
       case .error(_,_):
         print("cant join Jam")
@@ -171,6 +169,7 @@ struct ExportJamOperation: OperationRepresentable {
   }
   
   var request: RequestRepresentable {
+    print(userId)
     return JamRequest.export(userId: userId, jamId: jamId)
   }
   

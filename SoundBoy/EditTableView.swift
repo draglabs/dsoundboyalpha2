@@ -74,7 +74,6 @@ class EditNotesCell: UITableViewCell,UITextViewDelegate {
 }
 
 class EditTableView: UITableView {
-  
   struct Updates {
     var name:String
     var location:String
@@ -83,16 +82,15 @@ class EditTableView: UITableView {
   var updates:Updates!
   override func awakeFromNib() {
     super.awakeFromNib()
-    delegate = self
-    dataSource = self
+    updates = Updates(name: "name", location: "location", notes: "notes")
+    self.delegate = self
+    self.dataSource = self
   }
-  var jamText:[String:String] = [:]
   
   func display(name:String,location:String,notes:String) {
-    jamText["name"] = name
-    jamText["location"] = location
-    jamText["notes"] = notes
-    updates = Updates(name: name, location: location, notes: notes)
+    updates.name = name
+    updates.location = location
+    updates.notes = notes
     DispatchQueue.main.async {
       self.reloadData()
     }
@@ -104,7 +102,9 @@ class EditTableView: UITableView {
 }
 
 extension EditTableView:UITableViewDelegate,UITableViewDataSource,EditingCellDelegate {
+    
   func didEndEditing(cellType: CellType, text: String) {
+    print(cellType, text)
     switch cellType {
     case .name:
       updates.name = text
@@ -125,23 +125,26 @@ extension EditTableView:UITableViewDelegate,UITableViewDataSource,EditingCellDel
     switch indexPath.row {
     case 0:
       let cell = tableView.dequeueReusableCell(withIdentifier: "editName") as! EditNameCell
-      cell.textfield.text = jamText["name"]
+      cell.textfield.text = updates.name
+      cell.textfield.becomeFirstResponder()
       cell.delegate = self
       return cell
     case 1:
       let cell = tableView.dequeueReusableCell(withIdentifier: "editLocation") as! EditLocationCell
-      cell.textfield.text = jamText["location"]
+      cell.textfield.text = updates.location
+      
       cell.delegate = self
       return cell
     case 2:
       let cell = tableView.dequeueReusableCell(withIdentifier: "editNotes") as! EditNotesCell
-      cell.textfield.text = jamText["notes"]
+      cell.textfield.text = updates.notes
       cell.delegate = self
       return cell
     default:
       let cell = tableView.dequeueReusableCell(withIdentifier: "edit") as! EditNameCell
       return cell
     }
+    
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

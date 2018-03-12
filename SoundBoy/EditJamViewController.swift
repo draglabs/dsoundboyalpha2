@@ -17,7 +17,7 @@ protocol EditJamDisplayLogic: class {
 class EditJamViewController: UIViewController, EditJamDisplayLogic {
   var interactor: EditJamBusinessLogic?
   var router: (NSObjectProtocol & EditJamRoutingLogic & EditJamDataPassing)?
-
+  let button = UIButton(type: .system)
   // MARK: Object lifecycle
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -48,37 +48,51 @@ class EditJamViewController: UIViewController, EditJamDisplayLogic {
   // MARK:Properties
   let swipeGesture = UISwipeGestureRecognizer()
   @IBOutlet weak var ediTableView:EditTableView!
-  @IBOutlet weak var doneButton:UIButton!
   func currentJam() {
     let request = EditJam.CurrentJam.Request()
     interactor?.currentJam(request: request)
   }
-  
+    
   func displayCurrentJam(viewModel: EditJam.CurrentJam.ViewModel) {
+
     ediTableView.display(name: viewModel.name, location: viewModel.location, notes: viewModel.notes)
+   
   }
   func displayUpdated(viewMode:EditJam.Update.ViewModel){
     router?.dismiss()
   }
   
   private func editJamUISetup() {
-    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
-    doneButton.addTarget(self, action: #selector(doneButtonPressed(sender:)), for: .touchUpInside)
+    
+    //view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:))))
     swipeGesture.addTarget(self, action: #selector(handleSwipe(sender:)))
     swipeGesture.direction = .down
     view.addGestureRecognizer(swipeGesture)
+    
+    doneButton()
+
    }
+    
+    func doneButton(){
+        
+        button.frame = CGRect(x: 0, y: view.bounds.height - 210, width: view.bounds.width, height: 54)
+        button.backgroundColor = UIColor(displayP3Red: 168/255, green: 36/255, blue: 36/255, alpha: 1)
+        button.setTitle("NewDoneButton", for: .normal)
+        button.tintColor = UIColor.white
+        view.addSubview(button)
+        print(view.bounds.height)
+        button.addTarget(self, action: #selector(doneButtonPressed(sender:)), for: .touchUpInside)
+    }
+
   
   @objc func doneButtonPressed(sender:UIButton) {
-    router?.dismiss()
     if valid() {
-      print("should update")
-            let request = EditJam.Update.Request(name:ediTableView.updates.name, location:ediTableView.updates.location
-            , notes: ediTableView.updates.notes)
+            let request = EditJam.Update.Request(name:ediTableView.updates.name, location:ediTableView.updates.location, notes: ediTableView.updates.notes)
           interactor?.update(request: request)
     }else {
-      print("no update")
+     router?.dismiss()
     }
+   
   }
 }
 
@@ -87,24 +101,23 @@ extension EditJamViewController:UITextFieldDelegate,UITextViewDelegate {
     view.endEditing(true)
     if valid() {
       print("should update")
-      let request = EditJam.Update.Request(name:ediTableView.updates.name, location:ediTableView.updates.location
-      , notes: ediTableView.updates.notes)
+      let request = EditJam.Update.Request(name:ediTableView.updates.name, location:ediTableView.updates.location, notes: ediTableView.updates.notes)
     interactor?.update(request: request)
     }else {
+        
       print("no update")
     }
   }
   
-  @objc func handleTap(sender:UISwipeGestureRecognizer) {
-      view.endEditing(true)
-  }
+//  @objc func handleTap(sender:UISwipeGestureRecognizer) {
+//      view.endEditing(true)
+//  }
   @objc func handleSwipe(sender:UISwipeGestureRecognizer) {
     router?.dismiss()
   }
 
  func valid() -> Bool {
-  if ediTableView.updates.name != "" && ediTableView.updates.location != ""
-    && ediTableView.updates.notes != "" {
+  if ediTableView.updates.name != "" && ediTableView.updates.location != "" && ediTableView.updates.notes != "" {
     return true
   }
   return false
